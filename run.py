@@ -68,13 +68,17 @@ def main():
                                 key=lambda x: x[1]) for plat in config.PLATFORMS}
     dbg["deals_sample"] = deal_list[:5]
     dbg["tree"] = [(c, p) for c, p, _ in catalog.flat() if c and p.startswith("Hardware")]
+    gha("notice", "Kategorien: " + "; ".join(f"{k}={v}" for k, v in catalog._cats.items()))
+    gha("notice", "Produkte: " + "; ".join(f"{k}={v['count']}" for k, v in dbg["lists"].items()))
+    for t, v in builder.debug.items():
+        gha("notice", f"{t}: Basisteile {json.dumps(v.get('parts'), ensure_ascii=False)[:900]} | günstigste {v.get('cheapest', [])[:2]}")
     Path("data").mkdir(exist_ok=True)
     if not args.mock:
         Path("data/debug.json").write_text(json.dumps(dbg, ensure_ascii=False, indent=1), encoding="utf-8")
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
-    if not args.mock and not args.no_history:
+    if not args.mock and not args.no_history and builds:
         HISTORY.parent.mkdir(exist_ok=True)
         HISTORY.write_text(json.dumps({"updated": stamp, "builds": builds}, ensure_ascii=False, indent=1),
                            encoding="utf-8")
