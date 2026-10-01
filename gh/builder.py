@@ -219,7 +219,8 @@ class Builder:
             if ugi["chip"] != g["chip"] or ugi["vram"] != g["vram"]:
                 changes.append(f"{ugi['chip']} ({ugi['vram']} GB) statt {g['chip']}")
             if uci["chip"] != c["chip"]:
-                changes.append(f"{uci['chip']} statt {c['chip']}")
+                hint = "" if uci["perf"] >= c["perf"] else ", dafür günstigere CPU"
+                changes.append(f"{uci['chip']} statt {c['chip']}{hint}")
             if changes:
                 out["upgrade"] = {
                     "extra": round(up["total"] - b["total"]),
