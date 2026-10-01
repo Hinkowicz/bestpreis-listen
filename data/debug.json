@@ -855,7 +855,7 @@
     ],
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
-     43.0
+     43
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
@@ -1292,7 +1292,7 @@
    ]
   },
   "cpu_am4/p": {
-   "count": 476,
+   "count": 475,
    "cheapest": [
     [
      "Intel Celeron G4930, 2C/2T, 3.20GHz, tray (CM8068403378114)",
@@ -1375,12 +1375,12 @@
      89.9
     ],
     [
-     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
-     91.19
+     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
+     91.14
     ],
     [
-     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
-     91.89
+     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
+     91.19
     ],
     [
      "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, tray (CM8071504651013)",
@@ -1502,7 +1502,7 @@
    ]
   },
   "mb_am5/t": {
-   "count": 301,
+   "count": 302,
    "cheapest": [
     [
      "ASRock A620AM-HVS (AMD AM5) (90-MXBSR0-A0UAYZ)",
@@ -1712,7 +1712,7 @@
    ]
   },
   "cpu_am5/p": {
-   "count": 476,
+   "count": 475,
    "cheapest": [
     [
      "Intel Celeron G4930, 2C/2T, 3.20GHz, tray (CM8068403378114)",
@@ -1795,12 +1795,12 @@
      89.9
     ],
     [
-     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
-     91.19
+     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
+     91.14
     ],
     [
-     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
-     91.89
+     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
+     91.19
     ],
     [
      "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, tray (CM8071504651013)",
@@ -1922,7 +1922,7 @@
    ]
   },
   "cpu_1700/p": {
-   "count": 476,
+   "count": 475,
    "cheapest": [
     [
      "Intel Celeron G4930, 2C/2T, 3.20GHz, tray (CM8068403378114)",
@@ -2005,12 +2005,12 @@
      89.9
     ],
     [
-     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
-     91.19
+     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
+     91.14
     ],
     [
-     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
-     91.89
+     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
+     91.19
     ],
     [
      "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, tray (CM8071504651013)",
