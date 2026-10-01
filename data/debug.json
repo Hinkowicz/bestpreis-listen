@@ -56,7 +56,7 @@
      50
     ],
     [
-     796,
+     801,
      "AM4",
      "Ryzen 5 5500",
      "Intel Arc B570",
@@ -215,7 +215,7 @@
      50
     ],
     [
-     796,
+     801,
      "AM4",
      "Ryzen 5 5500",
      "Intel Arc B570",
@@ -365,24 +365,6 @@
    },
    "cheapest": [
     [
-     860,
-     "AM4",
-     "Ryzen 5 5500",
-     "Intel Arc B580",
-     12,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     55
-    ],
-    [
-     865,
-     "AM4",
-     "Ryzen 5 5500",
-     "Intel Arc B580",
-     12,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     55
-    ],
-    [
      889,
      "AM4",
      "Ryzen 5 5600",
@@ -404,6 +386,24 @@
      905,
      "AM4",
      "Ryzen 5 5600",
+     "Intel Arc B580",
+     12,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     58
+    ],
+    [
+     921,
+     "AM4",
+     "Ryzen 7 5700X",
+     "Intel Arc B580",
+     12,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     58
+    ],
+    [
+     930,
+     "AM4",
+     "Ryzen 5 5600X",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
@@ -452,14 +452,6 @@
      103
     ],
     [
-     1187,
-     "AM4",
-     "Ryzen 5 5500",
-     "Radeon RX 9070",
-     16,
-     89
-    ],
-    [
      1371,
      "AM4",
      "Ryzen 5 5600X",
@@ -468,12 +460,20 @@
      103
     ],
     [
-     1192,
+     1257,
      "AM4",
-     "Ryzen 5 5500",
+     "Ryzen 5 5600X",
      "Radeon RX 9070",
      16,
-     89
+     94
+    ],
+    [
+     1393,
+     "AM4",
+     "Ryzen 7 5700X",
+     "Radeon RX 9070 XT",
+     16,
+     104
     ]
    ]
   },
@@ -508,54 +508,54 @@
    },
    "cheapest": [
     [
-     1278,
-     "AM5",
-     "Ryzen 5 8400F",
-     "Radeon RX 9060 XT",
-     16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     70
-    ],
-    [
-     1309,
-     "AM5",
-     "Ryzen 5 8400F",
-     "Radeon RX 9060 XT",
-     16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     70
-    ],
-    [
-     1310,
+     1327,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
      73
     ],
     [
-     1329,
+     1346,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
      74
     ],
     [
-     1352,
+     1369,
      "AM5",
      "Ryzen 5 7600",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     73
+    ],
+    [
+     1375,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9060 XT",
+     16,
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     75
+    ],
+    [
+     1379,
+     "AM5",
+     "Ryzen 5 7600",
+     "Radeon RX 9060 XT",
+     16,
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
      73
     ]
    ],
    "best_value": [
     [
-     1650,
+     1659,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9070 XT",
@@ -563,23 +563,7 @@
      110
     ],
     [
-     1479,
-     "AM5",
-     "Ryzen 5 7600X",
-     "Radeon RX 9070",
-     16,
-     99
-    ],
-    [
-     1508,
-     "AM5",
-     "Ryzen 5 9600X",
-     "Radeon RX 9070",
-     16,
-     100
-    ],
-    [
-     1620,
+     1630,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9070 XT",
@@ -587,7 +571,23 @@
      108
     ],
     [
-     1460,
+     1489,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9070",
+     16,
+     99
+    ],
+    [
+     1518,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9070",
+     16,
+     100
+    ],
+    [
+     1470,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9070",
@@ -595,7 +595,7 @@
      97
     ],
     [
-     1602,
+     1611,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9070 XT",
@@ -603,7 +603,7 @@
      106
     ],
     [
-     1657,
+     1666,
      "AM5",
      "Ryzen 7 7700",
      "Radeon RX 9070 XT",
@@ -611,7 +611,7 @@
      109
     ],
     [
-     1664,
+     1674,
      "AM5",
      "Ryzen 5 9600",
      "Radeon RX 9070 XT",
@@ -651,94 +651,54 @@
    },
    "cheapest": [
     [
-     1399,
+     1602,
      "AM5",
-     "Ryzen 5 8400F",
+     "Ryzen 7 7800X3D",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     69
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     79
     ],
     [
-     1430,
+     1617,
      "AM5",
-     "Ryzen 5 8400F",
+     "Ryzen 5 7600X3D",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     69
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     78
     ],
     [
-     1431,
+     1717,
      "AM5",
-     "Ryzen 5 7500F",
+     "Ryzen 7 9800X3D",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     73
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     82
     ],
     [
-     1450,
+     1745,
      "AM5",
-     "Ryzen 5 7600X",
-     "Radeon RX 9060 XT",
+     "Ryzen 7 7800X3D",
+     "Radeon RX 9070",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     74
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     105
     ],
     [
-     1473,
+     1747,
      "AM5",
-     "Ryzen 5 7600",
+     "Ryzen 7 7800X3D",
      "Radeon RX 9060 XT",
      16,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     73
+     "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     82
     ]
    ],
    "best_value": [
     [
-     1771,
-     "AM5",
-     "Ryzen 5 9600X",
-     "Radeon RX 9070 XT",
-     16,
-     109
-    ],
-    [
-     1741,
-     "AM5",
-     "Ryzen 5 7600X",
-     "Radeon RX 9070 XT",
-     16,
-     107
-    ],
-    [
-     1629,
-     "AM5",
-     "Ryzen 5 9600X",
-     "Radeon RX 9070",
-     16,
-     100
-    ],
-    [
-     1600,
-     "AM5",
-     "Ryzen 5 7600X",
-     "Radeon RX 9070",
-     16,
-     98
-    ],
-    [
-     1723,
-     "AM5",
-     "Ryzen 5 7500F",
-     "Radeon RX 9070 XT",
-     16,
-     105
-    ],
-    [
-     1876,
+     1886,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9070 XT",
@@ -746,18 +706,58 @@
      114
     ],
     [
-     1581,
+     1745,
      "AM5",
-     "Ryzen 5 7500F",
+     "Ryzen 7 7800X3D",
      "Radeon RX 9070",
      16,
-     96
+     105
     ],
     [
-     1778,
+     2001,
      "AM5",
-     "Ryzen 7 7700",
+     "Ryzen 7 9800X3D",
      "Radeon RX 9070 XT",
+     16,
+     118
+    ],
+    [
+     1901,
+     "AM5",
+     "Ryzen 5 7600X3D",
+     "Radeon RX 9070 XT",
+     16,
+     112
+    ],
+    [
+     2037,
+     "AM5",
+     "Ryzen 7 9850X3D",
+     "Radeon RX 9070 XT",
+     16,
+     120
+    ],
+    [
+     2031,
+     "AM5",
+     "Ryzen 7 7800X3D",
+     "Radeon RX 9070 XT",
+     16,
+     119
+    ],
+    [
+     1760,
+     "AM5",
+     "Ryzen 5 7600X3D",
+     "Radeon RX 9070",
+     16,
+     103
+    ],
+    [
+     1860,
+     "AM5",
+     "Ryzen 7 9800X3D",
+     "Radeon RX 9070",
      16,
      108
     ]
@@ -1518,10 +1518,6 @@
      82.61
     ],
     [
-     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
-     84.9
-    ],
-    [
      "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
      86.2
     ],
@@ -1531,6 +1527,10 @@
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
+     89.9
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
      89.9
     ],
     [
@@ -1938,10 +1938,6 @@
      82.61
     ],
     [
-     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
-     84.9
-    ],
-    [
      "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
      86.2
     ],
@@ -1951,6 +1947,10 @@
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
+     89.9
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
      89.9
     ],
     [
@@ -2491,7 +2491,7 @@
    ],
    [
     "Ryzen 5 5500",
-    84.9,
+    89.9,
     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)"
    ],
    [

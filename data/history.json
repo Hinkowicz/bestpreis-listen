@@ -1,5 +1,5 @@
 {
- "updated": "01.10.2026, 15:21 Uhr",
+ "updated": "01.10.2026, 15:22 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -101,27 +101,27 @@
    "name": "WQHD Einstieg",
    "budget": 1000,
    "platform": "AM4",
-   "total": 1041.42,
-   "score": 66,
+   "total": 920.52,
+   "score": 58,
    "parts": [
     {
      "slot": "Prozessor",
-     "name": "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
-     "price": 79.9,
-     "id": 2709165,
-     "url": "https://geizhals.de/a2709165.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/bb/ed/bbedc9d8f098e393-s.webp",
-     "note": "Ryzen 5 5500",
-     "merchant": "computeruniverse"
+     "name": "AMD Ryzen 7 5700X, 8C/16T, 3.40-4.60GHz, tray (100-000000926 / 100-100000926SPK)",
+     "price": 140.0,
+     "id": 2697378,
+     "url": "https://geizhals.de/a2697378.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/e1/03/e1036384a3d82e61-s.webp",
+     "note": "Ryzen 7 5700X",
+     "merchant": "ditech-at"
     },
     {
      "slot": "Grafikkarte",
-     "name": "ASUS Dual Radeon RX 9060 XT White Edition, DUAL-RX9060XT-16G-WHITE, 16GB GDDR6, HDMI, 2x DP (90YV0LG3-M0NA00)",
-     "price": 515.9,
-     "id": 3565085,
-     "url": "https://geizhals.de/a3565085.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e5/fd/e5fd3069fa0fcf76-s.webp",
-     "note": "Radeon RX 9060 XT · 16 GB",
+     "name": "ASRock Arc B580 Challenger 12GB OC, B580 CL 12GO, 12GB GDDR6, HDMI, 3x DP (90-GA5LZZ-00UANF)",
+     "price": 334.9,
+     "id": 3365541,
+     "url": "https://geizhals.de/a3365541.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/1d/84/1d84d7d3d92b290b-s.webp",
+     "note": "Intel Arc B580 · 12 GB",
      "merchant": "alza-de"
     },
     {
@@ -186,9 +186,9 @@
     }
    ],
    "upgrade": {
-    "extra": 145,
-    "gain": 35,
-    "text": "Radeon RX 9070 (16 GB) statt Radeon RX 9060 XT"
+    "extra": 215,
+    "gain": 42,
+    "text": "Radeon RX 9070 GRE (12 GB) statt Intel Arc B580 + Ryzen 5 5600 statt Ryzen 7 5700X"
    }
   },
   {
@@ -196,28 +196,28 @@
    "name": "WQHD High-End",
    "budget": 1500,
    "platform": "AM5",
-   "total": 1570.21,
-   "score": 102,
+   "total": 1518.12,
+   "score": 100,
    "parts": [
     {
      "slot": "Prozessor",
-     "name": "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
-     "price": 88.64,
-     "id": 3189847,
-     "url": "https://geizhals.de/a3189847.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/38/04383209e9a979e1-s.webp",
-     "note": "Ryzen 5 8400F",
+     "name": "AMD Ryzen 5 9600X, 6C/12T, 3.90-5.40GHz, tray (100-000001405)",
+     "price": 167.97,
+     "id": 3256375,
+     "url": "https://geizhals.de/a3256375.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/04/2f/042fb8ebdf32ff26-s.webp",
+     "note": "Ryzen 5 9600X",
      "merchant": "dreihunderttageoffende-de"
     },
     {
      "slot": "Grafikkarte",
-     "name": "ASRock Radeon RX 9070 XT Challenger 16GB, RX9070XT CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA61ZZ-00UANF)",
-     "price": 789.9,
-     "id": 3646658,
-     "url": "https://geizhals.de/a3646658.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e6/02/e6021fafca61ed95-s.webp",
-     "note": "Radeon RX 9070 XT · 16 GB",
-     "merchant": "alza-de"
+     "name": "ASRock Radeon RX 9070 Challenger 16GB, RX9070 CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA5NZZ-00UANF)",
+     "price": 659.0,
+     "id": 3430118,
+     "url": "https://geizhals.de/a3430118.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/7e/8a/7e8af3560048bc5d-s.webp",
+     "note": "Radeon RX 9070 · 16 GB",
+     "merchant": "nullprozentshop-de"
     },
     {
      "slot": "Mainboard",
@@ -261,13 +261,13 @@
     },
     {
      "slot": "Netzteil",
-     "name": "be quiet! System Power 11 750W, ATX 3.1 (BP012EU)",
-     "price": 70.42,
-     "id": 3478168,
-     "url": "https://geizhals.de/a3478168.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
+     "name": "Seasonic Core GX ATX 3 (2024) GX-650 650W, ATX 3.1 (SRP-CGX651-A5A32SF)",
+     "price": 69.9,
+     "id": 3364404,
+     "url": "https://geizhals.de/a3364404.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/af/42/af425cb3197051e4-s.webp",
      "note": "",
-     "merchant": "mindfactory"
+     "merchant": "alternate"
     },
     {
      "slot": "Gehäuse",
@@ -281,9 +281,9 @@
     }
    ],
    "upgrade": {
-    "extra": 185,
-    "gain": 13,
-    "text": "Ryzen 7 7800X3D statt Ryzen 5 8400F"
+    "extra": 141,
+    "gain": 9,
+    "text": "Radeon RX 9070 XT (16 GB) statt Radeon RX 9070"
    }
   },
   {
@@ -291,7 +291,7 @@
    "name": "4K Enthusiast",
    "budget": 2000,
    "platform": "AM5",
-   "total": 2172.37,
+   "total": 2181.83,
    "score": 124,
    "parts": [
     {
@@ -356,11 +356,11 @@
     },
     {
      "slot": "Netzteil",
-     "name": "be quiet! System Power 11 750W, ATX 3.1 (BP012EU)",
-     "price": 70.42,
-     "id": 3478168,
-     "url": "https://geizhals.de/a3478168.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
+     "name": "be quiet! Pure Power 12 750W, ATX 3.1 (BP003EU)",
+     "price": 79.88,
+     "id": 3346945,
+     "url": "https://geizhals.de/a3346945.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/5c/b8/5cb8020291db9e22-s.webp",
      "note": "",
      "merchant": "mindfactory"
     },
