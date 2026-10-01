@@ -7,9 +7,9 @@ from . import config
 
 CSS = """
 :root{--bg:#0f1115;--card:#181b22;--line:#262a33;--text:#e8eaf0;--muted:#9aa1ae;
---accent:#22d3ee;--accent2:#e440d0;--on-accent:#04222a;--good:#3ecf8e;--bad:#ff5d7a;--chip:#232733}
+--accent:#22d3ee;--accent2:#e440d0;--on-accent:#04222a;--veil:rgba(15,17,21,.86);--good:#3ecf8e;--bad:#ff5d7a;--chip:#232733}
 @media (prefers-color-scheme: light){:root{--bg:#f6f7f9;--card:#fff;--line:#e3e6ec;--text:#14161b;
---muted:#5d6472;--chip:#f0f2f5;--accent:#0e7490;--accent2:#b0179c;--on-accent:#fff;--good:#0f7a4e;--bad:#c0264a}}
+--muted:#5d6472;--chip:#f0f2f5;--veil:rgba(246,247,249,.94);--accent:#0e7490;--accent2:#b0179c;--on-accent:#fff;--good:#0f7a4e;--bad:#c0264a}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);
 font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 a{color:inherit}.wrap{max-width:980px;margin:0 auto;padding:16px}
@@ -43,11 +43,15 @@ padding:10px 14px;margin-top:12px}.up{color:var(--bad)}.down{color:var(--good)}
 .deal .old{color:var(--muted);font-size:13px;margin-left:6px}
 .pct{color:var(--accent2);font-weight:800}.badge{font-size:11px;background:linear-gradient(90deg,var(--accent),var(--accent2));
 color:#fff;text-shadow:0 1px 1px #0005;border-radius:6px;padding:1px 6px;font-weight:800}
-.brand{display:flex;align-items:center;gap:10px}.brand img{height:40px;width:auto;border-radius:8px}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:4px}.brand .wordmark{height:44px;width:auto;display:block}
+@media (max-width:560px){.brand .wordmark{height:36px}}
+body{background-color:var(--bg);background-image:linear-gradient(var(--veil),var(--veil)),url(assets/pattern.webp);
+background-size:auto,520px auto;background-attachment:scroll}
 .hero{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);
 border-radius:16px;padding:16px;margin-bottom:16px;position:relative;overflow:hidden}
 .hero.has-setup{grid-template-columns:auto 1fr;background:linear-gradient(90deg,var(--card) 45%,color-mix(in srgb,var(--card) 55%,transparent)),var(--hero) center/cover}
 .hero .avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--accent2)}
+.hero .avatar.mono{object-fit:contain;padding:16px;background:#17181c}
 .hero h1{margin:0}.socials{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .socials a{padding:4px 10px;border-radius:999px;border:1px solid var(--accent);text-decoration:none;font-size:13px;font-weight:600}
 .socials a:hover{background:var(--accent);color:var(--on-accent)}
@@ -80,17 +84,28 @@ def asset(name):
 
 
 def logo_html():
-    src = asset("logo")
-    return f'<img src="{src}" alt="Hinkowicz Logo">' if src else ""
+    if asset("logo-dark") and asset("logo-light"):
+        return ('<picture><source srcset="assets/logo-light.png" media="(prefers-color-scheme: light)">'
+                '<img class="wordmark" src="assets/logo-dark.png" alt="Hinkowicz" width="321" height="48"></picture>')
+    return ""
+
+
+def head_icons():
+    if not asset("favicon-32"):
+        return ""
+    return ('<link rel="icon" href="assets/favicon.ico" sizes="any">'
+            '<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">'
+            '<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><meta name="theme-color" content="#17181c">')
 
 
 def hero_html():
     avatar, setup = asset("avatar"), asset("setup")
+    mono = asset("monogram") if not avatar else None
     socials = "".join(f'<a href="{e(url)}" target="_blank" rel="noopener">{e(name)}</a>'
                       for name, url in config.SOCIALS.items() if url)
     style = f' style="--hero:url({setup})"' if setup else ""
     return f"""<section class="hero{' has-setup' if setup else ''}"{style}>
-{f'<img class="avatar" src="{avatar}" alt="Hinkowicz">' if avatar else ''}
+{f'<img class="avatar" src="{avatar}" alt="Hinkowicz">' if avatar else ''}{f'<img class="avatar mono" src="{mono}" alt="">' if mono else ''}
 <div><h1>Gaming-PC Bestpreis-Listen</h1><p class="sub" style="margin:4px 0 0">{e(config.INTRO)}</p>
 {f'<div class="socials">{socials}</div>' if socials else ''}</div></section>"""
 
@@ -119,9 +134,9 @@ def page(title, active, body, tiers, stamp):
     nav += f'<a href="deals.html" class="{"on" if active == "deals" else ""}">🔥 Deals</a>'
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} – {e(config.SITE_TITLE)}</title>
-<meta name="robots" content="index,follow">
+<meta name="robots" content="index,follow">{head_icons()}
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' https: data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><style>{CSS}</style></head><body><div class="wrap">
-<header><a class="brand" href="index.html">{logo_html()}<span>Hinkowicz<small>Bestpreis-Listen</small></span></a><nav>{nav}</nav></header>
+<header><a class="brand" href="index.html">{logo_html() or '<span>Hinkowicz</span>'}<small>Bestpreis-Listen</small></a><nav>{nav}</nav></header>
 <div class="ad"><b>Anzeige</b> · {e(config.AD_NOTICE)}</div>
 {body}
 <footer>Stand: {e(stamp)} · Preise inkl. MwSt. zzgl. Versand, Preisangaben über Geizhals.de, Änderungen möglich.
