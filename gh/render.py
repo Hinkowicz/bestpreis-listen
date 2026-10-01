@@ -107,7 +107,9 @@ def img(url):
     if not url:
         return '<div class="noimg"></div>'
     url = "https:" + url if url.startswith("//") else url
-    return f'<img src="{e(url)}" alt="" loading="lazy">'
+    if not url.startswith("https://"):  # nur echte Bild-URLs, keine javascript:/data:-Tricks
+        return '<div class="noimg"></div>'
+    return f'<img src="{e(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">'
 
 
 def page(title, active, body, tiers, stamp):
@@ -117,7 +119,8 @@ def page(title, active, body, tiers, stamp):
     nav += f'<a href="deals.html" class="{"on" if active == "deals" else ""}">🔥 Deals</a>'
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} – {e(config.SITE_TITLE)}</title>
-<meta name="robots" content="index,follow"><style>{CSS}</style></head><body><div class="wrap">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' https: data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><style>{CSS}</style></head><body><div class="wrap">
 <header><a class="brand" href="index.html">{logo_html()}<span>Hinkowicz<small>Bestpreis-Listen</small></span></a><nav>{nav}</nav></header>
 <div class="ad"><b>Anzeige</b> · {e(config.AD_NOTICE)}</div>
 {body}

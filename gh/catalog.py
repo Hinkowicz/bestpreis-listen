@@ -84,7 +84,8 @@ class Catalog:
 
 
 def product_url(pid):
-    return f"{config.GEIZHALS_BASE}/a{pid}.html?{config.AFFILIATE_PARAMS}"
+    # Produkt-IDs sind immer Zahlen – alles andere aus der API wird verworfen
+    return f"{config.GEIZHALS_BASE}/a{int(pid)}.html?{config.AFFILIATE_PARAMS}"
 
 
 def with_affiliate(url):
