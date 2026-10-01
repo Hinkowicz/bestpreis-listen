@@ -192,7 +192,8 @@ def index_page(builds, deals, tiers, stamp):
 <div style="margin-top:6px"><span class="score">Score {b['score']}</span></div></a>""" for b in builds)
     top = "".join(f'<li><a href="{e(d["url"])}" target="_blank" rel="sponsored noopener">{e(d["name"])}</a>* – <b>{eur(d["price"])}</b> <span class="pct">{e(d["percent"])} %</span></li>'
                   for d in deals[:5])
-    body = f"""{hero_html()}
+    body = f"""<h1>Gaming-PC Bestpreis-Listen</h1>
+<p class="sub">Jede Woche neu berechnet – die beste Gaming-Leistung pro Euro für dein Budget.</p>
 <div class="grid">{cards}</div>{SCORE_EXPLAIN}
 <h2>🔥 Top-Deals der Woche</h2><ul>{top}</ul><p><a class="btn" href="deals.html">Alle Deals ansehen</a></p>"""
     return page("Übersicht", "index", body, tiers, stamp)
