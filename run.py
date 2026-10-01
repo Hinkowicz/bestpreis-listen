@@ -56,6 +56,21 @@ def main():
     print(f"   {len(deal_list)} Deals")
     gha("notice", f"{len(deal_list)} Deals, {api.calls} API-Aufrufe")
 
+    # Diagnose-Daten (Preise je Kategorie, Kandidaten) fürs Feintuning
+    dbg = {"tiers": builder.debug, "categories": catalog._cats, "lists": {}}
+    for (key, sort, *_), prods in catalog._lists.items():
+        cheap = sorted(prods, key=lambda p: float(p["best_price"]))
+        dbg["lists"][f"{key}/{sort}"] = {"count": len(prods),
+                                         "cheapest": [(p["product"], p["best_price"]) for p in cheap[:25]]}
+    dbg["gpus"] = sorted([(g["chip"], g["vram"], float(p["best_price"]), p["product"]) for p, g in builder.gpus()],
+                         key=lambda x: x[2])
+    dbg["cpus"] = {plat: sorted([(c["chip"], float(p["best_price"]), p["product"]) for p, c in builder.cpus(plat)],
+                                key=lambda x: x[1]) for plat in config.PLATFORMS}
+    dbg["deals_sample"] = deal_list[:5]
+    Path("data").mkdir(exist_ok=True)
+    if not args.mock:
+        Path("data/debug.json").write_text(json.dumps(dbg, ensure_ascii=False, indent=1), encoding="utf-8")
+
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     if not args.mock and not args.no_history:
@@ -63,7 +78,7 @@ def main():
         HISTORY.write_text(json.dumps({"updated": stamp, "builds": builds}, ensure_ascii=False, indent=1),
                            encoding="utf-8")
     print(f"Fertig: {args.out}/ · API-Aufrufe: {api.calls}")
-    return 0 if len(builds) == len(config.TIERS) else 1
+    return 0 if builds else 1
 
 
 def gha(level, msg):

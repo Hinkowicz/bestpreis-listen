@@ -136,6 +136,14 @@ def write_site(out_dir, builds, deals, history, stamp):
     for b in builds:
         (out / f"pc-{b['tier']}.html").write_text(pc_page(b, prev.get(b["tier"]), tiers, stamp), encoding="utf-8")
         (out / "api" / f"pc-{b['tier']}.json").write_text(json.dumps(b, ensure_ascii=False, indent=1), encoding="utf-8")
+    built = {b["tier"] for b in builds}
+    for t in tiers:
+        if t["id"] not in built:
+            body = (f"<h1>Gaming-PC bis {t['budget']} €</h1><p class='sub'>Diese Woche gibt es zu den aktuellen "
+                    "Bestpreisen keine Zusammenstellung, die unseren Qualitätsansprüchen in diesem Budget genügt. "
+                    "Schau dir solange die nächsthöhere Stufe an – nächste Woche wird neu gerechnet.</p>")
+            (out / f"pc-{t['id']}.html").write_text(page(f"Gaming-PC bis {t['budget']} €", t["id"], body, tiers, stamp),
+                                                     encoding="utf-8")
     (out / "deals.html").write_text(deals_page(deals, tiers, stamp), encoding="utf-8")
     (out / "index.html").write_text(index_page(builds, deals, tiers, stamp), encoding="utf-8")
     (out / "api" / "deals.json").write_text(json.dumps(deals, ensure_ascii=False, indent=1), encoding="utf-8")

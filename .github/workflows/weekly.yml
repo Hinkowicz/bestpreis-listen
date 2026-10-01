@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "bestpreis-bot"
           git config user.email "bestpreis-bot@users.noreply.github.com"
-          git add data/history.json
+          git add data/history.json data/debug.json
           git diff --cached --quiet || git commit -m "Wöchentliches Update $(date +%F)"
           git push
       - uses: actions/upload-pages-artifact@v3

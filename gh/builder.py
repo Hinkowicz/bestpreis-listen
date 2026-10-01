@@ -48,6 +48,7 @@ def _filter(prods, include=None, exclude=None, prefer=None):
 class Builder:
     def __init__(self, catalog):
         self.cat = catalog
+        self.debug = {}
 
     # --- Einzelteile --------------------------------------------------------
     def board(self, plat, tier):
@@ -162,6 +163,18 @@ class Builder:
                     combos.append({"total": total, "score": score, "plat": plat,
                                    "cpu": (cp, c), "gpu": (gp, g), "board": board, "ram": ram,
                                    "ssd": ssd, "case": case, "cooler": cpu_cooler, "psu": psu})
+        dbg = self.debug.setdefault(tier["id"], {})
+        dbg["parts"] = {k: (p["product"], _price(p)) if p else None for k, p in
+                        (("ssd", ssd), ("case", case), ("cooler", cooler))}
+        for plat in tier["platforms"]:
+            dbg["parts"][plat] = {k: (p["product"], _price(p)) if p else None for k, p in
+                                  (("board", self.board(plat, tier)), ("ram", self.ram(plat, tier)))}
+        dbg["cheapest"] = [(round(x["total"]), x["plat"], x["cpu"][1]["chip"], x["gpu"][1]["chip"],
+                            x["gpu"][1]["vram"], x["psu"]["product"], round(x["score"]))
+                           for x in sorted(combos, key=lambda x: x["total"])[:5]]
+        top = sorted(combos, key=lambda x: -x["score"] / x["total"])[:8]
+        dbg["best_value"] = [(round(x["total"]), x["plat"], x["cpu"][1]["chip"], x["gpu"][1]["chip"],
+                              x["gpu"][1]["vram"], round(x["score"])) for x in top]
         within = [x for x in combos if x["total"] <= tier["max"]]
         if not within:
             return None
