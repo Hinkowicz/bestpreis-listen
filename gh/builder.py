@@ -99,8 +99,8 @@ class Builder:
             m = WATT_RE.search(p["product"])
             if m and int(m.group(1)) >= watt_needed:
                 cands.append(p)
-        if tier["budget"] >= 1500:  # ab High-End: modulares, aktuelles Netzteil
-            cands = [p for p in cands if re.search(r"ATX 3|modular|Gold|Platinum", p["product"], re.I)] or cands
+        if tier["budget"] >= 1500:  # ab High-End: nur Gold-Serien
+            cands = [p for p in cands if re.search(config.PSU_PREMIUM, p["product"], re.I)] or cands
         return value_pick(cands, 1.08)
 
     def gpus(self):
@@ -144,6 +144,8 @@ class Builder:
             base_cost = sum(_price(p) for p in base)
             psu_cache = {}
             for cp, c in self.cpus(plat):
+                if c["perf"] < tier.get("min_cpu", 0):
+                    continue
                 # Einsteiger-Stufen: mitgelieferter Boxed-Kühler reicht für 65-W-CPUs
                 boxed = (tier.get("boxed_cooler_ok") and c["watt"] <= 65
                          and re.search(r"\bboxed\b", cp["product"], re.I)

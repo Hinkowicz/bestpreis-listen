@@ -45,13 +45,13 @@ CPUS = [
     ("Ryzen 5 7600X",    r"Ryzen 5 7600X\b",    71, "AM5", 105),
     ("Ryzen 5 7600",     r"Ryzen 5 7600(?![X\d])", 69, "AM5", 65),
     ("Ryzen 5 7500F",    r"Ryzen 5 7500F",      67, "AM5", 65),
-    ("Ryzen 5 8400F",    r"Ryzen 5 8400F",      58, "AM5", 65),
+    ("Ryzen 5 8400F",    r"Ryzen 5 8400F",      55, "AM5", 65),  # kleiner Cache, nur PCIe 4.0 x8
     ("Ryzen 7 5700X3D",  r"Ryzen 7 5700X3D",    70, "AM4", 105),
     ("Ryzen 7 5800X3D",  r"Ryzen 7 5800X3D",    72, "AM4", 105),
     ("Ryzen 7 5700X",    r"Ryzen 7 5700X\b",    57, "AM4", 65),
     ("Ryzen 5 5600X",    r"Ryzen 5 5600X\b",    55, "AM4", 65),
     ("Ryzen 5 5600",     r"Ryzen 5 5600(?![XGT\d])", 54, "AM4", 65),
-    ("Ryzen 5 5500",     r"Ryzen 5 5500\b",     45, "AM4", 65),
+    ("Ryzen 5 5500",     r"Ryzen 5 5500\b",     45, "AM4", 65),  # nur PCIe 3.0
     ("Core i5-14600KF",  r"i5-14600KF",         77, "LGA1700", 180),
     ("Core i5-14400F",   r"i5-14400F",          66, "LGA1700", 150),
     ("Core i5-13400F",   r"i5-13400F",          63, "LGA1700", 150),
