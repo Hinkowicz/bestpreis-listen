@@ -47,10 +47,6 @@ PLATFORMS = {
 # --- Budget-Stufen --------------------------------------------------------------
 # max = harte Obergrenze. gpu_weight = wie stark die GPU im Score zählt (Rest: CPU).
 TIERS = [
-    {"id": "600",  "name": "Einsteiger",    "budget": 600,  "max": 630,
-     "platforms": ["AM4", "AM5", "LGA1700"], "ram_gb": [16], "ssd_tb": 1,
-     "min_cpu": 0, "min_vram": 8, "gpu_weight": 0.80, "case_max": 60, "cooler_max": 25, "board_wifi": False,
-     "boxed_cooler_ok": True},
     {"id": "800",  "name": "Full-HD Allrounder", "budget": 800, "max": 840,
      "platforms": ["AM4", "AM5", "LGA1700"], "ram_gb": [16], "ssd_tb": 1,
      "min_cpu": 0, "min_vram": 8, "gpu_weight": 0.78, "case_max": 75, "cooler_max": 30, "board_wifi": False,
