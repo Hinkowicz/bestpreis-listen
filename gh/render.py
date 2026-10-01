@@ -47,15 +47,6 @@ color:#fff;text-shadow:0 1px 1px #0005;border-radius:6px;padding:1px 6px;font-we
 @media (max-width:560px){.brand .wordmark{height:36px}}
 body{background-color:var(--bg);background-image:linear-gradient(var(--veil),var(--veil)),url(assets/pattern.webp);
 background-size:auto,520px auto;background-attachment:scroll}
-.hero{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);
-border-radius:16px;padding:16px;margin-bottom:16px;position:relative;overflow:hidden}
-.hero.has-setup{grid-template-columns:auto 1fr;background:linear-gradient(90deg,var(--card) 45%,color-mix(in srgb,var(--card) 55%,transparent)),var(--hero) center/cover}
-.hero .avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--accent2)}
-.hero .avatar.mono{object-fit:contain;padding:16px;background:#17181c}
-.hero h1{margin:0}.socials{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.socials a{padding:4px 10px;border-radius:999px;border:1px solid var(--accent);text-decoration:none;font-size:13px;font-weight:600}
-.socials a:hover{background:var(--accent);color:var(--on-accent)}
-@media (max-width:560px){.hero{grid-template-columns:1fr}.hero.has-setup{background:var(--card)}}
 .deal img{width:100%;height:120px;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:8px}
 footer{margin:32px 0 8px;color:var(--muted);font-size:12px}
 @media (max-width:560px){.row{grid-template-columns:44px 1fr}.row img,.row .noimg{width:44px;height:44px}.right{grid-column:2;text-align:left}}
@@ -96,18 +87,6 @@ def head_icons():
     return ('<link rel="icon" href="assets/favicon.ico" sizes="any">'
             '<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">'
             '<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><meta name="theme-color" content="#17181c">')
-
-
-def hero_html():
-    avatar, setup = asset("avatar"), asset("setup")
-    mono = asset("monogram") if not avatar else None
-    socials = "".join(f'<a href="{e(url)}" target="_blank" rel="noopener">{e(name)}</a>'
-                      for name, url in config.SOCIALS.items() if url)
-    style = f' style="--hero:url({setup})"' if setup else ""
-    return f"""<section class="hero{' has-setup' if setup else ''}"{style}>
-{f'<img class="avatar" src="{avatar}" alt="Hinkowicz">' if avatar else ''}{f'<img class="avatar mono" src="{mono}" alt="">' if mono else ''}
-<div><h1>Gaming-PC Bestpreis-Listen</h1><p class="sub" style="margin:4px 0 0">{e(config.INTRO)}</p>
-{f'<div class="socials">{socials}</div>' if socials else ''}</div></section>"""
 
 
 def e(s):

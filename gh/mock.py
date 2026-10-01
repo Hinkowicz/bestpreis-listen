@@ -60,8 +60,6 @@ class MockAPI:
 
     def categories(self, m=None):
         # pro Config-Eintrag ein Knoten, dessen Pfad auf die Regex passt
-        def title(rx):
-            return rx.replace("\\", "").rstrip("$").split(" > ")[-1]
         def node(k, rx):
             parts = rx.replace("\\", "").rstrip("$").split(" > ")
             leaf = {"id": {"cat": k}, "title": parts[-1]}

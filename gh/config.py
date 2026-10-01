@@ -7,19 +7,6 @@ SITE_URL = "https://hinkowicz.com"
 AFFILIATE_PARAMS = "cs_id=491744683&ccpid=hinkowiczlisten"
 GEIZHALS_BASE = "https://geizhals.de"
 
-# Persönlicher Bereich auf der Startseite. Bilder einfach in den Ordner assets/ legen:
-#   assets/logo.png (Kopfzeile), assets/avatar.jpg (Profilbild), assets/setup.jpg (Hintergrund)
-INTRO = ("Hi, ich bin Hinko! Jede Woche rechne ich hier die besten Gaming-PCs für euer Budget neu durch – "
-         "mit aktuellen Bestpreisen und meinem eigenen Hinko-Score.")
-SOCIALS = {  # leer lassen = wird nicht angezeigt
-    "Website": "https://hinkowicz.com",
-    "Discord": "",
-    "Twitch": "",
-    "YouTube": "",
-    "TikTok": "",
-    "Instagram": "",
-}
-
 AD_NOTICE = (
     "Die mit * markierten Links sind Affiliate-Links. Kaufst du darüber ein, "
     "erhalte ich eine kleine Provision – für dich ändert sich am Preis nichts."

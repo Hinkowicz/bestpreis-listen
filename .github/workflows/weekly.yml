@@ -23,6 +23,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: Tests (Affiliate-Links, Anzeige-Hinweis, Budgets)
+        run: python -m unittest discover -s tests -t .
       - name: Listen berechnen
         env:
           GEIZHALS_USER: ${{ vars.GEIZHALS_USER || 'hinkowicz' }}

@@ -24,7 +24,6 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--mock", action="store_true", help="Beispieldaten statt echter API")
     ap.add_argument("--out", default="site")
-    ap.add_argument("--no-history", action="store_true", help="Vorwochen-Vergleich nicht aktualisieren")
     args = ap.parse_args()
 
     if args.mock:
@@ -78,7 +77,7 @@ def main():
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
-    if not args.mock and not args.no_history and builds:
+    if not args.mock and builds:
         HISTORY.parent.mkdir(exist_ok=True)
         HISTORY.write_text(json.dumps({"updated": stamp, "builds": builds}, ensure_ascii=False, indent=1),
                            encoding="utf-8")

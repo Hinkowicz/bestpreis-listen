@@ -41,6 +41,7 @@ Danach läuft das Update jeden Montag früh automatisch.
 
 ```bash
 pip install -r requirements.txt
+python -m unittest discover -s tests -t .   # Tests
 python run.py --mock          # Vorschau mit Beispieldaten → site/
 GEIZHALS_SECRET=... python run.py
 ```

@@ -86,13 +86,3 @@ class Catalog:
 def product_url(pid):
     # Produkt-IDs sind immer Zahlen – alles andere aus der API wird verworfen
     return f"{config.GEIZHALS_BASE}/a{int(pid)}.html?{config.AFFILIATE_PARAMS}"
-
-
-def with_affiliate(url):
-    """Hängt die Affiliate-Parameter an einen beliebigen Geizhals-Link an."""
-    if not url:
-        return url
-    if url.startswith("//"):
-        url = "https:" + url
-    sep = "&" if "?" in url else "?"
-    return url + sep + config.AFFILIATE_PARAMS

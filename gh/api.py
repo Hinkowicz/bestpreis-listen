@@ -83,7 +83,3 @@ class GeizhalsAPI:
     def bestprice_development(self, **params):
         params.setdefault("loc", self.loc)
         return self.post("bestprice_development", {"params": params}).get("response", {})
-
-    def query_product(self, query, type_="id", **params):
-        params.setdefault("loc", self.loc)
-        return self.post("query_product", {"query": str(query), "type": type_, "params": params})
