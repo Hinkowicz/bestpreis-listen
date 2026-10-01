@@ -136,7 +136,9 @@ class Builder:
             board, ram = self.board(plat, tier), self.ram(plat, tier)
             base = [board, ram, ssd, case]
             if not all(base) or not cooler:
-                print(f"  [warn] {tier['id']}€/{plat}: Basisteil fehlt, übersprungen")
+                names = ["Board", "RAM", "SSD", "Gehäuse"]
+                missing = [n for n, x in zip(names, base) if not x] + ([] if cooler else ["Kühler"])
+                print(f"::warning::{tier['id']}€/{plat}: Basisteil fehlt ({', '.join(missing)})")
                 continue
             base_cost = sum(_price(p) for p in base)
             psu_cache = {}

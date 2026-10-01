@@ -43,14 +43,18 @@ def main():
         print(f"→ PC bis {tier['budget']} €")
         b = builder.build_tier(tier)
         if b:
-            print(f"   {b['total']:.0f} € · Score {b['score']} · {b['parts'][0]['note']} + {b['parts'][1]['note']}")
+            msg = f"{tier['budget']} €: {b['total']:.0f} € · Score {b['score']} · {b['parts'][0]['note']} + {b['parts'][1]['note']}"
+            print("   " + msg)
+            gha("notice", msg)
             builds.append(b)
         else:
             print("   [warn] keine gültige Zusammenstellung gefunden")
+            gha("warning", f"{tier['budget']} €: keine gültige Zusammenstellung")
 
     print("→ Deals")
     deal_list = deals.collect(catalog, api)
     print(f"   {len(deal_list)} Deals")
+    gha("notice", f"{len(deal_list)} Deals, {api.calls} API-Aufrufe")
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
@@ -62,5 +66,17 @@ def main():
     return 0 if len(builds) == len(config.TIERS) else 1
 
 
+def gha(level, msg):
+    """Meldung als GitHub-Annotation (im Actions-Run oben sichtbar)."""
+    if os.environ.get("GITHUB_ACTIONS"):
+        print(f"::{level}::" + str(msg).replace("%", "%25").replace("\r", "").replace("\n", "%0A"))
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    import traceback
+    try:
+        code = main()
+    except Exception as exc:
+        gha("error", f"{type(exc).__name__}: {exc}\n" + "".join(traceback.format_exc()[-1500:]))
+        raise
+    sys.exit(code)
