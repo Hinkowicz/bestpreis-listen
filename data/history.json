@@ -1,5 +1,5 @@
 {
- "updated": "01.10.2026, 15:14 Uhr",
+ "updated": "01.10.2026, 15:17 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -97,22 +97,22 @@
    }
   },
   {
-   "tier": "1500",
-   "name": "WQHD High-End",
-   "budget": 1500,
-   "platform": "AM5",
-   "total": 1544.27,
-   "score": 70,
+   "tier": "1000",
+   "name": "WQHD Einstieg",
+   "budget": 1000,
+   "platform": "AM4",
+   "total": 1041.42,
+   "score": 66,
    "parts": [
     {
      "slot": "Prozessor",
-     "name": "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
-     "price": 88.64,
-     "id": 3189847,
-     "url": "https://geizhals.de/a3189847.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/38/04383209e9a979e1-s.webp",
-     "note": "Ryzen 5 8400F",
-     "merchant": "dreihunderttageoffende-de"
+     "name": "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
+     "price": 79.9,
+     "id": 2709165,
+     "url": "https://geizhals.de/a2709165.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/bb/ed/bbedc9d8f098e393-s.webp",
+     "note": "Ryzen 5 5500",
+     "merchant": "computeruniverse"
     },
     {
      "slot": "Grafikkarte",
@@ -126,33 +126,33 @@
     },
     {
      "slot": "Mainboard",
-     "name": "GIGABYTE B650 Eagle AX (AMD AM5)",
-     "price": 99.9,
-     "id": 3108584,
-     "url": "https://geizhals.de/a3108584.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/cd/dc/cddcdce90cb92cef-s.webp",
-     "note": "AM5",
-     "merchant": "alternate"
+     "name": "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
+     "price": 64.69,
+     "id": 2298964,
+     "url": "https://geizhals.de/a2298964.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/04/a9/04a99ae1a22a940e-s.webp",
+     "note": "AM4",
+     "merchant": "mindfactory"
     },
     {
      "slot": "Arbeitsspeicher",
-     "name": "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
-     "price": 446.9,
-     "id": 3918302,
-     "url": "https://geizhals.de/a3918302.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/70/66/7066083965f73e3e-s.webp",
-     "note": "32 GB",
-     "merchant": "alza-de"
+     "name": "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
+     "price": 109.0,
+     "id": 3564392,
+     "url": "https://geizhals.de/a3564392.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/2a/b7/2ab7c9dd56c89b44-s.webp",
+     "note": "16 GB",
+     "merchant": "mindfactory"
     },
     {
      "slot": "SSD",
-     "name": "Crucial P310 SSD 2TB, M.2 2280 / M-Key / PCIe 4.0 x4 (CT2000P310SSD8)",
-     "price": 255.9,
-     "id": 3305572,
-     "url": "https://geizhals.de/a3305572.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/38/74/3874dc55836e705c-s.webp",
-     "note": "2 TB NVMe",
-     "merchant": "nullprozentshop-de"
+     "name": "Kingston NV3 NVMe PCIe 4.0 SSD 1TB, M.2 2280 / M-Key / PCIe 4.0 x4 (SNV3S/1000G)",
+     "price": 134.9,
+     "id": 3248579,
+     "url": "https://geizhals.de/a3248579.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/07/c2/07c2b9f369550a02-s.webp",
+     "note": "1 TB NVMe",
+     "merchant": "alternate"
     },
     {
      "slot": "CPU-Kühler",
@@ -186,9 +186,104 @@
     }
    ],
    "upgrade": {
-    "extra": 230,
-    "gain": 44,
-    "text": "Radeon RX 9070 (16 GB) statt Radeon RX 9060 XT + Ryzen 5 9600X statt Ryzen 5 8400F"
+    "extra": 145,
+    "gain": 35,
+    "text": "Radeon RX 9070 (16 GB) statt Radeon RX 9060 XT"
+   }
+  },
+  {
+   "tier": "1500",
+   "name": "WQHD High-End",
+   "budget": 1500,
+   "platform": "AM5",
+   "total": 1573.52,
+   "score": 93,
+   "parts": [
+    {
+     "slot": "Prozessor",
+     "name": "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
+     "price": 88.64,
+     "id": 3189847,
+     "url": "https://geizhals.de/a3189847.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/04/38/04383209e9a979e1-s.webp",
+     "note": "Ryzen 5 8400F",
+     "merchant": "dreihunderttageoffende-de"
+    },
+    {
+     "slot": "Grafikkarte",
+     "name": "ASRock Radeon RX 9070 Challenger 16GB, RX9070 CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA5NZZ-00UANF)",
+     "price": 659.0,
+     "id": 3430118,
+     "url": "https://geizhals.de/a3430118.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/7e/8a/7e8af3560048bc5d-s.webp",
+     "note": "Radeon RX 9070 · 16 GB",
+     "merchant": "nullprozentshop-de"
+    },
+    {
+     "slot": "Mainboard",
+     "name": "GIGABYTE B650 Eagle AX (AMD AM5)",
+     "price": 99.9,
+     "id": 3108584,
+     "url": "https://geizhals.de/a3108584.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/cd/dc/cddcdce90cb92cef-s.webp",
+     "note": "AM5",
+     "merchant": "alternate"
+    },
+    {
+     "slot": "Arbeitsspeicher",
+     "name": "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
+     "price": 446.9,
+     "id": 3918302,
+     "url": "https://geizhals.de/a3918302.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/70/66/7066083965f73e3e-s.webp",
+     "note": "32 GB",
+     "merchant": "alza-de"
+    },
+    {
+     "slot": "SSD",
+     "name": "Kingston NV3 NVMe PCIe 4.0 SSD 1TB, M.2 2280 / M-Key / PCIe 4.0 x4 (SNV3S/1000G)",
+     "price": 134.9,
+     "id": 3248579,
+     "url": "https://geizhals.de/a3248579.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/07/c2/07c2b9f369550a02-s.webp",
+     "note": "1 TB NVMe",
+     "merchant": "alternate"
+    },
+    {
+     "slot": "CPU-Kühler",
+     "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
+     "price": 24.56,
+     "id": 3144176,
+     "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
+     "note": "",
+     "merchant": "mindfactory"
+    },
+    {
+     "slot": "Netzteil",
+     "name": "be quiet! System Power 11 650W, ATX 3.1 (BP011EU)",
+     "price": 59.73,
+     "id": 3478188,
+     "url": "https://geizhals.de/a3478188.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
+     "note": "",
+     "merchant": "mindfactory"
+    },
+    {
+     "slot": "Gehäuse",
+     "name": "be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)",
+     "price": 59.89,
+     "id": 3340712,
+     "url": "https://geizhals.de/a3340712.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/e3/db/e3dbb75a11110e04-s.webp",
+     "note": "",
+     "merchant": "dreihunderttageoffende-de"
+    }
+   ],
+   "upgrade": {
+    "extra": 221,
+    "gain": 18,
+    "text": "Radeon RX 9070 XT (16 GB) statt Radeon RX 9070 + Ryzen 5 9600X statt Ryzen 5 8400F"
    }
   },
   {

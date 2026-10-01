@@ -332,14 +332,24 @@
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
      24.56
     ],
+    "AM4": {
+     "board": [
+      "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
+      64.69
+     ],
+     "ram": [
+      "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
+      109.0
+     ]
+    },
     "AM5": {
      "board": [
       "ASRock B650M-HDV/M.2 (AMD AM5) (90-MXBLA0-A0UAYZ)",
       88.89
      ],
      "ram": [
-      "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
-      446.9
+      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
+      302.0
      ]
     },
     "LGA1700": {
@@ -348,130 +358,130 @@
       75.89
      ],
      "ram": [
-      "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
-      446.9
+      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
+      302.0
      ]
     }
    },
    "cheapest": [
     [
-     1231,
-     "AM5",
-     "Ryzen 5 8400F",
+     860,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     59
+     55
     ],
     [
-     1235,
-     "AM5",
-     "Ryzen 5 8400F",
-     "Intel Arc B570",
-     70,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
-    ],
-    [
-     1249,
-     "LGA1700",
-     "Core i5-12400F",
+     865,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     59
+     55
     ],
     [
-     1253,
-     "LGA1700",
-     "Core i5-12400F",
-     "Intel Arc B570",
-     70,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
-    ],
-    [
-     1261,
-     "AM5",
-     "Ryzen 5 8400F",
+     889,
+     "AM4",
+     "Ryzen 5 5600",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     59
+     58
+    ],
+    [
+     899,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Intel Arc B580",
+     12,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     58
+    ],
+    [
+     905,
+     "AM4",
+     "Ryzen 5 5600",
+     "Intel Arc B580",
+     12,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     58
     ]
    ],
    "best_value": [
     [
-     1783,
-     "AM5",
-     "Ryzen 5 9600X",
-     "Radeon RX 9070 XT",
-     16,
-     112
-    ],
-    [
-     1754,
-     "AM5",
-     "Ryzen 5 7600X",
-     "Radeon RX 9070 XT",
-     16,
-     110
-    ],
-    [
-     1735,
-     "AM5",
-     "Ryzen 5 7500F",
-     "Radeon RX 9070 XT",
-     16,
-     108
-    ],
-    [
-     1608,
-     "AM5",
-     "Ryzen 5 7600X",
+     1215,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     100
+     93
     ],
     [
-     1637,
-     "AM5",
-     "Ryzen 5 9600X",
+     1225,
+     "AM4",
+     "Ryzen 5 5600X",
      "Radeon RX 9070",
      16,
-     102
+     94
     ],
     [
-     1589,
-     "AM5",
-     "Ryzen 5 7500F",
+     1247,
+     "AM4",
+     "Ryzen 7 5700X",
      "Radeon RX 9070",
      16,
-     98
+     95
     ],
     [
-     1790,
-     "AM5",
-     "Ryzen 7 7700",
-     "Radeon RX 9070 XT",
+     1232,
+     "AM4",
+     "Ryzen 5 5600",
+     "Radeon RX 9070",
      16,
-     111
+     93
     ],
     [
-     1746,
-     "LGA1700",
-     "Core i5-14400F",
+     1362,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
-     108
+     103
+    ],
+    [
+     1187,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070",
+     16,
+     89
+    ],
+    [
+     1371,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070 XT",
+     16,
+     103
+    ],
+    [
+     1192,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070",
+     16,
+     89
     ]
    ]
   },
   "1500": {
    "parts": {
     "ssd": [
-     "Crucial P310 SSD 2TB, M.2 2280 / M-Key / PCIe 4.0 x4 (CT2000P310SSD8)",
-     255.9
+     "Kingston NV3 NVMe PCIe 4.0 SSD 1TB, M.2 2280 / M-Key / PCIe 4.0 x4 (SNV3S/1000G)",
+     134.9
     ],
     "case": [
      "be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)",
@@ -494,54 +504,54 @@
    },
    "cheapest": [
     [
-     1367,
+     1423,
      "AM5",
      "Ryzen 5 8400F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     70
     ],
     [
-     1398,
+     1453,
      "AM5",
      "Ryzen 5 8400F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     70
     ],
     [
-     1399,
+     1455,
      "AM5",
      "Ryzen 5 7500F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     55
+     73
     ],
     [
-     1418,
+     1474,
      "AM5",
      "Ryzen 5 7600X",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     56
+     74
     ],
     [
-     1441,
+     1497,
      "AM5",
      "Ryzen 5 7600",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     56
+     73
     ]
    ],
    "best_value": [
     [
-     1915,
+     1794,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9070 XT",
@@ -549,7 +559,7 @@
      110
     ],
     [
-     1886,
+     1765,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9070 XT",
@@ -557,15 +567,7 @@
      108
     ],
     [
-     2021,
-     "AM5",
-     "Ryzen 7 7800X3D",
-     "Radeon RX 9070 XT",
-     16,
-     115
-    ],
-    [
-     1867,
+     1746,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9070 XT",
@@ -573,7 +575,7 @@
      106
     ],
     [
-     1774,
+     1653,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9070",
@@ -581,28 +583,36 @@
      100
     ],
     [
-     1922,
-     "AM5",
-     "Ryzen 7 7700",
-     "Radeon RX 9070 XT",
-     16,
-     109
-    ],
-    [
-     1930,
-     "AM5",
-     "Ryzen 5 9600",
-     "Radeon RX 9070 XT",
-     16,
-     109
-    ],
-    [
-     1745,
+     1624,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9070",
      16,
      99
+    ],
+    [
+     1900,
+     "AM5",
+     "Ryzen 7 7800X3D",
+     "Radeon RX 9070 XT",
+     16,
+     115
+    ],
+    [
+     1605,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9070",
+     16,
+     97
+    ],
+    [
+     1801,
+     "AM5",
+     "Ryzen 7 7700",
+     "Radeon RX 9070 XT",
+     16,
+     109
     ]
    ]
   },
@@ -633,49 +643,49 @@
    },
    "cheapest": [
     [
-     1367,
+     1544,
      "AM5",
      "Ryzen 5 8400F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     69
     ],
     [
-     1398,
+     1574,
      "AM5",
      "Ryzen 5 8400F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     69
     ],
     [
-     1399,
+     1576,
      "AM5",
      "Ryzen 5 7500F",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     55
+     73
     ],
     [
-     1418,
+     1595,
      "AM5",
      "Ryzen 5 7600X",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     56
+     74
     ],
     [
-     1441,
+     1618,
      "AM5",
      "Ryzen 5 7600",
-     "Intel Arc B570",
-     70,
+     "Radeon RX 9060 XT",
+     16,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     56
+     73
     ]
    ],
    "best_value": [
@@ -2148,12 +2158,6 @@
    "ASRock Arc B580 Challenger 12GB OC, B580 CL 12GO, 12GB GDDR6, HDMI, 3x DP (90-GA5LZZ-00UANF)"
   ],
   [
-   "Intel Arc B570",
-   70,
-   339.0,
-   "Sparkle Arc B570 Eclipse OC, SB570GB-10GOC, 10GB GDDR6, HDMI, 3x DP"
-  ],
-  [
    "GeForce RTX 5050",
    8,
    340.0,
@@ -2477,5 +2481,1939 @@
    "url": "https://geizhals.de/a3942327.html?cs_id=491744683&ccpid=hinkowiczlisten",
    "score": 118.2
   }
+ ],
+ "tree": [
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > Apple macOS"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > Windows"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > Convertible"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > 13-14\" Display"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > 14-15\" Display"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > 15-16\" Display"
+  ],
+  [
+   "nb",
+   "Hardware > Notebooks > Notebooks > ab 16\" Display"
+  ],
+  [
+   "nbdock",
+   "Hardware > Notebooks > Docks/Port-Replikatoren"
+  ],
+  [
+   "nbstands",
+   "Hardware > Notebooks > Stands & Kühler"
+  ],
+  [
+   "nbcas",
+   "Hardware > Notebooks > Notebook-/Tablet-Taschen"
+  ],
+  [
+   "hwnbfolie",
+   "Hardware > Notebooks > Schutzfolien"
+  ],
+  [
+   "hwnbschloes",
+   "Hardware > Notebooks > Gerätesicherheit"
+  ],
+  [
+   "nbnetz",
+   "Hardware > Notebooks > Netzteile & Ladegeräte"
+  ],
+  [
+   "nbak",
+   "Hardware > Notebooks > Akkus original"
+  ],
+  [
+   "nbakkomp",
+   "Hardware > Notebooks > Akkus kompatibel"
+  ],
+  [
+   "sgerweiterung",
+   "Hardware > Notebooks > Service- & Garantieerweiterungen"
+  ],
+  [
+   "nbzub",
+   "Hardware > Notebooks > Sonstiges Zubehör"
+  ],
+  [
+   "sysdiv",
+   "Hardware > Systeme > Komplettsysteme"
+  ],
+  [
+   "sysdiv",
+   "Hardware > Systeme > Komplettsysteme > Apple"
+  ],
+  [
+   "sysdiv",
+   "Hardware > Systeme > Komplettsysteme > All-in-One (AiO)"
+  ],
+  [
+   "sysdiv",
+   "Hardware > Systeme > Komplettsysteme > Mini-PC"
+  ],
+  [
+   "sysdiv",
+   "Hardware > Systeme > Komplettsysteme > Digital Signage Player"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones > All-in-One (AiO)"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones > Tower"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones > Cube"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones > Mini-PC"
+  ],
+  [
+   "barepc",
+   "Hardware > Systeme > Barebones > NUC"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme > AMD basiert"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme > Intel basiert"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme > Mini-PC AMD basiert"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme > Mini-PC Intel basiert"
+  ],
+  [
+   "sysnn",
+   "Hardware > Systeme > Diverse Komplettsysteme > Mini Netzwerk-PC"
+  ],
+  [
+   "sysdivtc",
+   "Hardware > Systeme > Thin Clients"
+  ],
+  [
+   "bare19",
+   "Hardware > Systeme > 19\" Barebones"
+  ],
+  [
+   "sys19rack",
+   "Hardware > Systeme > 19\" Rackmount"
+  ],
+  [
+   "sysdivzub",
+   "Hardware > Systeme > Sonstiges Zubehör"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > Android"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > iPadOS"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > Windows"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > Chrome OS"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > Fire OS"
+  ],
+  [
+   "nbtabl",
+   "Hardware > Tablets > Tablets > HarmonyOS"
+  ],
+  [
+   "hwnbkbdock",
+   "Hardware > Tablets > Docking-Tastaturen"
+  ],
+  [
+   "conhgk",
+   "Hardware > Tablets > Handheld-Konsolen"
+  ],
+  [
+   "nbstands",
+   "Hardware > Tablets > Stands & Kühler"
+  ],
+  [
+   "pdapceb",
+   "Hardware > Tablets > eReader"
+  ],
+  [
+   "hwebookta",
+   "Hardware > Tablets > eReader Taschen"
+  ],
+  [
+   "nbcas",
+   "Hardware > Tablets > Notebook-/Tablet-Taschen"
+  ],
+  [
+   "hwnbfolie",
+   "Hardware > Tablets > Schutzfolien"
+  ],
+  [
+   "gsmzublg",
+   "Hardware > Tablets > Ladegeräte"
+  ],
+  [
+   "nbzub",
+   "Hardware > Tablets > Sonstiges Zubehör"
+  ],
+  [
+   "hwepcmcu",
+   "Hardware > Einplatinencomputer > MCU-basierte Boards"
+  ],
+  [
+   "mbarm",
+   "Hardware > Einplatinencomputer > SoC-basierte Boards"
+  ],
+  [
+   "hweinplatzub",
+   "Hardware > Einplatinencomputer > Erweiterungen"
+  ],
+  [
+   "hwepctft",
+   "Hardware > Einplatinencomputer > Bildschirme"
+  ],
+  [
+   "hwepcled",
+   "Hardware > Einplatinencomputer > Segmentanzeigen & LED"
+  ],
+  [
+   "hwepcsens",
+   "Hardware > Einplatinencomputer > Sensoren"
+  ],
+  [
+   "hwepcrobo",
+   "Hardware > Einplatinencomputer > Aktoren & Robotik"
+  ],
+  [
+   "hwepccase",
+   "Hardware > Einplatinencomputer > Gehäuse"
+  ],
+  [
+   "hwepcass",
+   "Hardware > Einplatinencomputer > Einbaumaterial"
+  ],
+  [
+   "hwepcpsu",
+   "Hardware > Einplatinencomputer > Stromversorgung"
+  ],
+  [
+   "hwepcdiag",
+   "Hardware > Einplatinencomputer > Aufbau & Diagnose"
+  ],
+  [
+   "hwepcsoft",
+   "Hardware > Einplatinencomputer > Speicher inkl. Software"
+  ],
+  [
+   "hdxnas",
+   "Hardware > NAS-Systeme > NAS-Systeme"
+  ],
+  [
+   "hdxnas",
+   "Hardware > NAS-Systeme > NAS-Systeme > mit HDD/SSD"
+  ],
+  [
+   "hdxnas",
+   "Hardware > NAS-Systeme > NAS-Systeme > ohne HDD/SDD"
+  ],
+  [
+   "hd19rack",
+   "Hardware > NAS-Systeme > 19\"-Rack"
+  ],
+  [
+   "hwhauebzent",
+   "Hardware > NAS-Systeme > Überwachungszentralen"
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore"
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > bis 24\""
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > 24\"-27\""
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > 27\"-31.5\""
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > 31.5\"-34\""
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > ab 34\""
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > ab WQHD"
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > ab 4K UHD"
+  ],
+  [
+   "monlcd19wide",
+   "Hardware > Monitore > Monitore > portable Monitore"
+  ],
+  [
+   "montouch",
+   "Hardware > Monitore > Touchscreens"
+  ],
+  [
+   "tvzuhmd",
+   "Hardware > Monitore > AR-/VR-Headsets"
+  ],
+  [
+   "monplas",
+   "Hardware > Monitore > Public/Info Displays"
+  ],
+  [
+   "tvzub",
+   "Hardware > Monitore > Halterungen"
+  ],
+  [
+   "tvzubfuss",
+   "Hardware > Monitore > Standfüße"
+  ],
+  [
+   "monbel",
+   "Hardware > Monitore > Beleuchtung"
+  ],
+  [
+   "monzub",
+   "Hardware > Monitore > Zubehör"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > AMD AM5"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > AMD AM4"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > Intel 1851"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > Intel 1700"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > Intel 1200"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > AMD Epyc"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > Intel Xeon"
+  ],
+  [
+   "mainboards",
+   "Hardware > Mainboards > Mainboards > AMD Ryzen Threadripper"
+  ],
+  [
+   "mbson",
+   "Hardware > Mainboards > Mainboards mit CPU"
+  ],
+  [
+   "mbson",
+   "Hardware > Mainboards > Mainboards mit CPU > AMD"
+  ],
+  [
+   "mbson",
+   "Hardware > Mainboards > Mainboards mit CPU > Intel"
+  ],
+  [
+   "kabelmb",
+   "Hardware > Mainboards > Zubehör"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > AMD AM5"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > AMD AM4"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > AMD Threadripper"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > AMD Epyc"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel 1851"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel 1700"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel 1200"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel Core Ultra"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel Core i"
+  ],
+  [
+   "cpuamdam4",
+   "Hardware > Prozessoren (CPUs) > CPUs > Intel Xeon"
+  ],
+  [
+   "cpucoproz",
+   "Hardware > Prozessoren (CPUs) > HPC-Prozessoren"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR5 DIMM 2x 16GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR5 DIMM 2x 8GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR5 SO-DIMM 2x 16GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR5 SO-DIMM 2x 8GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR4 DIMM 2x 16GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR4 DIMM 2x 8GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR4 SO-DIMM 2x 16GB"
+  ],
+  [
+   "ramddr3",
+   "Hardware > Arbeitsspeicher (RAM) > Speicher > DDR4 SO-DIMM 2x 8GB"
+  ],
+  [
+   "ramsysdep",
+   "Hardware > Arbeitsspeicher (RAM) > Systemspez. Speicher"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > AMD Radeon RX"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > NVIDIA GeForce RTX"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > bis 8GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 8GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 12GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 16GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 24GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 32GB"
+  ],
+  [
+   "gra16_512",
+   "Hardware > Grafikkarten > PCIe > ab 48GB"
+  ],
+  [
+   "gra_ext",
+   "Hardware > Grafikkarten > USB-Videoadapter"
+  ],
+  [
+   "hwegpu",
+   "Hardware > Grafikkarten > eGPU"
+  ],
+  [
+   "cpucoproz",
+   "Hardware > Grafikkarten > HPC-Prozessoren"
+  ],
+  [
+   "hwrisca",
+   "Hardware > Grafikkarten > Riser-Karten"
+  ],
+  [
+   "gracc",
+   "Hardware > Grafikkarten > Zubehör"
+  ],
+  [
+   "grasys",
+   "Hardware > Grafikkarten > Systemspezifische Grafikkarten"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD)"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > M.2 (PCIe)"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > M.2 (SATA)"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > U.2"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > U.3"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > PCIe"
+  ],
+  [
+   "hdssd",
+   "Hardware > Festplatten & SSDs > Solid State Drives (SSD) > SAS"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD)"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > 3.5\" - SATA"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > 2.5\" - SATA"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > SAS"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > SCSI"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > FC"
+  ],
+  [
+   "hde7s",
+   "Hardware > Festplatten & SSDs > Hard Disk Drives (HDD) > IDE"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > SSD - USB4"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > SSD - USB 3.2"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > SSD - USB 3.1"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > SSD - USB 3.0"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > SSD - TB5"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > HDD 2.5\" - USB 3.1"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > HDD 2.5\" - USB 3.0"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > HDD 3.5\" - USB 3.1"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > HDD 3.5\" - USB 3.0"
+  ],
+  [
+   "hdx",
+   "Hardware > Festplatten & SSDs > Extern > HDD 3.5\" - TB5"
+  ],
+  [
+   "gehhd",
+   "Hardware > Festplatten & SSDs > Externe Gehäuse"
+  ],
+  [
+   "hddocks",
+   "Hardware > Festplatten & SSDs > Dockingstations"
+  ],
+  [
+   "gehwrahm",
+   "Hardware > Festplatten & SSDs > Wechselrahmen"
+  ],
+  [
+   "kabelfp",
+   "Hardware > Festplatten & SSDs > Festplattenkabel"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > PCIe -> M.2 PCIe"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > M.2 PCIe -> U.2"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > SATA -> M.2 SATA"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > USB -> SATA"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > USB -> IDE"
+  ],
+  [
+   "hdadko",
+   "Hardware > Festplatten & SSDs > Adapter/Konverter > SATA -> IDE"
+  ],
+  [
+   "hdesys",
+   "Hardware > Festplatten & SSDs > Systemspez. HDD/SSD"
+  ],
+  [
+   "hdzub",
+   "Hardware > Festplatten & SSDs > Zubehör"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Big-Tower"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Midi-Tower"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Mini-Tower"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > ITX/DTX"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Ultra-kompakt (NUC)"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Desktop"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Benchtable"
+  ],
+  [
+   "gehatx",
+   "Hardware > Gehäuse > PC-Gehäuse > Sonstige"
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse"
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse > 2.5\""
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse > 3.5\""
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse > M.2"
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse > PCIe"
+  ],
+  [
+   "gehhd",
+   "Hardware > Gehäuse > Externe Gehäuse > mSATA"
+  ],
+  [
+   "cmlight",
+   "Hardware > Gehäuse > Case-Modding"
+  ],
+  [
+   "geheinb",
+   "Hardware > Gehäuse > Einbauzubehör"
+  ],
+  [
+   "hwkabelmana",
+   "Hardware > Gehäuse > Kabelmanagement"
+  ],
+  [
+   "hwrisca",
+   "Hardware > Gehäuse > Riser-Karten"
+  ],
+  [
+   "gehwrahm",
+   "Hardware > Gehäuse > Wechselrahmen"
+  ],
+  [
+   "geh19",
+   "Hardware > Gehäuse > 19\"-Gehäuse"
+  ],
+  [
+   "schr19",
+   "Hardware > Gehäuse > 10\"-/19\"-Schränke"
+  ],
+  [
+   "hwschrzub",
+   "Hardware > Gehäuse > Schrankzubehör"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > unter 400W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 400W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 500W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 600W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 700W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 800W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 1000W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > ab 1200W"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > Cybenetics zertifiziert"
+  ],
+  [
+   "gehps",
+   "Hardware > Netzteile & USV > Netzteile > 80 PLUS zertifiziert"
+  ],
+  [
+   "gehpskab",
+   "Hardware > Netzteile & USV > Netzteilkabel"
+  ],
+  [
+   "gehups",
+   "Hardware > Netzteile & USV > USV-Anlagen"
+  ],
+  [
+   "gehpdu",
+   "Hardware > Netzteile & USV > Power Distribution Units (PDU)"
+  ],
+  [
+   "gehupzub",
+   "Hardware > Netzteile & USV > Zubehör"
+  ],
+  [
+   "gehsysps",
+   "Hardware > Netzteile & USV > Systemspez. Netzteile"
+  ],
+  [
+   "cpucooler",
+   "Hardware > Luftkühlung > CPU-Kühler"
+  ],
+  [
+   "coolvga",
+   "Hardware > Luftkühlung > VGA-Kühler"
+  ],
+  [
+   "coolm2",
+   "Hardware > Luftkühlung > M.2-Kühler"
+  ],
+  [
+   "coolchip",
+   "Hardware > Luftkühlung > Sonstige Kühler"
+  ],
+  [
+   "coolfan",
+   "Hardware > Luftkühlung > Lüfter"
+  ],
+  [
+   "coolram",
+   "Hardware > Luftkühlung > Steuerungen"
+  ],
+  [
+   "cooltc",
+   "Hardware > Luftkühlung > Wärmeleitpaste/-kleber"
+  ],
+  [
+   "coolkab",
+   "Hardware > Luftkühlung > Lüfterkabel"
+  ],
+  [
+   "coolacc",
+   "Hardware > Luftkühlung > Zubehör"
+  ],
+  [
+   "coolwsets",
+   "Hardware > Wasserkühlung > Komplettsets"
+  ],
+  [
+   "coolwausgleich",
+   "Hardware > Wasserkühlung > Ausgleichsbehälter & Kombis"
+  ],
+  [
+   "coolw",
+   "Hardware > Wasserkühlung > Kühlkörper"
+  ],
+  [
+   "coolwpumpen",
+   "Hardware > Wasserkühlung > Pumpen & Aufsätze"
+  ],
+  [
+   "coolram",
+   "Hardware > Wasserkühlung > Steuerungen"
+  ],
+  [
+   "coolwradia",
+   "Hardware > Wasserkühlung > Radiatoren"
+  ],
+  [
+   "coolwaanve",
+   "Hardware > Wasserkühlung > Anschlüsse & Verbinder"
+  ],
+  [
+   "coolwaschla",
+   "Hardware > Wasserkühlung > Schläuche & Rohre"
+  ],
+  [
+   "hwcoolwclnt",
+   "Hardware > Wasserkühlung > Kühlflüssigkeit"
+  ],
+  [
+   "coolwaglhzub",
+   "Hardware > Wasserkühlung > Ausgleichsbehälter Zubehör"
+  ],
+  [
+   "coolwzubeh",
+   "Hardware > Wasserkühlung > Zubehör"
+  ],
+  [
+   "dvdram",
+   "Hardware > Wechsellaufwerke > Brenner intern"
+  ],
+  [
+   "dvdram",
+   "Hardware > Wechsellaufwerke > Brenner intern > Blu-ray"
+  ],
+  [
+   "dvdram",
+   "Hardware > Wechsellaufwerke > Brenner intern > DVD"
+  ],
+  [
+   "dvdramext",
+   "Hardware > Wechsellaufwerke > Brenner extern"
+  ],
+  [
+   "dvdramext",
+   "Hardware > Wechsellaufwerke > Brenner extern > Blu-ray"
+  ],
+  [
+   "dvdramext",
+   "Hardware > Wechsellaufwerke > Brenner extern > DVD"
+  ],
+  [
+   "dvdrom",
+   "Hardware > Wechsellaufwerke > ROM"
+  ],
+  [
+   "dvdrom",
+   "Hardware > Wechsellaufwerke > ROM > DVD"
+  ],
+  [
+   "dvdleergeh",
+   "Hardware > Wechsellaufwerke > Leergehäuse"
+  ],
+  [
+   "dat",
+   "Hardware > Wechsellaufwerke > Bandlaufwerke intern"
+  ],
+  [
+   "dat",
+   "Hardware > Wechsellaufwerke > Bandlaufwerke intern > rackmountfähig"
+  ],
+  [
+   "datex",
+   "Hardware > Wechsellaufwerke > Bandlaufwerke extern"
+  ],
+  [
+   "hwlwks",
+   "Hardware > Wechsellaufwerke > Kopierstationen"
+  ],
+  [
+   "hwlwsons",
+   "Hardware > Wechsellaufwerke > Sonstige"
+  ],
+  [
+   "zip",
+   "Hardware > Wechsellaufwerke > Bandmedien"
+  ],
+  [
+   "sndpci",
+   "Hardware > PC-Audio/-Video > Soundkarten intern"
+  ],
+  [
+   "spkhvst",
+   "Hardware > PC-Audio/-Video > Kopfhörerverstärker & DACs"
+  ],
+  [
+   "spk",
+   "Hardware > PC-Audio/-Video > PC-Lautsprecher"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Bluetooth"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > True Wireless"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > aktive Geräuschunterdrückung (ANC)"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Kopfhörer"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Ohrhörer"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Headsets"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Gaming-Headsets"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > Office-Headsets"
+  ],
+  [
+   "sphd",
+   "Hardware > PC-Audio/-Video > Kopfhörer & Headsets > kabelgebunden"
+  ],
+  [
+   "spkhzub",
+   "Hardware > PC-Audio/-Video > Kopfhörerzubehör"
+  ],
+  [
+   "vid",
+   "Hardware > PC-Audio/-Video > TV-Tuner"
+  ],
+  [
+   "vidext",
+   "Hardware > PC-Audio/-Video > Videoschnitt/Aufnahme"
+  ],
+  [
+   "cam",
+   "Hardware > PC-Audio/-Video > Webcams & Konferenzsysteme"
+  ],
+  [
+   "camsec",
+   "Hardware > PC-Audio/-Video > Überwachungskameras"
+  ],
+  [
+   "vidzu",
+   "Hardware > PC-Audio/-Video > PC-Videozubehör"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCIe x8"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCIe x4"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCIe x2"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCIe x1"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCI"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > PCI-X"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > ExpressCard"
+  ],
+  [
+   "ioexpcard",
+   "Hardware > Controllerkarten > Schnittstellenkarten > Cardbus"
+  ],
+  [
+   "iosasraid",
+   "Hardware > Controllerkarten > Storage Controller"
+  ],
+  [
+   "iosasraid",
+   "Hardware > Controllerkarten > Storage Controller > RAID-Controller"
+  ],
+  [
+   "iosasraid",
+   "Hardware > Controllerkarten > Storage Controller > Host-Bus-Adapter (HBA)"
+  ],
+  [
+   "sasexp",
+   "Hardware > Controllerkarten > SAS-Expander"
+  ],
+  [
+   "iozub",
+   "Hardware > Controllerkarten > Zubehör"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Cardreader"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > USB-Hubs"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > RJ-45"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > WLAN"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Powerline"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Bluetooth"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Glasfaser"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Konverter"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Transceiver"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Netzwerk > Adapter & Hubs > Sonstige"
+  ],
+  [
+   "switchgi",
+   "Hardware > Netzwerk > Switches"
+  ],
+  [
+   "switchgi",
+   "Hardware > Netzwerk > Switches > Unmanaged"
+  ],
+  [
+   "switchgi",
+   "Hardware > Netzwerk > Switches > Rackmount"
+  ],
+  [
+   "switchgi",
+   "Hardware > Netzwerk > Switches > PoE-Switches"
+  ],
+  [
+   "switchgi",
+   "Hardware > Netzwerk > Switches > PoE-Injektor"
+  ],
+  [
+   "phonmdg",
+   "Hardware > Netzwerk > Mobilfunk-Modems/-Router"
+  ],
+  [
+   "wlanroutmod",
+   "Hardware > Netzwerk > WLAN-Router mit Modem"
+  ],
+  [
+   "wlanrout",
+   "Hardware > Netzwerk > WLAN-Router"
+  ],
+  [
+   "rdsl",
+   "Hardware > Netzwerk > Router mit Modem"
+  ],
+  [
+   "router",
+   "Hardware > Netzwerk > Router"
+  ],
+  [
+   "wlanap",
+   "Hardware > Netzwerk > Access Points"
+  ],
+  [
+   "wlanap",
+   "Hardware > Netzwerk > Access Points > Powerline"
+  ],
+  [
+   "wlanrepeat",
+   "Hardware > Netzwerk > Repeater & Bridges"
+  ],
+  [
+   "nwfw",
+   "Hardware > Netzwerk > Hardware-Firewall"
+  ],
+  [
+   "hwlanmedcon",
+   "Hardware > Netzwerk > Medienkonverter"
+  ],
+  [
+   "wlanant",
+   "Hardware > Netzwerk > Antennen"
+  ],
+  [
+   "mda",
+   "Hardware > Netzwerk > Modems"
+  ],
+  [
+   "wlanzub",
+   "Hardware > Netzwerk > Zubehör"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse > kabelgebunden"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse > kabellos"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse > kombiniert"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse > ausschließlich kabelgebunden"
+  ],
+  [
+   "mouse",
+   "Hardware > Eingabegeräte > Mäuse > ausschließlich kabellos"
+  ],
+  [
+   "egpads",
+   "Hardware > Eingabegeräte > Mousepads"
+  ],
+  [
+   "mousetrack",
+   "Hardware > Eingabegeräte > Maus-Alternativen"
+  ],
+  [
+   "hweinpres",
+   "Hardware > Eingabegeräte > Presenter"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > mechanisch DE"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > mechanisch-optisch DE"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > kabelgebunden DE"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > kabellos DE"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > mechanisch"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > mechanisch-optisch"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > kabelgebunden"
+  ],
+  [
+   "kb",
+   "Hardware > Eingabegeräte > Tastaturen > kabellos"
+  ],
+  [
+   "hweinnump",
+   "Hardware > Eingabegeräte > Keypads/Numpads"
+  ],
+  [
+   "kbdesk",
+   "Hardware > Eingabegeräte > Desktops"
+  ],
+  [
+   "eggamepad",
+   "Hardware > Eingabegeräte > Controller & Gamepads"
+  ],
+  [
+   "egglenkr",
+   "Hardware > Eingabegeräte > Lenkräder & Zubehör"
+  ],
+  [
+   "eggjoystick",
+   "Hardware > Eingabegeräte > Joysticks & Zubehör"
+  ],
+  [
+   "pads",
+   "Hardware > Eingabegeräte > Grafiktabletts"
+  ],
+  [
+   "hweinstift",
+   "Hardware > Eingabegeräte > Eingabestifte"
+  ],
+  [
+   "kvmkon",
+   "Hardware > Eingabegeräte > KVM-/Rack-Konsolen"
+  ],
+  [
+   "kabelsw",
+   "Hardware > Eingabegeräte > Umschaltboxen"
+  ],
+  [
+   "hwkblumzb",
+   "Hardware > Eingabegeräte > Umschaltboxen Zubehör"
+  ],
+  [
+   "scnbar",
+   "Hardware > Eingabegeräte > Barcodescanner"
+  ],
+  [
+   "egzub",
+   "Hardware > Eingabegeräte > Sonstiges Zubehör"
+  ],
+  [
+   "multi",
+   "Hardware > Drucker & Scanner > Multifunktionsgeräte"
+  ],
+  [
+   "prl",
+   "Hardware > Drucker & Scanner > Laserdrucker"
+  ],
+  [
+   "pri",
+   "Hardware > Drucker & Scanner > Tintenstrahldrucker"
+  ],
+  [
+   "prf",
+   "Hardware > Drucker & Scanner > Fotodrucker"
+  ],
+  [
+   "prp",
+   "Hardware > Drucker & Scanner > Großformatdrucker"
+  ],
+  [
+   "hwprcutpl",
+   "Hardware > Drucker & Scanner > Schneideplotter"
+  ],
+  [
+   "prmat",
+   "Hardware > Drucker & Scanner > Nadel-/Matrixdrucker"
+  ],
+  [
+   "scn",
+   "Hardware > Drucker & Scanner > Scanner"
+  ],
+  [
+   "prbeschr",
+   "Hardware > Drucker & Scanner > Beschriftungsgeräte"
+  ],
+  [
+   "prbcd",
+   "Hardware > Drucker & Scanner > Bon-/Etikettendrucker"
+  ],
+  [
+   "prsvr",
+   "Hardware > Drucker & Scanner > Printserver"
+  ],
+  [
+   "prup",
+   "Hardware > Drucker & Scanner > Druckerzubehör"
+  ],
+  [
+   "scnzub",
+   "Hardware > Drucker & Scanner > Scannerzubehör"
+  ],
+  [
+   "dr3d",
+   "Hardware > 3D-Drucker & -Scanner > 3D-Drucker"
+  ],
+  [
+   "dr3dst",
+   "Hardware > 3D-Drucker & -Scanner > 3D-Druckstifte"
+  ],
+  [
+   "scan3d",
+   "Hardware > 3D-Drucker & -Scanner > 3D-Scanner"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > ABS"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > ASA"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > HIPS"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > PA"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > PETG"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > PLA"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > PVA"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > 3D-Drucker & -Scanner > Filamente > Flex"
+  ],
+  [
+   "dr3dres",
+   "Hardware > 3D-Drucker & -Scanner > Harze"
+  ],
+  [
+   "prlv3d",
+   "Hardware > 3D-Drucker & -Scanner > Zubehör"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > Brother"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > Canon"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > Epson"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > HP"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > Lexmark"
+  ],
+  [
+   "vmtihp",
+   "Hardware > Verbrauchsmaterialien > Tinten & Gele > Ricoh"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Brother"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Canon"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Epson"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > HP"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Konica Minolta"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Kyocera"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Lexmark"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > OKI"
+  ],
+  [
+   "prlthp",
+   "Hardware > Verbrauchsmaterialien > Toner & Trommeln > Xerox"
+  ],
+  [
+   "vmbb",
+   "Hardware > Verbrauchsmaterialien > Beschriftungsbänder"
+  ],
+  [
+   "vmfarb",
+   "Hardware > Verbrauchsmaterialien > Farbbänder"
+  ],
+  [
+   "vmpap",
+   "Hardware > Verbrauchsmaterialien > Papier & Folien"
+  ],
+  [
+   "vmfln",
+   "Hardware > Verbrauchsmaterialien > Laminierfolien"
+  ],
+  [
+   "vmpaprollen",
+   "Hardware > Verbrauchsmaterialien > Papierrollen"
+  ],
+  [
+   "hwvmthrmppr",
+   "Hardware > Verbrauchsmaterialien > Thermopapier"
+  ],
+  [
+   "vmtbmpn",
+   "Hardware > Verbrauchsmaterialien > Thermobindemappen"
+  ],
+  [
+   "vmpapsonst",
+   "Hardware > Verbrauchsmaterialien > Etiketten"
+  ],
+  [
+   "dr3dfil",
+   "Hardware > Verbrauchsmaterialien > Filamente"
+  ],
+  [
+   "vmsovbm",
+   "Hardware > Verbrauchsmaterialien > Sonstiges"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > Sticks mit USB-C"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x ab 512GB"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x ab 256GB"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x ab 128GB"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x ab 64GB"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x bis 64GB"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 3.x"
+  ],
+  [
+   "sm_usb",
+   "Hardware > Speicherkarten/-sticks > USB-Sticks > USB 2.0"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card ab 512GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card ab 256GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card ab 128GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card ab 64GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card ab 32GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD-Card bis 16GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD ab 512GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD ab 256GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD ab 128GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD ab 64GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD ab 32GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD bis 16GB"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > SD Express"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > microSD Express"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > CFexpress"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > CompactFlash CFAST"
+  ],
+  [
+   "sm_sdhc",
+   "Hardware > Speicherkarten/-sticks > Speicherkarten > CompactFlash"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Speicherkarten/-sticks > Adapter & Hubs"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Speicherkarten/-sticks > Adapter & Hubs > Cardreader"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Speicherkarten/-sticks > Adapter & Hubs > USB-Hubs"
+  ],
+  [
+   "sm_rfid",
+   "Hardware > Speicherkarten/-sticks > RFID-Medien"
+  ],
+  [
+   "sm_usb_zub",
+   "Hardware > Speicherkarten/-sticks > Zubehör"
+  ],
+  [
+   "kabelhdm1",
+   "Hardware > Kabel, Adapter & Hubs > HDMI-Kabel"
+  ],
+  [
+   "kabeldp",
+   "Hardware > Kabel, Adapter & Hubs > DisplayPort-Kabel"
+  ],
+  [
+   "kabeladapt",
+   "Hardware > Kabel, Adapter & Hubs > Adapter & Adapterkabel"
+  ],
+  [
+   "kabusb",
+   "Hardware > Kabel, Adapter & Hubs > USB-Kabel"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Kabel, Adapter & Hubs > Adapter & Hubs"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Kabel, Adapter & Hubs > Adapter & Hubs > Cardreader"
+  ],
+  [
+   "nwpcie",
+   "Hardware > Kabel, Adapter & Hubs > Adapter & Hubs > USB-Hubs"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > RJ-45 Patchkabel bis 1m"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > RJ-45 Patchkabel 1-5m"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > RJ-45 Patchkabel ab 5m"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > RJ-45 Crossover-Patchkabel"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > Twisted-Pair Verlegekabel"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > LWL bis 1m"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > LWL 1-10m"
+  ],
+  [
+   "kabelnw",
+   "Hardware > Kabel, Adapter & Hubs > Netzwerkkabel > LWL ab 10m"
+  ],
+  [
+   "kabeltb",
+   "Hardware > Kabel, Adapter & Hubs > Thunderbolt-Kabel"
+  ],
+  [
+   "kabelsw",
+   "Hardware > Kabel, Adapter & Hubs > Umschaltboxen"
+  ],
+  [
+   "hwkblumzb",
+   "Hardware > Kabel, Adapter & Hubs > Umschaltboxen Zubehör"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > DVI/VGA"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > SCART"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > S-Video"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > Cinch"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > Antenne"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > Optisch"
+  ],
+  [
+   "kabelhdmi",
+   "Hardware > Kabel, Adapter & Hubs > Sonstige Kabel > Sonstige"
+  ],
+  [
+   "kabelfp",
+   "Hardware > Kabel, Adapter & Hubs > Festplattenkabel"
+  ],
+  [
+   "gehpskab",
+   "Hardware > Kabel, Adapter & Hubs > Netzteilkabel"
+  ],
+  [
+   "coolkab",
+   "Hardware > Kabel, Adapter & Hubs > Lüfterkabel"
+  ],
+  [
+   "kabelfw",
+   "Hardware > Kabel, Adapter & Hubs > FireWire-Kabel"
+  ],
+  [
+   "hwkabelmana",
+   "Hardware > Kabel, Adapter & Hubs > Kabelmanagement"
+  ],
+  [
+   "kabelzube",
+   "Hardware > Kabel, Adapter & Hubs > Kabelzubehör"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD > DVD+R"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD > DVD+RW"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD > DVD-R"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD > DVD-RW"
+  ],
+  [
+   "dvdmed",
+   "Hardware > Rohlinge > DVD > DVD-RAM"
+  ],
+  [
+   "blumedbdr",
+   "Hardware > Rohlinge > Blu-ray"
+  ],
+  [
+   "blumedbdr",
+   "Hardware > Rohlinge > Blu-ray > BD-R"
+  ],
+  [
+   "blumedbdr",
+   "Hardware > Rohlinge > Blu-ray > BD-RE"
+  ],
+  [
+   "cdmed",
+   "Hardware > Rohlinge > CD"
+  ],
+  [
+   "cdmed",
+   "Hardware > Rohlinge > CD > CD-R"
+  ],
+  [
+   "cdmed",
+   "Hardware > Rohlinge > CD > CD-RW"
+  ],
+  [
+   "dvdmedzub",
+   "Hardware > Rohlinge > Zubehör"
+  ],
+  [
+   "hwpos",
+   "Hardware > Kassensysteme/POS > POS-Systeme"
+  ],
+  [
+   "hwkas",
+   "Hardware > Kassensysteme/POS > Kassensysteme"
+  ],
+  [
+   "hwkaslad",
+   "Hardware > Kassensysteme/POS > Kassenladen"
+  ],
+  [
+   "hwkuna",
+   "Hardware > Kassensysteme/POS > Kundenanzeigen"
+  ],
+  [
+   "scnbar",
+   "Hardware > Kassensysteme/POS > Barcodescanner"
+  ],
+  [
+   "prbeschr",
+   "Hardware > Kassensysteme/POS > Beschriftungsgeräte"
+  ],
+  [
+   "prbcd",
+   "Hardware > Kassensysteme/POS > Bon-/Etikettendrucker"
+  ],
+  [
+   "hwkaszub",
+   "Hardware > Kassensysteme/POS > Sonstiges Zubehör"
+  ]
  ]
 }
