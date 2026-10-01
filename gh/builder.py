@@ -62,10 +62,9 @@ class Builder:
             cands = [p for p in cands if re.search(r"WIFI|Wi-?Fi|\bAX\b", p["product"], re.I)] or cands
         return value_pick(cands, 1.12)
 
-    def ram(self, plat, tier):
+    def ram(self, plat, gb):
         pc = config.PLATFORMS[plat]
-        gb = tier["ram_gb"]
-        cands = _filter(self.cat.products(f"{pc['ram']}_{gb}", sort="t"),
+        cands = _filter(self.cat.products(f"{pc['ram']}_{gb}", sort="p"),
                         rf"Kit {gb}GB|{gb}GB.*Kit|2x\s?{gb // 2}GB",
                         r"SO-DIMM|RDIMM|Registered|\bECC\b(?!.*on-die)")
         cands = [p for p in cands if re.search(pc["ram_speed"], p["product"])]
@@ -133,8 +132,9 @@ class Builder:
         combos = []
         gpus = [(p, g) for p, g in self.gpus() if g["vram"] >= tier["min_vram"]]
         ssd, case, cooler = self.ssd(tier), self.case(tier), self.cooler(tier)
-        for plat in tier["platforms"]:
-            board, ram = self.board(plat, tier), self.ram(plat, tier)
+        for plat, gb in [(pl, gb) for pl in tier["platforms"] for gb in tier["ram_gb"]]:
+            board, ram = self.board(plat, tier), self.ram(plat, gb)
+            ram_bonus = config.RAM32_BONUS if gb >= 32 else 1.0
             base = [board, ram, ssd, case]
             if not all(base) or not cooler:
                 names = ["Board", "RAM", "SSD", "Gehäuse"]
@@ -159,16 +159,17 @@ class Builder:
                         continue
                     total = base_cost + _price(cp) + _price(gp) + _price(psu)
                     total += _price(cpu_cooler) if cpu_cooler else 0
-                    score = (g["perf"] ** w) * (c["perf"] ** (1 - w)) / REF_SCORE * 100
+                    score = (g["perf"] ** w) * (c["perf"] ** (1 - w)) / REF_SCORE * 100 * ram_bonus
                     combos.append({"total": total, "score": score, "plat": plat,
-                                   "cpu": (cp, c), "gpu": (gp, g), "board": board, "ram": ram,
+                                   "cpu": (cp, c), "gpu": (gp, g), "board": board, "ram": ram, "gb": gb,
                                    "ssd": ssd, "case": case, "cooler": cpu_cooler, "psu": psu})
         dbg = self.debug.setdefault(tier["id"], {})
         dbg["parts"] = {k: (p["product"], _price(p)) if p else None for k, p in
                         (("ssd", ssd), ("case", case), ("cooler", cooler))}
         for plat in tier["platforms"]:
             dbg["parts"][plat] = {k: (p["product"], _price(p)) if p else None for k, p in
-                                  (("board", self.board(plat, tier)), ("ram", self.ram(plat, tier)))}
+                                  [("board", self.board(plat, tier))] +
+                                  [(f"ram{gb}", self.ram(plat, gb)) for gb in tier["ram_gb"]]}
         dbg["cheapest"] = [(round(x["total"]), x["plat"], x["cpu"][1]["chip"], x["gpu"][1]["chip"],
                             x["gpu"][1]["vram"], x["psu"]["product"], round(x["score"]))
                            for x in sorted(combos, key=lambda x: x["total"])[:5]]
@@ -196,7 +197,7 @@ class Builder:
             part("Prozessor", cp, c["chip"]),
             part("Grafikkarte", gp, f"{g['chip']} · {g['vram']} GB"),
             part("Mainboard", b["board"], b["plat"]),
-            part("Arbeitsspeicher", b["ram"], f"{tier['ram_gb']} GB"),
+            part("Arbeitsspeicher", b["ram"], f"{b['gb']} GB"),
             part("SSD", b["ssd"], f"{tier['ssd_tb']} TB NVMe"),
             part("CPU-Kühler", b["cooler"]) if b["cooler"] else
             {"slot": "CPU-Kühler", "name": "Boxed-Kühler (liegt der CPU bei)", "price": 0.0, "id": None,

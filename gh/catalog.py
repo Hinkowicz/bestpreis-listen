@@ -70,6 +70,12 @@ class Catalog:
                 sel["new_filters"] = True
             resp = self.api.categorylist(cat, sort=sort, pagesize=pagesize,
                                          v="l", productratings=True, **sel, **extra)
+            if not resp.get("products") and sel:
+                # manche Unterkategorie-Filter liefern über die API nichts -> ganze Kategorie,
+                # Feinfilterung (Sockel, Größe …) passiert ohnehin über die Produktnamen
+                print(f"  [info] Filter für {key} leer, nutze ganze Kategorie '{cat}'")
+                resp = self.api.categorylist(cat, sort=sort, pagesize=pagesize, v="l",
+                                             productratings=True, **extra)
             prods = [p for p in resp.get("products", []) if p.get("best_price")]
             for rank, p in enumerate(prods):
                 p["_rank"] = rank
