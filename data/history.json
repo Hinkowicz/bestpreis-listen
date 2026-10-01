@@ -1,5 +1,5 @@
 {
- "updated": "01.10.2026, 15:22 Uhr",
+ "updated": "01.10.2026, 15:25 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -186,9 +186,9 @@
     }
    ],
    "upgrade": {
-    "extra": 215,
-    "gain": 42,
-    "text": "Radeon RX 9070 GRE (12 GB) statt Intel Arc B580 + Ryzen 5 5600 statt Ryzen 7 5700X"
+    "extra": 287,
+    "gain": 60,
+    "text": "Radeon RX 9070 (16 GB) statt Intel Arc B580 + Ryzen 5 5600 statt Ryzen 7 5700X, dafür günstigere CPU"
    }
   },
   {

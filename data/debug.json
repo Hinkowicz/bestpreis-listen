@@ -365,6 +365,15 @@
    },
    "cheapest": [
     [
+     881,
+     "AM4",
+     "Ryzen 5 5600",
+     "Intel Arc B580",
+     12,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     58
+    ],
+    [
      889,
      "AM4",
      "Ryzen 5 5600",
@@ -383,9 +392,9 @@
      58
     ],
     [
-     905,
+     906,
      "AM4",
-     "Ryzen 5 5600",
+     "Ryzen 5 5600X",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
@@ -399,18 +408,17 @@
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
      58
-    ],
-    [
-     930,
-     "AM4",
-     "Ryzen 5 5600X",
-     "Intel Arc B580",
-     12,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     58
     ]
    ],
    "best_value": [
+    [
+     1207,
+     "AM4",
+     "Ryzen 5 5600",
+     "Radeon RX 9070",
+     16,
+     93
+    ],
     [
      1215,
      "AM4",
@@ -428,6 +436,14 @@
      94
     ],
     [
+     1232,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070",
+     16,
+     94
+    ],
+    [
      1247,
      "AM4",
      "Ryzen 7 5700X",
@@ -436,12 +452,12 @@
      95
     ],
     [
-     1232,
+     1354,
      "AM4",
      "Ryzen 5 5600",
-     "Radeon RX 9070",
+     "Radeon RX 9070 XT",
      16,
-     93
+     103
     ],
     [
      1362,
@@ -458,22 +474,6 @@
      "Radeon RX 9070 XT",
      16,
      103
-    ],
-    [
-     1257,
-     "AM4",
-     "Ryzen 5 5600X",
-     "Radeon RX 9070",
-     16,
-     94
-    ],
-    [
-     1393,
-     "AM4",
-     "Ryzen 7 5700X",
-     "Radeon RX 9070 XT",
-     16,
-     104
     ]
    ]
   },
@@ -926,7 +926,7 @@
    ]
   },
   "ssd/t": {
-   "count": 837,
+   "count": 836,
    "cheapest": [
     [
      "Intenso High Performance SSD 120GB, 2.5\" / SATA 6Gb/s (3813430)",
@@ -1014,7 +1014,7 @@
     ],
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
-     43
+     43.0
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
