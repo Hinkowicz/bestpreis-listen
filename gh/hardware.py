@@ -58,7 +58,7 @@ CPUS = [
     ("Core i5-12400F",   r"i5-12400F",          58, "LGA1700", 120),
 ]
 
-GB_RE = re.compile(r"(\d{1,2})\s?GB", re.I)
+GB_RE = re.compile(r"(?<![\w.])(\d{1,2})\s?GB\b", re.I)
 
 
 def match_gpu(name):

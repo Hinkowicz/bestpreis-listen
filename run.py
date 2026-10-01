@@ -67,6 +67,7 @@ def main():
     dbg["cpus"] = {plat: sorted([(c["chip"], float(p["best_price"]), p["product"]) for p, c in builder.cpus(plat)],
                                 key=lambda x: x[1]) for plat in config.PLATFORMS}
     dbg["deals_sample"] = deal_list[:5]
+    dbg["tree"] = [(c, p) for c, p, _ in catalog.flat() if c and p.startswith("Hardware")]
     Path("data").mkdir(exist_ok=True)
     if not args.mock:
         Path("data/debug.json").write_text(json.dumps(dbg, ensure_ascii=False, indent=1), encoding="utf-8")
