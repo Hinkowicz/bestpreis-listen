@@ -24,7 +24,7 @@ text-decoration:none;font-size:13px;font-weight:600}nav a.on{background:var(--ac
 .ad b{color:var(--accent2)}h1{font-size:26px;margin:4px 0}h2{font-size:18px;margin:24px 0 8px}
 .sub{color:var(--muted);margin:0 0 16px}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;display:block}
-.card:hover{border-color:var(--accent)}.price{font-size:24px;font-weight:800}.muted{color:var(--muted);font-size:13px}
+.card:hover{border-color:var(--accent2)}.price{font-size:24px;font-weight:800}.muted{color:var(--muted);font-size:13px}
 .score{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:800;text-shadow:0 1px 1px #0004;
 border-radius:8px;padding:2px 8px;font-size:13px}
 .parts{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -41,7 +41,17 @@ details.explain summary{cursor:pointer;font-weight:700;color:var(--accent)}detai
 border-top:2px solid var(--accent)}.tip{background:var(--card);border-left:4px solid var(--accent2);border-radius:10px;
 padding:10px 14px;margin-top:12px}.up{color:var(--bad)}.down{color:var(--good)}
 .deal .old{color:var(--muted);font-size:13px;margin-left:6px}
-.pct{color:var(--good);font-weight:800}.badge{font-size:11px;background:var(--good);color:#06291a;border-radius:6px;padding:1px 6px;font-weight:800}
+.pct{color:var(--accent2);font-weight:800}.badge{font-size:11px;background:linear-gradient(90deg,var(--accent),var(--accent2));
+color:#fff;text-shadow:0 1px 1px #0005;border-radius:6px;padding:1px 6px;font-weight:800}
+.brand{display:flex;align-items:center;gap:10px}.brand img{height:40px;width:auto;border-radius:8px}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);
+border-radius:16px;padding:16px;margin-bottom:16px;position:relative;overflow:hidden}
+.hero.has-setup{grid-template-columns:auto 1fr;background:linear-gradient(90deg,var(--card) 45%,color-mix(in srgb,var(--card) 55%,transparent)),var(--hero) center/cover}
+.hero .avatar{width:84px;height:84px;border-radius:50%;object-fit:cover;border:3px solid var(--accent2)}
+.hero h1{margin:0}.socials{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.socials a{padding:4px 10px;border-radius:999px;border:1px solid var(--accent);text-decoration:none;font-size:13px;font-weight:600}
+.socials a:hover{background:var(--accent);color:var(--on-accent)}
+@media (max-width:560px){.hero{grid-template-columns:1fr}.hero.has-setup{background:var(--card)}}
 .deal img{width:100%;height:120px;object-fit:contain;background:#fff;border-radius:10px;margin-bottom:8px}
 footer{margin:32px 0 8px;color:var(--muted);font-size:12px}
 @media (max-width:560px){.row{grid-template-columns:44px 1fr}.row img,.row .noimg{width:44px;height:44px}.right{grid-column:2;text-align:left}}
@@ -55,6 +65,34 @@ einer mit 60 erreicht etwa 60&nbsp;% der Bildrate.</p>
 <p>Grundlage sind eigene Auswertungen öffentlicher Benchmarks in WQHD. Die Grafikkarte zählt je nach Budget
 70–80&nbsp;%, der Prozessor den Rest; 32&nbsp;GB RAM gibt einen kleinen Bonus. Jede Woche wird pro Budget die
 Kombination mit dem höchsten Score gesucht, die ins Budget passt.</p></details>"""
+
+
+ASSETS = Path("assets")
+
+
+def asset(name):
+    """Erste vorhandene Datei assets/<name>.(png|jpg|jpeg|webp|svg) oder None."""
+    for ext in ("png", "jpg", "jpeg", "webp", "svg"):
+        f = ASSETS / f"{name}.{ext}"
+        if f.exists():
+            return f"assets/{f.name}"
+    return None
+
+
+def logo_html():
+    src = asset("logo")
+    return f'<img src="{src}" alt="Hinkowicz Logo">' if src else ""
+
+
+def hero_html():
+    avatar, setup = asset("avatar"), asset("setup")
+    socials = "".join(f'<a href="{e(url)}" target="_blank" rel="noopener">{e(name)}</a>'
+                      for name, url in config.SOCIALS.items() if url)
+    style = f' style="--hero:url({setup})"' if setup else ""
+    return f"""<section class="hero{' has-setup' if setup else ''}"{style}>
+{f'<img class="avatar" src="{avatar}" alt="Hinkowicz">' if avatar else ''}
+<div><h1>Gaming-PC Bestpreis-Listen</h1><p class="sub" style="margin:4px 0 0">{e(config.INTRO)}</p>
+{f'<div class="socials">{socials}</div>' if socials else ''}</div></section>"""
 
 
 def e(s):
@@ -80,7 +118,7 @@ def page(title, active, body, tiers, stamp):
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} – {e(config.SITE_TITLE)}</title>
 <meta name="robots" content="index,follow"><style>{CSS}</style></head><body><div class="wrap">
-<header><a class="brand" href="index.html">Hinkowicz<small>Bestpreis-Listen</small></a><nav>{nav}</nav></header>
+<header><a class="brand" href="index.html">{logo_html()}<span>Hinkowicz<small>Bestpreis-Listen</small></span></a><nav>{nav}</nav></header>
 <div class="ad"><b>Anzeige</b> · {e(config.AD_NOTICE)}</div>
 {body}
 <footer>Stand: {e(stamp)} · Preise inkl. MwSt. zzgl. Versand, Preisangaben über Geizhals.de, Änderungen möglich.
@@ -136,8 +174,7 @@ def index_page(builds, deals, tiers, stamp):
 <div style="margin-top:6px"><span class="score">Score {b['score']}</span></div></a>""" for b in builds)
     top = "".join(f'<li><a href="{e(d["url"])}" target="_blank" rel="sponsored noopener">{e(d["name"])}</a>* – <b>{eur(d["price"])}</b> <span class="pct">{e(d["percent"])} %</span></li>'
                   for d in deals[:5])
-    body = f"""<h1>Gaming-PC Bestpreis-Listen</h1>
-<p class="sub">Jede Woche automatisch neu zusammengestellt – optimiert auf maximale Gaming-Leistung pro Euro.</p>
+    body = f"""{hero_html()}
 <div class="grid">{cards}</div>{SCORE_EXPLAIN}
 <h2>🔥 Top-Deals der Woche</h2><ul>{top}</ul><p><a class="btn" href="deals.html">Alle Deals ansehen</a></p>"""
     return page("Übersicht", "index", body, tiers, stamp)
@@ -160,6 +197,9 @@ def write_site(out_dir, builds, deals, history, stamp):
             (out / f"pc-{t['id']}.html").write_text(page(f"Gaming-PC bis {t['budget']} €", t["id"], body, tiers, stamp),
                                                      encoding="utf-8")
     (out / "deals.html").write_text(deals_page(deals, tiers, stamp), encoding="utf-8")
+    if ASSETS.exists():
+        import shutil
+        shutil.copytree(ASSETS, out / "assets", dirs_exist_ok=True)
     (out / "index.html").write_text(index_page(builds, deals, tiers, stamp), encoding="utf-8")
     (out / "api" / "deals.json").write_text(json.dumps(deals, ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "api" / "all.json").write_text(json.dumps({"updated": stamp, "builds": builds, "deals": deals},
