@@ -12,7 +12,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.56
+     24.55
     ],
     "AM4": {
      "board": [
@@ -56,7 +56,7 @@
      50
     ],
     [
-     801,
+     796,
      "AM4",
      "Ryzen 5 5500",
      "Intel Arc B570",
@@ -171,7 +171,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.56
+     24.55
     ],
     "AM4": {
      "board": [
@@ -330,7 +330,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.56
+     24.55
     ],
     "AM5": {
      "board": [
@@ -473,7 +473,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.56
+     24.55
     ],
     "AM5": {
      "board": [
@@ -662,7 +662,7 @@
  },
  "lists": {
   "gpu/p": {
-   "count": 560,
+   "count": 558,
    "cheapest": [
     [
      "INNO3D GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (N710-1SDV-E3BX)",
@@ -767,7 +767,7 @@
    ]
   },
   "ssd/t": {
-   "count": 836,
+   "count": 837,
    "cheapest": [
     [
      "Intenso High Performance SSD 120GB, 2.5\" / SATA 6Gb/s (3813430)",
@@ -855,7 +855,7 @@
     ],
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
-     43.0
+     43
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
@@ -1086,7 +1086,7 @@
    "cheapest": [
     [
      "ASRock A520M-HVS (AMD AM4) (90-MXBE60-A0UAYZ)",
-     44.3
+     44.8
     ],
     [
      "ASRock A520M-HDV (AMD AM4) (90-MXBE50-A0UAYZ)",
@@ -1324,7 +1324,7 @@
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     54.92
+     55.2
     ],
     [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
@@ -1359,6 +1359,10 @@
      82.61
     ],
     [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
+     84.9
+    ],
+    [
      "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
      86.2
     ],
@@ -1368,10 +1372,6 @@
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
-     89.9
-    ],
-    [
-     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
      89.9
     ],
     [
@@ -1480,10 +1480,6 @@
      33.23
     ],
     [
-     "GIGABYTE P450B 450W, ATX 2.31 (GP-P450B)",
-     33.76
-    ],
-    [
      "ADATA XPG Probe 600W, ATX 2.52 (PROBE600B-BKCEU)",
      33.9
     ],
@@ -1498,6 +1494,10 @@
     [
      "Xilence Performance C Series XP500R6 350W, ATX 2.31 (XN042)",
      33.91
+    ],
+    [
+     "Inter-Tech Argus APS-620W 620W, ATX 2.31 (88882118)",
+     34.7
     ]
    ]
   },
@@ -1514,7 +1514,7 @@
     ],
     [
      "MSI PRO A620AM-B EVO (AMD AM5) (7E36-001R)",
-     71.51
+     71.53
     ],
     [
      "GIGABYTE A620M H (AMD AM5)",
@@ -1744,7 +1744,7 @@
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     54.92
+     55.2
     ],
     [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
@@ -1779,6 +1779,10 @@
      82.61
     ],
     [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
+     84.9
+    ],
+    [
      "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
      86.2
     ],
@@ -1788,10 +1792,6 @@
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
-     89.9
-    ],
-    [
-     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
      89.9
     ],
     [
@@ -1841,7 +1841,7 @@
     ],
     [
      "GIGABYTE H610M H V2 (Intel 1700)",
-     52.72
+     52.71
     ],
     [
      "ASRock H610M-H2/M.2 (Intel 1700) (90-MXBP70-A0UAYZ)",
@@ -1865,7 +1865,7 @@
     ],
     [
      "MSI PRO H610M-E DDR4 (Intel 1700) (7D48-001R)",
-     57.98
+     57.97
     ],
     [
      "GIGABYTE H610M H V3 DDR4 (Intel 1700)",
@@ -1954,7 +1954,7 @@
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     54.92
+     55.2
     ],
     [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
@@ -1989,6 +1989,10 @@
      82.61
     ],
     [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
+     84.9
+    ],
+    [
      "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
      86.2
     ],
@@ -1998,10 +2002,6 @@
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
-     89.9
-    ],
-    [
-     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
      89.9
     ],
     [
@@ -2200,6 +2200,12 @@
    "ASUS Dual GeForce RTX 5060 Ti OC, DUAL-RTX5060TI-O16G, 16GB GDDR7, HDMI, 3x DP (90YV0MH0-M0NA00)"
   ],
   [
+   "GeForce RTX 5070",
+   12,
+   765.91,
+   "MSI GeForce RTX 5070 12G World of Warcraft Midnight Void Edition OC, G5070-12WMVEC, 12GB GDDR7, HDMI, 3x DP (V532-251R)"
+  ],
+  [
    "Radeon RX 7700 XT",
    12,
    779.89,
@@ -2212,15 +2218,9 @@
    "ASRock Radeon RX 9070 XT Challenger 16GB, RX9070XT CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA61ZZ-00UANF)"
   ],
   [
-   "GeForce RTX 5070",
-   12,
-   799.0,
-   "MSI GeForce RTX 5070 12G Ventus 2X OC, G5070-12V2C, 12GB GDDR7, HDMI, 3x DP (V532-003R)"
-  ],
-  [
    "GeForce RTX 5070 Ti",
    16,
-   1199.0,
+   1198.99,
    "INNO3D GeForce RTX 5070 Ti X3 OC, 16GB GDDR7, HDMI, 3x DP (N507T3-16D7X-176068N)"
   ],
   [
@@ -2245,7 +2245,7 @@
    ],
    [
     "Ryzen 5 8400F",
-    118.8,
+    118.79,
     "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, boxed (100-100001591BOX)"
    ],
    [
@@ -2332,7 +2332,7 @@
    ],
    [
     "Ryzen 5 5500",
-    89.9,
+    84.9,
     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)"
    ],
    [

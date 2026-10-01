@@ -1,5 +1,5 @@
 {
- "updated": "01.10.2026, 15:40 Uhr",
+ "updated": "01.10.2026, 16:01 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -101,7 +101,7 @@
    "name": "WQHD Einstieg",
    "budget": 1000,
    "platform": "AM4",
-   "total": 920.52,
+   "total": 920.51,
    "score": 58,
    "parts": [
     {
@@ -157,12 +157,12 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.56,
+     "price": 24.55,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
      "note": "",
-     "merchant": "computeruniverse"
+     "merchant": "mindfactory"
     },
     {
      "slot": "Netzteil",
@@ -196,7 +196,7 @@
    "name": "WQHD High-End",
    "budget": 1500,
    "platform": "AM5",
-   "total": 1518.12,
+   "total": 1518.11,
    "score": 100,
    "parts": [
     {
@@ -252,12 +252,12 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.56,
+     "price": 24.55,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
      "note": "",
-     "merchant": "computeruniverse"
+     "merchant": "mindfactory"
     },
     {
      "slot": "Netzteil",
@@ -291,7 +291,7 @@
    "name": "4K Enthusiast",
    "budget": 2000,
    "platform": "AM5",
-   "total": 2181.83,
+   "total": 2181.82,
    "score": 124,
    "parts": [
     {
@@ -347,12 +347,12 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.56,
+     "price": 24.55,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
      "note": "",
-     "merchant": "computeruniverse"
+     "merchant": "mindfactory"
     },
     {
      "slot": "Netzteil",
