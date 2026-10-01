@@ -19,7 +19,7 @@
       "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
       64.69
      ],
-     "ram": [
+     "ram16": [
       "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
       109.0
      ]
@@ -29,7 +29,7 @@
       "ASRock B650M-HDV/M.2 (AMD AM5) (90-MXBLA0-A0UAYZ)",
       88.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -39,7 +39,7 @@
       "ASRock B760M-HDV/M.2 D4 (Intel 1700) (90-MXBL40-A0UAYZ)",
       75.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -47,115 +47,115 @@
    },
    "cheapest": [
     [
-     1035,
-     "LGA1700",
-     "Core i5-12400F",
+     767,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     50
     ],
     [
-     1054,
-     "LGA1700",
-     "Core i5-12400F",
+     796,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     50
     ],
     [
-     1059,
-     "LGA1700",
-     "Core i5-14400F",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     54
-    ],
-    [
-     1073,
-     "LGA1700",
-     "Core i5-12400F",
+     805,
+     "AM4",
+     "Ryzen 5 5500",
      "Radeon RX 7600",
      8,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     49
     ],
     [
-     1076,
-     "LGA1700",
-     "Core i5-13400F",
+     812,
+     "AM4",
+     "Ryzen 5 5600",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     52
+    ],
+    [
+     820,
+     "AM4",
+     "Ryzen 5 5600",
+     "Intel Arc B570",
+     10,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     52
     ]
    ],
    "best_value": [
     [
-     1601,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070 XT",
-     16,
-     111
-    ],
-    [
-     1455,
-     "LGA1700",
-     "Core i5-14400F",
+     1162,
+     "AM4",
+     "Ryzen 5 5500",
      "Radeon RX 9070",
      16,
-     101
+     93
     ],
     [
-     1577,
-     "LGA1700",
-     "Core i5-12400F",
-     "Radeon RX 9070 XT",
-     16,
-     109
-    ],
-    [
-     1619,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070 XT",
-     16,
-     111
-    ],
-    [
-     1430,
-     "LGA1700",
-     "Core i5-12400F",
+     1207,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     98
+     97
     ],
     [
-     1472,
-     "LGA1700",
-     "Core i5-14400F",
+     1215,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     101
+     97
     ],
     [
-     1617,
-     "LGA1700",
-     "Core i5-13400F",
-     "Radeon RX 9070 XT",
+     1225,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070",
      16,
-     110
+     97
     ],
     [
-     1596,
-     "LGA1700",
-     "Core i5-12400F",
+     1354,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
-     109
+     107
+    ],
+    [
+     1309,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070 XT",
+     16,
+     103
+    ],
+    [
+     1232,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070",
+     16,
+     97
+    ],
+    [
+     1362,
+     "AM4",
+     "Ryzen 5 5600",
+     "Radeon RX 9070 XT",
+     16,
+     107
     ]
    ]
   },
@@ -178,7 +178,7 @@
       "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
       64.69
      ],
-     "ram": [
+     "ram16": [
       "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
       109.0
      ]
@@ -188,7 +188,7 @@
       "ASRock B650M-HDV/M.2 (AMD AM5) (90-MXBLA0-A0UAYZ)",
       88.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -198,7 +198,7 @@
       "ASRock B760M-HDV/M.2 D4 (Intel 1700) (90-MXBL40-A0UAYZ)",
       75.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -206,115 +206,115 @@
    },
    "cheapest": [
     [
-     1035,
-     "LGA1700",
-     "Core i5-12400F",
+     767,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     50
     ],
     [
-     1054,
-     "LGA1700",
-     "Core i5-12400F",
+     796,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     50
     ],
     [
-     1059,
-     "LGA1700",
-     "Core i5-14400F",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     54
-    ],
-    [
-     1073,
-     "LGA1700",
-     "Core i5-12400F",
+     805,
+     "AM4",
+     "Ryzen 5 5500",
      "Radeon RX 7600",
      8,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
+     49
     ],
     [
-     1076,
-     "LGA1700",
-     "Core i5-13400F",
+     812,
+     "AM4",
+     "Ryzen 5 5600",
      "Intel Arc B570",
      10,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     53
+     52
+    ],
+    [
+     820,
+     "AM4",
+     "Ryzen 5 5600",
+     "Intel Arc B570",
+     10,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     52
     ]
    ],
    "best_value": [
     [
-     1601,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070 XT",
-     16,
-     110
-    ],
-    [
-     1455,
-     "LGA1700",
-     "Core i5-14400F",
+     1207,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     100
+     95
     ],
     [
-     1619,
-     "LGA1700",
-     "Core i5-14400F",
+     1162,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070",
+     16,
+     92
+    ],
+    [
+     1215,
+     "AM4",
+     "Ryzen 5 5600",
+     "Radeon RX 9070",
+     16,
+     95
+    ],
+    [
+     1225,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070",
+     16,
+     96
+    ],
+    [
+     1232,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070",
+     16,
+     96
+    ],
+    [
+     1354,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
-     110
+     105
     ],
     [
-     1577,
-     "LGA1700",
-     "Core i5-12400F",
-     "Radeon RX 9070 XT",
-     16,
-     107
-    ],
-    [
-     1430,
-     "LGA1700",
-     "Core i5-12400F",
+     1247,
+     "AM4",
+     "Ryzen 7 5700X",
      "Radeon RX 9070",
      16,
      97
     ],
     [
-     1472,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070",
-     16,
-     100
-    ],
-    [
-     1617,
-     "LGA1700",
-     "Core i5-13400F",
+     1362,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
-     109
-    ],
-    [
-     1471,
-     "LGA1700",
-     "Core i5-13400F",
-     "Radeon RX 9070",
-     16,
-     99
+     105
     ]
    ]
   },
@@ -337,7 +337,7 @@
       "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
       64.69
      ],
-     "ram": [
+     "ram16": [
       "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
       109.0
      ]
@@ -347,7 +347,7 @@
       "ASRock B650M-HDV/M.2 (AMD AM5) (90-MXBLA0-A0UAYZ)",
       88.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -357,7 +357,7 @@
       "ASRock B760M-HDV/M.2 D4 (Intel 1700) (90-MXBL40-A0UAYZ)",
       75.89
      ],
-     "ram": [
+     "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
       302.0
      ]
@@ -365,115 +365,115 @@
    },
    "cheapest": [
     [
-     1104,
-     "LGA1700",
-     "Core i5-12400F",
+     860,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     59
+     55
     ],
     [
-     1123,
-     "LGA1700",
-     "Core i5-12400F",
+     865,
+     "AM4",
+     "Ryzen 5 5500",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     59
+     55
     ],
     [
-     1128,
-     "LGA1700",
-     "Core i5-14400F",
+     889,
+     "AM4",
+     "Ryzen 5 5600",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     61
+     58
     ],
     [
-     1145,
-     "LGA1700",
-     "Core i5-13400F",
+     899,
+     "AM4",
+     "Ryzen 5 5600X",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     60
+     58
     ],
     [
-     1146,
-     "LGA1700",
-     "Core i5-14400F",
+     905,
+     "AM4",
+     "Ryzen 5 5600",
      "Intel Arc B580",
      12,
      "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     61
+     58
     ]
    ],
    "best_value": [
     [
-     1455,
-     "LGA1700",
-     "Core i5-14400F",
+     1215,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     98
+     93
     ],
     [
-     1601,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070 XT",
-     16,
-     108
-    ],
-    [
-     1472,
-     "LGA1700",
-     "Core i5-14400F",
+     1225,
+     "AM4",
+     "Ryzen 5 5600X",
      "Radeon RX 9070",
      16,
-     98
+     94
     ],
     [
-     1619,
-     "LGA1700",
-     "Core i5-14400F",
-     "Radeon RX 9070 XT",
-     16,
-     108
-    ],
-    [
-     1430,
-     "LGA1700",
-     "Core i5-12400F",
+     1247,
+     "AM4",
+     "Ryzen 7 5700X",
      "Radeon RX 9070",
      16,
      95
     ],
     [
-     1577,
-     "LGA1700",
-     "Core i5-12400F",
-     "Radeon RX 9070 XT",
-     16,
-     104
-    ],
-    [
-     1471,
-     "LGA1700",
-     "Core i5-13400F",
+     1232,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070",
      16,
-     97
+     93
     ],
     [
-     1617,
-     "LGA1700",
-     "Core i5-13400F",
+     1362,
+     "AM4",
+     "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
-     107
+     103
+    ],
+    [
+     1187,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070",
+     16,
+     89
+    ],
+    [
+     1371,
+     "AM4",
+     "Ryzen 5 5600X",
+     "Radeon RX 9070 XT",
+     16,
+     103
+    ],
+    [
+     1192,
+     "AM4",
+     "Ryzen 5 5500",
+     "Radeon RX 9070",
+     16,
+     89
     ]
    ]
   },
@@ -496,14 +496,129 @@
       "GIGABYTE B650 Eagle AX (AMD AM5)",
       99.9
      ],
-     "ram": [
+     "ram16": [
+      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
+      302.0
+     ],
+     "ram32": [
       "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
       446.9
      ]
     }
    },
-   "cheapest": [],
-   "best_value": []
+   "cheapest": [
+    [
+     1278,
+     "AM5",
+     "Ryzen 5 8400F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     70
+    ],
+    [
+     1309,
+     "AM5",
+     "Ryzen 5 8400F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     70
+    ],
+    [
+     1310,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     73
+    ],
+    [
+     1329,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     74
+    ],
+    [
+     1352,
+     "AM5",
+     "Ryzen 5 7600",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     73
+    ]
+   ],
+   "best_value": [
+    [
+     1650,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9070 XT",
+     16,
+     110
+    ],
+    [
+     1479,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9070",
+     16,
+     99
+    ],
+    [
+     1508,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9070",
+     16,
+     100
+    ],
+    [
+     1620,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9070 XT",
+     16,
+     108
+    ],
+    [
+     1460,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9070",
+     16,
+     97
+    ],
+    [
+     1602,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9070 XT",
+     16,
+     106
+    ],
+    [
+     1657,
+     "AM5",
+     "Ryzen 7 7700",
+     "Radeon RX 9070 XT",
+     16,
+     109
+    ],
+    [
+     1664,
+     "AM5",
+     "Ryzen 5 9600",
+     "Radeon RX 9070 XT",
+     16,
+     109
+    ]
+   ]
   },
   "2000": {
    "parts": {
@@ -524,14 +639,129 @@
       "GIGABYTE B650 Eagle AX (AMD AM5)",
       99.9
      ],
-     "ram": [
+     "ram16": [
+      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
+      302.0
+     ],
+     "ram32": [
       "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
       446.9
      ]
     }
    },
-   "cheapest": [],
-   "best_value": []
+   "cheapest": [
+    [
+     1399,
+     "AM5",
+     "Ryzen 5 8400F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     69
+    ],
+    [
+     1430,
+     "AM5",
+     "Ryzen 5 8400F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     69
+    ],
+    [
+     1431,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     73
+    ],
+    [
+     1450,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     74
+    ],
+    [
+     1473,
+     "AM5",
+     "Ryzen 5 7600",
+     "Radeon RX 9060 XT",
+     16,
+     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
+     73
+    ]
+   ],
+   "best_value": [
+    [
+     1771,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9070 XT",
+     16,
+     109
+    ],
+    [
+     1741,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9070 XT",
+     16,
+     107
+    ],
+    [
+     1629,
+     "AM5",
+     "Ryzen 5 9600X",
+     "Radeon RX 9070",
+     16,
+     100
+    ],
+    [
+     1600,
+     "AM5",
+     "Ryzen 5 7600X",
+     "Radeon RX 9070",
+     16,
+     98
+    ],
+    [
+     1723,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9070 XT",
+     16,
+     105
+    ],
+    [
+     1876,
+     "AM5",
+     "Ryzen 7 7800X3D",
+     "Radeon RX 9070 XT",
+     16,
+     114
+    ],
+    [
+     1581,
+     "AM5",
+     "Ryzen 5 7500F",
+     "Radeon RX 9070",
+     16,
+     96
+    ],
+    [
+     1778,
+     "AM5",
+     "Ryzen 7 7700",
+     "Radeon RX 9070 XT",
+     16,
+     108
+    ]
+   ]
   }
  },
  "categories": {
@@ -561,6 +791,9 @@
    "cat": "cpuamdam4",
    "xf": "12099_AM4"
   },
+  "psu": {
+   "cat": "gehps"
+  },
   "mb_am5": {
    "cat": "mainboards",
    "preset": "249"
@@ -580,9 +813,6 @@
   "cpu_1700": {
    "cat": "cpuamdam4",
    "xf": "12100_1700"
-  },
-  "psu": {
-   "cat": "gehps"
   },
   "ram_ddr5_32": {
    "cat": "ramddr3",
@@ -767,6 +997,10 @@
      38.95
     ],
     [
+     "Silicon Power Slim S55 120GB, 2.5\" / SATA 6Gb/s (SP120GBSS3S55S25)",
+     39.62
+    ],
+    [
      "Innovation IT Superior 256GB, M.2 2280 / B-M-Key / SATA, bulk (00-256555)",
      39.88
     ],
@@ -781,10 +1015,6 @@
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
      43
-    ],
-    [
-     "Silicon Power Slim S55 120GB, 2.5\" / SATA 6Gb/s (SP120GBSS3S55S25)",
-     43.42
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
@@ -1115,12 +1345,72 @@
     ]
    ]
   },
-  "ram_ddr4_16/t": {
+  "ram_ddr4_16/p": {
    "count": 1000,
    "cheapest": [
     [
+     "V7 UDIMM 2GB, DDR2-800, CL6 (V764002GBD)",
+     9.99
+    ],
+    [
+     "V7 UDIMM 2GB, DDR3-1333, CL9 (V7106002GBD)",
+     13.9
+    ],
+    [
+     "CompuStocx UDIMM 4GB Kit, DDR3-1333, CL9 (CSXO-D3-LO-1333-4G-2KIT)",
+     13.95
+    ],
+    [
+     "CompuStocx UDIMM 4GB, DDR3-1066, CL9 (CSXO-D3-LO-1066-4GB)",
+     13.95
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 4GB, DDR3-1600, CL11 (PSD34G160081)",
+     14.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G160081S)",
+     16.9
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1066, CL7 (M471B5273CH0-CF8)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1333, CL9-9-9 (M471B5273CH0-CH9)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (M471B5173QH0-YK0)",
+     18
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G16002S)",
+     18.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3L-1600, CL11 (PSD34G1600L2S)",
+     18.9
+    ],
+    [
      "Samsung SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (M471B1G73DB0-YK0)",
      25
+    ],
+    [
+     "G.Skill Aegis UDIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-1600C11S-4GIS)",
+     25.4
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 8GB, DDR3-1600, CL11 (PSD38G16002)",
+     25.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
+     26.9
+    ],
+    [
+     "Apacer UDIMM 8GB, DDR3-1600, CL11 (AU08GFA60CATBGC)",
+     28.9
     ],
     [
      "Micron SO-DIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (MTA4ATF51264HZ-3G2J1)",
@@ -1131,98 +1421,244 @@
      29.99
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     30.21
+    ],
+    [
+     "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
+     30.93
+    ],
+    [
+     "G.Skill SQ Series SO-DIMM 4GB Kit, DDR3-1600, CL9-9-9-28 (F3-12800CL9D-4GBSQ)",
+     31.99
+    ],
+    [
      "G.Skill NT Series UDIMM 8GB, DDR3-1600, CL11-11-11-28, 2R (F3-1600C11S-8GNT)",
      32.12
     ],
     [
-     "G.Skill Aegis UDIMM 4GB, DDR4-2133, CL15-15-15-35 (F4-2133C15S-4GIS)",
-     35.69
+     "TeamGroup ELITE SO-DIMM 8GB, DDR3L-1600, CL11 (TED3L8G1600C11-S01)",
+     34.05
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (KVR32N22S6/4)",
-     39.9
+     "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
+     34.6
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-2666, CL19-19-19, 1RX16 (KVR26N19S6/4)",
-     40.85
-    ],
-    [
-     "Samsung UDIMM 8GB, DDR4-2400, CL17-17-17, 1RX8 (M378A1K43CB2-CRC)",
-     42
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL22-22-22-52 (AFLD48PH1P)",
-     49
-    ],
-    [
-     "Patriot Viper 3 schwarz UDIMM 16GB Kit, DDR3-1600, CL9-9-9-24 (PV316G160C9K)",
-     52.9
-    ],
-    [
-     "Samsung SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (M471A1K43DB1-CWE)",
-     54.8
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3000, CL16-18-18-38 (F4-3000C16S-8GISB)",
-     58.71
-    ],
-    [
-     "Crucial SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (CT8G4SFS832A)",
-     59.8
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-2666, CL19-19-19-43 (TED48G2666C19-S01)",
-     60.93
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3200, CL16-18-18-38 (F4-3200C16S-8GIS)",
-     62
-    ],
-    [
-     "TeamGroup ELITE UDIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C2201)",
-     62.16
-    ],
-    [
-     "Innovation IT SO-DIMM 8GB, DDR4-2666, CL19-19-19 (125361)",
-     62.32
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C22-S01)",
-     62.8
-    ],
-    [
-     "G.Skill RipJaws SO-DIMM 8GB, DDR4-3200, CL22-22-22 (F4-3200C22S-8GRS)",
-     63.48
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22-22-22 (CT8G4DFRA32A)",
-     64.5
-    ],
-    [
-     "G.Skill NT Series UDIMM 8GB, DDR4-2666, CL19-19-19-43 (F4-2666C19S-8GNT)",
-     68.64
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22 (CB8GU3200)",
-     68.99
-    ],
-    [
-     "Kingston ValueRAM SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (KVR16LS11/8)",
-     69
-    ],
-    [
-     "Patriot Viper Steel SO-DIMM 8GB, DDR4-3200, CL18-24-24-44 (PVS48G320C8S)",
-     70.9
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL16-18-18-39 (AFLD48PH1C)",
-     71.85
+     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
+     35
     ]
    ]
   },
   "cpu_am4/p": {
-   "count": 0,
-   "cheapest": []
+   "count": 476,
+   "cheapest": [
+    [
+     "Intel Celeron G4930, 2C/2T, 3.20GHz, tray (CM8068403378114)",
+     12.9
+    ],
+    [
+     "AMD Athlon 3000G (Raven Ridge), 2C/4T, 3.50GHz, tray (YD3000C6M2OFH / YD3000C6M2OFB / YD3000C6FHMPK)",
+     24.9
+    ],
+    [
+     "AMD Athlon 3000G (Dali), 2C/4T, 3.50GHz, boxed mit AMD Wraith Spire (YD3000C6FHSBX)",
+     33.9
+    ],
+    [
+     "Intel Celeron 1020E, 2C/2T, 2.20GHz, tray (AV8063801276200 / AW8063801117700)",
+     35.41
+    ],
+    [
+     "AMD Athlon 3000G (Raven Ridge), 2C/4T, 3.50GHz, boxed (YD3000C6FHBOX)",
+     37.08
+    ],
+    [
+     "AMD Athlon X4 860K Black Edition, 4C/4T, 3.70-4.00GHz, boxed (AD860KXBJABOX)",
+     48.95
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, boxed (100-100000510BOX)",
+     52.89
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
+     54.92
+    ],
+    [
+     "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
+     55.22
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, boxed (YD3200C5FHBOX)",
+     60.9
+    ],
+    [
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, tray (YD3400C5M4MFH / YD3400C5FHMPK)",
+     62.95
+    ],
+    [
+     "Intel Xeon Gold 5222, 4C/8T, 3.80-3.90GHz, tray (CD8069504193501)",
+     65.46
+    ],
+    [
+     "AMD Ryzen 5 4500, 6C/12T, 3.60-4.10GHz, boxed (100-100000644BOX)",
+     66.9
+    ],
+    [
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
+     76.31
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
+     79.9
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
+     82.61
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
+     84.9
+    ],
+    [
+     "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
+     86.2
+    ],
+    [
+     "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
+     88.64
+    ],
+    [
+     "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
+     89.9
+    ],
+    [
+     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
+     91.19
+    ],
+    [
+     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
+     91.89
+    ],
+    [
+     "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, tray (CM8071504651013)",
+     92.25
+    ],
+    [
+     "Intel Pentium Gold G7400, 2P/4T, 3.70GHz, boxed (BX80715G7400)",
+     93.05
+    ],
+    [
+     "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, boxed (BX8071512100F)",
+     95.66
+    ]
+   ]
+  },
+  "psu/t": {
+   "count": 932,
+   "cheapest": [
+    [
+     "Inter-Tech Mini-ITX PSU 120W, Wandlerplatine (88882193)",
+     13.99
+    ],
+    [
+     "Inter-Tech Mini-ITX PSU 160W, Wandlerplatine (88882188)",
+     14.94
+    ],
+    [
+     "Tacens Anima APSIII500 500W, SFX 2.3",
+     20.82
+    ],
+    [
+     "Inter-Tech Mini-ITX PSU 200W, Wandlerplatine (88882190)",
+     21.25
+    ],
+    [
+     "Inter-Tech SL-500AP 500W, ATX 2.03 (88882252)",
+     24.68
+    ],
+    [
+     "LC-Power LC420H-12 420W, ATX 2.31",
+     25.73
+    ],
+    [
+     "Inter-Tech SL-500 TBP 500W, ATX 2.03 (88882254)",
+     26.41
+    ],
+    [
+     "Gamdias Aura GP550 550W, ATX 2.4 (16210-02201-10000-G)",
+     29
+    ],
+    [
+     "Bitmain APW3++ 1600W, 2HE-Servernetzteil",
+     29
+    ],
+    [
+     "Inter-Tech SL-500 Plus 500W, ATX 2.4 (88882140)",
+     29.6
+    ],
+    [
+     "Joy-iT POWER420H-12 420W, ATX 2.31",
+     29.9
+    ],
+    [
+     "Chieftec Value APB-500B8 500W, ATX 2.3, bulk",
+     29.9
+    ],
+    [
+     "Chieftec EON Series ZPU-400S 400W, ATX 2.3",
+     29.93
+    ],
+    [
+     "LC-Power LC500-12 350W, ATX 2.31",
+     29.98
+    ],
+    [
+     "Xilence Performance C Series XP400R6 300W, ATX 2.31 (XN041)",
+     30.49
+    ],
+    [
+     "Inter-Tech HiPower SP-550 550W, ATX 2.4 (88882110)",
+     32.88
+    ],
+    [
+     "Inter-Tech Argus APS-420W 420W, ATX 2.31 (88882116)",
+     32.9
+    ],
+    [
+     "Inter-Tech Argus APS-520W 520W, ATX 2.31 (88882117)",
+     32.95
+    ],
+    [
+     "Shuttle Silent-X PC55 450W, ATX",
+     32.95
+    ],
+    [
+     "Inter-Tech SL-700W Plus 700W, ATX 2.4 (88882141)",
+     33.23
+    ],
+    [
+     "GIGABYTE P450B 450W, ATX 2.31 (GP-P450B)",
+     33.76
+    ],
+    [
+     "ADATA XPG Probe 600W, ATX 2.52 (PROBE600B-BKCEU)",
+     33.9
+    ],
+    [
+     "Chieftec Value APB-400B8 400W, ATX 2.3, bulk",
+     33.9
+    ],
+    [
+     "DeepCool GamerStorm PF-L Series PF450L 450W, ATX 2.31 (R-PF450L-HE0B-JGEU)",
+     33.9
+    ],
+    [
+     "Xilence Performance C Series XP500R6 350W, ATX 2.31 (XN042)",
+     33.91
+    ]
+   ]
   },
   "mb_am5/t": {
    "count": 301,
@@ -1329,12 +1765,72 @@
     ]
    ]
   },
-  "ram_ddr5_16/t": {
+  "ram_ddr5_16/p": {
    "count": 1000,
    "cheapest": [
     [
+     "V7 UDIMM 2GB, DDR2-800, CL6 (V764002GBD)",
+     9.99
+    ],
+    [
+     "V7 UDIMM 2GB, DDR3-1333, CL9 (V7106002GBD)",
+     13.9
+    ],
+    [
+     "CompuStocx UDIMM 4GB Kit, DDR3-1333, CL9 (CSXO-D3-LO-1333-4G-2KIT)",
+     13.95
+    ],
+    [
+     "CompuStocx UDIMM 4GB, DDR3-1066, CL9 (CSXO-D3-LO-1066-4GB)",
+     13.95
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 4GB, DDR3-1600, CL11 (PSD34G160081)",
+     14.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G160081S)",
+     16.9
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1066, CL7 (M471B5273CH0-CF8)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1333, CL9-9-9 (M471B5273CH0-CH9)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (M471B5173QH0-YK0)",
+     18
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G16002S)",
+     18.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3L-1600, CL11 (PSD34G1600L2S)",
+     18.9
+    ],
+    [
      "Samsung SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (M471B1G73DB0-YK0)",
      25
+    ],
+    [
+     "G.Skill Aegis UDIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-1600C11S-4GIS)",
+     25.4
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 8GB, DDR3-1600, CL11 (PSD38G16002)",
+     25.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
+     26.9
+    ],
+    [
+     "Apacer UDIMM 8GB, DDR3-1600, CL11 (AU08GFA60CATBGC)",
+     28.9
     ],
     [
      "Micron SO-DIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (MTA4ATF51264HZ-3G2J1)",
@@ -1345,98 +1841,139 @@
      29.99
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     30.21
+    ],
+    [
+     "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
+     30.93
+    ],
+    [
+     "G.Skill SQ Series SO-DIMM 4GB Kit, DDR3-1600, CL9-9-9-28 (F3-12800CL9D-4GBSQ)",
+     31.99
+    ],
+    [
      "G.Skill NT Series UDIMM 8GB, DDR3-1600, CL11-11-11-28, 2R (F3-1600C11S-8GNT)",
      32.12
     ],
     [
-     "G.Skill Aegis UDIMM 4GB, DDR4-2133, CL15-15-15-35 (F4-2133C15S-4GIS)",
-     35.69
+     "TeamGroup ELITE SO-DIMM 8GB, DDR3L-1600, CL11 (TED3L8G1600C11-S01)",
+     34.05
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (KVR32N22S6/4)",
-     39.9
+     "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
+     34.6
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-2666, CL19-19-19, 1RX16 (KVR26N19S6/4)",
-     40.85
-    ],
-    [
-     "Samsung UDIMM 8GB, DDR4-2400, CL17-17-17, 1RX8 (M378A1K43CB2-CRC)",
-     42
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL22-22-22-52 (AFLD48PH1P)",
-     49
-    ],
-    [
-     "Patriot Viper 3 schwarz UDIMM 16GB Kit, DDR3-1600, CL9-9-9-24 (PV316G160C9K)",
-     52.9
-    ],
-    [
-     "Samsung SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (M471A1K43DB1-CWE)",
-     54.8
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3000, CL16-18-18-38 (F4-3000C16S-8GISB)",
-     58.71
-    ],
-    [
-     "Crucial SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (CT8G4SFS832A)",
-     59.8
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-2666, CL19-19-19-43 (TED48G2666C19-S01)",
-     60.93
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3200, CL16-18-18-38 (F4-3200C16S-8GIS)",
-     62
-    ],
-    [
-     "TeamGroup ELITE UDIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C2201)",
-     62.16
-    ],
-    [
-     "Innovation IT SO-DIMM 8GB, DDR4-2666, CL19-19-19 (125361)",
-     62.32
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C22-S01)",
-     62.8
-    ],
-    [
-     "G.Skill RipJaws SO-DIMM 8GB, DDR4-3200, CL22-22-22 (F4-3200C22S-8GRS)",
-     63.48
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22-22-22 (CT8G4DFRA32A)",
-     64.5
-    ],
-    [
-     "G.Skill NT Series UDIMM 8GB, DDR4-2666, CL19-19-19-43 (F4-2666C19S-8GNT)",
-     68.64
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22 (CB8GU3200)",
-     68.99
-    ],
-    [
-     "Kingston ValueRAM SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (KVR16LS11/8)",
-     69
-    ],
-    [
-     "Patriot Viper Steel SO-DIMM 8GB, DDR4-3200, CL18-24-24-44 (PVS48G320C8S)",
-     70.9
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL16-18-18-39 (AFLD48PH1C)",
-     71.85
+     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
+     35
     ]
    ]
   },
   "cpu_am5/p": {
-   "count": 0,
-   "cheapest": []
+   "count": 476,
+   "cheapest": [
+    [
+     "Intel Celeron G4930, 2C/2T, 3.20GHz, tray (CM8068403378114)",
+     12.9
+    ],
+    [
+     "AMD Athlon 3000G (Raven Ridge), 2C/4T, 3.50GHz, tray (YD3000C6M2OFH / YD3000C6M2OFB / YD3000C6FHMPK)",
+     24.9
+    ],
+    [
+     "AMD Athlon 3000G (Dali), 2C/4T, 3.50GHz, boxed mit AMD Wraith Spire (YD3000C6FHSBX)",
+     33.9
+    ],
+    [
+     "Intel Celeron 1020E, 2C/2T, 2.20GHz, tray (AV8063801276200 / AW8063801117700)",
+     35.41
+    ],
+    [
+     "AMD Athlon 3000G (Raven Ridge), 2C/4T, 3.50GHz, boxed (YD3000C6FHBOX)",
+     37.08
+    ],
+    [
+     "AMD Athlon X4 860K Black Edition, 4C/4T, 3.70-4.00GHz, boxed (AD860KXBJABOX)",
+     48.95
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, boxed (100-100000510BOX)",
+     52.89
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
+     54.92
+    ],
+    [
+     "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
+     55.22
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, boxed (YD3200C5FHBOX)",
+     60.9
+    ],
+    [
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, tray (YD3400C5M4MFH / YD3400C5FHMPK)",
+     62.95
+    ],
+    [
+     "Intel Xeon Gold 5222, 4C/8T, 3.80-3.90GHz, tray (CD8069504193501)",
+     65.46
+    ],
+    [
+     "AMD Ryzen 5 4500, 6C/12T, 3.60-4.10GHz, boxed (100-100000644BOX)",
+     66.9
+    ],
+    [
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
+     76.31
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
+     79.9
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
+     82.61
+    ],
+    [
+     "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
+     84.9
+    ],
+    [
+     "Intel Core i3-13100F, 4P/8T, 3.40-4.50GHz, tray (CM8071505092203)",
+     86.2
+    ],
+    [
+     "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
+     88.64
+    ],
+    [
+     "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
+     89.9
+    ],
+    [
+     "AMD Ryzen 5 5500F, 6C/12T, 3.00-4.40GHz, tray (100-000001905 / 100-100001905MPK)",
+     91.19
+    ],
+    [
+     "Intel Core i3-14100F, 4P/8T, 3.50-4.70GHz, tray (CM8071505092207)",
+     91.89
+    ],
+    [
+     "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, tray (CM8071504651013)",
+     92.25
+    ],
+    [
+     "Intel Pentium Gold G7400, 2P/4T, 3.70GHz, boxed (BX80715G7400)",
+     93.05
+    ],
+    [
+     "Intel Core i3-12100F, 4P/8T, 3.30-4.30GHz, boxed (BX8071512100F)",
+     95.66
+    ]
+   ]
   },
   "mb_1700/t": {
    "count": 153,
@@ -1648,117 +2185,72 @@
     ]
    ]
   },
-  "psu/t": {
-   "count": 932,
-   "cheapest": [
-    [
-     "Inter-Tech Mini-ITX PSU 120W, Wandlerplatine (88882193)",
-     13.99
-    ],
-    [
-     "Inter-Tech Mini-ITX PSU 160W, Wandlerplatine (88882188)",
-     14.94
-    ],
-    [
-     "Tacens Anima APSIII500 500W, SFX 2.3",
-     20.82
-    ],
-    [
-     "Inter-Tech Mini-ITX PSU 200W, Wandlerplatine (88882190)",
-     21.25
-    ],
-    [
-     "Inter-Tech SL-500AP 500W, ATX 2.03 (88882252)",
-     24.68
-    ],
-    [
-     "LC-Power LC420H-12 420W, ATX 2.31",
-     25.73
-    ],
-    [
-     "Inter-Tech SL-500 TBP 500W, ATX 2.03 (88882254)",
-     26.41
-    ],
-    [
-     "Gamdias Aura GP550 550W, ATX 2.4 (16210-02201-10000-G)",
-     29
-    ],
-    [
-     "Bitmain APW3++ 1600W, 2HE-Servernetzteil",
-     29
-    ],
-    [
-     "Inter-Tech SL-500 Plus 500W, ATX 2.4 (88882140)",
-     29.6
-    ],
-    [
-     "Joy-iT POWER420H-12 420W, ATX 2.31",
-     29.9
-    ],
-    [
-     "Chieftec Value APB-500B8 500W, ATX 2.3, bulk",
-     29.9
-    ],
-    [
-     "Chieftec EON Series ZPU-400S 400W, ATX 2.3",
-     29.93
-    ],
-    [
-     "LC-Power LC500-12 350W, ATX 2.31",
-     29.98
-    ],
-    [
-     "Xilence Performance C Series XP400R6 300W, ATX 2.31 (XN041)",
-     30.49
-    ],
-    [
-     "Inter-Tech HiPower SP-550 550W, ATX 2.4 (88882110)",
-     32.88
-    ],
-    [
-     "Inter-Tech Argus APS-420W 420W, ATX 2.31 (88882116)",
-     32.9
-    ],
-    [
-     "Inter-Tech Argus APS-520W 520W, ATX 2.31 (88882117)",
-     32.95
-    ],
-    [
-     "Shuttle Silent-X PC55 450W, ATX",
-     32.95
-    ],
-    [
-     "Inter-Tech SL-700W Plus 700W, ATX 2.4 (88882141)",
-     33.23
-    ],
-    [
-     "GIGABYTE P450B 450W, ATX 2.31 (GP-P450B)",
-     33.76
-    ],
-    [
-     "ADATA XPG Probe 600W, ATX 2.52 (PROBE600B-BKCEU)",
-     33.9
-    ],
-    [
-     "Chieftec Value APB-400B8 400W, ATX 2.3, bulk",
-     33.9
-    ],
-    [
-     "DeepCool GamerStorm PF-L Series PF450L 450W, ATX 2.31 (R-PF450L-HE0B-JGEU)",
-     33.9
-    ],
-    [
-     "Xilence Performance C Series XP500R6 350W, ATX 2.31 (XN042)",
-     33.91
-    ]
-   ]
-  },
-  "ram_ddr5_32/t": {
+  "ram_ddr5_32/p": {
    "count": 1000,
    "cheapest": [
     [
+     "V7 UDIMM 2GB, DDR2-800, CL6 (V764002GBD)",
+     9.99
+    ],
+    [
+     "V7 UDIMM 2GB, DDR3-1333, CL9 (V7106002GBD)",
+     13.9
+    ],
+    [
+     "CompuStocx UDIMM 4GB Kit, DDR3-1333, CL9 (CSXO-D3-LO-1333-4G-2KIT)",
+     13.95
+    ],
+    [
+     "CompuStocx UDIMM 4GB, DDR3-1066, CL9 (CSXO-D3-LO-1066-4GB)",
+     13.95
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 4GB, DDR3-1600, CL11 (PSD34G160081)",
+     14.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G160081S)",
+     16.9
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1066, CL7 (M471B5273CH0-CF8)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3-1333, CL9-9-9 (M471B5273CH0-CH9)",
+     18
+    ],
+    [
+     "Samsung SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (M471B5173QH0-YK0)",
+     18
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3-1600, CL11 (PSD34G16002S)",
+     18.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 4GB, DDR3L-1600, CL11 (PSD34G1600L2S)",
+     18.9
+    ],
+    [
      "Samsung SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (M471B1G73DB0-YK0)",
      25
+    ],
+    [
+     "G.Skill Aegis UDIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-1600C11S-4GIS)",
+     25.4
+    ],
+    [
+     "Patriot Signature Line ohne Kühler UDIMM 8GB, DDR3-1600, CL11 (PSD38G16002)",
+     25.9
+    ],
+    [
+     "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
+     26.9
+    ],
+    [
+     "Apacer UDIMM 8GB, DDR3-1600, CL11 (AU08GFA60CATBGC)",
+     28.9
     ],
     [
      "Micron SO-DIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (MTA4ATF51264HZ-3G2J1)",
@@ -1769,92 +2261,32 @@
      29.99
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     30.21
+    ],
+    [
+     "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
+     30.93
+    ],
+    [
+     "G.Skill SQ Series SO-DIMM 4GB Kit, DDR3-1600, CL9-9-9-28 (F3-12800CL9D-4GBSQ)",
+     31.99
+    ],
+    [
      "G.Skill NT Series UDIMM 8GB, DDR3-1600, CL11-11-11-28, 2R (F3-1600C11S-8GNT)",
      32.12
     ],
     [
-     "G.Skill Aegis UDIMM 4GB, DDR4-2133, CL15-15-15-35 (F4-2133C15S-4GIS)",
-     35.69
+     "TeamGroup ELITE SO-DIMM 8GB, DDR3L-1600, CL11 (TED3L8G1600C11-S01)",
+     34.05
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-3200, CL22-22-22, 1RX8 (KVR32N22S6/4)",
-     39.9
+     "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
+     34.6
     ],
     [
-     "Kingston ValueRAM UDIMM 4GB, DDR4-2666, CL19-19-19, 1RX16 (KVR26N19S6/4)",
-     40.85
-    ],
-    [
-     "Samsung UDIMM 8GB, DDR4-2400, CL17-17-17, 1RX8 (M378A1K43CB2-CRC)",
-     42
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL22-22-22-52 (AFLD48PH1P)",
-     49
-    ],
-    [
-     "Patriot Viper 3 schwarz UDIMM 16GB Kit, DDR3-1600, CL9-9-9-24 (PV316G160C9K)",
-     52.9
-    ],
-    [
-     "Samsung SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (M471A1K43DB1-CWE)",
-     54.8
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3000, CL16-18-18-38 (F4-3000C16S-8GISB)",
-     58.71
-    ],
-    [
-     "Crucial SO-DIMM 8GB, DDR4-3200, CL22-22-22, 1RX8 (CT8G4SFS832A)",
-     59.8
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-2666, CL19-19-19-43 (TED48G2666C19-S01)",
-     60.93
-    ],
-    [
-     "G.Skill Aegis UDIMM 8GB, DDR4-3200, CL16-18-18-38 (F4-3200C16S-8GIS)",
-     62
-    ],
-    [
-     "TeamGroup ELITE UDIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C2201)",
-     62.16
-    ],
-    [
-     "Innovation IT SO-DIMM 8GB, DDR4-2666, CL19-19-19 (125361)",
-     62.32
-    ],
-    [
-     "TeamGroup ELITE SO-DIMM 8GB, DDR4-3200, CL22-22-22-52 (TED48G3200C22-S01)",
-     62.8
-    ],
-    [
-     "G.Skill RipJaws SO-DIMM 8GB, DDR4-3200, CL22-22-22 (F4-3200C22S-8GRS)",
-     63.48
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22-22-22 (CT8G4DFRA32A)",
-     64.5
-    ],
-    [
-     "G.Skill NT Series UDIMM 8GB, DDR4-2666, CL19-19-19-43 (F4-2666C19S-8GNT)",
-     68.64
-    ],
-    [
-     "Crucial UDIMM 8GB, DDR4-3200, CL22 (CB8GU3200)",
-     68.99
-    ],
-    [
-     "Kingston ValueRAM SO-DIMM 8GB, DDR3L-1600, CL11-11-11, 2RX8 (KVR16LS11/8)",
-     69
-    ],
-    [
-     "Patriot Viper Steel SO-DIMM 8GB, DDR4-3200, CL18-24-24-44 (PVS48G320C8S)",
-     70.9
-    ],
-    [
-     "AFOX DDR4 UDIMM 8GB, DDR4-3200, CL16-18-18-39 (AFLD48PH1C)",
-     71.85
+     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
+     35
     ]
    ]
   }
@@ -1964,8 +2396,135 @@
   ]
  ],
  "cpus": {
-  "AM5": [],
-  "AM4": [],
+  "AM5": [
+   [
+    "Ryzen 5 8400F",
+    88.64,
+    "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)"
+   ],
+   [
+    "Ryzen 5 8400F",
+    118.8,
+    "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, boxed (100-100001591BOX)"
+   ],
+   [
+    "Ryzen 5 7500F",
+    120.0,
+    "AMD Ryzen 5 7500F, 6C/12T, 3.70-5.00GHz, tray (100-000000597 / 100-100000597MPK)"
+   ],
+   [
+    "Ryzen 5 7600X",
+    138.9,
+    "AMD Ryzen 5 7600X, 6C/12T, 4.70-5.30GHz, boxed ohne Kühler (100-100000593WOF)"
+   ],
+   [
+    "Ryzen 5 7600",
+    162.2,
+    "AMD Ryzen 5 7600, 6C/12T, 3.80-5.10GHz, boxed (100-100001015BOX)"
+   ],
+   [
+    "Ryzen 5 9600X",
+    167.97,
+    "AMD Ryzen 5 9600X, 6C/12T, 3.90-5.40GHz, tray (100-000001405)"
+   ],
+   [
+    "Ryzen 5 7600",
+    171.9,
+    "AMD Ryzen 5 7600, 6C/12T, 3.80-5.10GHz, tray (100-000001015 / 100-000001015A / 100-100001015MPK)"
+   ],
+   [
+    "Ryzen 7 7700",
+    175.0,
+    "AMD Ryzen 7 7700, 8C/16T, 3.80-5.30GHz, tray (100-000000592 / 100-000000592A / 100-100000592MPK / 100-100000592SPK)"
+   ],
+   [
+    "Ryzen 5 9600",
+    182.67,
+    "AMD Ryzen 5 9600, 6C/12T, 3.80-5.20GHz, tray (100-000000718)"
+   ],
+   [
+    "Ryzen 5 9600",
+    198.84,
+    "AMD Ryzen 5 9600, 6C/12T, 3.80-5.20GHz, boxed (100-100000718BOX)"
+   ],
+   [
+    "Ryzen 7 9700X",
+    228.9,
+    "AMD Ryzen 7 9700X, 8C/16T, 3.80-5.50GHz, tray (100-000001404 / 100-100001404MPK)"
+   ],
+   [
+    "Ryzen 7 7700",
+    267.9,
+    "AMD Ryzen 7 7700, 8C/16T, 3.80-5.30GHz, boxed mit AMD Wraith Stealth (100-100000592SBX)"
+   ],
+   [
+    "Ryzen 7 7800X3D",
+    273.9,
+    "AMD Ryzen 7 7800X3D, 8C/16T, 4.20-5.00GHz, tray (100-000000910)"
+   ],
+   [
+    "Ryzen 5 7600X3D",
+    289.11,
+    "AMD Ryzen 5 7600X3D, 6C/12T, 4.10-4.70GHz, boxed ohne Kühler (100-100001721WOF)"
+   ],
+   [
+    "Ryzen 7 9800X3D",
+    389.0,
+    "AMD Ryzen 7 9800X3D, 8C/16T, 4.70-5.20GHz, boxed ohne Kühler (100-100001084WOF)"
+   ],
+   [
+    "Ryzen 7 9850X3D",
+    424.9,
+    "AMD Ryzen 7 9850X3D, 8C/16T, 4.70-5.60GHz, tray (100-000001973)"
+   ],
+   [
+    "Ryzen 9 9950X3D",
+    579.9,
+    "AMD Ryzen 9 9950X3D, 16C/32T, 4.30-5.70GHz, boxed ohne Kühler (100-100000719WOF)"
+   ]
+  ],
+  "AM4": [
+   [
+    "Ryzen 5 5500",
+    79.9,
+    "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)"
+   ],
+   [
+    "Ryzen 5 5500",
+    84.9,
+    "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)"
+   ],
+   [
+    "Ryzen 5 5600",
+    108.5,
+    "AMD Ryzen 5 5600, 6C/12T, 3.50-4.40GHz, tray (100-000000927)"
+   ],
+   [
+    "Ryzen 5 5600X",
+    118.06,
+    "AMD Ryzen 5 5600X, 6C/12T, 3.70-4.60GHz, tray (100-000000065)"
+   ],
+   [
+    "Ryzen 5 5600",
+    124.88,
+    "AMD Ryzen 5 5600, 6C/12T, 3.50-4.40GHz, boxed (100-100000927BOX)"
+   ],
+   [
+    "Ryzen 7 5700X",
+    140.0,
+    "AMD Ryzen 7 5700X, 8C/16T, 3.40-4.60GHz, tray (100-000000926 / 100-100000926SPK)"
+   ],
+   [
+    "Ryzen 5 5600X",
+    149.73,
+    "AMD Ryzen 5 5600X, 6C/12T, 3.70-4.60GHz, boxed (100-100000065BOX)"
+   ],
+   [
+    "Ryzen 7 5800X3D",
+    324.79,
+    "AMD Ryzen 7 5800X3D 10 Years AMD AM4 Anniversary Edition, 8C/16T, 3.40-4.50GHz, boxed ohne Kühler (100-100000651POF)"
+   ]
+  ],
   "LGA1700": [
    [
     "Core i5-12400F",

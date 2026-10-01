@@ -1,5 +1,5 @@
 {
- "updated": "01.10.2026, 15:17 Uhr",
+ "updated": "01.10.2026, 15:21 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -196,8 +196,8 @@
    "name": "WQHD High-End",
    "budget": 1500,
    "platform": "AM5",
-   "total": 1573.52,
-   "score": 93,
+   "total": 1570.21,
+   "score": 102,
    "parts": [
     {
      "slot": "Prozessor",
@@ -211,13 +211,13 @@
     },
     {
      "slot": "Grafikkarte",
-     "name": "ASRock Radeon RX 9070 Challenger 16GB, RX9070 CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA5NZZ-00UANF)",
-     "price": 659.0,
-     "id": 3430118,
-     "url": "https://geizhals.de/a3430118.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/7e/8a/7e8af3560048bc5d-s.webp",
-     "note": "Radeon RX 9070 · 16 GB",
-     "merchant": "nullprozentshop-de"
+     "name": "ASRock Radeon RX 9070 XT Challenger 16GB, RX9070XT CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA61ZZ-00UANF)",
+     "price": 789.9,
+     "id": 3646658,
+     "url": "https://geizhals.de/a3646658.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/e6/02/e6021fafca61ed95-s.webp",
+     "note": "Radeon RX 9070 XT · 16 GB",
+     "merchant": "alza-de"
     },
     {
      "slot": "Mainboard",
@@ -231,13 +231,13 @@
     },
     {
      "slot": "Arbeitsspeicher",
-     "name": "Apacer NOX weiß UDIMM 32GB Kit, DDR5-6000, CL38-48-48-96 (AH5U32G60C622MWAA-2)",
-     "price": 446.9,
-     "id": 3918302,
-     "url": "https://geizhals.de/a3918302.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/70/66/7066083965f73e3e-s.webp",
-     "note": "32 GB",
-     "merchant": "alza-de"
+     "name": "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
+     "price": 302.0,
+     "id": 3696908,
+     "url": "https://geizhals.de/a3696908.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "https://gzhls.at/pix/9d/df/9ddf44f421b01db3-s.webp",
+     "note": "16 GB",
+     "merchant": "alternate"
     },
     {
      "slot": "SSD",
@@ -261,10 +261,10 @@
     },
     {
      "slot": "Netzteil",
-     "name": "be quiet! System Power 11 650W, ATX 3.1 (BP011EU)",
-     "price": 59.73,
-     "id": 3478188,
-     "url": "https://geizhals.de/a3478188.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "name": "be quiet! System Power 11 750W, ATX 3.1 (BP012EU)",
+     "price": 70.42,
+     "id": 3478168,
+     "url": "https://geizhals.de/a3478168.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
      "note": "",
      "merchant": "mindfactory"
@@ -281,9 +281,9 @@
     }
    ],
    "upgrade": {
-    "extra": 221,
-    "gain": 18,
-    "text": "Radeon RX 9070 XT (16 GB) statt Radeon RX 9070 + Ryzen 5 9600X statt Ryzen 5 8400F"
+    "extra": 185,
+    "gain": 13,
+    "text": "Ryzen 7 7800X3D statt Ryzen 5 8400F"
    }
   },
   {
@@ -292,7 +292,7 @@
    "budget": 2000,
    "platform": "AM5",
    "total": 2172.37,
-   "score": 120,
+   "score": 124,
    "parts": [
     {
      "slot": "Prozessor",
