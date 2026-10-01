@@ -13,22 +13,24 @@ AD_NOTICE = (
 )
 
 # --- Geizhals-Kategorien -----------------------------------------------------
-# Code = Parameter "cat" auf geizhals.de. Falls ein Code nicht (mehr) existiert,
-# wird über den Kategoriepfad (Regex) im /categories-Baum gesucht.
+# Regex auf den Kategoriepfad im /categories-Baum. Unterkategorien (z. B. "AMD AM5")
+# sind bei Geizhals Filter (xf/preset) einer Oberkategorie – die werden automatisch mitgenommen.
 CATEGORIES = {
-    "gpu":      ("gra16_512", r"Grafikkarten.*PCIe"),
-    "cpu_am5":  ("cpuamdam5", r"Prozessoren.*AM5"),
-    "cpu_am4":  ("cpuamdam4", r"Prozessoren.*AM4"),
-    "cpu_1700": ("cpu1700",   r"Prozessoren.*1700"),
-    "mb_am5":   ("mbam5",     r"Mainboards.*AM5"),
-    "mb_am4":   ("mbam4",     r"Mainboards.*AM4"),
-    "mb_1700":  ("mb1700",    r"Mainboards.*1700"),
-    "ram_ddr5": ("ramddr5",   r"Speicher.*DDR5(?!.*SO)"),
-    "ram_ddr4": ("ramddr4",   r"Speicher.*DDR4(?!.*SO)"),
-    "ssd":      ("hdssd",     r"Solid State|SSD"),
-    "psu":      ("gehps",     r"Netzteile"),
-    "case":     ("gehatx",    r"Gehäuse.*(ATX|Midi|PC-Gehäuse)"),
-    "cooler":   ("cpuluft",   r"CPU-Kühler|Prozessorkühler|Luftkühler"),
+    "gpu":         r"Grafikkarten > PCIe$",
+    "cpu_am5":     r"CPUs > AMD AM5$",
+    "cpu_am4":     r"CPUs > AMD AM4$",
+    "cpu_1700":    r"CPUs > Intel 1700$",
+    "mb_am5":      r"Mainboards > Mainboards > AMD AM5$",
+    "mb_am4":      r"Mainboards > Mainboards > AMD AM4$",
+    "mb_1700":     r"Mainboards > Mainboards > Intel 1700$",
+    "ram_ddr5_16": r"Speicher > DDR5 DIMM 2x 8GB$",
+    "ram_ddr5_32": r"Speicher > DDR5 DIMM 2x 16GB$",
+    "ram_ddr4_16": r"Speicher > DDR4 DIMM 2x 8GB$",
+    "ram_ddr4_32": r"Speicher > DDR4 DIMM 2x 16GB$",
+    "ssd":         r"Solid State Drives \(SSD\) > M\.2 \(PCIe\)$",
+    "psu":         r"Netzteile & USV > Netzteile$",
+    "case":        r"PC-Gehäuse > Midi-Tower$",
+    "cooler":      r"Luftkühlung > CPU-Kühler$",
 }
 
 # --- Plattformen ---------------------------------------------------------------

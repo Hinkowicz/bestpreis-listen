@@ -43,27 +43,33 @@ class Catalog:
         return [((n.get("id") or {}).get("m"), n.get("title", "")) for n in self.tree()]
 
     def resolve(self, key):
+        """-> dict(cat=..., [xf=...], [preset=...]) für einen Eintrag aus config.CATEGORIES."""
         if key in self._cats:
             return self._cats[key]
-        code, rx = config.CATEGORIES[key]
-        flat = [(c, p) for c, p, _ in self.flat() if c]
-        codes = {c for c, _ in flat}
-        if code not in codes:
-            hits = [c for c, p in flat if re.search(rx, p, re.I)]
-            if not hits:
-                raise KeyError(f"Kategorie '{key}' nicht gefunden (Code {code}, Regex {rx})")
-            print(f"  [info] Kategorie {key}: '{code}' unbekannt, nutze '{hits[0]}'")
-            code = hits[0]
-        self._cats[key] = code
-        return code
+        rx = config.CATEGORIES[key]
+        for code, path, ids in self.flat():
+            if code and re.search(rx, path, re.I):
+                sel = {"cat": code}
+                if ids.get("xf"):
+                    sel["xf"] = ids["xf"]
+                if ids.get("preset"):
+                    sel["preset"] = ids["preset"]
+                self._cats[key] = sel
+                return sel
+        raise KeyError(f"Kategorie '{key}' nicht im Kategoriebaum gefunden (Regex {rx})")
 
     # --- Produkte -----------------------------------------------------------
     def products(self, key, sort="p", pagesize=1000, **extra):
         """Alle lieferbaren Produkte einer Kategorie (ein Request)."""
         cache_key = (key, sort, pagesize, tuple(sorted(extra.items())))
         if cache_key not in self._lists:
-            resp = self.api.categorylist(self.resolve(key), sort=sort, pagesize=pagesize,
-                                         v="l", productratings=True, **extra)
+            sel = dict(self.resolve(key))
+            cat = sel.pop("cat")
+            if "preset" in sel:
+                sel["preset"] = int(sel["preset"])
+                sel["new_filters"] = True
+            resp = self.api.categorylist(cat, sort=sort, pagesize=pagesize,
+                                         v="l", productratings=True, **sel, **extra)
             prods = [p for p in resp.get("products", []) if p.get("best_price")]
             for rank, p in enumerate(prods):
                 p["_rank"] = rank

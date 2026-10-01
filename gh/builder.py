@@ -65,7 +65,7 @@ class Builder:
     def ram(self, plat, tier):
         pc = config.PLATFORMS[plat]
         gb = tier["ram_gb"]
-        cands = _filter(self.cat.products(pc["ram"], sort="t"),
+        cands = _filter(self.cat.products(f"{pc['ram']}_{gb}", sort="t"),
                         rf"Kit {gb}GB|{gb}GB.*Kit|2x\s?{gb // 2}GB",
                         r"SO-DIMM|RDIMM|Registered|\bECC\b(?!.*on-die)")
         cands = [p for p in cands if re.search(pc["ram_speed"], p["product"])]

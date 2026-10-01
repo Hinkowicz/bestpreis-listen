@@ -21,11 +21,11 @@ _P = {
                ("MSI MAG B850 Tomahawk MAX WIFI", 219), ("ASUS TUF Gaming B850-Plus WIFI", 199)],
     "mb_am4": [("MSI B550-A PRO", 99), ("ASRock B550M Pro4", 89)],
     "mb_1700": [("MSI PRO B760M-E DDR4", 85), ("ASRock B760M-HDV/M.2", 99), ("Gigabyte B760 Gaming X", 129)],
-    "ram_ddr5": [("Kingston FURY Beast DIMM Kit 32GB, DDR5-6000, CL30-40-40, on-die ECC", 149),
+    "ram_ddr5_32": [("Kingston FURY Beast DIMM Kit 32GB, DDR5-6000, CL30-40-40, on-die ECC", 149),
                  ("Crucial Pro DIMM Kit 32GB, DDR5-5600, CL46-45-45", 129),
                  ("G.Skill Flare X5 DIMM Kit 16GB, DDR5-6000, CL36-36-36", 79),
                  ("Patriot Viper Venom DIMM Kit 16GB, DDR5-5600, CL40", 72)],
-    "ram_ddr4": [("Corsair Vengeance LPX DIMM Kit 16GB, DDR4-3200, CL16", 59),
+    "ram_ddr4_16": [("Corsair Vengeance LPX DIMM Kit 16GB, DDR4-3200, CL16", 59),
                  ("G.Skill Ripjaws V DIMM Kit 16GB, DDR4-3600, CL16", 64),
                  ("Kingston FURY Beast DIMM Kit 32GB, DDR4-3200, CL16", 109)],
     "ssd": [("Kingston NV3 NVMe SSD 1TB, M.2 2280 / M-Key / PCIe 4.0 x4", 69), ("WD_BLACK SN7100 NVMe SSD 1TB, M.2 2280 / PCIe 4.0 x4", 79),
@@ -59,14 +59,23 @@ class MockAPI:
     calls = 0
 
     def categories(self, m=None):
-        code_of = {k: v[0] for k, v in config.CATEGORIES.items()}
-        return [{"id": {"m": 1}, "title": "Hardware", "childs": [
-            {"id": {"o": 1}, "title": "PC-Komponenten",
-             "childs": [{"id": {"cat": c}, "title": k} for k, c in code_of.items()]}]},
+        # pro Config-Eintrag ein Knoten, dessen Pfad auf die Regex passt
+        def title(rx):
+            return rx.replace("\\", "").rstrip("$").split(" > ")[-1]
+        def node(k, rx):
+            parts = rx.replace("\\", "").rstrip("$").split(" > ")
+            leaf = {"id": {"cat": k}, "title": parts[-1]}
+            for t in reversed(parts[:-1]):
+                leaf = {"id": {}, "title": t, "childs": [leaf]}
+            return leaf
+        return [{"id": {"m": 1}, "title": "Hardware",
+                 "childs": [node(k, rx) for k, rx in config.CATEGORIES.items()]},
             {"id": {"m": 2}, "title": "Audio/HIFI"}, {"id": {"m": 3}, "title": "Video/Foto/TV"}]
 
     def categorylist(self, category, **params):
-        key = next(k for k, v in config.CATEGORIES.items() if v[0] == category)
+        key = category
+        if key.startswith("ram_"):  # Beispiel-RAM liegt gemischt vor, Builder filtert nach Größe
+            _P.setdefault(key, _P["ram_ddr5_32"] if "ddr5" in key else _P["ram_ddr4_16"])
         prods = [{"id": 1000000 + 1000 * list(config.CATEGORIES).index(key) + i, "product": n, "best_price": p,
                   "hname": "Beispielshop", "image_thumb": None} for i, (n, p) in enumerate(_P.get(key, []))]
         if params.get("sort") == "p":
