@@ -1,164 +1,5 @@
 {
  "tiers": {
-  "600": {
-   "parts": {
-    "ssd": [
-     "Kingston NV3 NVMe PCIe 4.0 SSD 1TB, M.2 2280 / M-Key / PCIe 4.0 x4 (SNV3S/1000G)",
-     134.9
-    ],
-    "case": [
-     "be quiet! Pure Base 501 Airflow Black, schallgedämmt (BG074)",
-     59.89
-    ],
-    "cooler": [
-     "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.56
-    ],
-    "AM4": {
-     "board": [
-      "ASRock B550M-HDV (AMD AM4) (90-MXBDJ0-A0UAYZ)",
-      64.69
-     ],
-     "ram16": [
-      "AFOX Gaming UDIMM 16GB Kit, DDR4-3200, CL16 (AFLD416PH1CADB)",
-      109.0
-     ]
-    },
-    "AM5": {
-     "board": [
-      "ASRock B650M-HDV/M.2 (AMD AM5) (90-MXBLA0-A0UAYZ)",
-      88.89
-     ],
-     "ram16": [
-      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
-      302.0
-     ]
-    },
-    "LGA1700": {
-     "board": [
-      "ASRock B760M-HDV/M.2 D4 (Intel 1700) (90-MXBL40-A0UAYZ)",
-      75.89
-     ],
-     "ram16": [
-      "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
-      302.0
-     ]
-    }
-   },
-   "cheapest": [
-    [
-     767,
-     "AM4",
-     "Ryzen 5 5500",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     50
-    ],
-    [
-     801,
-     "AM4",
-     "Ryzen 5 5500",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     50
-    ],
-    [
-     805,
-     "AM4",
-     "Ryzen 5 5500",
-     "Radeon RX 7600",
-     8,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     49
-    ],
-    [
-     812,
-     "AM4",
-     "Ryzen 5 5600",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
-    ],
-    [
-     820,
-     "AM4",
-     "Ryzen 5 5600",
-     "Intel Arc B570",
-     10,
-     "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     52
-    ]
-   ],
-   "best_value": [
-    [
-     1162,
-     "AM4",
-     "Ryzen 5 5500",
-     "Radeon RX 9070",
-     16,
-     93
-    ],
-    [
-     1207,
-     "AM4",
-     "Ryzen 5 5600",
-     "Radeon RX 9070",
-     16,
-     97
-    ],
-    [
-     1215,
-     "AM4",
-     "Ryzen 5 5600",
-     "Radeon RX 9070",
-     16,
-     97
-    ],
-    [
-     1225,
-     "AM4",
-     "Ryzen 5 5600X",
-     "Radeon RX 9070",
-     16,
-     97
-    ],
-    [
-     1354,
-     "AM4",
-     "Ryzen 5 5600",
-     "Radeon RX 9070 XT",
-     16,
-     107
-    ],
-    [
-     1309,
-     "AM4",
-     "Ryzen 5 5500",
-     "Radeon RX 9070 XT",
-     16,
-     103
-    ],
-    [
-     1232,
-     "AM4",
-     "Ryzen 5 5600X",
-     "Radeon RX 9070",
-     16,
-     97
-    ],
-    [
-     1362,
-     "AM4",
-     "Ryzen 5 5600",
-     "Radeon RX 9070 XT",
-     16,
-     107
-    ]
-   ]
-  },
   "800": {
    "parts": {
     "ssd": [
@@ -821,7 +662,7 @@
  },
  "lists": {
   "gpu/p": {
-   "count": 559,
+   "count": 560,
    "cheapest": [
     [
      "INNO3D GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (N710-1SDV-E3BX)",
@@ -1014,7 +855,7 @@
     ],
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
-     43.0
+     43
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
@@ -1405,6 +1246,10 @@
      25.9
     ],
     [
+     "G.Skill SQ Series SO-DIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-12800CL11S-4GBSQ)",
+     26.29
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -1443,10 +1288,6 @@
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
      34.6
-    ],
-    [
-     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
-     35
     ]
    ]
   },
@@ -1673,7 +1514,7 @@
     ],
     [
      "MSI PRO A620AM-B EVO (AMD AM5) (7E36-001R)",
-     71.53
+     71.51
     ],
     [
      "GIGABYTE A620M H (AMD AM5)",
@@ -1825,6 +1666,10 @@
      25.9
     ],
     [
+     "G.Skill SQ Series SO-DIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-12800CL11S-4GBSQ)",
+     26.29
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -1863,10 +1708,6 @@
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
      34.6
-    ],
-    [
-     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
-     35
     ]
    ]
   },
@@ -2245,6 +2086,10 @@
      25.9
     ],
     [
+     "G.Skill SQ Series SO-DIMM 4GB, DDR3-1600, CL11-11-11-28 (F3-12800CL11S-4GBSQ)",
+     26.29
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -2283,10 +2128,6 @@
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
      34.6
-    ],
-    [
-     "Samsung RDIMM 16GB, DDR3L-1600, CL11-11-11, 2RX4, reg ECC (M393B2G70DB0-YK0)",
-     35
     ]
    ]
   }
@@ -2593,20 +2434,6 @@
    "score": 144.9
   },
   {
-   "id": 3757345,
-   "name": "Ecovacs Deebot T90 Pro Omni Saug-/Wischroboter schwarz inkl. Absaug-/Reinigungsstation",
-   "price": 351.0,
-   "old_price": 501.43,
-   "percent": -30.0,
-   "alltime_best": true,
-   "category": "Haushalt > Staubsaugen & Reinigen > Reinigungsroboter",
-   "section": "Haushalt",
-   "merchant": "Coolblue",
-   "image": null,
-   "url": "https://geizhals.de/a3757345.html?cs_id=491744683&ccpid=hinkowiczlisten",
-   "score": 143.3
-  },
-  {
    "id": 3835067,
    "name": "Dreame X60 Pro Ultra Complete Saug-/Wischroboter weiß inkl. Absaug-/Reinigungsstation (RLX96DE)",
    "price": 1099.0,
@@ -2633,6 +2460,20 @@
    "image": "https://gzhls.at/pix/73/22/73225ffae80cdefe-n.webp",
    "url": "https://geizhals.de/a3942327.html?cs_id=491744683&ccpid=hinkowiczlisten",
    "score": 118.2
+  },
+  {
+   "id": 3921101,
+   "name": "Garmin Fenix 9 47mm titanium/pebble grey (010-04762-01)",
+   "price": 783.9,
+   "old_price": 1005.0,
+   "percent": -22.0,
+   "alltime_best": true,
+   "category": "Telefon > Mobiltelefone > Smartwatches & Sportuhren",
+   "section": "Telefon",
+   "merchant": "Coolblue",
+   "image": "https://gzhls.at/pix/d9/90/d990ab5a41546fed-n.webp",
+   "url": "https://geizhals.de/a3921101.html?cs_id=491744683&ccpid=hinkowiczlisten",
+   "score": 110.5
   }
  ],
  "tree": [
