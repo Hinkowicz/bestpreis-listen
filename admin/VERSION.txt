@@ -1,0 +1,1 @@
+Sveltia CMS 0.227.2 (npm @sveltia/cms, 31bce659648f30d4…), MIT-Lizenz – lokal eingebunden statt von einem CDN geladen.

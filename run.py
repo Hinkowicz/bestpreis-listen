@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import config, deals, render
+from gh import config, deals, links, render
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -79,7 +79,12 @@ def main():
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
-    if not args.mock and builds:
+    links.write(args.out, stamp)
+    if Path("admin").exists():
+        import shutil
+        shutil.copytree("admin", Path(args.out) / "admin", dirs_exist_ok=True)
+    weekly = os.environ.get("GITHUB_EVENT_NAME", "schedule") in ("schedule", "workflow_dispatch")
+    if not args.mock and builds and weekly:
         HISTORY.parent.mkdir(exist_ok=True)
         HISTORY.write_text(json.dumps({"updated": stamp, "builds": builds}, ensure_ascii=False, indent=1),
                            encoding="utf-8")

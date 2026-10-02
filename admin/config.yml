@@ -1,0 +1,68 @@
+# Bearbeitungsbereich für die Link-Seite (Sveltia CMS)
+# Aufruf: https://pc.hinkowicz.de/admin/  – Anmeldung mit GitHub-Token (nur dieses Repository)
+backend:
+  name: github
+  repo: Hinkowicz/bestpreis-listen
+  branch: main
+  commit_messages:
+    update: "Links aktualisiert"
+
+app_title: Hinkowicz – Links
+logo:
+  src: /assets/apple-touch-icon.png
+site_url: https://pc.hinkowicz.de/links.html
+display_url: https://pc.hinkowicz.de/links.html
+
+media_folder: assets/links
+public_folder: /assets/links
+media_libraries:
+  default:
+    config:
+      max_file_size: 25000000
+      slugify_filename: true
+      transformations:
+        # Handyfotos automatisch verkleinern und als WebP speichern
+        raster_image:
+          format: webp
+          quality: 82
+          width: 800
+          height: 800
+
+singletons:
+  - name: links
+    label: Meine Links
+    file: content/links.yml
+    fields:
+      - name: links
+        label: Links
+        label_singular: Link
+        widget: list
+        add_to_top: true
+        collapsed: true
+        summary: "{{fields.title}}"
+        fields:
+          - name: title
+            label: Titel
+            widget: string
+          - name: description
+            label: Kurze Beschreibung
+            widget: string
+            required: false
+          - name: url
+            label: Link
+            hint: "Vollständiger Link inkl. https://"
+            widget: string
+            pattern: ['^https://[^\s<>"]+$', "Bitte einen vollständigen Link mit https:// eingeben"]
+          - name: image
+            label: Bild
+            widget: image
+            required: false
+          - name: ad
+            label: Als Werbung kennzeichnen
+            hint: "Bei Kooperationen und Affiliate-Links immer anlassen"
+            widget: boolean
+            default: true
+          - name: visible
+            label: Sichtbar
+            widget: boolean
+            default: true
