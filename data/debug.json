@@ -12,7 +12,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.49
+     24.48
     ],
     "AM4": {
      "board": [
@@ -142,7 +142,7 @@
      96
     ],
     [
-     1247,
+     1248,
      "AM4",
      "Ryzen 7 5700X",
      "Radeon RX 9070",
@@ -171,7 +171,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.49
+     24.48
     ],
     "AM4": {
      "board": [
@@ -242,7 +242,7 @@
      58
     ],
     [
-     920,
+     921,
      "AM4",
      "Ryzen 7 5700X",
      "Intel Arc B580",
@@ -285,20 +285,20 @@
      94
     ],
     [
-     1247,
-     "AM4",
-     "Ryzen 7 5700X",
-     "Radeon RX 9070",
-     16,
-     95
-    ],
-    [
      1353,
      "AM4",
      "Ryzen 5 5600",
      "Radeon RX 9070 XT",
      16,
      103
+    ],
+    [
+     1248,
+     "AM4",
+     "Ryzen 7 5700X",
+     "Radeon RX 9070",
+     16,
+     95
     ],
     [
      1361,
@@ -330,7 +330,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.49
+     24.48
     ],
     "AM5": {
      "board": [
@@ -473,7 +473,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.49
+     24.48
     ],
     "AM5": {
      "board": [
@@ -662,7 +662,7 @@
  },
  "lists": {
   "gpu/p": {
-   "count": 559,
+   "count": 558,
    "cheapest": [
     [
      "INNO3D GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (N710-1SDV-E3BX)",
@@ -767,7 +767,7 @@
    ]
   },
   "ssd/t": {
-   "count": 832,
+   "count": 831,
    "cheapest": [
     [
      "Intenso High Performance SSD 120GB, 2.5\" / SATA 6Gb/s (3813430)",
@@ -838,10 +838,6 @@
      38.95
     ],
     [
-     "Silicon Power Slim S55 120GB, 2.5\" / SATA 6Gb/s (SP120GBSS3S55S25)",
-     39.62
-    ],
-    [
      "Innovation IT Superior 256GB, M.2 2280 / B-M-Key / SATA, bulk (00-256555)",
      39.88
     ],
@@ -855,7 +851,7 @@
     ],
     [
      "Silicon Power Ace A55 128GB, 2.5\" / SATA 6Gb/s (SP128GBSS3A55S25)",
-     43
+     43.05
     ],
     [
      "Patriot P210 256GB, 2.5\" / SATA 6Gb/s (P210S256G25)",
@@ -868,6 +864,10 @@
     [
      "TeamGroup CX2 SSD 256GB, 2.5\" / SATA 6Gb/s (T253X6256G0C101)",
      44.3
+    ],
+    [
+     "Intenso Performance SSD 250GB, 2.5\" / SATA 6Gb/s (3814440)",
+     44.88
     ]
    ]
   },
@@ -943,6 +943,10 @@
      29.9
     ],
     [
+     "LC-Power 7034B (LC-7034B-ON)",
+     30.21
+    ],
+    [
      "Endorfy Signum 300 Solid (EY2A003)",
      30.5
     ],
@@ -969,15 +973,11 @@
     [
      "Inter-Tech B-42 RGB, Acrylfenster (88881320)",
      32.61
-    ],
-    [
-     "AeroCool Shard, Acrylfenster (ACCM-PV14012.11)",
-     32.9
     ]
    ]
   },
   "cooler/t": {
-   "count": 579,
+   "count": 577,
    "cheapest": [
     [
      "Xilence I200 (XC030/COO-XPCPU.I200)",
@@ -1110,7 +1110,7 @@
     ],
     [
      "GIGABYTE A520M S2H (AMD AM4)",
-     53
+     53.0
     ],
     [
      "GIGABYTE A520M DS3H V2 (AMD AM4)",
@@ -1250,6 +1250,10 @@
      26.29
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     26.9
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -1264,10 +1268,6 @@
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (KVR16LS11/4)",
      29.99
-    ],
-    [
-     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
-     30.21
     ],
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
@@ -1397,7 +1397,7 @@
    ]
   },
   "psu/t": {
-   "count": 935,
+   "count": 926,
    "cheapest": [
     [
      "Inter-Tech Mini-ITX PSU 120W, Wandlerplatine (88882193)",
@@ -1425,7 +1425,7 @@
     ],
     [
      "Inter-Tech SL-500 TBP 500W, ATX 2.03 (88882254)",
-     26.4
+     26.39
     ],
     [
      "Gamdias Aura GP550 550W, ATX 2.4 (16210-02201-10000-G)",
@@ -1514,7 +1514,7 @@
     ],
     [
      "MSI PRO A620AM-B EVO (AMD AM5) (7E36-001R)",
-     71.53
+     71.51
     ],
     [
      "GIGABYTE A620M H (AMD AM5)",
@@ -1550,7 +1550,7 @@
     ],
     [
      "GIGABYTE B840M H (AMD AM5)",
-     83.64
+     83.63
     ],
     [
      "GIGABYTE B840M D2H (AMD AM5)",
@@ -1670,6 +1670,10 @@
      26.29
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     26.9
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -1684,10 +1688,6 @@
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (KVR16LS11/4)",
      29.99
-    ],
-    [
-     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
-     30.21
     ],
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
@@ -1817,7 +1817,7 @@
    ]
   },
   "mb_1700/t": {
-   "count": 153,
+   "count": 154,
    "cheapest": [
     [
      "MSI PRO H610M-E (Intel 1700) (7D48-019R)",
@@ -2090,6 +2090,10 @@
      26.29
     ],
     [
+     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
+     26.9
+    ],
+    [
      "Patriot Signature Line SO-DIMM 8GB, DDR3L-1600, CL11 (PSD38G1600L2S)",
      26.9
     ],
@@ -2104,10 +2108,6 @@
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3L-1600, CL11-11-11, 1RX8 (KVR16LS11/4)",
      29.99
-    ],
-    [
-     "G.Skill NS Series UDIMM 4GB, DDR3-1333, CL9-9-9-24 (F3-1333C9S-4GNS)",
-     30.21
     ],
     [
      "Kingston ValueRAM SO-DIMM 4GB, DDR3-1600, CL11, 1RX8 (KVR16S11S8/4)",
@@ -2352,7 +2352,7 @@
    ],
    [
     "Ryzen 7 5700X",
-    140.0,
+    140.9,
     "AMD Ryzen 7 5700X, 8C/16T, 3.40-4.60GHz, tray (100-000000926 / 100-100000926SPK)"
    ],
    [
@@ -2399,8 +2399,8 @@
    ],
    [
     "Core i5-14600KF",
-    234.9,
-    "Intel Core i5-14600KF, 6P+8E/20T, 3.50-5.30GHz, tray (CM8071504821014)"
+    231.62,
+    "Intel Core i5-14600KF, 6P+8E/20T, 3.50-5.30GHz, boxed ohne Kühler (BX8071514600KF)"
    ]
   ]
  },

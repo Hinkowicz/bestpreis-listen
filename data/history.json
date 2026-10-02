@@ -1,5 +1,5 @@
 {
- "updated": "02.10.2026, 08:42 Uhr",
+ "updated": "02.10.2026, 09:59 Uhr",
  "builds": [
   {
    "tier": "800",
@@ -101,18 +101,18 @@
    "name": "WQHD Einstieg",
    "budget": 1000,
    "platform": "AM4",
-   "total": 919.79,
+   "total": 920.68,
    "score": 58,
    "parts": [
     {
      "slot": "Prozessor",
      "name": "AMD Ryzen 7 5700X, 8C/16T, 3.40-4.60GHz, tray (100-000000926 / 100-100000926SPK)",
-     "price": 140.0,
+     "price": 140.9,
      "id": 2697378,
      "url": "https://geizhals.de/a2697378.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "img/2697378.webp",
      "note": "Ryzen 7 5700X",
-     "merchant": "ditech-at"
+     "merchant": "reichelt"
     },
     {
      "slot": "Grafikkarte",
@@ -157,7 +157,7 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.49,
+     "price": 24.48,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "img/3144176.webp",
@@ -196,7 +196,7 @@
    "name": "WQHD High-End",
    "budget": 1500,
    "platform": "AM5",
-   "total": 1524.05,
+   "total": 1524.04,
    "score": 100,
    "parts": [
     {
@@ -252,7 +252,7 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.49,
+     "price": 24.48,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "img/3144176.webp",
@@ -291,7 +291,7 @@
    "name": "4K Enthusiast",
    "budget": 2000,
    "platform": "AM5",
-   "total": 2186.76,
+   "total": 2186.75,
    "score": 124,
    "parts": [
     {
@@ -347,7 +347,7 @@
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.49,
+     "price": 24.48,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
      "image": "img/3144176.webp",
