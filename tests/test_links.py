@@ -76,5 +76,28 @@ class LinksTest(unittest.TestCase):
                 self.assertTrue(Path(l["image"].lstrip("/")).exists(), l["image"])
 
 
+class LegalTest(unittest.TestCase):
+    def test_impressum_und_datenschutz(self):
+        from gh import legal
+        imp = legal.page("Impressum", Path("content/impressum.md").read_text(encoding="utf-8"))
+        ds = legal.page("Datenschutz", Path("content/datenschutz.md").read_text(encoding="utf-8"))
+        self.assertIn("§ 5 DDG", imp)
+        self.assertIn("Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.", imp)
+        self.assertIn("GitHub Pages", ds)
+        self.assertIn("Amazon PartnerNet", ds)
+        for html in (imp, ds):
+            self.assertNotIn("<script", html.lower())
+            self.assertNotIn("pc.hinkowicz.de", html)
+            self.assertNotIn("[entfernt]", html)
+            self.assertEqual(re.findall(r'(?:src|srcset)="(?:https?:)?//[^"]*"', html), [])
+
+    def test_markdown_entschaerft(self):
+        from gh import legal
+        out = legal.to_html("##Titel\n<script>x</script> **fett** https://a.de/x?y=1")
+        self.assertNotIn("<script>", out)
+        self.assertIn("<strong>fett</strong>", out)
+        self.assertIn('href="https://a.de/x?y=1"', out)
+
+
 if __name__ == "__main__":
     unittest.main()

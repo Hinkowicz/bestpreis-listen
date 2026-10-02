@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import config, deals, links, render
+from gh import config, deals, legal, links, render
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -80,6 +80,7 @@ def main():
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     links.write(args.out, stamp)
+    legal.write(args.out)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor
         if Path(d).exists():
