@@ -2,7 +2,8 @@ name: Wöchentliche Bestpreis-Listen
 
 on:
   schedule:
-    - cron: "17 5 * * 1"   # jeden Montag ca. 07:17 Uhr (deutsche Zeit)
+    - cron: "17 5 * * 1"   # jeden Montag ca. 07:17 Uhr (deutsche Zeit): neue Wochen-Listen
+    - cron: "7 23 * * *"   # täglich kurz nach Mitternacht: abgelaufene Links ausblenden
   workflow_dispatch:        # manuell starten über "Run workflow"
   push:                     # z. B. Link-Änderungen über /admin/ – nach ~1–2 Minuten live
     branches: [main]
@@ -33,9 +34,10 @@ jobs:
         env:
           GEIZHALS_USER: ${{ vars.GEIZHALS_USER || 'hinkowicz' }}
           GEIZHALS_SECRET: ${{ secrets.GEIZHALS_SECRET }}
+          WEEKLY_RUN: ${{ github.event_name == 'workflow_dispatch' || github.event.schedule == '17 5 * * 1' }}
         run: python run.py --out site
       - name: Vorwochen-Daten speichern
-        if: always() && github.event_name != 'push'
+        if: always() && (github.event_name == 'workflow_dispatch' || github.event.schedule == '17 5 * * 1')
         run: |
           git config user.name "bestpreis-bot"
           git config user.email "bestpreis-bot@users.noreply.github.com"

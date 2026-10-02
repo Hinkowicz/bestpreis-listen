@@ -5,18 +5,26 @@
 
 const REPO = 'Hinkowicz/bestpreis-listen';
 const BRANCH = 'main';
-const FILE = 'content/links.json';
+// Zwei Listen: Startseiten-Links und „Mein Setup“
+const COLL = {
+  links: { file: 'content/links.json', key: 'links', label: 'Links', img: 'assets/links' },
+  setup: { file: 'content/setup.json', key: 'items', label: 'Setup', img: 'assets/setup' },
+};
 const API = 'https://api.github.com';
 const AUTHOR = { name: 'Hinkowicz', email: 'hinkowicz@users.noreply.github.com' };
 const TOKEN_KEY = 'hinko.token';
 const MAX_IMG = 800;
 
 const S = {
-  token: null, links: [], base: null, dirty: false,  // base = zuletzt geladener/gespeicherter Stand
+  token: null, tab: 'links', data: { links: [], setup: [] }, dirty: false,
+  base: {},      // je Liste: Stand auf GitHub beim Laden/Speichern (erkennt Änderungen von anderen Geräten)
+  saved: {},     // je Liste: eigener gespeicherter Stand (erkennt, ob hier überhaupt etwas geändert wurde)
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
   previews: {},  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
 };
+
+Object.defineProperty(S, 'links', { get() { return S.data[S.tab]; }, set(v) { S.data[S.tab] = v; } });
 
 /* ---------- kleine Helfer ---------- */
 const $app = document.getElementById('app');
@@ -113,14 +121,28 @@ async function gh(path, opts = {}) {
   return res.status === 204 ? null : res.json();
 }
 
+function normalize(l, name) {
+  const o = { title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
+    code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
+  if (name === 'links') o.featured = l.featured === true; else o.category = l.category || 'Sonstiges';
+  return o;
+}
+
+function serialize(name) {
+  // leere optionale Felder weglassen, damit die Dateien übersichtlich bleiben
+  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !(['code', 'until'].includes(k) && !v))));
+  return JSON.stringify({ [COLL[name].key]: items }, null, 2) + '\n';
+}
+
 async function loadLinks() {
-  const f = await gh(`/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`);
-  const text = b64ToText(f.content);
-  S.base = canon(text);
-  S.links = (JSON.parse(text).links || []).map(l => ({
-    title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
-    ad: l.ad !== false, featured: l.featured === true, visible: l.visible !== false,
-  }));
+  for (const [name, c] of Object.entries(COLL)) {
+    let text = JSON.stringify({ [c.key]: [] });
+    try { text = b64ToText((await gh(`/repos/${REPO}/contents/${c.file}?ref=${BRANCH}`)).content); }
+    catch (e) { if (e.status !== 404) throw e; }
+    S.base[name] = canon(text);
+    S.data[name] = (JSON.parse(text)[c.key] || []).map(l => normalize(l, name));
+    S.saved[name] = serialize(name);
+  }
   S.dirty = false;
 }
 
@@ -132,24 +154,33 @@ async function publish() {
   render();
   try {
     const head = (await gh(`/repos/${REPO}/git/ref/heads/${BRANCH}`)).object.sha;
-    // Nur abbrechen, wenn jemand anderes die Links inhaltlich geändert hat (z. B. auf einem zweiten Gerät)
-    const current = await gh(`/repos/${REPO}/contents/${FILE}?ref=${head}`);
-    if (canon(b64ToText(current.content)) !== S.base) {
+    // Nur abbrechen, wenn jemand anderes die Listen inhaltlich geändert hat (z. B. auf einem zweiten Gerät)
+    let foreign = false;
+    for (const [name, c] of Object.entries(COLL)) {
+      let text = JSON.stringify({ [c.key]: [] });
+      try { text = b64ToText((await gh(`/repos/${REPO}/contents/${c.file}?ref=${head}`)).content); }
+      catch (e) { if (e.status !== 404) throw e; }
+      if (canon(text) !== S.base[name]) foreign = true;
+    }
+    if (foreign) {
       setStatus('err', 'Konflikt');
       render();
       if (confirm('Die Links wurden inzwischen auf einem anderen Gerät geändert.\n\nOK = neu laden (deine ungespeicherten Änderungen hier gehen verloren)\nAbbrechen = nichts tun')) location.reload();
       return;
     }
     const baseTree = (await gh(`/repos/${REPO}/git/commits/${head}`)).tree.sha;
-    const used = new Set(S.links.map(l => (l.image || '').replace(/^\//, '')));
+    const used = new Set([...S.data.links, ...S.data.setup].map(l => (l.image || '').replace(/^\//, '')));
     const entries = [];
     for (const [path, blob] of Object.entries(S.pending)) {
       if (!used.has(path)) continue;
       const b = await gh(`/repos/${REPO}/git/blobs`, { method: 'POST', body: JSON.stringify({ content: await blobToB64(blob), encoding: 'base64' }) });
       entries.push({ path, mode: '100644', type: 'blob', sha: b.sha });
     }
-    const json = JSON.stringify({ links: S.links }, null, 2) + '\n';
-    entries.push({ path: FILE, mode: '100644', type: 'blob', content: json });
+    const out = {};
+    for (const [name, c] of Object.entries(COLL)) {
+      out[name] = serialize(name);
+      if (out[name] !== S.saved[name]) entries.push({ path: c.file, mode: '100644', type: 'blob', content: out[name] });
+    }
     const tree = await gh(`/repos/${REPO}/git/trees`, { method: 'POST', body: JSON.stringify({ base_tree: baseTree, tree: entries }) });
     const when = new Date().toISOString();
     const commit = await gh(`/repos/${REPO}/git/commits`, {
@@ -158,7 +189,10 @@ async function publish() {
         author: { ...AUTHOR, date: when }, committer: { ...AUTHOR, date: when } }),
     });
     await gh(`/repos/${REPO}/git/refs/heads/${BRANCH}`, { method: 'PATCH', body: JSON.stringify({ sha: commit.sha }) });
-    S.base = canon(json);
+    for (const e of entries) {
+      const name = Object.keys(COLL).find(n => COLL[n].file === e.path);
+      if (name) { S.base[name] = canon(out[name]); S.saved[name] = out[name]; }
+    }
     S.pending = {};
     S.dirty = false;
     setStatus('busy', 'Wird veröffentlicht …');
@@ -204,7 +238,7 @@ async function processImage(file, title) {
   let blob = await new Promise(r => c.toBlob(r, 'image/webp', 0.84));
   let ext = 'webp';
   if (!blob || blob.type !== 'image/webp') { blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.86)); ext = 'jpg'; }
-  const path = `assets/links/${slug(title)}-${Date.now().toString(36)}.${ext}`;
+  const path = `${COLL[S.tab].img}/${slug(title)}-${Date.now().toString(36)}.${ext}`;
   S.pending[path] = blob;
   S.previews[path] = URL.createObjectURL(blob);
   return '/' + path;
@@ -215,17 +249,19 @@ function render() {
   if (!S.token) return renderLogin();
   const list = h('div', { class: 'list' });
   S.links.forEach((l, i) => list.append(itemView(l, i)));
-  if (!S.links.length) list.append(h('div', { class: 'empty' }, 'Noch keine Links. Tippe auf +'));
+  if (!S.links.length) list.append(h('div', { class: 'empty' }, 'Noch keine Einträge. Tippe auf +'));
+  const seg = h('div', { class: 'seg glass' }, ...Object.entries(COLL).map(([name, c]) =>
+    h('button', { class: name === S.tab ? 'on' : '', onclick: () => { S.tab = name; render(); window.scrollTo(0, 0); } }, c.label)));
 
   const dock = h('div', { class: 'dock' },
     S.dirty ? h('button', { class: 'cta glass', onclick: publish }, 'Veröffentlichen') : null,
     h('button', { class: 'fab', 'aria-label': 'Neuer Link', onclick: () => openSheet(-1) }, svg(ICON.plus, 26)));
 
   $app.replaceChildren(h('div', { class: 'screen' },
-    h('div', { class: 'bar' }, h('h1', {}, 'Links'),
+    h('div', { class: 'bar' }, h('h1', {}, COLL[S.tab].label),
       h('div', { class: 'baracts' }, statusPill(),
         h('button', { class: 'iconbtn glass', 'aria-label': 'Menü', onclick: openMenu }, svg(ICON.more, 20, true)))),
-    list), dock);
+    seg, list), dock);
 }
 
 function itemView(l, i) {
@@ -233,13 +269,16 @@ function itemView(l, i) {
     h('img', { src: l.image ? imgSrc(l.image) : '/assets/monogram-white.png', alt: '' }));
   const badges = h('div', { class: 'badges' },
     l.featured ? h('span', { class: 'badge feat' }, 'Groß') : null,
+    l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
+    l.code ? h('span', { class: 'badge code' }, 'Code ' + l.code) : null,
+    l.until ? h('span', { class: `badge ${expired(l) ? 'exp' : 'until'}` }, expired(l) ? 'Abgelaufen' : 'bis ' + deDate(l.until)) : null,
     l.ad ? h('span', { class: 'badge ad' }, 'Anzeige') : null,
     l.image && S.pending[l.image.replace(/^\//, '')] ? h('span', { class: 'badge new' }, 'Neu') : null);
   const sw = h('label', { class: 'switch', onclick: e => e.stopPropagation() },
     h('input', { type: 'checkbox', checked: l.visible, 'aria-label': 'Sichtbar',
       onchange: e => { l.visible = e.target.checked; S.dirty = true; render(); } }), h('span'));
   const handle = h('div', { class: 'handle', 'aria-label': 'Verschieben' }, svg(ICON.grip, 20, true));
-  const el = h('div', { class: `item glass${l.visible ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
+  const el = h('div', { class: `item glass${l.visible && !expired(l) ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
     thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || '(ohne Titel)'),
       h('div', { class: 's' }, l.description || l.url), badges), sw, handle);
   handle.addEventListener('click', e => e.stopPropagation());
@@ -275,6 +314,12 @@ function startDrag(e, el) {
   window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
 }
 
+function todayISO() {
+  return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());  // YYYY-MM-DD
+}
+function expired(l) { return !!l.until && l.until < todayISO(); }
+function deDate(iso) { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y.slice(2)}`; }
+
 function toggleRow(label, hint, checked, onchange) {
   return h('label', { class: 'toggle' }, h('span', {}, label, hint ? h('small', {}, hint) : null),
     h('span', { class: 'switch' }, h('input', { type: 'checkbox', checked, onchange: e => onchange(e.target.checked) }), h('span')));
@@ -282,7 +327,11 @@ function toggleRow(label, hint, checked, onchange) {
 
 function openSheet(i) {
   const isNew = i < 0;
-  const d = isNew ? { title: '', description: '', url: '', image: null, ad: true, featured: false, visible: true } : { ...S.links[i] };
+  const setup = S.tab === 'setup';
+  const blank = { title: '', description: '', url: '', image: null, code: '', until: '', ad: true, visible: true };
+  if (setup) blank.category = S.links[0]?.category || ''; else blank.featured = false;
+  const d = isNew ? blank : { ...S.links[i] };
+  const cats = [...new Set(S.data.setup.map(x => x.category).filter(Boolean))];
   const back = h('div', { class: 'backdrop', onclick: () => close() });
   const err = h('div', { class: 'err' });
   const title = h('input', { class: 'input', placeholder: 'z. B. Razer Viper V4 Pro', value: d.title, enterkeyhint: 'next' });
@@ -292,6 +341,11 @@ function openSheet(i) {
   const paste = h('button', { class: 'btn', type: 'button', onclick: async () => {
     try { url.value = normalizeUrl(await navigator.clipboard.readText()); } catch { url.focus(); toast('Bitte lange tippen → Einsetzen'); }
   } }, 'Einfügen');
+  const code = h('input', { class: 'input', placeholder: 'optional, z. B. HINKO10', value: d.code, autocapitalize: 'characters', autocorrect: 'off' });
+  const until = h('input', { class: 'input', type: 'date', value: d.until, min: todayISO() });
+  const clearUntil = h('button', { class: 'btn', type: 'button', onclick: () => { until.value = ''; } }, 'Ohne');
+  const catList = h('datalist', { id: 'cats' }, ...cats.map(c => h('option', { value: c })));
+  const category = h('input', { class: 'input', list: 'cats', placeholder: 'z. B. Peripherie & Controller', value: d.category || '' });
   const thumb = h('div', { class: 'thumb' });
   const paintThumb = () => thumb.replaceChildren(d.image ? h('img', { src: imgSrc(d.image), alt: '' }) : svg(ICON.image, 30));
   paintThumb();
@@ -303,19 +357,22 @@ function openSheet(i) {
 
   const sheet = h('div', { class: 'sheet glass', role: 'dialog', 'aria-modal': 'true' },
     h('div', { class: 'grabber' }),
-    h('h2', {}, isNew ? 'Neuer Link' : 'Link bearbeiten',
+    h('h2', {}, isNew ? (setup ? 'Neues Produkt' : 'Neuer Link') : 'Bearbeiten',
       h('button', { class: 'iconbtn glass', 'aria-label': 'Schließen', onclick: () => close() }, svg(ICON.close, 18))),
     h('label', { class: 'field' }, h('span', {}, 'Titel'), title),
     h('label', { class: 'field' }, h('span', {}, 'Kurze Beschreibung'), desc),
     h('div', { class: 'field' }, h('span', {}, 'Link'), h('div', { class: 'row2' }, url, paste)),
     err,
+    setup ? h('label', { class: 'field' }, h('span', {}, 'Kategorie'), category, catList) : null,
+    h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
+    h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
       h('div', { class: 'imgpick' }, thumb, h('div', { class: 'acts' },
         h('button', { class: 'btn', type: 'button', onclick: () => file.click() }, d.image ? 'Bild ändern' : 'Bild wählen'),
         h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; paintThumb(); } }, 'Entfernen'))), file),
     h('div', { class: 'toggles glass' },
       toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
-      toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),
+      setup ? null : toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),
       toggleRow('Sichtbar', null, d.visible, v => { d.visible = v; })),
     h('button', { class: 'btn primary wide', onclick: save }, isNew ? 'Hinzufügen' : 'Übernehmen'),
     isNew ? null : h('div', { class: 'acts2' },
@@ -327,6 +384,8 @@ function openSheet(i) {
 
   function save() {
     d.title = title.value.trim(); d.description = desc.value.trim(); d.url = normalizeUrl(url.value);
+    d.code = code.value.trim().replace(/\s+/g, ' ').slice(0, 40); d.until = until.value || '';
+    if (setup) d.category = category.value.trim() || 'Sonstiges';
     if (!d.title) { err.textContent = 'Bitte einen Titel eingeben.'; title.focus(); return; }
     if (!URL_OK(d.url)) { err.textContent = 'Bitte einen vollständigen Link mit https:// eingeben.'; url.focus(); return; }
     if (isNew) S.links.unshift(d); else S.links[i] = d;

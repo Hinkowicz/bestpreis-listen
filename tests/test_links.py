@@ -64,8 +64,8 @@ class LinksTest(unittest.TestCase):
     def test_nur_bekannte_socials_mit_https(self):
         self.assertEqual([s["name"] for s in self.site["socials"]], ["TikTok"])
 
-    def test_keine_skripte_und_keine_fremdinhalte(self):
-        self.assertNotIn("<script", self.html.lower())
+    def test_nur_eigenes_skript_und_keine_fremdinhalte(self):
+        self.assertEqual(re.findall(r"<script[^>]*>", self.html), ['<script src="/assets/site.js" defer>'])
         self.assertEqual(re.findall(r'(?:src|srcset)="(?:https?:)?//[^"]*"|url\((?:https?:)?//', self.html), [])
 
     def test_echte_inhalte_sind_gueltig(self):
@@ -74,6 +74,41 @@ class LinksTest(unittest.TestCase):
         for l in real:
             if l["image"]:
                 self.assertTrue(Path(l["image"].lstrip("/")).exists(), l["image"])
+
+
+class NeueFunktionenTest(unittest.TestCase):
+    def test_rabattcode_button_entschaerft(self):
+        l = links.clean({"title": "X", "url": "https://a.de", "code": '"><script>alert(1)</script>'})
+        html = links.card(l, 1)
+        self.assertIn('class="code"', html)
+        self.assertNotIn("<script>alert", html)
+
+    def test_ablaufdatum(self):
+        self.assertIsNone(links.clean({"title": "Alt", "url": "https://a.de", "until": "2020-01-01"}))
+        self.assertIsNotNone(links.clean({"title": "Neu", "url": "https://a.de", "until": "2999-01-01"}))
+        self.assertIsNotNone(links.clean({"title": "Heute", "url": "https://a.de", "until": links.today().isoformat()}))
+        self.assertIsNotNone(links.clean({"title": "Kaputt", "url": "https://a.de", "until": "irgendwann"}))
+
+    def test_setup_seite(self):
+        from gh import pages
+        items = links.load("content/setup.json", key="items", extra=("category",))
+        self.assertGreater(len(items), 10)
+        html = pages.setup_page(items)
+        self.assertIn('id="monitore-halterungen"', html)
+        self.assertEqual(re.findall(r'src="(?:https?:)?//[^"]*"', html), [])
+        for it in items:
+            if it["image"]:
+                self.assertTrue(Path(it["image"].lstrip("/")).exists(), it["image"])
+
+    def test_404_und_vorschaukarten(self):
+        from gh import og, pages
+        self.assertIn("404", pages.not_found_page())
+        meta = og.meta("Titel", "Beschreibung", "home.png", "/")
+        self.assertIn('content="https://hinkowicz.de/og/home.png"', meta)
+        with tempfile.TemporaryDirectory() as d:
+            og.card(Path(d) / "x.png", "Kicker", "Titel", ["Zeile"], big="1.000 €")
+            from PIL import Image
+            self.assertEqual(Image.open(Path(d) / "x.png").size, (1200, 630))
 
 
 class LegalTest(unittest.TestCase):

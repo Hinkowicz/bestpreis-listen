@@ -4,7 +4,7 @@ import re
 import json
 from pathlib import Path
 
-from . import config
+from . import config, og
 from .theme import BASE
 
 CSS = BASE + r"""
@@ -105,7 +105,7 @@ def img(url):
     return f'<img src="{e(url)}" alt="" loading="lazy">'
 
 
-def page(title, active, body, tiers, stamp):
+def page(title, active, body, tiers, stamp, og_image="pc.png", path="/pc/", description=None):
     chips = [("/pc/", "Übersicht", "index")] + [
         (f"/pc/{t['id']}.html", f"{t['budget']}{'+' if t is tiers[-1] else ''} €", t["id"]) for t in tiers]
     chips.append(("/deals/", "Deals", "deals"))
@@ -113,6 +113,7 @@ def page(title, active, body, tiers, stamp):
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>{e(title)} – {e(config.SITE_TITLE)}</title>
 <meta name="robots" content="index,follow">{head_icons()}<meta name="color-scheme" content="dark light">
+<meta name="description" content="{e(description or title)}">{og.meta(f"{title} – Hinkowicz", description or title, og_image, path)}
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><style>{CSS}</style></head><body>
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div><div class="pattern" aria-hidden="true"></div>
 <div class="wrap">
@@ -150,7 +151,8 @@ Hinko-Score <span class="score">{b['score']}</span></p>
 {tip}{delta}{SCORE_EXPLAIN}
 <p class="muted">Hinweis: Windows-Lizenz, Peripherie und Versand sind nicht enthalten. Die Teile sind auf
 Kompatibilität (Sockel, RAM-Typ, Netzteil-Leistung) abgestimmt – bitte vor dem Kauf trotzdem kurz prüfen.</p>"""
-    return page(f"Gaming-PC bis {b['budget']} €", b["tier"], body, tiers, stamp)
+    return page(f"Gaming-PC bis {b['budget']} €", b["tier"], body, tiers, stamp, f"pc-{b['tier']}.png", f"/pc/{b['tier']}.html",
+                f"Diese Woche für {eur(b['total'])}: {b['parts'][0]['note']} + {b['parts'][1]['note']}. Wöchentlich neu berechnet aus Geizhals-Bestpreisen.")
 
 
 def deals_page(deals, tiers, stamp):
@@ -164,7 +166,8 @@ def deals_page(deals, tiers, stamp):
 (Ersparnis, Preisniveau, Beliebtheit, Allzeit-Tiefstpreise). Nur lieferbare Produkte.
 „vorher“ ist der bisherige Geizhals-Bestpreis – keine UVP, also echte Ersparnis.</p>
 <div class="grid">{cards}</div>"""
-    return page("Technik-Deals der Woche", "deals", body, tiers, stamp)
+    return page("Technik-Deals der Woche", "deals", body, tiers, stamp, "deals.png", "/deals/",
+                "Die größten Bestpreis-Senkungen der Woche auf Geizhals – nach eigenem Deal-Score sortiert.")
 
 
 def index_page(builds, deals, tiers, stamp):
@@ -177,7 +180,8 @@ def index_page(builds, deals, tiers, stamp):
 <p class="sub">Jede Woche neu berechnet – die beste Gaming-Leistung pro Euro für dein Budget.</p>
 <div class="grid">{cards}</div>{SCORE_EXPLAIN}
 <h2>Top-Deals der Woche</h2><ul class="toplist">{top}</ul><p><a class="btn" href="/deals/">Alle Deals ansehen</a></p>"""
-    return page("Übersicht", "index", body, tiers, stamp)
+    return page("Gaming-PC Bestpreis-Listen", "index", body, tiers, stamp, "pc.png", "/pc/",
+                "Die beste Gaming-Leistung pro Euro für 800, 1.000, 1.500 und 2.000+ € – jede Woche neu berechnet.")
 
 
 def write_site(out_dir, builds, deals, history, stamp):

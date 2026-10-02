@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import config, deals, legal, links, render
+from gh import config, deals, legal, links, og, pages, render
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -81,11 +81,13 @@ def main():
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     links.write(args.out, stamp)
     legal.write(args.out)
+    pages.write(args.out)
+    og.write_all(args.out, builds, deal_list, config.TIERS)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor
         if Path(d).exists():
             shutil.copytree(d, Path(args.out) / d, dirs_exist_ok=True)
-    weekly = os.environ.get("GITHUB_EVENT_NAME", "schedule") in ("schedule", "workflow_dispatch")
+    weekly = os.environ.get("WEEKLY_RUN", "true") == "true"  # nur der Wochenlauf schreibt den Vorwochen-Vergleich
     if not args.mock and builds and weekly:
         HISTORY.parent.mkdir(exist_ok=True)
         HISTORY.write_text(json.dumps({"updated": stamp, "builds": builds}, ensure_ascii=False, indent=1),

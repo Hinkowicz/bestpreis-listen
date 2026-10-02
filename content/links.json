@@ -46,6 +46,15 @@
       "visible": true
     },
     {
+      "title": "Mein Setup",
+      "description": "Alles, was auf meinem Tisch steht – nach Kategorien",
+      "url": "https://hinkowicz.de/setup/",
+      "image": null,
+      "ad": false,
+      "featured": false,
+      "visible": true
+    },
+    {
       "title": "Razer Viper V4 Pro",
       "description": "",
       "url": "https://razer.a9yw.net/gRLyoO",
@@ -92,12 +101,13 @@
     },
     {
       "title": "Rocket Games®",
-      "description": "Code „Hinko“",
+      "description": "Rabatt mit meinem Code",
       "url": "https://rckt.gg/tt-hinko",
       "image": "/assets/links/rocket-games.webp",
       "ad": true,
       "featured": false,
-      "visible": true
+      "visible": true,
+      "code": "Hinko"
     },
     {
       "title": "Mein Amazon Shop",
@@ -110,12 +120,13 @@
     },
     {
       "title": "RGB Namensschild",
-      "description": "10% mit „hinko10“",
+      "description": "10 % Rabatt mit meinem Code",
       "url": "https://www.h3da.de/",
       "image": "/assets/links/rgb-namensschild.webp",
       "ad": true,
       "featured": false,
-      "visible": true
+      "visible": true,
+      "code": "hinko10"
     },
     {
       "title": "Postflex",

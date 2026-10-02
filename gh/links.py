@@ -5,14 +5,16 @@ Die Inhalte werden über die Hinko-App (/app/) gepflegt.
 import json
 import os
 import re
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
-from . import config, icons
+from . import config, icons, og
 from .render import e, head_icons, legal_links, logo_html
 from .theme import BASE
 
 URL_RE = re.compile(r"^https://[^\s<>\"']+$")
-IMG_RE = re.compile(r"^/?assets/(links/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
+IMG_RE = re.compile(r"^/?assets/((links|setup)/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
 
 CSS = r"""
 .home{max-width:1120px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px 0;
@@ -46,6 +48,14 @@ CSS = r"""
 .feat .d{color:var(--muted);font-size:14px;display:block;margin-top:2px}
 .feat .go{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;
   background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 20px -8px var(--accent2)}
+.lnk,.feat{position:relative}
+.hit{position:absolute;inset:0;z-index:1;border-radius:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.code{position:relative;z-index:2;display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:6px 11px;
+  border-radius:999px;border:1px dashed color-mix(in srgb,var(--accent) 70%,transparent);background:color-mix(in srgb,var(--accent) 12%,transparent);
+  color:var(--text);font:inherit;font-size:13px;cursor:pointer;transition:transform .35s var(--spring),background .2s}
+.code b{letter-spacing:.06em}.code .lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.code:active{transform:scale(.95)}.code.ok{border-style:solid;border-color:var(--good);background:color-mix(in srgb,var(--good) 18%,transparent)}
 .adnote{font-size:12px;color:var(--faint);text-align:center;margin:2px 0 0}
 .home footer{grid-column:1/-1;text-align:center}
 .home footer p{margin:6px 0}
@@ -61,24 +71,42 @@ CSS = r"""
 """
 
 ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>'
+COPY = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="3"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'
 ARROW_UP = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>'
 
 
-def load(path="content/links.json"):
+def today():
+    return datetime.now(ZoneInfo("Europe/Berlin")).date()
+
+
+def clean(it, extra=()):
+    """Ein Eintrag aus links.json/setup.json -> sicherer, normalisierter Datensatz (oder None)."""
+    if not isinstance(it, dict) or it.get("visible") is False:
+        return None
+    url, title = str(it.get("url") or "").strip(), str(it.get("title") or "").strip()
+    if not title or not URL_RE.match(url):  # nur vollständige https-Links
+        return None
+    until = str(it.get("until") or "").strip()
+    if until:
+        try:
+            if date.fromisoformat(until) < today():  # abgelaufen -> ausblenden
+                return None
+        except ValueError:
+            pass
+    img = str(it.get("image") or "").strip()
+    code = re.sub(r"\s+", " ", str(it.get("code") or "").strip())[:40]
+    out = {"title": title, "description": str(it.get("description") or "").strip(), "url": url,
+           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "code": code,
+           "ad": it.get("ad", True) is not False, "featured": it.get("featured") is True}
+    for k in extra:
+        out[k] = str(it.get(k) or "").strip()
+    return out
+
+
+def load(path="content/links.json", key="links", extra=()):
     p = Path(path)
     data = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
-    out = []
-    for it in (data or {}).get("links") or []:
-        if not isinstance(it, dict) or it.get("visible") is False:
-            continue
-        url, title = str(it.get("url") or "").strip(), str(it.get("title") or "").strip()
-        if not title or not URL_RE.match(url):  # nur vollständige https-Links
-            continue
-        img = str(it.get("image") or "").strip()
-        out.append({"title": title, "description": str(it.get("description") or "").strip(), "url": url,
-                    "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None,
-                    "ad": it.get("ad", True) is not False, "featured": it.get("featured") is True})
-    return out
+    return [c for c in (clean(it, extra) for it in (data or {}).get(key) or []) if c]
 
 
 def load_site(path="content/site.json"):
@@ -92,33 +120,48 @@ def _rel(l):
     return ("sponsored " if l["ad"] else "") + "noopener"
 
 
-def _card(l, i):
+def _code(l):
+    if not l["code"]:
+        return ""
+    return (f'<button class="code" type="button" data-code="{e(l["code"])}" aria-label="Rabattcode {e(l["code"])} kopieren">'
+            f'<span class="lbl">Code</span> <b>{e(l["code"])}</b> {COPY}</button>')
+
+
+def card(l, i):
+    """Karte als Block mit unsichtbarem Voll-Link; der Code-Button liegt darüber und bleibt eigenständig klickbar."""
     star = "*" if l["ad"] else ""
-    tag = '<span class="tag">Anzeige</span>' if l["ad"] else ""  # kleine Zeile über dem Titel
+    tag = '<span class="tag">Anzeige</span>' if l["ad"] else ""
     desc = f'<span class="d">{e(l["description"])}</span>' if l["description"] else ""
+    cover = (f'<a class="hit" href="{e(l["url"])}" target="_blank" rel="{_rel(l)}">'
+             f'<span class="sr">{e(l["title"])}</span></a>')
     if l["featured"]:
         art = (f'<img class="cover" src="{e(l["image"])}" alt="" loading="lazy">' if l["image"]
                else '<img class="mono" src="/assets/monogram-white.png" alt="">')
-        return (f'<a class="feat glass press rise" style="--i:{i}" href="{e(l["url"])}" target="_blank" rel="{_rel(l)}">'
-                f'<div class="art">{art}</div><div class="body"><span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}</span>'
-                f'<span class="go">{ARROW_UP}</span></div></a>')
+        return (f'<div class="feat glass press rise" style="--i:{i}">{cover}'
+                f'<div class="art">{art}</div><div class="body"><span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}'
+                f'{_code(l)}</span><span class="go">{ARROW_UP}</span></div></div>')
     thumb = (f'<img class="thumb" src="{e(l["image"])}" alt="" loading="lazy">' if l["image"]
              else '<span class="thumb ph"><img src="/assets/monogram-white.png" alt=""></span>')
-    return (f'<a class="lnk glass press rise" style="--i:{i}" href="{e(l["url"])}" target="_blank" rel="{_rel(l)}">'
-            f'{thumb}<span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}</span><span class="arr">{ARROW}</span></a>')
+    return (f'<div class="lnk glass press rise" style="--i:{i}">{cover}'
+            f'{thumb}<span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}{_code(l)}</span>'
+            f'<span class="arr">{ARROW}</span></div>')
+
+
+def head(title, description, og_image, path):
+    return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{e(title)}</title><meta name="description" content="{e(description)}">
+{head_icons()}<meta name="color-scheme" content="dark light">{og.meta(title, description, og_image, path)}
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'none'">"""
 
 
 def page(links, site, stamp):
     socials = "".join(f'<a class="soc glass press" href="{e(s["url"])}" target="_blank" rel="noopener me" '
                       f'aria-label="{e(s["name"])}">{icons.svg(s["name"])}</a>' for s in site["socials"])
-    cards = "".join(_card(l, i + 1) for i, l in enumerate(links))
+    cards = "".join(card(l, i + 1) for i, l in enumerate(links))
     contact = (f'<p>Geschäftliche Anfragen: <a href="mailto:{e(site["contact"])}">{e(site["contact"])}</a></p>'
                if site["contact"] else "")
-    return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Hinkowicz</title><meta name="description" content="Links, Kooperationen, Gaming-PC Bestpreis-Listen und Technik-Deals von Hinkowicz.">
-{head_icons()}<meta name="color-scheme" content="dark light">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+    return f"""{head("Hinkowicz", "Links, Kooperationen, Rabattcodes, mein Setup, Gaming-PC Bestpreis-Listen und Technik-Deals von Hinkowicz.", "home.png", "/")}
 <style>{BASE}{CSS}</style></head><body>
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div><div class="pattern" aria-hidden="true"></div>
 <main class="home">
@@ -134,7 +177,7 @@ def page(links, site, stamp):
 {contact}
 <p>© Hinkowicz{legal_links()}</p>
 </footer>
-</main></body></html>"""
+</main><script src="/assets/site.js" defer></script></body></html>"""
 
 
 def write(out_dir, stamp, path="content/links.json", site_path="content/site.json"):

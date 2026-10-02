@@ -4,7 +4,13 @@
 
 - **Startseite** (`/`): Link-Liste im Liquid-Glass-Design. Gepflegt wird sie über die **Hinko-App** unter `/app/`
   (iPhone: in Safari öffnen → Teilen → „Zum Home-Bildschirm“). Die Daten liegen in `content/links.json` und `content/site.json`.
+- **Mein Setup** (`/setup/`): Produkt-Empfehlungen nach Kategorien (`content/setup.json`), ebenfalls über die App pflegbar.
 - **Gaming-PC Bestpreis-Listen** (`/pc/`) und **Technik-Deals** (`/deals/`), siehe unten.
+- **Impressum / Datenschutz** (`/impressum/`, `/datenschutz/`) aus `content/impressum.md` und `content/datenschutz.md`.
+
+Jeder Link kann einen **Rabattcode** (Antippen kopiert ihn) und ein **„sichtbar bis“-Datum** haben – abgelaufene
+Links verschwinden beim täglichen Lauf kurz nach Mitternacht automatisch. Für geteilte Links werden Vorschaubilder
+(`/og/*.png`) erzeugt; QR-Codes für hinkowicz.de liegen in `assets/qr/`.
 
 Jede Änderung (App, Code oder der wöchentliche Zeitplan) löst einen neuen Build aus und ist nach ca. 1 Minute live.
 
