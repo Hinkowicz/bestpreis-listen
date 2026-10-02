@@ -1,13 +1,22 @@
 {
   "links": [
     {
+      "title": "MAD Gaming & Office",
+      "description": "Hier gibt's die besten Fertig PCs +DIY-Kits",
+      "url": "https://mad-gaming.shop/hinkowicz",
+      "image": "/assets/links/mad-gaming-office.webp",
+      "ad": true,
+      "visible": true,
+      "featured": true
+    },
+    {
       "title": "AMD Game Bundle",
       "description": "Get Onimusha™️: Way of the Sword",
       "url": "https://de.rog.gg/AMDBundle",
       "image": "/assets/links/amd-game-bundle.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Phanteks EX5",
@@ -15,8 +24,8 @@
       "url": "https://bit.ly/3VjmFMX",
       "image": "/assets/links/phanteks-ex5.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "ZimaBoard 2",
@@ -24,8 +33,8 @@
       "url": "https://bit.ly/3M14yqI",
       "image": "/assets/links/zimaboard-2.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Gaming-PC Bestpreis-Listen",
@@ -33,8 +42,8 @@
       "url": "https://hinkowicz.de/pc/",
       "image": null,
       "ad": true,
-      "featured": true,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Technik-Deals der Woche",
@@ -42,17 +51,17 @@
       "url": "https://hinkowicz.de/deals/",
       "image": null,
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Mein Setup",
-      "description": "Alles, was auf meinem Tisch steht – nach Kategorien",
+      "description": "Alles, was auf zu meinem Gaming Setup gehört – nach Kategorien",
       "url": "https://hinkowicz.de/setup/",
       "image": null,
       "ad": false,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Razer Viper V4 Pro",
@@ -60,8 +69,8 @@
       "url": "https://razer.a9yw.net/gRLyoO",
       "image": "/assets/links/razer-viper-v4-pro.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Gigantus V2 Pro",
@@ -69,17 +78,8 @@
       "url": "https://razer.a9yw.net/X4ZYZM",
       "image": "/assets/links/gigantus-v2-pro.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
-    },
-    {
-      "title": "MAD Gaming & Office",
-      "description": "Hier gibt's die besten Fertig PCs +DIY-Kits",
-      "url": "https://mad-gaming.shop/hinkowicz",
-      "image": "/assets/links/mad-gaming-office.webp",
-      "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "be quiet! Deals",
@@ -87,8 +87,8 @@
       "url": "https://gh.at/g/JWN",
       "image": "/assets/links/be-quiet-deals.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Mein Mauspad 😍",
@@ -96,18 +96,18 @@
       "url": "https://www.dornfinger.com/products/rawpad-v2-hinkowicz-v1",
       "image": "/assets/links/mein-mauspad.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "Rocket Games®",
       "description": "Rabatt mit meinem Code",
       "url": "https://rckt.gg/tt-hinko",
       "image": "/assets/links/rocket-games.webp",
+      "code": "Hinko",
       "ad": true,
-      "featured": false,
       "visible": true,
-      "code": "Hinko"
+      "featured": false
     },
     {
       "title": "Mein Amazon Shop",
@@ -115,18 +115,18 @@
       "url": "https://amzlink.to/az09AaaMFsxUY",
       "image": "/assets/links/mein-amazon-shop.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     },
     {
       "title": "RGB Namensschild",
       "description": "10 % Rabatt mit meinem Code",
       "url": "https://www.h3da.de/",
       "image": "/assets/links/rgb-namensschild.webp",
+      "code": "hinko10",
       "ad": true,
-      "featured": false,
       "visible": true,
-      "code": "hinko10"
+      "featured": false
     },
     {
       "title": "Postflex",
@@ -134,8 +134,8 @@
       "url": "https://www.postflex.de/de/",
       "image": "/assets/links/postflex.webp",
       "ad": true,
-      "featured": false,
-      "visible": true
+      "visible": true,
+      "featured": false
     }
   ]
 }
