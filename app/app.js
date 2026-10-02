@@ -12,7 +12,7 @@ const TOKEN_KEY = 'hinko.token';
 const MAX_IMG = 800;
 
 const S = {
-  token: null, links: [], fileSha: null, dirty: false,
+  token: null, links: [], base: null, dirty: false,  // base = zuletzt geladener/gespeicherter Stand
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
   previews: {},  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
@@ -115,23 +115,29 @@ async function gh(path, opts = {}) {
 
 async function loadLinks() {
   const f = await gh(`/repos/${REPO}/contents/${FILE}?ref=${BRANCH}`);
-  S.fileSha = f.sha;
-  S.links = (JSON.parse(b64ToText(f.content)).links || []).map(l => ({
+  const text = b64ToText(f.content);
+  S.base = canon(text);
+  S.links = (JSON.parse(text).links || []).map(l => ({
     title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
     ad: l.ad !== false, featured: l.featured === true, visible: l.visible !== false,
   }));
   S.dirty = false;
 }
 
+// Inhalt vergleichbar machen (unabhängig von Formatierung)
+function canon(text) { try { return JSON.stringify(JSON.parse(text)); } catch { return text; } }
+
 async function publish() {
   setStatus('busy', 'Speichert …');
   render();
   try {
     const head = (await gh(`/repos/${REPO}/git/ref/heads/${BRANCH}`)).object.sha;
+    // Nur abbrechen, wenn jemand anderes die Links inhaltlich geändert hat (z. B. auf einem zweiten Gerät)
     const current = await gh(`/repos/${REPO}/contents/${FILE}?ref=${head}`);
-    if (current.sha !== S.fileSha) {
+    if (canon(b64ToText(current.content)) !== S.base) {
       setStatus('err', 'Konflikt');
-      alert('Die Links wurden inzwischen an anderer Stelle geändert. Bitte die App neu laden (deine ungespeicherten Änderungen gehen dabei verloren).');
+      render();
+      if (confirm('Die Links wurden inzwischen auf einem anderen Gerät geändert.\n\nOK = neu laden (deine ungespeicherten Änderungen hier gehen verloren)\nAbbrechen = nichts tun')) location.reload();
       return;
     }
     const baseTree = (await gh(`/repos/${REPO}/git/commits/${head}`)).tree.sha;
@@ -152,7 +158,7 @@ async function publish() {
         author: { ...AUTHOR, date: when }, committer: { ...AUTHOR, date: when } }),
     });
     await gh(`/repos/${REPO}/git/refs/heads/${BRANCH}`, { method: 'PATCH', body: JSON.stringify({ sha: commit.sha }) });
-    S.fileSha = (tree.tree.find(t => t.path === FILE) || {}).sha || S.fileSha;
+    S.base = canon(json);
     S.pending = {};
     S.dirty = false;
     setStatus('busy', 'Wird veröffentlicht …');
