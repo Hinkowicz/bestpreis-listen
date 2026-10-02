@@ -1,4 +1,10 @@
 links:
+  - title: ROG test
+    description: Hier könnte ihr Werbung stehen
+    url: https://de.rog.gg/AMDBundle
+    image: /assets/links/img_0098.webp
+    ad: true
+    visible: true
   - title: Gaming-PC Bestpreis-Listen
     description: Jede Woche neu berechnet – 800 bis 2.000+ €
     url: https://pc.hinkowicz.de/
@@ -8,10 +14,12 @@ links:
   - title: Technik-Deals der Woche
     description: Die größten Preissenkungen auf Geizhals
     url: https://pc.hinkowicz.de/deals.html
+    image: ''
     ad: true
     visible: true
   - title: Beispiel-Kooperation (Test)
     description: Diesen Eintrag im Prototyp gern bearbeiten oder löschen
     url: https://hinkowicz.com/
+    image: ''
     ad: true
     visible: true
