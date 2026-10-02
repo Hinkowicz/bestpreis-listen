@@ -106,7 +106,7 @@ COOLER_GOOD = (r"Peerless Assassin 120|Phantom Spirit 120|Assassin X 120|Assassi
 # Top-Level-Kategorien, die als "Technik" zählen (Regex auf den Titel).
 DEAL_TOPCATS = r"Hardware|Video|Foto|TV|Telefon|Audio|HIFI|Games|Spiele|Software|Haushalt"
 DEAL_SETTINGS = {
-    "interval": "31d",
+    "interval": "7d",  # kürzester Vergleichszeitraum der API -> frische Deals für die Tagesliste
     "pricemin": 30,
     "drop_percentmin": 10,
     "per_topcat": 100,

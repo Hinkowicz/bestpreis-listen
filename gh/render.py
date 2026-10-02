@@ -161,13 +161,13 @@ def deals_page(deals, tiers, stamp):
 <div><span class="price">{eur(d['price'])}</span>{f'<span class="old" title="Geizhals-Bestpreis vor der Preissenkung">vorher {eur(d["old_price"])}</span>' if d.get('old_price') else ''}</div>
 <div><span class="pct">{e(d['percent'])} %</span> {'<span class="badge">Allzeit-Bestpreis</span>' if d['alltime_best'] else ''}
 <span class="muted">· {e(d.get('merchant') or '')}</span></div><span class="btn">Zum Deal*</span></a>""" for d in deals)
-    body = f"""<h1>Die besten Technik-Deals der Woche</h1>
-<p class="sub">Größte Bestpreis-Senkungen der letzten 31 Tage auf Geizhals – nach eigenem Deal-Score sortiert
+    body = f"""<h1>Die besten Technik-Deals des Tages</h1>
+<p class="sub">Jeden Tag neu: die größten Bestpreis-Senkungen der letzten 7 Tage auf Geizhals – nach eigenem Deal-Score sortiert
 (Ersparnis, Preisniveau, Beliebtheit, Allzeit-Tiefstpreise). Nur lieferbare Produkte.
 „vorher“ ist der bisherige Geizhals-Bestpreis – keine UVP, also echte Ersparnis.</p>
 <div class="grid">{cards}</div>"""
-    return page("Technik-Deals der Woche", "deals", body, tiers, stamp, "deals.png", "/deals/",
-                "Die größten Bestpreis-Senkungen der Woche auf Geizhals – nach eigenem Deal-Score sortiert.")
+    return page("Technik-Deals des Tages", "deals", body, tiers, stamp, "deals.png", "/deals/",
+                "Jeden Tag neu: die größten Bestpreis-Senkungen auf Geizhals – nach eigenem Deal-Score sortiert.")
 
 
 def index_page(builds, deals, tiers, stamp):
@@ -179,7 +179,7 @@ def index_page(builds, deals, tiers, stamp):
     body = f"""<h1>Gaming-PC Bestpreis-Listen</h1>
 <p class="sub">Jede Woche neu berechnet – die beste Gaming-Leistung pro Euro für dein Budget.</p>
 <div class="grid">{cards}</div>{SCORE_EXPLAIN}
-<h2>Top-Deals der Woche</h2><ul class="toplist">{top}</ul><p><a class="btn" href="/deals/">Alle Deals ansehen</a></p>"""
+<h2>Top-Deals des Tages</h2><ul class="toplist">{top}</ul><p><a class="btn" href="/deals/">Alle Deals ansehen</a></p>"""
     return page("Gaming-PC Bestpreis-Listen", "index", body, tiers, stamp, "pc.png", "/pc/",
                 "Die beste Gaming-Leistung pro Euro für 800, 1.000, 1.500 und 2.000+ € – jede Woche neu berechnet.")
 

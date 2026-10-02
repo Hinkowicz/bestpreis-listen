@@ -43,7 +43,7 @@ Die Teile werden nicht von anderen Listen übernommen, sondern von einem eigenen
 | `index.html` | Startseite (Link-Liste) |
 | `pc/index.html` | Übersicht aller Budgets + Top-5-Deals |
 | `pc/800.html` … `pc/2000.html` | einzelne PC-Listen |
-| `deals/index.html` | Technik-Deals der Woche |
+| `deals/index.html` | Technik-Deals des Tages (täglich neu) |
 | `app/` | Hinko-App zum Pflegen der Links |
 | `api/*.json` | dieselben Daten für den Discord-Bot |
 

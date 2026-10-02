@@ -3,7 +3,7 @@ name: Wöchentliche Bestpreis-Listen
 on:
   schedule:
     - cron: "17 5 * * 1"   # jeden Montag ca. 07:17 Uhr (deutsche Zeit): neue Wochen-Listen
-    - cron: "7 23 * * *"   # täglich kurz nach Mitternacht: abgelaufene Links ausblenden
+    - cron: "7 23 * * *"   # täglich kurz nach Mitternacht: neue Tages-Deals, abgelaufene Links ausblenden
   workflow_dispatch:        # manuell starten über "Run workflow"
   push:                     # z. B. Link-Änderungen über /admin/ – nach ~1–2 Minuten live
     branches: [main]

@@ -122,4 +122,4 @@ def write_all(out_dir, builds, deals, tiers):
         card(o / f"pc-{b['tier']}.png", f"Gaming-PC bis {b['budget']}{plus} € · Hinko-Score {b['score']}", "Diese Woche für",
              [f"{b['parts'][0]['note']}  +  {b['parts'][1]['note']}"], big=eur(b["total"]))
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in deals[:3]]
-    card(o / "deals.png", "Größte Preissenkungen", "Technik-Deals der Woche", top)
+    card(o / "deals.png", "Jeden Tag neu", "Technik-Deals des Tages", top)

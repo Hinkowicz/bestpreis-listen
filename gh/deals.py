@@ -1,4 +1,4 @@
-"""Wöchentliche Top-Technik-Deals über /bestprice_development.
+"""Tägliche Top-Technik-Deals über /bestprice_development.
 
 Eigenes Ranking (Deal-Score): prozentuale Preissenkung, gewichtet mit Preisniveau
 (große Ersparnis in € zählt), Beliebtheit (Anzahl Angebote) und Allzeit-Bestpreis.
