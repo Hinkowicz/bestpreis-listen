@@ -15,7 +15,7 @@ E-Mail: robin.hinkowicz@web.de
 
 ###2. Überblick
 
-Personenbezogene Daten sind alle Daten, mit denen du persönlich identifiziert werden kannst, zum Beispiel deine IP-Adresse. Beim Besuch dieser Websites werden nur die Daten verarbeitet, die technisch für die Auslieferung der Seiten nötig sind, sowie Daten, die du mir selbst mitteilst (etwa per E-Mail). Auf hinkowicz.de werden keine Cookies gesetzt, kein Tracking eingesetzt und keine Inhalte von fremden Servern nachgeladen.
+Personenbezogene Daten sind alle Daten, mit denen du persönlich identifiziert werden kannst, zum Beispiel deine IP-Adresse. Beim Besuch dieser Websites werden nur die Daten verarbeitet, die technisch für die Auslieferung der Seiten nötig sind, sowie Daten, die du mir selbst mitteilst (etwa per E-Mail). Auf hinkowicz.de werden keine Cookies gesetzt, kein Tracking eingesetzt und keine Inhalte von fremden Servern nachgeladen. Einzige Ausnahme sind freiwillige Umfragen (siehe Abschnitt 7).
 
 ###3. Hosting
 
@@ -39,7 +39,13 @@ hinkowicz.de setzt keine Cookies. Auf hinkowicz.com kann Beacons technisch notwe
 
 Wenn du mich per E-Mail kontaktierst, verarbeite ich deine Angaben (z. B. Name, E-Mail-Adresse, Inhalt der Nachricht), um dein Anliegen zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern deine Anfrage mit einem Vertrag zusammenhängt, ansonsten mein berechtigtes Interesse an der Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO). Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
 
-###7. Affiliate-Links
+###7. Umfragen
+
+Gelegentlich führe ich auf hinkowicz.de freiwillige, anonyme Umfragen durch (z. B. zu geplantem Merch). Abgefragt werden nur Vorlieben wie Größe, Schnitt, Farbe oder Preisvorstellung sowie ein optionales Freitextfeld. Name, E-Mail-Adresse oder andere Kontaktdaten werden nicht abgefragt – bitte trag auch im Freitextfeld keine persönlichen Daten ein.
+
+Deine Antworten werden beim Absenden an Google übermittelt und in einer Google-Tabelle gespeichert, auf die nur ich Zugriff habe (Google Apps Script und Google Sheets, Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei verarbeitet Google technisch bedingt deine IP-Adresse; diese wird nicht in der Tabelle gespeichert und ich erhalte sie nicht. Eine Übermittlung in die USA ist möglich; Google ist nach dem EU-US Data Privacy Framework zertifiziert (Art. 45 DSGVO). Rechtsgrundlage ist deine Einwilligung durch das freiwillige Absenden (Art. 6 Abs. 1 lit. a DSGVO). Damit du nicht versehentlich doppelt teilnimmst, wird nach dem Absenden in deinem Browser ein Merkzeichen gespeichert (Local Storage, keine Cookies, kein Tracking); du kannst es jederzeit über die Browsereinstellungen löschen. Die Antworten lösche ich, sobald die Umfrage ausgewertet ist. Weitere Informationen: https://policies.google.com/privacy
+
+###8. Affiliate-Links
 
 Auf meinen Seiten verwende ich Affiliate-Links. Sie sind mit einem * gekennzeichnet bzw. als „Anzeige“ ausgewiesen. Klickst du auf einen solchen Link, wirst du auf die Website des jeweiligen Anbieters weitergeleitet. Erst dann erhebt der Anbieter Daten (z. B. IP-Adresse, Zeitpunkt des Klicks, eine Partner-Kennung) und setzt gegebenenfalls Cookies, um nachvollziehen zu können, dass du über meinen Link gekommen bist, und mir eine Provision gutzuschreiben. Beim bloßen Aufruf meiner Seiten werden keine Daten an diese Anbieter übertragen. Rechtsgrundlage ist mein berechtigtes Interesse an der Finanzierung meines Angebots (Art. 6 Abs. 1 lit. f DSGVO); für das Setzen von Cookies auf den Seiten der Anbieter sind diese selbst verantwortlich. Ich nutze unter anderem folgende Partnerprogramme:
 
@@ -49,19 +55,19 @@ Auf meinen Seiten verwende ich Affiliate-Links. Sie sind mit einem * gekennzeich
 
 **Weitere Partnerprogramme:** Einzelne Links führen zu Herstellern oder Händlern bzw. über deren Partnernetzwerke. Welcher Anbieter dahintersteht, erkennst du an der Zieladresse; dort findest du auch die jeweiligen Datenschutzhinweise.
 
-###8. Links zu sozialen Netzwerken
+###9. Links zu sozialen Netzwerken
 
 Meine Seiten enthalten Links zu meinen Profilen bei YouTube, Twitch, TikTok, Instagram und Discord. Es handelt sich um einfache Links, keine eingebetteten Inhalte. Daten werden an diese Dienste erst übertragen, wenn du einen Link anklickst; dann gelten die Datenschutzbestimmungen des jeweiligen Netzwerks.
 
-###9. SSL-/TLS-Verschlüsselung
+###10. SSL-/TLS-Verschlüsselung
 
 Beide Websites nutzen aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennst du an „https://“ und dem Schloss-Symbol in der Adresszeile deines Browsers.
 
-###10. Speicherdauer
+###11. Speicherdauer
 
 Soweit in dieser Erklärung keine speziellere Speicherdauer genannt ist, werden personenbezogene Daten gelöscht, sobald der Zweck der Verarbeitung entfällt und keine gesetzlichen Aufbewahrungspflichten (z. B. steuer- oder handelsrechtlich) entgegenstehen.
 
-###11. Deine Rechte
+###12. Deine Rechte
 
 Du hast jederzeit das Recht auf
 - Auskunft über deine bei mir gespeicherten Daten (Art. 15 DSGVO),
@@ -77,6 +83,6 @@ Für alle Anliegen genügt eine E-Mail an robin.hinkowicz@web.de.
 
 **Beschwerderecht:** Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, insbesondere in dem Mitgliedstaat deines gewöhnlichen Aufenthalts, deines Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes.
 
-###12. Änderungen
+###13. Änderungen
 
 Ich passe diese Datenschutzerklärung an, wenn sich meine Websites oder die Rechtslage ändern. Es gilt die jeweils hier veröffentlichte Fassung.

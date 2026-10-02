@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import config, deals, legal, links, og, pages, render
+from gh import config, deals, legal, links, og, pages, render, survey
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -82,6 +82,7 @@ def main():
     links.write(args.out, stamp)
     legal.write(args.out)
     pages.write(args.out)
+    survey.write(args.out)  # versteckte Umfrage, nirgends verlinkt
     og.write_all(args.out, builds, deal_list, config.TIERS)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor

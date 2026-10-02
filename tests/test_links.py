@@ -150,3 +150,29 @@ class LegalTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SurveyTest(unittest.TestCase):
+    def test_umfrage_versteckt_und_abgesichert(self):
+        from gh import survey
+        with tempfile.TemporaryDirectory() as d:
+            path = survey.write(d)
+            html = (Path(d) / path.strip("/") / "index.html").read_text(encoding="utf-8")
+        self.assertIn('noindex,nofollow', html)
+        self.assertIn("connect-src 'none'", html)  # ohne Endpoint geht nichts raus
+        self.assertEqual(html.count('class="step glass" data-key='), len(survey.QUESTIONS))
+        self.assertEqual(re.findall(r'<script[^>]*src="([^"]+)"', html), ["/assets/umfrage.js"])
+        good = "https://script.google.com/macros/s/" + "A" * 40 + "/exec"
+        self.assertTrue(survey.ENDPOINT_RE.match(good))
+        for bad in ("https://evil.de/exec", good + "?x=1", good.replace("https", "http"), 'https://script.google.com/macros/s/x"/exec'):
+            self.assertFalse(survey.ENDPOINT_RE.match(bad))
+        self.assertIn("connect-src https://script.google.com", survey.page({"slug": "merch-x", "endpoint": good}))
+
+    def test_umfrage_nirgends_verlinkt_und_skript_aktuell(self):
+        from gh import survey
+        slug = survey.load()["slug"]
+        for f in list(Path("gh").glob("*.py")) + list(Path("content").glob("*.json")):
+            if f.name not in ("survey.py", "umfrage.json"):
+                self.assertNotIn(slug, f.read_text(encoding="utf-8"), f)
+        self.assertEqual(Path("tools/merch-umfrage.gs").read_text(encoding="utf-8"), survey.apps_script(),
+                         "tools/merch-umfrage.gs neu erzeugen: python -m gh.survey")
