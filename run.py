@@ -80,9 +80,10 @@ def main():
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     links.write(args.out, stamp)
-    if Path("admin").exists():
-        import shutil
-        shutil.copytree("admin", Path(args.out) / "admin", dirs_exist_ok=True)
+    import shutil
+    for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor
+        if Path(d).exists():
+            shutil.copytree(d, Path(args.out) / d, dirs_exist_ok=True)
     weekly = os.environ.get("GITHUB_EVENT_NAME", "schedule") in ("schedule", "workflow_dispatch")
     if not args.mock and builds and weekly:
         HISTORY.parent.mkdir(exist_ok=True)
@@ -115,7 +116,7 @@ def localize_images(builds, deal_list, out, offline=False):
                 if r.status_code != 200 or len(r.content) > 2_000_000:
                     continue
                 target.write_bytes(r.content)
-            it["image"] = f"img/{target.name}"
+            it["image"] = f"/img/{target.name}"
         except requests.RequestException:
             continue
 

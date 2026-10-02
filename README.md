@@ -1,4 +1,15 @@
-# Hinkowicz Bestpreis-Listen
+# Hinkowicz – Website, Links-App und Bestpreis-Listen
+
+**hinkowicz.de** besteht aus:
+
+- **Startseite** (`/`): Link-Liste im Liquid-Glass-Design. Gepflegt wird sie über die **Hinko-App** unter `/app/`
+  (iPhone: in Safari öffnen → Teilen → „Zum Home-Bildschirm“). Die Daten liegen in `content/links.json` und `content/site.json`.
+- **Gaming-PC Bestpreis-Listen** (`/pc/`) und **Technik-Deals** (`/deals/`), siehe unten.
+
+Jede Änderung (App, Code oder der wöchentliche Zeitplan) löst einen neuen Build aus und ist nach ca. 1 Minute live.
+
+---
+
 
 Erzeugt jede Woche automatisch:
 
@@ -23,9 +34,11 @@ Die Teile werden nicht von anderen Listen übernommen, sondern von einem eigenen
 
 | Datei | Inhalt |
 |---|---|
-| `index.html` | Übersicht aller Budgets + Top-5-Deals |
-| `pc-800.html` … `pc-2000.html` | einzelne PC-Listen |
-| `deals.html` | Technik-Deals der Woche |
+| `index.html` | Startseite (Link-Liste) |
+| `pc/index.html` | Übersicht aller Budgets + Top-5-Deals |
+| `pc/800.html` … `pc/2000.html` | einzelne PC-Listen |
+| `deals/index.html` | Technik-Deals der Woche |
+| `app/` | Hinko-App zum Pflegen der Links |
 | `api/*.json` | dieselben Daten für den Discord-Bot |
 
 ## Einrichtung (einmalig)

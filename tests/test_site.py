@@ -25,15 +25,15 @@ class SiteTest(unittest.TestCase):
         cls.deals = deals.collect(catalog, api)
         cls.out = Path(cls.tmp.name) / "site"
         render.write_site(cls.out, cls.builds, cls.deals, None, "Test")
-        cls.pages = {p.name: p.read_text(encoding="utf-8") for p in cls.out.glob("*.html")}
+        cls.pages = {str(p.relative_to(cls.out)): p.read_text(encoding="utf-8") for p in cls.out.rglob("*.html")}
 
     @classmethod
     def tearDownClass(cls):
         cls.tmp.cleanup()
 
     def test_genau_vier_pc_seiten_plus_deals_und_index(self):
-        self.assertEqual(sorted(self.pages),
-                         ["deals.html", "index.html", "pc-1000.html", "pc-1500.html", "pc-2000.html", "pc-800.html"])
+        self.assertEqual(sorted(self.pages), ["deals/index.html", "pc/1000.html", "pc/1500.html",
+                                              "pc/2000.html", "pc/800.html", "pc/index.html"])
 
     def test_jeder_geizhals_link_hat_affiliate_parameter(self):
         for name, html in self.pages.items():
@@ -69,7 +69,8 @@ class SiteTest(unittest.TestCase):
     def test_nur_selbst_gehostete_bilder(self):
         self.assertIn("noimg", render.img("https://gzhls.at/i/1/2/123-s0.jpg"))
         self.assertIn("noimg", render.img("javascript:alert(1)"))
-        self.assertIn('src="img/123.jpg"', render.img("img/123.jpg"))
+        self.assertIn('src="/img/123.jpg"', render.img("/img/123.jpg"))
+        self.assertIn("noimg", render.img("img/../../x.jpg"))
 
 
 class HardwareTest(unittest.TestCase):

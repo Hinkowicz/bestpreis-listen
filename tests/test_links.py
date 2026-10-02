@@ -1,43 +1,37 @@
-"""Link-Seite: nur sichere Links/Bilder, Werbekennzeichnung, Reihenfolge."""
+"""Startseite: nur sichere Links/Bilder, Werbekennzeichnung, Reihenfolge, keine Fremdinhalte."""
+import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
 
 from gh import links
 
-YAML = """
-links:
-  - title: Erster
-    url: https://example.com/a
-    image: /assets/links/bild.webp
-  - title: <script>alert(1)</script>
-    description: '"><img src=x onerror=alert(1)>'
-    url: https://example.com/b?x=1&y=2
-    ad: false
-  - title: Unsicherer Link
-    url: javascript:alert(1)
-  - title: Ohne https
-    url: http://example.com
-  - title: Versteckt
-    url: https://example.com/c
-    visible: false
-  - title: Fremdes Bild
-    url: https://example.com/d
-    image: https://tracker.example/pixel.gif
-  - title: Pfad-Trick
-    url: https://example.com/e
-    image: ../../etc/passwd
-"""
+DATA = {"links": [
+    {"title": "Erster", "url": "https://example.com/a", "image": "/assets/links/bild.webp", "featured": True},
+    {"title": "<script>alert(1)</script>", "description": '"><img src=x onerror=alert(1)>',
+     "url": "https://example.com/b?x=1&y=2", "ad": False},
+    {"title": "Unsicherer Link", "url": "javascript:alert(1)"},
+    {"title": "Ohne https", "url": "http://example.com"},
+    {"title": "Versteckt", "url": "https://example.com/c", "visible": False},
+    {"title": "Fremdes Bild", "url": "https://example.com/d", "image": "https://tracker.example/pixel.gif"},
+    {"title": "Pfad-Trick", "url": "https://example.com/e", "image": "../../etc/passwd"},
+]}
+SITE = {"tagline": "Gaming", "contact": "a@b.de", "socials": [
+    {"name": "TikTok", "url": "https://tiktok.com/@x"}, {"name": "Unbekannt", "url": "https://x.y"},
+    {"name": "YouTube", "url": "javascript:alert(1)"}]}
 
 
 class LinksTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
-        p = Path(cls.tmp.name) / "links.yml"
-        p.write_text(YAML, encoding="utf-8")
-        cls.items = links.load(p)
-        cls.html = links.page(cls.items, "Test")
+        d = Path(cls.tmp.name)
+        (d / "links.json").write_text(json.dumps(DATA), encoding="utf-8")
+        (d / "site.json").write_text(json.dumps(SITE), encoding="utf-8")
+        cls.items = links.load(d / "links.json")
+        cls.site = links.load_site(d / "site.json")
+        cls.html = links.page(cls.items, cls.site, "Test")
 
     @classmethod
     def tearDownClass(cls):
@@ -49,7 +43,7 @@ class LinksTest(unittest.TestCase):
 
     def test_nur_eigene_bilder(self):
         imgs = {i["title"]: i["image"] for i in self.items}
-        self.assertEqual(imgs["Erster"], "assets/links/bild.webp")
+        self.assertEqual(imgs["Erster"], "/assets/links/bild.webp")
         self.assertIsNone(imgs["Fremdes Bild"])
         self.assertIsNone(imgs["Pfad-Trick"])
 
@@ -63,6 +57,23 @@ class LinksTest(unittest.TestCase):
         self.assertFalse(self.items[1]["ad"])
         self.assertIn('rel="sponsored noopener"', self.html)
         self.assertIn("Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.", self.html)
+
+    def test_hervorgehobener_link_als_grosse_karte(self):
+        self.assertIn('class="feat glass', self.html)
+
+    def test_nur_bekannte_socials_mit_https(self):
+        self.assertEqual([s["name"] for s in self.site["socials"]], ["TikTok"])
+
+    def test_keine_skripte_und_keine_fremdinhalte(self):
+        self.assertNotIn("<script", self.html.lower())
+        self.assertEqual(re.findall(r'(?:src|srcset)="(?:https?:)?//[^"]*"|url\((?:https?:)?//', self.html), [])
+
+    def test_echte_inhalte_sind_gueltig(self):
+        real = links.load("content/links.json")
+        self.assertGreater(len(real), 0)
+        for l in real:
+            if l["image"]:
+                self.assertTrue(Path(l["image"].lstrip("/")).exists(), l["image"])
 
 
 if __name__ == "__main__":

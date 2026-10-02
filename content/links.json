@@ -1,0 +1,130 @@
+{
+  "links": [
+    {
+      "title": "AMD Game Bundle",
+      "description": "Get Onimusha™️: Way of the Sword",
+      "url": "https://de.rog.gg/AMDBundle",
+      "image": "/assets/links/amd-game-bundle.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Phanteks EX5",
+      "description": "",
+      "url": "https://bit.ly/3VjmFMX",
+      "image": "/assets/links/phanteks-ex5.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "ZimaBoard 2",
+      "description": "",
+      "url": "https://bit.ly/3M14yqI",
+      "image": "/assets/links/zimaboard-2.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Gaming-PC Bestpreis-Listen",
+      "description": "Jede Woche neu berechnet – von 800 bis 2.000+ €",
+      "url": "https://hinkowicz.de/pc/",
+      "image": null,
+      "ad": true,
+      "featured": true,
+      "visible": true
+    },
+    {
+      "title": "Technik-Deals der Woche",
+      "description": "Die größten Preissenkungen auf Geizhals",
+      "url": "https://hinkowicz.de/deals/",
+      "image": null,
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Razer Viper V4 Pro",
+      "description": "",
+      "url": "https://razer.a9yw.net/gRLyoO",
+      "image": "/assets/links/razer-viper-v4-pro.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Gigantus V2 Pro",
+      "description": "",
+      "url": "https://razer.a9yw.net/X4ZYZM",
+      "image": "/assets/links/gigantus-v2-pro.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "MAD Gaming & Office",
+      "description": "Hier gibt's die besten Fertig PCs +DIY-Kits",
+      "url": "https://mad-gaming.shop/hinkowicz",
+      "image": "/assets/links/mad-gaming-office.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "be quiet! Deals",
+      "description": "Tastaturen und Mäuse",
+      "url": "https://gh.at/g/JWN",
+      "image": "/assets/links/be-quiet-deals.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Mein Mauspad 😍",
+      "description": "Dornfinger x Hinkowicz – Rawpad v2 (Örste Edition)",
+      "url": "https://www.dornfinger.com/products/rawpad-v2-hinkowicz-v1",
+      "image": "/assets/links/mein-mauspad.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Rocket Games®",
+      "description": "Code „Hinko“",
+      "url": "https://rckt.gg/tt-hinko",
+      "image": "/assets/links/rocket-games.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Mein Amazon Shop",
+      "description": "Geschenkideen, mein Setup Stuff, Angebote und vieles mehr | Anzeige",
+      "url": "https://amzlink.to/az09AaaMFsxUY",
+      "image": "/assets/links/mein-amazon-shop.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "RGB Namensschild",
+      "description": "10% mit „hinko10“",
+      "url": "https://www.h3da.de/",
+      "image": "/assets/links/rgb-namensschild.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    },
+    {
+      "title": "Postflex",
+      "description": "Hier schützt du deine Privatsphäre",
+      "url": "https://www.postflex.de/de/",
+      "image": "/assets/links/postflex.webp",
+      "ad": true,
+      "featured": false,
+      "visible": true
+    }
+  ]
+}
