@@ -55,6 +55,9 @@ def main():
     print(f"   {len(deal_list)} Deals")
     gha("notice", f"{len(deal_list)} Deals, {api.calls} API-Aufrufe")
 
+    if not args.mock and os.environ.get("AMAZON_PROBE", "1") == "1":
+        from gh.amazon_probe import probe
+        probe(catalog, api, gha)
     print("→ Amazon-Deals")
     amazon_active = args.mock or amazon.load_event()["active"]  # nur im Aktionszeitraum (content/amazon.json)
     amazon_list, asins, info = amazon.collect(catalog, api, offline=args.mock, active=amazon_active)
