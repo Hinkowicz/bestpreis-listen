@@ -130,3 +130,10 @@ input[type=date].input{min-height:50px;-webkit-appearance:none;appearance:none;c
 .frames .framebox.sq{justify-items:start}
 .crophint{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:12.5px;margin:0 0 0 4px}
 .btn.small{padding:7px 12px;font-size:13px;border-radius:999px;flex:none}
+.zoomrow{display:flex;align-items:center;gap:10px;color:var(--muted);padding:2px 4px}
+.zoomrow b{font-size:13px;min-width:34px;text-align:right;color:var(--text)}
+.zoom{flex:1;-webkit-appearance:none;appearance:none;height:30px;background:none;margin:0}
+.zoom::-webkit-slider-runnable-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.zoom::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-11px;border-radius:50%;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.4)}
+.zoom::-moz-range-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.zoom::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff}

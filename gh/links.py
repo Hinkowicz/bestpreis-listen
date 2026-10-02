@@ -30,6 +30,7 @@ CSS = r"""
 .lnk{display:grid;grid-template-columns:60px 1fr 22px;gap:14px;align-items:center;padding:12px 14px 12px 12px;
   text-decoration:none;border-radius:22px}
 .lnk .thumb{width:60px;height:60px;border-radius:16px;object-fit:cover;background:var(--chip);display:block}
+.lnk .thumb.zw{overflow:hidden;flex:none}.lnk .thumb.zw img{display:block;width:100%;height:100%;object-fit:cover}
 .lnk .ph{display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2))}
 .lnk .ph img{width:30px;height:30px}
 .lnk .t{display:block;font-weight:750;font-size:16px;letter-spacing:-.01em;line-height:1.25}
@@ -97,8 +98,10 @@ def clean(it, extra=()):
     code = re.sub(r"\s+", " ", str(it.get("code") or "").strip())[:40]
     fm = re.match(r"^(\d{1,3}) (\d{1,3})$", str(it.get("focus") or "").strip())
     focus = f"{min(int(fm[1]), 100)}% {min(int(fm[2]), 100)}%" if fm else ""
+    zm = re.match(r"^\d{1,3}$", str(it.get("zoom") or "").strip())
+    zoom = min(int(zm[0]), 300) if zm and int(zm[0]) > 100 else 0
     out = {"title": title, "description": str(it.get("description") or "").strip(), "url": url,
-           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "focus": focus, "code": code,
+           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "focus": focus, "zoom": zoom, "code": code,
            "ad": it.get("ad", True) is not False, "featured": it.get("featured") is True}
     for k in extra:
         out[k] = str(it.get(k) or "").strip()
@@ -130,8 +133,12 @@ def _code(l):
 
 
 def _pos(l):
-    """Bildausschnitt aus der App (Fokuspunkt), nur Zahlen – siehe clean()."""
-    return f' style="object-position:{l["focus"]}"' if l.get("focus") else ""
+    """Bildausschnitt aus der App (Fokuspunkt + Zoom), nur Zahlen – siehe clean()."""
+    focus, zoom = l.get("focus") or "", l.get("zoom") or 0
+    css = [f"object-position:{focus}"] if focus else []
+    if zoom:
+        css += [f"transform:scale({zoom / 100:g})", f"transform-origin:{focus or '50% 50%'}"]
+    return f' style="{";".join(css)}"' if css else ""
 
 
 def card(l, i):
@@ -147,7 +154,8 @@ def card(l, i):
         return (f'<div class="feat glass press rise" style="--i:{i}">{cover}'
                 f'<div class="art">{art}</div><div class="body"><span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}'
                 f'{_code(l)}</span><span class="go">{ARROW_UP}</span></div></div>')
-    thumb = (f'<img class="thumb" src="{e(l["image"])}"{_pos(l)} alt="" loading="lazy">' if l["image"]
+    thumb = ((f'<span class="thumb zw"><img src="{e(l["image"])}"{_pos(l)} alt="" loading="lazy"></span>' if l.get("zoom")
+              else f'<img class="thumb" src="{e(l["image"])}"{_pos(l)} alt="" loading="lazy">') if l["image"]
              else '<span class="thumb ph"><img src="/assets/monogram-white.png" alt=""></span>')
     return (f'<div class="lnk glass press rise" style="--i:{i}">{cover}'
             f'{thumb}<span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}{_code(l)}</span>'

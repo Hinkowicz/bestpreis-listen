@@ -13,7 +13,7 @@ const COLL = {
 const API = 'https://api.github.com';
 const AUTHOR = { name: 'Hinkowicz', email: 'hinkowicz@users.noreply.github.com' };
 const TOKEN_KEY = 'hinko.token';
-const MAX_IMG = 800;
+const MAX_IMG = 1600; // genug Reserve zum Zoomen
 
 const S = {
   token: null, tab: 'links', data: { links: [], setup: [] }, dirty: false,
@@ -123,14 +123,14 @@ async function gh(path, opts = {}) {
 
 function normalize(l, name) {
   const o = { title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
-    focus: l.focus || '', code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
+    focus: l.focus || '', zoom: Math.min(300, Math.max(100, +l.zoom || 100)), code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
   if (name === 'links') o.featured = l.featured === true; else o.category = l.category || 'Sonstiges';
   return o;
 }
 
 function serialize(name) {
   // leere optionale Felder weglassen, damit die Dateien übersichtlich bleiben
-  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !(['focus', 'code', 'until'].includes(k) && !v))));
+  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !((['focus', 'code', 'until'].includes(k) && !v) || (k === 'zoom' && v <= 100)))));
   return JSON.stringify({ [COLL[name].key]: items }, null, 2) + '\n';
 }
 
@@ -149,7 +149,7 @@ async function loadLinks() {
 // Inhalt vergleichbar machen (unabhängig von Formatierung)
 function canon(text) { try { return JSON.stringify(JSON.parse(text)); } catch { return text; } }
 
-async function publish() {
+async function publish(retry = true) {
   setStatus('busy', 'Speichert …');
   render();
   try {
@@ -200,6 +200,7 @@ async function publish() {
     toast('Gespeichert – in ca. 1 Minute live');
     waitForLive(commit.sha);
   } catch (e) {
+    if (retry && (e.status === 422 || e.status === 409 || !e.status)) { await new Promise(r => setTimeout(r, 1500)); return publish(false); } // kurz danach nochmal
     setStatus('err', 'Fehler');
     render();
     alert('Speichern fehlgeschlagen.\n\n' + e.message +
@@ -254,7 +255,7 @@ function render() {
     h('button', { class: name === S.tab ? 'on' : '', onclick: () => { S.tab = name; render(); window.scrollTo(0, 0); } }, c.label)));
 
   const dock = h('div', { class: 'dock' },
-    S.dirty ? h('button', { class: 'cta glass', onclick: publish }, 'Veröffentlichen') : null,
+    S.dirty ? h('button', { class: 'cta glass', onclick: () => publish() }, 'Veröffentlichen') : null,
     h('button', { class: 'fab', 'aria-label': 'Neuer Link', onclick: () => openSheet(-1) }, svg(ICON.plus, 26)));
 
   $app.replaceChildren(h('div', { class: 'screen' },
@@ -266,7 +267,7 @@ function render() {
 
 function itemView(l, i) {
   const thumb = h('div', { class: `thumb${l.image ? '' : ' mono'}` },
-    focusImg(h('img', { src: l.image ? imgSrc(l.image) : '/assets/monogram-white.png', alt: '' }), l.focus));
+    l.image ? focusImg(h('img', { src: imgSrc(l.image), alt: '' }), l) : h('img', { src: '/assets/monogram-white.png', alt: '' }));
   const badges = h('div', { class: 'badges' },
     l.featured ? h('span', { class: 'badge feat' }, 'Groß') : null,
     l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
@@ -330,9 +331,11 @@ function parseFocus(f) {
   const m = /^(\d{1,3}) (\d{1,3})$/.exec(f || '');
   return m ? [Math.min(+m[1], 100), Math.min(+m[2], 100)] : [50, 50];
 }
-function focusImg(img, f) {
-  const [x, y] = parseFocus(f);
-  img.style.objectPosition = `${x}% ${y}%`; // CSSOM, kein style-Attribut (CSP)
+function focusImg(img, d) {
+  const [x, y] = parseFocus(d.focus), z = (d.zoom || 100) / 100;
+  // CSSOM statt style-Attribut (CSP); gleiche Darstellung wie auf der Website
+  img.style.objectPosition = img.style.transformOrigin = `${x}% ${y}%`;
+  img.style.transform = z > 1 ? `scale(${z})` : '';
   return img;
 }
 
@@ -340,20 +343,21 @@ function focusImg(img, f) {
 function cropView(d, setup) {
   const frames = [];
   const frame = (cls, label) => {
-    const img = focusImg(h('img', { src: imgSrc(d.image), alt: '', draggable: 'false' }), d.focus);
+    const img = focusImg(h('img', { src: imgSrc(d.image), alt: '', draggable: 'false' }), d);
     const f = h('div', { class: `frame ${cls}` }, img);
     frames.push(img);
     f.addEventListener('pointerdown', e => drag(e, f, img));
     return h('div', { class: `framebox ${cls}` }, f, h('small', {}, label));
   };
-  const apply = () => frames.forEach(img => focusImg(img, d.focus));
+  const apply = () => frames.forEach(img => focusImg(img, d));
   function drag(e, f, img) {
     e.preventDefault();
     f.setPointerCapture(e.pointerId);
     let [x, y] = parseFocus(d.focus), lx = e.clientX, ly = e.clientY;
     const move = ev => {
       const fw = f.clientWidth, fh = f.clientHeight, nw = img.naturalWidth || 1, nh = img.naturalHeight || 1;
-      const sc = Math.max(fw / nw, fh / nh), ox = nw * sc - fw, oy = nh * sc - fh;
+      // verschiebbarer Weg = gezoomte Bildgröße minus Rahmen
+      const sc = Math.max(fw / nw, fh / nh) * (d.zoom || 100) / 100, ox = nw * sc - fw, oy = nh * sc - fh;
       // Bild folgt dem Finger: nach rechts ziehen zeigt mehr vom linken Rand
       if (ox > 1) x = Math.min(100, Math.max(0, x - (ev.clientX - lx) / ox * 100));
       if (oy > 1) y = Math.min(100, Math.max(0, y - (ev.clientY - ly) / oy * 100));
@@ -364,17 +368,24 @@ function cropView(d, setup) {
     const up = () => { f.removeEventListener('pointermove', move); f.removeEventListener('pointerup', up); f.removeEventListener('pointercancel', up); };
     f.addEventListener('pointermove', move); f.addEventListener('pointerup', up); f.addEventListener('pointercancel', up);
   }
-  const reset = h('button', { class: 'btn small', type: 'button', onclick: () => { d.focus = ''; apply(); } }, 'Mitte');
-  if (setup) return [h('div', { class: 'frames' }, frame('sq', 'Kachel')), h('div', { class: 'crophint' }, 'Bild verschieben, um den Ausschnitt zu wählen.', reset)];
+  const zoomLbl = h('b', {}, '');
+  const zoom = h('input', { class: 'zoom', type: 'range', min: 100, max: 300, step: 5, value: d.zoom || 100, 'aria-label': 'Zoom',
+    oninput: e => { d.zoom = +e.target.value; paintZoom(); apply(); } });
+  const paintZoom = () => { zoomLbl.textContent = `${((d.zoom || 100) / 100).toFixed(1).replace('.', ',')}×`; };
+  paintZoom();
+  const reset = h('button', { class: 'btn small', type: 'button', onclick: () => {
+    d.focus = ''; d.zoom = 100; zoom.value = 100; paintZoom(); apply(); } }, 'Zurücksetzen');
+  const controls = [h('div', { class: 'zoomrow' }, svg(ICON.image, 16), zoom, zoomLbl),
+    h('div', { class: 'crophint' }, setup ? 'Bild verschieben und zoomen.' : 'Bild mit dem Finger verschieben, mit dem Regler zoomen – so erscheint es auf der Website.', reset)];
+  if (setup) return [h('div', { class: 'frames' }, frame('sq', 'Kachel')), ...controls];
   return [frame('wide', 'Groß · Handy'),
-    h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein')),
-    h('div', { class: 'crophint' }, 'Bild mit dem Finger verschieben – so wird es auf der Website zugeschnitten.', reset)];
+    h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein')), ...controls];
 }
 
 function openSheet(i) {
   const isNew = i < 0;
   const setup = S.tab === 'setup';
-  const blank = { title: '', description: '', url: '', image: null, code: '', until: '', ad: true, visible: true };
+  const blank = { title: '', description: '', url: '', image: null, focus: '', zoom: 100, code: '', until: '', ad: true, visible: true };
   if (setup) blank.category = S.links[0]?.category || ''; else blank.featured = false;
   const d = isNew ? blank : { ...S.links[i] };
   const cats = [...new Set(S.data.setup.map(x => x.category).filter(Boolean))];
@@ -401,7 +412,7 @@ function openSheet(i) {
   paintThumb();
   const file = h('input', { type: 'file', accept: 'image/*', class: 'hide', onchange: async e => {
     const f = e.target.files[0]; if (!f) return;
-    try { d.image = await processImage(f, title.value || d.title); d.focus = ''; paintThumb(); }
+    try { d.image = await processImage(f, title.value || d.title); d.focus = ''; d.zoom = 100; paintThumb(); }
     catch { toast('Bild konnte nicht gelesen werden'); }
   } });
 
@@ -418,7 +429,7 @@ function openSheet(i) {
     h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
       crop, h('div', { class: 'acts2' }, pickBtn,
-        h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; paintThumb(); } }, 'Entfernen')), file),
+        h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; d.zoom = 100; paintThumb(); } }, 'Entfernen')), file),
     h('div', { class: 'toggles glass' },
       toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
       setup ? null : toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),

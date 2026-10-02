@@ -93,6 +93,13 @@ class NeueFunktionenTest(unittest.TestCase):
         base = {"title": "X", "url": "https://a.de", "image": "assets/links/a.webp", "featured": True}
         self.assertIn('style="object-position:20% 80%"', links.card(links.clean({**base, "focus": "20 80"}), 0))
         self.assertIn("100% 0%", links.card(links.clean({**base, "focus": "250 0"}), 0))
+        z = links.card(links.clean({**base, "focus": "20 80", "zoom": 150}), 0)
+        self.assertIn("transform:scale(1.5);transform-origin:20% 80%", z)
+        self.assertIn("scale(3)", links.card(links.clean({**base, "zoom": "999"}), 0))
+        small = links.card(links.clean({**base, "featured": False, "zoom": 200}), 0)
+        self.assertIn('class="thumb zw"', small)
+        for bad in ("abc", "-5", "100", '1"><x>'):
+            self.assertNotIn("transform", links.card(links.clean({**base, "zoom": bad}), 0))
         for bad in ("", "50%;color:red", '1 2"><script>', "1 2 3"):
             self.assertNotIn("object-position", links.card(links.clean({**base, "focus": bad}), 0))
 
