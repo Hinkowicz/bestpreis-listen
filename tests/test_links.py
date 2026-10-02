@@ -89,6 +89,13 @@ class NeueFunktionenTest(unittest.TestCase):
         self.assertIsNotNone(links.clean({"title": "Heute", "url": "https://a.de", "until": links.today().isoformat()}))
         self.assertIsNotNone(links.clean({"title": "Kaputt", "url": "https://a.de", "until": "irgendwann"}))
 
+    def test_bildausschnitt(self):
+        base = {"title": "X", "url": "https://a.de", "image": "assets/links/a.webp", "featured": True}
+        self.assertIn('style="object-position:20% 80%"', links.card(links.clean({**base, "focus": "20 80"}), 0))
+        self.assertIn("100% 0%", links.card(links.clean({**base, "focus": "250 0"}), 0))
+        for bad in ("", "50%;color:red", '1 2"><script>', "1 2 3"):
+            self.assertNotIn("object-position", links.card(links.clean({**base, "focus": bad}), 0))
+
     def test_setup_seite(self):
         from gh import pages
         items = links.load("content/setup.json", key="items", extra=("category",))

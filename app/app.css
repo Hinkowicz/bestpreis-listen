@@ -117,3 +117,16 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 .seg button.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
 .badge.code{color:var(--text)}.badge.until{color:#ffb547}.badge.exp{color:var(--danger)}
 input[type=date].input{min-height:50px;-webkit-appearance:none;appearance:none;color-scheme:dark}
+/* Logo im Kopf */
+.brand{display:grid;gap:4px;min-width:0}.brand img{height:22px;width:auto;opacity:.92}
+/* Bildausschnitt */
+.crop{display:grid;gap:10px;margin-bottom:8px}
+.crop>.thumb{width:96px;height:96px;border-radius:18px}
+.framebox{display:grid;gap:5px}.framebox small{color:var(--faint);font-size:11.5px;font-weight:600;margin-left:4px}
+.frame{position:relative;overflow:hidden;border-radius:20px;background:var(--field);border:1px solid var(--edge);touch-action:none;cursor:grab}
+.frame img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.frame.wide{aspect-ratio:16/8}.frame.wider{aspect-ratio:16/6}.frame.sq{width:72px;height:72px;border-radius:16px}
+.frames{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.frames .framebox.sq{justify-items:start}
+.crophint{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:12.5px;margin:0 0 0 4px}
+.btn.small{padding:7px 12px;font-size:13px;border-radius:999px;flex:none}

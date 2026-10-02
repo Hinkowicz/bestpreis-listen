@@ -1,4 +1,4 @@
-/* Hinko Links – kleine App zum Pflegen der Links auf hinkowicz.de.
+/* Links – kleine App zum Pflegen der Links auf hinkowicz.de.
  * Speichert direkt ins GitHub-Repository (ein Commit pro „Veröffentlichen“),
  * danach baut GitHub die Seite neu (ca. 1 Minute). Keine Fremddienste außer der GitHub-API. */
 'use strict';
@@ -123,14 +123,14 @@ async function gh(path, opts = {}) {
 
 function normalize(l, name) {
   const o = { title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
-    code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
+    focus: l.focus || '', code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
   if (name === 'links') o.featured = l.featured === true; else o.category = l.category || 'Sonstiges';
   return o;
 }
 
 function serialize(name) {
   // leere optionale Felder weglassen, damit die Dateien übersichtlich bleiben
-  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !(['code', 'until'].includes(k) && !v))));
+  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !(['focus', 'code', 'until'].includes(k) && !v))));
   return JSON.stringify({ [COLL[name].key]: items }, null, 2) + '\n';
 }
 
@@ -258,7 +258,7 @@ function render() {
     h('button', { class: 'fab', 'aria-label': 'Neuer Link', onclick: () => openSheet(-1) }, svg(ICON.plus, 26)));
 
   $app.replaceChildren(h('div', { class: 'screen' },
-    h('div', { class: 'bar' }, h('h1', {}, COLL[S.tab].label),
+    h('div', { class: 'bar' }, h('div', { class: 'brand' }, h('img', { src: '/assets/logo-dark.png', alt: 'Hinkowicz' }), h('h1', {}, COLL[S.tab].label)),
       h('div', { class: 'baracts' }, statusPill(),
         h('button', { class: 'iconbtn glass', 'aria-label': 'Menü', onclick: openMenu }, svg(ICON.more, 20, true)))),
     seg, list), dock);
@@ -266,7 +266,7 @@ function render() {
 
 function itemView(l, i) {
   const thumb = h('div', { class: `thumb${l.image ? '' : ' mono'}` },
-    h('img', { src: l.image ? imgSrc(l.image) : '/assets/monogram-white.png', alt: '' }));
+    focusImg(h('img', { src: l.image ? imgSrc(l.image) : '/assets/monogram-white.png', alt: '' }), l.focus));
   const badges = h('div', { class: 'badges' },
     l.featured ? h('span', { class: 'badge feat' }, 'Groß') : null,
     l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
@@ -325,6 +325,52 @@ function toggleRow(label, hint, checked, onchange) {
     h('span', { class: 'switch' }, h('input', { type: 'checkbox', checked, onchange: e => onchange(e.target.checked) }), h('span')));
 }
 
+/* Bildausschnitt: Fokuspunkt „x y“ in Prozent (wie CSS object-position), leer = Mitte */
+function parseFocus(f) {
+  const m = /^(\d{1,3}) (\d{1,3})$/.exec(f || '');
+  return m ? [Math.min(+m[1], 100), Math.min(+m[2], 100)] : [50, 50];
+}
+function focusImg(img, f) {
+  const [x, y] = parseFocus(f);
+  img.style.objectPosition = `${x}% ${y}%`; // CSSOM, kein style-Attribut (CSP)
+  return img;
+}
+
+/* Vorschau wie auf der Website (groß Handy 16:8, groß PC 16:6, klein quadratisch); Bild mit dem Finger verschieben */
+function cropView(d, setup) {
+  const frames = [];
+  const frame = (cls, label) => {
+    const img = focusImg(h('img', { src: imgSrc(d.image), alt: '', draggable: 'false' }), d.focus);
+    const f = h('div', { class: `frame ${cls}` }, img);
+    frames.push(img);
+    f.addEventListener('pointerdown', e => drag(e, f, img));
+    return h('div', { class: `framebox ${cls}` }, f, h('small', {}, label));
+  };
+  const apply = () => frames.forEach(img => focusImg(img, d.focus));
+  function drag(e, f, img) {
+    e.preventDefault();
+    f.setPointerCapture(e.pointerId);
+    let [x, y] = parseFocus(d.focus), lx = e.clientX, ly = e.clientY;
+    const move = ev => {
+      const fw = f.clientWidth, fh = f.clientHeight, nw = img.naturalWidth || 1, nh = img.naturalHeight || 1;
+      const sc = Math.max(fw / nw, fh / nh), ox = nw * sc - fw, oy = nh * sc - fh;
+      // Bild folgt dem Finger: nach rechts ziehen zeigt mehr vom linken Rand
+      if (ox > 1) x = Math.min(100, Math.max(0, x - (ev.clientX - lx) / ox * 100));
+      if (oy > 1) y = Math.min(100, Math.max(0, y - (ev.clientY - ly) / oy * 100));
+      lx = ev.clientX; ly = ev.clientY;
+      d.focus = Math.round(x) === 50 && Math.round(y) === 50 ? '' : `${Math.round(x)} ${Math.round(y)}`;
+      apply();
+    };
+    const up = () => { f.removeEventListener('pointermove', move); f.removeEventListener('pointerup', up); f.removeEventListener('pointercancel', up); };
+    f.addEventListener('pointermove', move); f.addEventListener('pointerup', up); f.addEventListener('pointercancel', up);
+  }
+  const reset = h('button', { class: 'btn small', type: 'button', onclick: () => { d.focus = ''; apply(); } }, 'Mitte');
+  if (setup) return [h('div', { class: 'frames' }, frame('sq', 'Kachel')), h('div', { class: 'crophint' }, 'Bild verschieben, um den Ausschnitt zu wählen.', reset)];
+  return [frame('wide', 'Groß · Handy'),
+    h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein')),
+    h('div', { class: 'crophint' }, 'Bild mit dem Finger verschieben – so wird es auf der Website zugeschnitten.', reset)];
+}
+
 function openSheet(i) {
   const isNew = i < 0;
   const setup = S.tab === 'setup';
@@ -346,12 +392,16 @@ function openSheet(i) {
   const clearUntil = h('button', { class: 'btn', type: 'button', onclick: () => { until.value = ''; } }, 'Ohne');
   const catList = h('datalist', { id: 'cats' }, ...cats.map(c => h('option', { value: c })));
   const category = h('input', { class: 'input', list: 'cats', placeholder: 'z. B. Peripherie & Controller', value: d.category || '' });
-  const thumb = h('div', { class: 'thumb' });
-  const paintThumb = () => thumb.replaceChildren(d.image ? h('img', { src: imgSrc(d.image), alt: '' }) : svg(ICON.image, 30));
+  const crop = h('div', { class: 'crop' });
+  const pickBtn = h('button', { class: 'btn', type: 'button', onclick: () => file.click() });
+  const paintThumb = () => {
+    pickBtn.textContent = d.image ? 'Bild ändern' : 'Bild wählen';
+    crop.replaceChildren(...(d.image ? cropView(d, setup) : [h('div', { class: 'thumb' }, svg(ICON.image, 30))]));
+  };
   paintThumb();
   const file = h('input', { type: 'file', accept: 'image/*', class: 'hide', onchange: async e => {
     const f = e.target.files[0]; if (!f) return;
-    try { d.image = await processImage(f, title.value || d.title); paintThumb(); }
+    try { d.image = await processImage(f, title.value || d.title); d.focus = ''; paintThumb(); }
     catch { toast('Bild konnte nicht gelesen werden'); }
   } });
 
@@ -367,9 +417,8 @@ function openSheet(i) {
     h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
     h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
-      h('div', { class: 'imgpick' }, thumb, h('div', { class: 'acts' },
-        h('button', { class: 'btn', type: 'button', onclick: () => file.click() }, d.image ? 'Bild ändern' : 'Bild wählen'),
-        h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; paintThumb(); } }, 'Entfernen'))), file),
+      crop, h('div', { class: 'acts2' }, pickBtn,
+        h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; paintThumb(); } }, 'Entfernen')), file),
     h('div', { class: 'toggles glass' },
       toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
       setup ? null : toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),
@@ -430,7 +479,7 @@ function renderLogin() {
     }
   };
   $app.replaceChildren(h('div', { class: 'login' }, h('div', { class: 'card glass' },
-    h('img', { src: '/app/icon-192.png', alt: '' }), h('h1', {}, 'Hinko Links'),
+    h('img', { src: '/app/icon-192.png', alt: '' }), h('h1', {}, 'Links'),
     h('p', {}, 'Melde dich einmalig mit deinem GitHub-Zugriffsschlüssel an. Er bleibt nur auf diesem Gerät gespeichert.'),
     h('label', { class: 'field' }, inp), err,
     h('button', { class: 'btn primary wide', onclick: go }, 'Anmelden'))));

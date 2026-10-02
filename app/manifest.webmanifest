@@ -1,6 +1,6 @@
 {
-  "name": "Hinko Links",
-  "short_name": "Hinko",
+  "name": "Links",
+  "short_name": "Links",
   "description": "Links auf hinkowicz.de pflegen",
   "start_url": "/app/",
   "scope": "/app/",

@@ -95,8 +95,10 @@ def clean(it, extra=()):
             pass
     img = str(it.get("image") or "").strip()
     code = re.sub(r"\s+", " ", str(it.get("code") or "").strip())[:40]
+    fm = re.match(r"^(\d{1,3}) (\d{1,3})$", str(it.get("focus") or "").strip())
+    focus = f"{min(int(fm[1]), 100)}% {min(int(fm[2]), 100)}%" if fm else ""
     out = {"title": title, "description": str(it.get("description") or "").strip(), "url": url,
-           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "code": code,
+           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "focus": focus, "code": code,
            "ad": it.get("ad", True) is not False, "featured": it.get("featured") is True}
     for k in extra:
         out[k] = str(it.get(k) or "").strip()
@@ -127,6 +129,11 @@ def _code(l):
             f'<span class="lbl">Code</span> <b>{e(l["code"])}</b> {COPY}</button>')
 
 
+def _pos(l):
+    """Bildausschnitt aus der App (Fokuspunkt), nur Zahlen – siehe clean()."""
+    return f' style="object-position:{l["focus"]}"' if l.get("focus") else ""
+
+
 def card(l, i):
     """Karte als Block mit unsichtbarem Voll-Link; der Code-Button liegt darüber und bleibt eigenständig klickbar."""
     star = "*" if l["ad"] else ""
@@ -135,12 +142,12 @@ def card(l, i):
     cover = (f'<a class="hit" href="{e(l["url"])}" target="_blank" rel="{_rel(l)}">'
              f'<span class="sr">{e(l["title"])}</span></a>')
     if l["featured"]:
-        art = (f'<img class="cover" src="{e(l["image"])}" alt="" loading="lazy">' if l["image"]
+        art = (f'<img class="cover" src="{e(l["image"])}"{_pos(l)} alt="" loading="lazy">' if l["image"]
                else '<img class="mono" src="/assets/monogram-white.png" alt="">')
         return (f'<div class="feat glass press rise" style="--i:{i}">{cover}'
                 f'<div class="art">{art}</div><div class="body"><span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}'
                 f'{_code(l)}</span><span class="go">{ARROW_UP}</span></div></div>')
-    thumb = (f'<img class="thumb" src="{e(l["image"])}" alt="" loading="lazy">' if l["image"]
+    thumb = (f'<img class="thumb" src="{e(l["image"])}"{_pos(l)} alt="" loading="lazy">' if l["image"]
              else '<span class="thumb ph"><img src="/assets/monogram-white.png" alt=""></span>')
     return (f'<div class="lnk glass press rise" style="--i:{i}">{cover}'
             f'{thumb}<span>{tag}<span class="t">{e(l["title"])}{star}</span>{desc}{_code(l)}</span>'

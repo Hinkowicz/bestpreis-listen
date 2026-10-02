@@ -110,7 +110,7 @@ def eur(v):
 
 def write_all(out_dir, builds, deals, tiers):
     o = Path(out_dir) / "og"
-    card(o / "home.png", "Gaming · Tech · Setup", "Hinkowicz", ["Links, Rabattcodes, mein Setup,", "Gaming-PC Bestpreis-Listen & Technik-Deals"])
+    card(o / "home.png", "Gaming · Technik · Setup", "Hinkowicz", ["Links, Rabattcodes, mein Setup,", "Gaming-PC Bestpreis-Listen & Technik-Deals"])
     card(o / "setup.png", "Mein Setup", "Alles, was auf meinem Tisch steht",
          ["Monitore, Peripherie, Kabelmanagement & mehr"])
     last = tiers[-1]["id"]
