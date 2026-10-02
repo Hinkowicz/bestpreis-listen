@@ -102,7 +102,7 @@ def load(path="content/umfrage.json"):
 def _question(i, q):
     key, kind, title, hint, opts = q
     num = f'<div class="n">Frage {i} von {len(QUESTIONS)}</div>'
-    hint_html = f'<p class="hint">{e(hint)}</p>' if hint else '<p class="hint">Eine Antwort wählen</p>'
+    hint_html = f'<p class="hint">{e(hint)}</p>' if hint else '<p class="hint">Eine Antwort wählen, dann „Weiter“</p>'
     if kind == "text":
         body = (f'<textarea class="in" name="{key}" maxlength="{TEXT_MAX}" placeholder="Schreib einfach drauf los …"></textarea>'
                 f'<div class="count"><span>0</span> / {TEXT_MAX}</div>')

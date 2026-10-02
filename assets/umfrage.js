@@ -45,8 +45,7 @@
     if (opt) {
       if (step.dataset.kind === 'one') {
         step.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === opt)));
-        refresh(step);
-        if (step !== questions[questions.length - 1]) setTimeout(() => { if (steps[idx] === step) show(idx + 1); }, 320);
+        refresh(step); // weiter geht es erst mit „Weiter“
       } else {
         opt.setAttribute('aria-pressed', String(opt.getAttribute('aria-pressed') !== 'true'));
         refresh(step);
