@@ -12,7 +12,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.55
+     24.49
     ],
     "AM4": {
      "board": [
@@ -56,7 +56,7 @@
      50
     ],
     [
-     796,
+     797,
      "AM4",
      "Ryzen 5 5500",
      "Intel Arc B570",
@@ -118,12 +118,20 @@
      95
     ],
     [
-     1225,
+     1223,
      "AM4",
      "Ryzen 5 5600X",
      "Radeon RX 9070",
      16,
      96
+    ],
+    [
+     1353,
+     "AM4",
+     "Ryzen 5 5600",
+     "Radeon RX 9070 XT",
+     16,
+     105
     ],
     [
      1232,
@@ -134,14 +142,6 @@
      96
     ],
     [
-     1354,
-     "AM4",
-     "Ryzen 5 5600",
-     "Radeon RX 9070 XT",
-     16,
-     105
-    ],
-    [
      1247,
      "AM4",
      "Ryzen 7 5700X",
@@ -150,7 +150,7 @@
      97
     ],
     [
-     1362,
+     1361,
      "AM4",
      "Ryzen 5 5600",
      "Radeon RX 9070 XT",
@@ -171,7 +171,7 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.55
+     24.49
     ],
     "AM4": {
      "board": [
@@ -206,7 +206,7 @@
    },
    "cheapest": [
     [
-     881,
+     880,
      "AM4",
      "Ryzen 5 5600",
      "Intel Arc B580",
@@ -215,7 +215,7 @@
      58
     ],
     [
-     889,
+     888,
      "AM4",
      "Ryzen 5 5600",
      "Intel Arc B580",
@@ -224,7 +224,7 @@
      58
     ],
     [
-     899,
+     896,
      "AM4",
      "Ryzen 5 5600X",
      "Intel Arc B580",
@@ -233,7 +233,7 @@
      58
     ],
     [
-     906,
+     905,
      "AM4",
      "Ryzen 5 5600X",
      "Intel Arc B580",
@@ -242,7 +242,7 @@
      58
     ],
     [
-     921,
+     920,
      "AM4",
      "Ryzen 7 5700X",
      "Intel Arc B580",
@@ -269,7 +269,7 @@
      93
     ],
     [
-     1225,
+     1223,
      "AM4",
      "Ryzen 5 5600X",
      "Radeon RX 9070",
@@ -293,7 +293,7 @@
      95
     ],
     [
-     1354,
+     1353,
      "AM4",
      "Ryzen 5 5600",
      "Radeon RX 9070 XT",
@@ -301,7 +301,7 @@
      103
     ],
     [
-     1362,
+     1361,
      "AM4",
      "Ryzen 5 5600",
      "Radeon RX 9070 XT",
@@ -309,7 +309,7 @@
      103
     ],
     [
-     1371,
+     1368,
      "AM4",
      "Ryzen 5 5600X",
      "Radeon RX 9070 XT",
@@ -330,12 +330,12 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.55
+     24.49
     ],
     "AM5": {
      "board": [
-      "GIGABYTE B650 Eagle AX (AMD AM5)",
-      99.9
+      "ASRock B850M-X WiFi R2.0 (AMD AM5) (90-MXBSH0-A0UAYZ)",
+      105.9
      ],
      "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
@@ -349,7 +349,7 @@
    },
    "cheapest": [
     [
-     1327,
+     1333,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9060 XT",
@@ -358,7 +358,7 @@
      73
     ],
     [
-     1346,
+     1352,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9060 XT",
@@ -367,7 +367,7 @@
      74
     ],
     [
-     1369,
+     1375,
      "AM5",
      "Ryzen 5 7600",
      "Radeon RX 9060 XT",
@@ -376,7 +376,7 @@
      73
     ],
     [
-     1375,
+     1381,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9060 XT",
@@ -385,7 +385,7 @@
      75
     ],
     [
-     1379,
+     1385,
      "AM5",
      "Ryzen 5 7600",
      "Radeon RX 9060 XT",
@@ -396,7 +396,7 @@
    ],
    "best_value": [
     [
-     1659,
+     1664,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9070 XT",
@@ -404,7 +404,7 @@
      110
     ],
     [
-     1630,
+     1635,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9070 XT",
@@ -412,7 +412,7 @@
      108
     ],
     [
-     1489,
+     1495,
      "AM5",
      "Ryzen 5 7600X",
      "Radeon RX 9070",
@@ -420,7 +420,7 @@
      99
     ],
     [
-     1518,
+     1524,
      "AM5",
      "Ryzen 5 9600X",
      "Radeon RX 9070",
@@ -428,7 +428,7 @@
      100
     ],
     [
-     1470,
+     1476,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9070",
@@ -436,7 +436,7 @@
      97
     ],
     [
-     1611,
+     1616,
      "AM5",
      "Ryzen 5 7500F",
      "Radeon RX 9070 XT",
@@ -444,7 +444,7 @@
      106
     ],
     [
-     1666,
+     1670,
      "AM5",
      "Ryzen 7 7700",
      "Radeon RX 9070 XT",
@@ -452,7 +452,7 @@
      109
     ],
     [
-     1674,
+     1679,
      "AM5",
      "Ryzen 5 9600",
      "Radeon RX 9070 XT",
@@ -473,12 +473,12 @@
     ],
     "cooler": [
      "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     24.55
+     24.49
     ],
     "AM5": {
      "board": [
-      "GIGABYTE B650 Eagle AX (AMD AM5)",
-      99.9
+      "ASRock B850M-X WiFi R2.0 (AMD AM5) (90-MXBSH0-A0UAYZ)",
+      105.9
      ],
      "ram16": [
       "G.Skill Flare X5 schwarz UDIMM 16GB Kit, DDR5-6000, CL30-38-38-96 (F5-6000J3038F8GH2-FX5)",
@@ -492,7 +492,7 @@
    },
    "cheapest": [
     [
-     1602,
+     1608,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9060 XT",
@@ -501,7 +501,7 @@
      79
     ],
     [
-     1617,
+     1663,
      "AM5",
      "Ryzen 5 7600X3D",
      "Radeon RX 9060 XT",
@@ -510,7 +510,7 @@
      78
     ],
     [
-     1717,
+     1723,
      "AM5",
      "Ryzen 7 9800X3D",
      "Radeon RX 9060 XT",
@@ -519,7 +519,7 @@
      82
     ],
     [
-     1745,
+     1751,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9070",
@@ -528,7 +528,7 @@
      105
     ],
     [
-     1747,
+     1753,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9060 XT",
@@ -539,7 +539,7 @@
    ],
    "best_value": [
     [
-     1886,
+     1891,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9070 XT",
@@ -547,7 +547,7 @@
      114
     ],
     [
-     1745,
+     1751,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9070",
@@ -555,7 +555,7 @@
      105
     ],
     [
-     2001,
+     2006,
      "AM5",
      "Ryzen 7 9800X3D",
      "Radeon RX 9070 XT",
@@ -563,15 +563,7 @@
      118
     ],
     [
-     1901,
-     "AM5",
-     "Ryzen 5 7600X3D",
-     "Radeon RX 9070 XT",
-     16,
-     112
-    ],
-    [
-     2037,
+     2042,
      "AM5",
      "Ryzen 7 9850X3D",
      "Radeon RX 9070 XT",
@@ -579,7 +571,7 @@
      120
     ],
     [
-     2031,
+     2036,
      "AM5",
      "Ryzen 7 7800X3D",
      "Radeon RX 9070 XT",
@@ -587,20 +579,28 @@
      119
     ],
     [
-     1760,
-     "AM5",
-     "Ryzen 5 7600X3D",
-     "Radeon RX 9070",
-     16,
-     103
-    ],
-    [
-     1860,
+     1866,
      "AM5",
      "Ryzen 7 9800X3D",
      "Radeon RX 9070",
      16,
      108
+    ],
+    [
+     1946,
+     "AM5",
+     "Ryzen 5 7600X3D",
+     "Radeon RX 9070 XT",
+     16,
+     112
+    ],
+    [
+     1902,
+     "AM5",
+     "Ryzen 7 9850X3D",
+     "Radeon RX 9070",
+     16,
+     110
     ]
    ]
   }
@@ -662,7 +662,7 @@
  },
  "lists": {
   "gpu/p": {
-   "count": 558,
+   "count": 559,
    "cheapest": [
     [
      "INNO3D GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (N710-1SDV-E3BX)",
@@ -673,12 +673,12 @@
      55
     ],
     [
-     "ASUS GeForce GT 710, GT710-SL-2GD5-BRK-EVO, 2GB GDDR5, VGA, DVI, HDMI (90YV0ALA-M0NA00)",
+     "Zotac GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (ZT-71310-10L)",
      64.9
     ],
     [
-     "Zotac GeForce GT 710, 2GB DDR3, VGA, DVI, HDMI (ZT-71310-10L)",
-     64.9
+     "ASUS GeForce GT 710, GT710-SL-2GD5-BRK-EVO, 2GB GDDR5, VGA, DVI, HDMI (90YV0ALA-M0NA00)",
+     64.96
     ],
     [
      "GIGABYTE GeForce GT 710 (Rev. 2.0), 2GB DDR3, VGA, DVI, HDMI (GV-N710D3-2GL)",
@@ -730,7 +730,7 @@
     ],
     [
      "GIGABYTE GeForce GT 1030 Low Profile D4 2G, 2GB DDR4, DVI, HDMI (GV-N1030D4-2GL)",
-     109.56
+     109.53
     ],
     [
      "PNY NVS 310, 1GB DDR3, 2x DP (VCNVS310DP-1GB-PB)",
@@ -762,12 +762,12 @@
     ],
     [
      "ASRock Arc A310 Low Profile 4GB, A310 LP 4G, 4GB GDDR6, HDMI, DP (90-G4NZZ-00UANF)",
-     160.99
+     156.28
     ]
    ]
   },
   "ssd/t": {
-   "count": 837,
+   "count": 832,
    "cheapest": [
     [
      "Intenso High Performance SSD 120GB, 2.5\" / SATA 6Gb/s (3813430)",
@@ -783,7 +783,7 @@
     ],
     [
      "Patriot P210 128GB, 2.5\" / SATA 6Gb/s (P210S128G25)",
-     27.3
+     27.26
     ],
     [
      "Intenso Performance SSD 128GB, 2.5\" / SATA 6Gb/s (3814430)",
@@ -819,7 +819,7 @@
     ],
     [
      "Emtec X150 SSD Power Plus 120GB, 2.5\" / SATA 6Gb/s (ECSSD120GX150)",
-     37.29
+     37.26
     ],
     [
      "Patriot P220 128GB, 2.5\" / SATA 6Gb/s (P220S128G25)",
@@ -867,7 +867,7 @@
     ],
     [
      "TeamGroup CX2 SSD 256GB, 2.5\" / SATA 6Gb/s (T253X6256G0C101)",
-     44.34
+     44.3
     ]
    ]
   },
@@ -891,10 +891,6 @@
      26.2
     ],
     [
-     "DarkFlash A290 White, Glasfenster",
-     26.38
-    ],
-    [
      "Endorfy Ventum 200 Solid (EY2A001)",
      26.5
     ],
@@ -908,7 +904,7 @@
     ],
     [
      "Inter-Tech B-42 (88881307)",
-     27.44
+     27.43
     ],
     [
      "Inter-Tech IT-2812, schwarz (88881367)",
@@ -947,10 +943,6 @@
      29.9
     ],
     [
-     "Sharkoon Pure Steel RGB Black, Glasfenster",
-     29.99
-    ],
-    [
      "Endorfy Signum 300 Solid (EY2A003)",
      30.5
     ],
@@ -963,21 +955,29 @@
      31.42
     ],
     [
+     "Endorfy Armis 100 Solid Black (EY2A015)",
+     31.74
+    ],
+    [
      "LC-Power 7040B (LC-7040B-ON)",
      31.89
     ],
     [
-     "Endorfy Armis 100 Solid Black (EY2A015)",
-     32.29
-    ],
-    [
      "LC-Power 7039B (LC-7039B-ON)",
      32.54
+    ],
+    [
+     "Inter-Tech B-42 RGB, Acrylfenster (88881320)",
+     32.61
+    ],
+    [
+     "AeroCool Shard, Acrylfenster (ACCM-PV14012.11)",
+     32.9
     ]
    ]
   },
   "cooler/t": {
-   "count": 580,
+   "count": 579,
    "cheapest": [
     [
      "Xilence I200 (XC030/COO-XPCPU.I200)",
@@ -989,15 +989,15 @@
     ],
     [
      "ARCTIC Alpine 23 (ACALP00035A)",
-     5.95
+     5.94
     ],
     [
      "LC-Power Cosmo Cool LC-CC-85",
-     6.29
+     6.25
     ],
     [
      "ARCTIC Alpine 17 (ACALP00040A)",
-     6.68
+     6.32
     ],
     [
      "Xilence A250PWM.B (XC335)",
@@ -1009,7 +1009,7 @@
     ],
     [
      "ARCTIC Alpine 23 CO (ACALP00036A)",
-     7.59
+     7.72
     ],
     [
      "ARCTIC Alpine 17 CO (ACALP00041A)",
@@ -1114,7 +1114,7 @@
     ],
     [
      "GIGABYTE A520M DS3H V2 (AMD AM4)",
-     53.71
+     53.89
     ],
     [
      "GIGABYTE A520M S2HP (AMD AM4)",
@@ -1126,7 +1126,7 @@
     ],
     [
      "ASUS Pro A520M-C II/CSM (AMD AM4) (90MB18F0-M0EAYC)",
-     55.61
+     55.59
     ],
     [
      "ASUS Prime A520M-R (AMD AM4) (90MB1H60-M0EAY0)",
@@ -1178,7 +1178,7 @@
     ],
     [
      "ASUS TUF Gaming A520M-Plus II (AMD AM4) (90MB17G0-M0EAY0)",
-     75.74
+     75.61
     ],
     [
      "ASRock B550M Phantom Gaming 4 (AMD AM4) (90-MXBE90-A0UAYZ)",
@@ -1287,7 +1287,7 @@
     ],
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
-     34.6
+     34.57
     ]
    ]
   },
@@ -1323,12 +1323,12 @@
      52.89
     ],
     [
-     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     55.2
-    ],
-    [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
      55.22
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
+     55.24
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, boxed (YD3200C5FHBOX)",
@@ -1347,16 +1347,12 @@
      66.9
     ],
     [
-     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
-     76.31
-    ],
-    [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
      79.9
     ],
     [
-     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
-     82.61
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
+     83.35
     ],
     [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
@@ -1369,6 +1365,10 @@
     [
      "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
      88.64
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
+     89.61
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
@@ -1397,7 +1397,7 @@
    ]
   },
   "psu/t": {
-   "count": 932,
+   "count": 935,
    "cheapest": [
     [
      "Inter-Tech Mini-ITX PSU 120W, Wandlerplatine (88882193)",
@@ -1425,7 +1425,7 @@
     ],
     [
      "Inter-Tech SL-500 TBP 500W, ATX 2.03 (88882254)",
-     26.41
+     26.4
     ],
     [
      "Gamdias Aura GP550 550W, ATX 2.4 (16210-02201-10000-G)",
@@ -1518,11 +1518,15 @@
     ],
     [
      "GIGABYTE A620M H (AMD AM5)",
-     71.79
+     71.76
     ],
     [
      "ASRock A620AM-P (AMD AM5) (90-MXBVJ0-A0UAYZ)",
-     74.35
+     74.64
+    ],
+    [
+     "Sapphire Pulse A620AM (AMD AM5) (52118-03-40G)",
+     77.36
     ],
     [
      "ASRock A620AM-X (AMD AM5) (90-MXBSV-A0UAYZ / 90-MXBST0-A0UAYZ)",
@@ -1530,14 +1534,6 @@
     ],
     [
      "ASRock B650M-H/M.2+ (AMD AM5) (90-MXBMS0-A0UAYZ)",
-     79.9
-    ],
-    [
-     "GIGABYTE B840M H (AMD AM5)",
-     79.9
-    ],
-    [
-     "Sapphire Pulse A620AM (AMD AM5) (52118-03-40G)",
      79.9
     ],
     [
@@ -1551,6 +1547,10 @@
     [
      "ASUS Prime A620AM-K (AMD AM5) (90MB1GX0-M0EAY0)",
      82.9
+    ],
+    [
+     "GIGABYTE B840M H (AMD AM5)",
+     83.64
     ],
     [
      "GIGABYTE B840M D2H (AMD AM5)",
@@ -1582,11 +1582,15 @@
     ],
     [
      "MSI PRO B840M-B (AMD AM5) (7E76-002R)",
-     92.43
+     93.48
     ],
     [
      "GIGABYTE B840M DS3H (AMD AM5)",
      96.05
+    ],
+    [
+     "GIGABYTE A620M Gaming X (AMD AM5)",
+     96.11
     ],
     [
      "ASRock A620AM Pro-A WiFi (AMD AM5) (90-MXBSY-A0UAYZ)",
@@ -1594,15 +1598,11 @@
     ],
     [
      "ASUS Pro A620M-DASH-CSM (AMD AM5) (90MB1GD0-M0EAYC)",
-     98.04
+     97.87
     ],
     [
      "Biostar A620MP-E Pro (AMD AM5)",
      98.17
-    ],
-    [
-     "ASRock A620AM Pro RS WiFi (AMD AM5) (90-MXBSW0-A0UAYZ)",
-     99.89
     ]
    ]
   },
@@ -1707,7 +1707,7 @@
     ],
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
-     34.6
+     34.57
     ]
    ]
   },
@@ -1743,12 +1743,12 @@
      52.89
     ],
     [
-     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     55.2
-    ],
-    [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
      55.22
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
+     55.24
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, boxed (YD3200C5FHBOX)",
@@ -1767,16 +1767,12 @@
      66.9
     ],
     [
-     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
-     76.31
-    ],
-    [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
      79.9
     ],
     [
-     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
-     82.61
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
+     83.35
     ],
     [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
@@ -1789,6 +1785,10 @@
     [
      "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
      88.64
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
+     89.61
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
@@ -1833,7 +1833,7 @@
     ],
     [
      "MSI PRO H610M-G (Intel 1700) (7D46-075R)",
-     45.95
+     49.9
     ],
     [
      "ASRock H610M-H2/M.2 D5 (Intel 1700) (90-MXBML0-A0UAYZ)",
@@ -1841,7 +1841,7 @@
     ],
     [
      "GIGABYTE H610M H V2 (Intel 1700)",
-     52.71
+     52.7
     ],
     [
      "ASRock H610M-H2/M.2 (Intel 1700) (90-MXBP70-A0UAYZ)",
@@ -1849,7 +1849,7 @@
     ],
     [
      "GIGABYTE H610M S2H V2 (Intel 1700)",
-     54.82
+     54.78
     ],
     [
      "ASUS Prime H610M-D (Intel 1700) (90MB1G80-M0EAY0)",
@@ -1865,11 +1865,7 @@
     ],
     [
      "MSI PRO H610M-E DDR4 (Intel 1700) (7D48-001R)",
-     57.97
-    ],
-    [
-     "GIGABYTE H610M H V3 DDR4 (Intel 1700)",
-     59.9
+     57.94
     ],
     [
      "ASRock H610M-HDV/M.2 R2.0 (Intel 1700) (90-MXBJH0-A0UAYZ)",
@@ -1877,11 +1873,15 @@
     ],
     [
      "ASUS Prime H610M-K (Intel 1700) (90MB1GA0-M0EAY0)",
-     61.04
+     61.03
     ],
     [
      "MSI PRO H610M-G DDR4 (Intel 1700) (7D46-009R)",
      61.76
+    ],
+    [
+     "GIGABYTE H610M H V3 DDR4 (Intel 1700)",
+     61.9
     ],
     [
      "GIGABYTE H610M K DDR4 (Intel 1700)",
@@ -1953,12 +1953,12 @@
      52.89
     ],
     [
-     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
-     55.2
-    ],
-    [
      "Intel Celeron G1820, 2C/2T, 2.70GHz, tray (CM8064601483405)",
      55.22
+    ],
+    [
+     "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, tray (YD3200C5M4MFH / YD3200C5FHMPK)",
+     55.24
     ],
     [
      "AMD Ryzen 3 3200G, 4C/4T, 3.60-4.00GHz, boxed (YD3200C5FHBOX)",
@@ -1977,16 +1977,12 @@
      66.9
     ],
     [
-     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
-     76.31
-    ],
-    [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, boxed (100-100000457BOX)",
      79.9
     ],
     [
-     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
-     82.61
+     "AMD Ryzen 5 3400G, 4C/8T, 3.70-4.20GHz, boxed mit AMD Wraith Stealth (YD3400C5FHSBX)",
+     83.35
     ],
     [
      "AMD Ryzen 5 5500, 6C/12T, 3.60-4.20GHz, tray (100-000000457)",
@@ -1999,6 +1995,10 @@
     [
      "AMD Ryzen 5 8400F, 6C/12T, 4.20-4.70GHz, tray (100-000001591 / 100-100001591MPK)",
      88.64
+    ],
+    [
+     "AMD Ryzen 3 4100, 4C/8T, 3.80-4.00GHz, tray (100-000000510)",
+     89.61
     ],
     [
      "AMD Ryzen 5 3600, 6C/12T, 3.60-4.20GHz, tray (100-000000031 / 100-100000031MPK)",
@@ -2127,7 +2127,7 @@
     ],
     [
      "Patriot Viper 3 schwarz UDIMM 8GB Kit, DDR3-1600, CL9-9-9-24 (PV38G160C9K)",
-     34.6
+     34.57
     ]
    ]
   }
@@ -2148,7 +2148,7 @@
   [
    "Intel Arc B580",
    12,
-   334.9,
+   333.9,
    "ASRock Arc B580 Challenger 12GB OC, B580 CL 12GO, 12GB GDDR6, HDMI, 3x DP (90-GA5LZZ-00UANF)"
   ],
   [
@@ -2158,16 +2158,16 @@
    "MSI GeForce RTX 5050 8G VENTUS 2X OC, G5050-8V2C, 8GB GDDR6, HDMI, 3x DP"
   ],
   [
-   "GeForce RTX 5060",
-   8,
-   426.9,
-   "PNY GeForce RTX 5060 Single Fan, 8GB GDDR7, HDMI, 3x DP (VCG50608SFXPB1)"
-  ],
-  [
    "Radeon RX 9060 XT",
    8,
    429.0,
    "XFX Swift Radeon RX 9060 XT OC Gaming Edition, 8GB GDDR6, HDMI, 2x DP (RX-96TSW8GBQ)"
+  ],
+  [
+   "GeForce RTX 5060",
+   8,
+   436.21,
+   "Zotac Gaming GeForce RTX 5060 Twin Edge, 8GB GDDR7, HDMI, 3x DP (ZT-B50600E-10M)"
   ],
   [
    "GeForce RTX 5060 Ti",
@@ -2184,7 +2184,7 @@
   [
    "Radeon RX 9070 GRE",
    12,
-   579.0,
+   589.0,
    "Sapphire Pulse Radeon RX 9070 GRE, 12GB GDDR6, 2x HDMI, 2x DP, lite retail (11354-01-20G)"
   ],
   [
@@ -2196,31 +2196,31 @@
   [
    "GeForce RTX 5060 Ti",
    16,
-   708.36,
+   715.0,
    "ASUS Dual GeForce RTX 5060 Ti OC, DUAL-RTX5060TI-O16G, 16GB GDDR7, HDMI, 3x DP (90YV0MH0-M0NA00)"
-  ],
-  [
-   "GeForce RTX 5070",
-   12,
-   765.91,
-   "MSI GeForce RTX 5070 12G World of Warcraft Midnight Void Edition OC, G5070-12WMVEC, 12GB GDDR7, HDMI, 3x DP (V532-251R)"
-  ],
-  [
-   "Radeon RX 7700 XT",
-   12,
-   779.89,
-   "ASUS Dual Radeon RX 7700 XT OC, DUAL-RX7700XT-O12G, 12GB GDDR6, HDMI, 3x DP (90YV0JZ0-M0NA00)"
   ],
   [
    "Radeon RX 9070 XT",
    16,
-   789.9,
+   788.9,
    "ASRock Radeon RX 9070 XT Challenger 16GB, RX9070XT CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA61ZZ-00UANF)"
+  ],
+  [
+   "GeForce RTX 5070",
+   12,
+   799.0,
+   "MSI GeForce RTX 5070 12G Ventus 2X OC, G5070-12V2C, 12GB GDDR7, HDMI, 3x DP (V532-003R)"
+  ],
+  [
+   "Radeon RX 7700 XT",
+   12,
+   809.89,
+   "ASUS Dual Radeon RX 7700 XT OC, DUAL-RX7700XT-O12G, 12GB GDDR6, HDMI, 3x DP (90YV0JZ0-M0NA00)"
   ],
   [
    "GeForce RTX 5070 Ti",
    16,
-   1198.99,
+   1198.96,
    "INNO3D GeForce RTX 5070 Ti X3 OC, 16GB GDDR7, HDMI, 3x DP (N507T3-16D7X-176068N)"
   ],
   [
@@ -2275,7 +2275,7 @@
    ],
    [
     "Ryzen 7 7700",
-    175.0,
+    174.31,
     "AMD Ryzen 7 7700, 8C/16T, 3.80-5.30GHz, tray (100-000000592 / 100-000000592A / 100-100000592MPK / 100-100000592SPK)"
    ],
    [
@@ -2305,7 +2305,7 @@
    ],
    [
     "Ryzen 5 7600X3D",
-    289.11,
+    328.61,
     "AMD Ryzen 5 7600X3D, 6C/12T, 4.10-4.70GHz, boxed ohne Kühler (100-100001721WOF)"
    ],
    [
@@ -2342,7 +2342,7 @@
    ],
    [
     "Ryzen 5 5600X",
-    118.06,
+    116.0,
     "AMD Ryzen 5 5600X, 6C/12T, 3.70-4.60GHz, tray (100-000000065)"
    ],
    [
@@ -2357,7 +2357,7 @@
    ],
    [
     "Ryzen 5 5600X",
-    149.73,
+    149.71,
     "AMD Ryzen 5 5600X, 6C/12T, 3.70-4.60GHz, boxed (100-100000065BOX)"
    ],
    [
@@ -2369,7 +2369,7 @@
   "LGA1700": [
    [
     "Core i5-12400F",
-    119.24,
+    119.2,
     "Intel Core i5-12400F, 6P/12T, 2.50-4.40GHz, tray (CM8071504555318 / CM8071504650609)"
    ],
    [
@@ -2420,20 +2420,6 @@
    "score": 152.9
   },
   {
-   "id": 3624464,
-   "name": "Amazon Echo Show 11 (2025) weiß (53-100559)",
-   "price": 149.0,
-   "old_price": 240.32,
-   "percent": -38.0,
-   "alltime_best": true,
-   "category": "Audio & HiFi > HiFi-Komponenten > Multiroom-Lautsprecher",
-   "section": "Audio & HiFi",
-   "merchant": "expert TechnoMarkt",
-   "image": null,
-   "url": "https://geizhals.de/a3624464.html?cs_id=491744683&ccpid=hinkowiczlisten",
-   "score": 144.9
-  },
-  {
    "id": 3835067,
    "name": "Dreame X60 Pro Ultra Complete Saug-/Wischroboter weiß inkl. Absaug-/Reinigungsstation (RLX96DE)",
    "price": 1099.0,
@@ -2446,6 +2432,20 @@
    "image": "https://gzhls.at/pix/21/de/21de4a047c1afa25-n.webp",
    "url": "https://geizhals.de/a3835067.html?cs_id=491744683&ccpid=hinkowiczlisten",
    "score": 127.6
+  },
+  {
+   "id": 3209339,
+   "name": "Sharkoon Rebel P20 SFX 1000W, SFX 4.1",
+   "price": 99.9,
+   "old_price": 166.5,
+   "percent": -40.0,
+   "alltime_best": true,
+   "category": "Hardware > Netzteile & USV > Netzteile",
+   "section": "Hardware",
+   "merchant": "Alternate",
+   "image": "https://gzhls.at/pix/ea/42/ea42f6993e4860d9-n.webp",
+   "url": "https://geizhals.de/a3209339.html?cs_id=491744683&ccpid=hinkowiczlisten",
+   "score": 126.7
   },
   {
    "id": 3942327,
@@ -2462,18 +2462,18 @@
    "score": 118.2
   },
   {
-   "id": 3921101,
-   "name": "Garmin Fenix 9 47mm titanium/pebble grey (010-04762-01)",
-   "price": 783.9,
-   "old_price": 1005.0,
-   "percent": -22.0,
-   "alltime_best": true,
-   "category": "Telefon > Mobiltelefone > Smartwatches & Sportuhren",
-   "section": "Telefon",
-   "merchant": "Coolblue",
-   "image": "https://gzhls.at/pix/d9/90/d990ab5a41546fed-n.webp",
-   "url": "https://geizhals.de/a3921101.html?cs_id=491744683&ccpid=hinkowiczlisten",
-   "score": 110.5
+   "id": 3209330,
+   "name": "Sharkoon Rebel P20 SFX 850W, SFX 4.1",
+   "price": 89.9,
+   "old_price": 169.62,
+   "percent": -47.0,
+   "alltime_best": false,
+   "category": "Hardware > Netzteile & USV > Netzteile",
+   "section": "Hardware",
+   "merchant": "Alternate",
+   "image": "https://gzhls.at/pix/ea/42/ea42f6993e4860d9-n.webp",
+   "url": "https://geizhals.de/a3209330.html?cs_id=491744683&ccpid=hinkowiczlisten",
+   "score": 115.9
   }
  ],
  "tree": [

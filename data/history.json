@@ -1,12 +1,12 @@
 {
- "updated": "01.10.2026, 16:26 Uhr",
+ "updated": "02.10.2026, 08:33 Uhr",
  "builds": [
   {
    "tier": "800",
    "name": "Full-HD Allrounder",
    "budget": 800,
    "platform": "AM4",
-   "total": 835.86,
+   "total": 835.2,
    "score": 56,
    "parts": [
     {
@@ -15,17 +15,17 @@
      "price": 79.9,
      "id": 2709165,
      "url": "https://geizhals.de/a2709165.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/bb/ed/bbedc9d8f098e393-s.webp",
+     "image": "img/2709165.webp",
      "note": "Ryzen 5 5500",
      "merchant": "computeruniverse"
     },
     {
      "slot": "Grafikkarte",
      "name": "ASRock Arc B580 Challenger 12GB OC, B580 CL 12GO, 12GB GDDR6, HDMI, 3x DP (90-GA5LZZ-00UANF)",
-     "price": 334.9,
+     "price": 333.9,
      "id": 3365541,
      "url": "https://geizhals.de/a3365541.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/1d/84/1d84d7d3d92b290b-s.webp",
+     "image": "img/3365541.webp",
      "note": "Intel Arc B580 · 12 GB",
      "merchant": "alza-de"
     },
@@ -35,7 +35,7 @@
      "price": 64.69,
      "id": 2298964,
      "url": "https://geizhals.de/a2298964.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/a9/04a99ae1a22a940e-s.webp",
+     "image": "img/2298964.webp",
      "note": "AM4",
      "merchant": "mindfactory"
     },
@@ -45,7 +45,7 @@
      "price": 109.0,
      "id": 3564392,
      "url": "https://geizhals.de/a3564392.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/2a/b7/2ab7c9dd56c89b44-s.webp",
+     "image": "img/3564392.webp",
      "note": "16 GB",
      "merchant": "mindfactory"
     },
@@ -55,7 +55,7 @@
      "price": 134.9,
      "id": 3248579,
      "url": "https://geizhals.de/a3248579.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/07/c2/07c2b9f369550a02-s.webp",
+     "image": "img/3248579.webp",
      "note": "1 TB NVMe",
      "merchant": "alternate"
     },
@@ -72,10 +72,10 @@
     {
      "slot": "Netzteil",
      "name": "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     "price": 52.58,
+     "price": 52.92,
      "id": 3478224,
      "url": "https://geizhals.de/a3478224.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
+     "image": "img/3478224.webp",
      "note": "",
      "merchant": "mindfactory"
     },
@@ -85,13 +85,13 @@
      "price": 59.89,
      "id": 3340712,
      "url": "https://geizhals.de/a3340712.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e3/db/e3dbb75a11110e04-s.webp",
+     "image": "img/3340712.webp",
      "note": "",
      "merchant": "dreihunderttageoffende-de"
     }
    ],
    "upgrade": {
-    "extra": 94,
+    "extra": 95,
     "gain": 16,
     "text": "Radeon RX 9060 XT (8 GB) statt Intel Arc B580"
    }
@@ -101,7 +101,7 @@
    "name": "WQHD Einstieg",
    "budget": 1000,
    "platform": "AM4",
-   "total": 920.51,
+   "total": 919.79,
    "score": 58,
    "parts": [
     {
@@ -110,17 +110,17 @@
      "price": 140.0,
      "id": 2697378,
      "url": "https://geizhals.de/a2697378.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e1/03/e1036384a3d82e61-s.webp",
+     "image": "img/2697378.webp",
      "note": "Ryzen 7 5700X",
      "merchant": "ditech-at"
     },
     {
      "slot": "Grafikkarte",
      "name": "ASRock Arc B580 Challenger 12GB OC, B580 CL 12GO, 12GB GDDR6, HDMI, 3x DP (90-GA5LZZ-00UANF)",
-     "price": 334.9,
+     "price": 333.9,
      "id": 3365541,
      "url": "https://geizhals.de/a3365541.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/1d/84/1d84d7d3d92b290b-s.webp",
+     "image": "img/3365541.webp",
      "note": "Intel Arc B580 · 12 GB",
      "merchant": "alza-de"
     },
@@ -130,7 +130,7 @@
      "price": 64.69,
      "id": 2298964,
      "url": "https://geizhals.de/a2298964.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/a9/04a99ae1a22a940e-s.webp",
+     "image": "img/2298964.webp",
      "note": "AM4",
      "merchant": "mindfactory"
     },
@@ -140,7 +140,7 @@
      "price": 109.0,
      "id": 3564392,
      "url": "https://geizhals.de/a3564392.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/2a/b7/2ab7c9dd56c89b44-s.webp",
+     "image": "img/3564392.webp",
      "note": "16 GB",
      "merchant": "mindfactory"
     },
@@ -150,27 +150,27 @@
      "price": 134.9,
      "id": 3248579,
      "url": "https://geizhals.de/a3248579.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/07/c2/07c2b9f369550a02-s.webp",
+     "image": "img/3248579.webp",
      "note": "1 TB NVMe",
      "merchant": "alternate"
     },
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.55,
+     "price": 24.49,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
+     "image": "img/3144176.webp",
      "note": "",
      "merchant": "mindfactory"
     },
     {
      "slot": "Netzteil",
      "name": "be quiet! System Power 11 550W, ATX 3.1 (BP010EU)",
-     "price": 52.58,
+     "price": 52.92,
      "id": 3478224,
      "url": "https://geizhals.de/a3478224.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/8b/4c/8b4c4f4fa4706003-s.webp",
+     "image": "img/3478224.webp",
      "note": "",
      "merchant": "mindfactory"
     },
@@ -180,7 +180,7 @@
      "price": 59.89,
      "id": 3340712,
      "url": "https://geizhals.de/a3340712.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e3/db/e3dbb75a11110e04-s.webp",
+     "image": "img/3340712.webp",
      "note": "",
      "merchant": "dreihunderttageoffende-de"
     }
@@ -196,7 +196,7 @@
    "name": "WQHD High-End",
    "budget": 1500,
    "platform": "AM5",
-   "total": 1518.11,
+   "total": 1524.05,
    "score": 100,
    "parts": [
     {
@@ -205,7 +205,7 @@
      "price": 167.97,
      "id": 3256375,
      "url": "https://geizhals.de/a3256375.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/2f/042fb8ebdf32ff26-s.webp",
+     "image": "img/3256375.webp",
      "note": "Ryzen 5 9600X",
      "merchant": "dreihunderttageoffende-de"
     },
@@ -215,19 +215,19 @@
      "price": 659.0,
      "id": 3430118,
      "url": "https://geizhals.de/a3430118.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/7e/8a/7e8af3560048bc5d-s.webp",
+     "image": "img/3430118.webp",
      "note": "Radeon RX 9070 · 16 GB",
      "merchant": "nullprozentshop-de"
     },
     {
      "slot": "Mainboard",
-     "name": "GIGABYTE B650 Eagle AX (AMD AM5)",
-     "price": 99.9,
-     "id": 3108584,
-     "url": "https://geizhals.de/a3108584.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/cd/dc/cddcdce90cb92cef-s.webp",
+     "name": "ASRock B850M-X WiFi R2.0 (AMD AM5) (90-MXBSH0-A0UAYZ)",
+     "price": 105.9,
+     "id": 3483449,
+     "url": "https://geizhals.de/a3483449.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "img/3483449.webp",
      "note": "AM5",
-     "merchant": "alternate"
+     "merchant": "alza-de"
     },
     {
      "slot": "Arbeitsspeicher",
@@ -235,7 +235,7 @@
      "price": 302.0,
      "id": 3696908,
      "url": "https://geizhals.de/a3696908.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/9d/df/9ddf44f421b01db3-s.webp",
+     "image": "img/3696908.webp",
      "note": "16 GB",
      "merchant": "alternate"
     },
@@ -245,17 +245,17 @@
      "price": 134.9,
      "id": 3248579,
      "url": "https://geizhals.de/a3248579.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/07/c2/07c2b9f369550a02-s.webp",
+     "image": "img/3248579.webp",
      "note": "1 TB NVMe",
      "merchant": "alternate"
     },
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.55,
+     "price": 24.49,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
+     "image": "img/3144176.webp",
      "note": "",
      "merchant": "mindfactory"
     },
@@ -265,7 +265,7 @@
      "price": 69.9,
      "id": 3364404,
      "url": "https://geizhals.de/a3364404.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/af/42/af425cb3197051e4-s.webp",
+     "image": "img/3364404.webp",
      "note": "",
      "merchant": "alternate"
     },
@@ -275,13 +275,13 @@
      "price": 59.89,
      "id": 3340712,
      "url": "https://geizhals.de/a3340712.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e3/db/e3dbb75a11110e04-s.webp",
+     "image": "img/3340712.webp",
      "note": "",
      "merchant": "dreihunderttageoffende-de"
     }
    ],
    "upgrade": {
-    "extra": 141,
+    "extra": 140,
     "gain": 9,
     "text": "Radeon RX 9070 XT (16 GB) statt Radeon RX 9070"
    }
@@ -291,7 +291,7 @@
    "name": "4K Enthusiast",
    "budget": 2000,
    "platform": "AM5",
-   "total": 2181.82,
+   "total": 2186.76,
    "score": 124,
    "parts": [
     {
@@ -300,29 +300,29 @@
      "price": 424.9,
      "id": 3689114,
      "url": "https://geizhals.de/a3689114.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/04/2f/042fb8ebdf32ff26-s.webp",
+     "image": "img/3689114.webp",
      "note": "Ryzen 7 9850X3D",
      "merchant": "acom-de"
     },
     {
      "slot": "Grafikkarte",
      "name": "ASRock Radeon RX 9070 XT Challenger 16GB, RX9070XT CL 16G, 16GB GDDR6, HDMI, 3x DP (90-GA61ZZ-00UANF)",
-     "price": 789.9,
+     "price": 788.9,
      "id": 3646658,
      "url": "https://geizhals.de/a3646658.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e6/02/e6021fafca61ed95-s.webp",
+     "image": "img/3646658.webp",
      "note": "Radeon RX 9070 XT · 16 GB",
      "merchant": "alza-de"
     },
     {
      "slot": "Mainboard",
-     "name": "GIGABYTE B650 Eagle AX (AMD AM5)",
-     "price": 99.9,
-     "id": 3108584,
-     "url": "https://geizhals.de/a3108584.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/cd/dc/cddcdce90cb92cef-s.webp",
+     "name": "ASRock B850M-X WiFi R2.0 (AMD AM5) (90-MXBSH0-A0UAYZ)",
+     "price": 105.9,
+     "id": 3483449,
+     "url": "https://geizhals.de/a3483449.html?cs_id=491744683&ccpid=hinkowiczlisten",
+     "image": "img/3483449.webp",
      "note": "AM5",
-     "merchant": "alternate"
+     "merchant": "alza-de"
     },
     {
      "slot": "Arbeitsspeicher",
@@ -330,7 +330,7 @@
      "price": 446.9,
      "id": 3918302,
      "url": "https://geizhals.de/a3918302.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/70/66/7066083965f73e3e-s.webp",
+     "image": "img/3918302.webp",
      "note": "32 GB",
      "merchant": "alza-de"
     },
@@ -340,17 +340,17 @@
      "price": 255.9,
      "id": 3305572,
      "url": "https://geizhals.de/a3305572.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/38/74/3874dc55836e705c-s.webp",
+     "image": "img/3305572.webp",
      "note": "2 TB NVMe",
      "merchant": "nullprozentshop-de"
     },
     {
      "slot": "CPU-Kühler",
      "name": "ARCTIC Freezer 36 Black (ACFRE00123A)",
-     "price": 24.55,
+     "price": 24.49,
      "id": 3144176,
      "url": "https://geizhals.de/a3144176.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/c3/86/c38625d27f7c73dd-s.webp",
+     "image": "img/3144176.webp",
      "note": "",
      "merchant": "mindfactory"
     },
@@ -360,7 +360,7 @@
      "price": 79.88,
      "id": 3346945,
      "url": "https://geizhals.de/a3346945.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/5c/b8/5cb8020291db9e22-s.webp",
+     "image": "img/3346945.webp",
      "note": "",
      "merchant": "mindfactory"
     },
@@ -370,7 +370,7 @@
      "price": 59.89,
      "id": 3340712,
      "url": "https://geizhals.de/a3340712.html?cs_id=491744683&ccpid=hinkowiczlisten",
-     "image": "https://gzhls.at/pix/e3/db/e3dbb75a11110e04-s.webp",
+     "image": "img/3340712.webp",
      "note": "",
      "merchant": "dreihunderttageoffende-de"
     }
