@@ -92,3 +92,60 @@ class HardwareTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AmazonTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from gh import amazon
+        cls.tmp = tempfile.TemporaryDirectory()
+        api = MockAPI()
+        catalog = Catalog(api, cache_dir=Path(cls.tmp.name) / "cache")
+        cls.items, cls.cache, _ = amazon.collect(catalog, api, offline=True)
+        amazon.write(cls.tmp.name, cls.items, cls.cache, config.TIERS, "Test")
+        cls.page = (Path(cls.tmp.name) / "amazon" / "index.html").read_text(encoding="utf-8")
+        cls.redirect = (Path(cls.tmp.name) / "a" / "index.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_nur_amazon_deals_mit_asin(self):
+        self.assertTrue(self.items)
+        for d in self.items:
+            self.assertRegex(d["merchant"], r"(?i)^amazon")
+            self.assertEqual(d["url"], "/a/?i=" + d["asin"])
+
+    def test_links_gekennzeichnet_und_ueber_weiterleitung(self):
+        hrefs = re.findall(r'<a class="card deal[^>]*href="([^"]+)"[^>]*rel="sponsored noopener"', self.page)
+        self.assertEqual(len(hrefs), len(self.items))
+        self.assertTrue(all(h.startswith("/a/?i=") for h in hrefs))
+        self.assertIn("Anzeige", self.page)
+        self.assertIn("Als Amazon-Partner verdiene ich an qualifizierten Verkäufen", self.page)
+        self.assertIn("noindex", self.page)
+
+    def test_weiterleitung_mit_partner_tag_und_ohne_fremdinhalte(self):
+        js = Path("assets/amazon.js").read_text(encoding="utf-8")
+        self.assertIn(f"const TAG = '{config.AMAZON_TAG}'", js)
+        self.assertIn("com.amazon.mShop.android.shopping", js)
+        self.assertEqual(re.findall(r'<script[^>]*src="([^"]+)"', self.redirect), ["/assets/amazon.js"])
+        self.assertIn("Anzeige", self.redirect)
+        self.assertNotRegex(self.redirect, r'(src|href)="https?://(?!www\.amazon\.de/")')
+
+    def test_ausserhalb_der_aktion_leer(self):
+        from gh import amazon
+        html = amazon.amazon_page(self.items, config.TIERS, "Test", "", active=False)
+        self.assertNotIn("/a/?i=", html)
+        self.assertIn("Gerade läuft keine Aktion", html)
+        from datetime import date
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            f.write('{"event": "BF", "from": "2026-11-20", "until": "2026-11-30"}')
+        self.assertTrue(amazon.load_event(f.name, date(2026, 11, 30))["active"])
+        self.assertFalse(amazon.load_event(f.name, date(2026, 12, 1))["active"])
+        Path(f.name).unlink()
+
+    def test_asin_aus_antwort(self):
+        from gh.amazon import _find_asin
+        self.assertEqual(_find_asin({"response": [{"x": 1, "asin": "B0ABCDEF12"}]}), "B0ABCDEF12")
+        self.assertEqual(_find_asin({"asins": [{"asin": "B0ABCDEF12"}]}), "B0ABCDEF12")
+        self.assertIsNone(_find_asin({"asin": "<script>"}))

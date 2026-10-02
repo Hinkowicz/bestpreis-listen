@@ -84,4 +84,12 @@ class MockAPI:
         deals = [{"id": 3000000 + i, "product": n, "best_price": p, "change_in_percent": pct, "alltime_best": at,
                   "category_path": f"{top} > {cat}", "middle_category_name": cat, "offer_count": 30, "hname": "Beispielshop"}
                  for i, (n, p, pct, top, cat, at) in enumerate(_DEALS)]
-        return {"deals": deals if params.get("m") == 1 else []}
+        if params.get("h_id") == 4711:  # Amazon-Liste: gleiche Beispiel-Deals, Amazon als Bestpreis-Händler
+            deals = [{**d, "hname": "Amazon.de", "h_id": "4711"} for d in deals]
+        return {"deals": deals if params.get("m") == 1 else [],
+                "merchants": [{"id": 1234, "name": "Beispielshop", "count": "9"}, {"id": 4711, "name": "Amazon.de", "count": "7"}]}
+
+    def post(self, endpoint, payload):
+        if endpoint == "query_product":  # Beispiel-ASIN aus der Geizhals-ID
+            return {"response": {"products": [{"asins": [f"B0MOCK{int(payload['query']) % 10000:04d}"]}]}}
+        raise NotImplementedError(endpoint)

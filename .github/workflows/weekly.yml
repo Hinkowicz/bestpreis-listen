@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "17 5 * * 1"   # jeden Montag ca. 07:17 Uhr (deutsche Zeit): neue Wochen-Listen
     - cron: "7 23 * * *"   # täglich kurz nach Mitternacht: neue Tages-Deals, abgelaufene Links ausblenden
+    - cron: "37 */3 * * *" # alle 3 Stunden: Amazon-Deals (und alle Preise) aktualisieren
   workflow_dispatch:        # manuell starten über "Run workflow"
   push:                     # z. B. Link-Änderungen über /admin/ – nach ~1–2 Minuten live
     branches: [main]
@@ -20,7 +21,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Der 3-Stunden-Takt läuft nur während einer Amazon-Aktion (Zeitraum in content/amazon.json)
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.c.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: content
+      - id: c
+        run: |
+          if [ "${{ github.event.schedule }}" != "37 */3 * * *" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          python3 - >> "$GITHUB_OUTPUT" <<'PY'
+          import json, datetime, zoneinfo
+          d = json.load(open("content/amazon.json"))
+          today = datetime.datetime.now(zoneinfo.ZoneInfo("Europe/Berlin")).date().isoformat()
+          print("run=" + ("true" if d.get("from") and d.get("until") and d["from"] <= today <= d["until"] else "false"))
+          PY
+
   build:
+    needs: check
+    if: needs.check.outputs.run == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

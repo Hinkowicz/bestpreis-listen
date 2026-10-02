@@ -113,3 +113,15 @@ DEAL_SETTINGS = {
     "max_per_midcat": 3,
     "top_n": 30,
 }
+
+# Amazon-Liste (Prime Day, Black Friday …): Geizhals-Bestpreis-Senkungen, bei denen Amazon der günstigste Händler ist.
+AMAZON_TAG = "hinkowicz-21"
+AMAZON_MERCHANT = r"^amazon(\.de)?$"  # Händlername bei Geizhals
+AMAZON_SETTINGS = {
+    "interval": "31d",  # Vergleich mit dem Monat davor: entlarvt vorher hochgesetzte Preise
+    "pricemin": 15,
+    "drop_percentmin": 12,
+    "per_topcat": 100,
+    "max_per_midcat": 4,
+    "top_n": 60,
+}

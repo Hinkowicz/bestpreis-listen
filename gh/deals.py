@@ -21,8 +21,9 @@ def deal_score(d):
     return s
 
 
-def collect(catalog, api):
-    s = config.DEAL_SETTINGS
+def collect(catalog, api, s=None, **filters):
+    """filters z. B. h_id=<Händler> für die Amazon-Liste."""
+    s = s or config.DEAL_SETTINGS
     raw = {}
     for m, title in catalog.top_categories():
         if m is None or not re.search(config.DEAL_TOPCATS, title, re.I):
@@ -31,7 +32,7 @@ def collect(catalog, api):
             resp = api.bestprice_development(
                 m=m, interval=s["interval"], pricemin=s["pricemin"],
                 drop_percentmin=s["drop_percentmin"], v=2, sort="pp",
-                limit=s["per_topcat"], top_deal=top_deal)
+                limit=s["per_topcat"], top_deal=top_deal, **filters)
             deals = resp.get("deals") or []
             for d in deals:
                 d["_top"] = title

@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import config, deals, legal, links, og, pages, render, survey
+from gh import amazon, config, deals, legal, links, og, pages, render, survey
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -55,6 +55,12 @@ def main():
     print(f"   {len(deal_list)} Deals")
     gha("notice", f"{len(deal_list)} Deals, {api.calls} API-Aufrufe")
 
+    print("→ Amazon-Deals")
+    amazon_active = args.mock or amazon.load_event()["active"]  # nur im Aktionszeitraum (content/amazon.json)
+    amazon_list, asins, info = amazon.collect(catalog, api, offline=args.mock, active=amazon_active)
+    print("   " + info)
+    gha("notice", "Amazon: " + info)
+
     # Diagnose-Daten (Preise je Kategorie, Kandidaten) fürs Feintuning
     dbg = {"tiers": builder.debug, "categories": catalog._cats, "lists": {}}
     for (key, sort, *_), prods in catalog._lists.items():
@@ -75,7 +81,7 @@ def main():
     if not args.mock:
         Path("data/debug.json").write_text(json.dumps(dbg, ensure_ascii=False, indent=1), encoding="utf-8")
 
-    localize_images(builds, deal_list, Path(args.out), offline=args.mock)
+    localize_images(builds, deal_list + amazon_list, Path(args.out), offline=args.mock)
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
@@ -83,6 +89,7 @@ def main():
     legal.write(args.out)
     pages.write(args.out)
     survey.write(args.out)  # versteckte Umfrage, nirgends verlinkt
+    amazon.write(args.out, amazon_list, asins, config.TIERS, stamp, amazon_active)
     og.write_all(args.out, builds, deal_list, config.TIERS)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor
