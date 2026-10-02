@@ -22,7 +22,7 @@ REDIRECT_CSS = BASE + """
 .go .ghost{background:var(--chip);color:var(--text);box-shadow:none;border:1px solid var(--edge)}
 .go .hint{margin-top:18px;font-size:14px}.go .hint[hidden]{display:none}
 .go .small{font-size:12px;color:var(--faint);margin:14px 0 0}
-.go .wordmark{height:34px;width:auto}
+.go .wordmark{height:34px;width:auto;display:block;margin:0 auto}
 """
 CACHE_URL = "https://hinkowicz.de/amazon/asins.json"  # ASINs ändern sich nicht -> vom letzten Lauf übernehmen
 
