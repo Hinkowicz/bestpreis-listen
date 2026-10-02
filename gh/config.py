@@ -7,6 +7,11 @@ SITE_URL = "https://hinkowicz.com"
 AFFILIATE_PARAMS = "cs_id=491744683&ccpid=hinkowiczlisten"
 GEIZHALS_BASE = "https://geizhals.de"
 
+# Rechtliche Seiten (Pflicht bei Seiten mit Werbung/Affiliate-Links). Ein Link auf
+# bestehende Seiten (z. B. auf hinkowicz.com) reicht, wenn sie dieses Angebot abdecken.
+IMPRINT_URL = ""   # z. B. "https://hinkowicz.com/impressum"
+PRIVACY_URL = ""   # z. B. "https://hinkowicz.com/datenschutz"
+
 AD_NOTICE = (
     "Die mit * markierten Links sind Affiliate-Links. Kaufst du darüber ein, "
     "erhalte ich eine kleine Provision – für dich ändert sich am Preis nichts."

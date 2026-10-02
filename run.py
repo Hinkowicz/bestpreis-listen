@@ -75,6 +75,8 @@ def main():
     if not args.mock:
         Path("data/debug.json").write_text(json.dumps(dbg, ensure_ascii=False, indent=1), encoding="utf-8")
 
+    localize_images(builds, deal_list, Path(args.out), offline=args.mock)
+
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     if not args.mock and builds:
@@ -83,6 +85,34 @@ def main():
                            encoding="utf-8")
     print(f"Fertig: {args.out}/ · API-Aufrufe: {api.calls}")
     return 0 if builds else 1
+
+
+def localize_images(builds, deal_list, out, offline=False):
+    """Produktbilder einmal herunterladen und selbst ausliefern.
+    So bekommt kein fremder Server die IP-Adressen der Besucher mit."""
+    import requests
+    from urllib.parse import urlparse
+    items = [p for b in builds for p in b["parts"]] + deal_list
+    (out / "img").mkdir(parents=True, exist_ok=True)
+    for it in items:
+        url, it["image"] = it.get("image"), None
+        if offline or not url or not it.get("id"):
+            continue
+        url = "https:" + url if url.startswith("//") else url
+        host = urlparse(url).hostname or ""
+        ext = Path(urlparse(url).path).suffix.lower()
+        if not (host == "gzhls.at" or host.endswith(".gzhls.at")) or ext not in (".jpg", ".jpeg", ".png", ".webp"):
+            continue
+        target = out / "img" / f"{int(it['id'])}{ext}"
+        try:
+            if not target.exists():
+                r = requests.get(url, timeout=20)
+                if r.status_code != 200 or len(r.content) > 2_000_000:
+                    continue
+                target.write_bytes(r.content)
+            it["image"] = f"img/{target.name}"
+        except requests.RequestException:
+            continue
 
 
 def gha(level, msg):

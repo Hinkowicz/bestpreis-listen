@@ -62,6 +62,15 @@ class SiteTest(unittest.TestCase):
         for name, html in self.pages.items():
             self.assertNotIn("<script", html.lower(), name)
 
+    def test_nichts_wird_von_fremden_servern_geladen(self):  # Datenschutz: keine IP-Weitergabe
+        for name, html in self.pages.items():
+            self.assertEqual(re.findall(r'(?:src|srcset)="(?:https?:)?//[^"]*"|url\((?:https?:)?//', html), [], name)
+
+    def test_nur_selbst_gehostete_bilder(self):
+        self.assertIn("noimg", render.img("https://gzhls.at/i/1/2/123-s0.jpg"))
+        self.assertIn("noimg", render.img("javascript:alert(1)"))
+        self.assertIn('src="img/123.jpg"', render.img("img/123.jpg"))
+
 
 class HardwareTest(unittest.TestCase):
     def test_vram_nicht_aus_modellnummer(self):  # Regression: "Arc B570" wurde als 70 GB gelesen

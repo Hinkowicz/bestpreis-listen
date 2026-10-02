@@ -1,5 +1,6 @@
 """Erzeugt die statischen Seiten (index, pc-<budget>, deals) + JSON für den Discord-Bot."""
 import html
+import re
 import json
 from pathlib import Path
 
@@ -89,6 +90,11 @@ def head_icons():
             '<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><meta name="theme-color" content="#17181c">')
 
 
+def legal_links():
+    links = [(n, u) for n, u in (("Impressum", config.IMPRINT_URL), ("Datenschutz", config.PRIVACY_URL)) if u]
+    return "".join(f' · <a href="{e(u)}">{n}</a>' for n, u in links)
+
+
 def e(s):
     return html.escape(str(s if s is not None else ""))
 
@@ -100,10 +106,9 @@ def eur(v):
 def img(url):
     if not url:
         return '<div class="noimg"></div>'
-    url = "https:" + url if url.startswith("//") else url
-    if not url.startswith("https://"):  # nur echte Bild-URLs, keine javascript:/data:-Tricks
+    if not re.fullmatch(r"img/\d+\.(jpg|jpeg|png|webp)", url):  # nur selbst gehostete Bilder
         return '<div class="noimg"></div>'
-    return f'<img src="{e(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">'
+    return f'<img src="{e(url)}" alt="" loading="lazy">'
 
 
 def page(title, active, body, tiers, stamp):
@@ -114,12 +119,12 @@ def page(title, active, body, tiers, stamp):
     return f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} – {e(config.SITE_TITLE)}</title>
 <meta name="robots" content="index,follow">{head_icons()}
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' https: data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><style>{CSS}</style></head><body><div class="wrap">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><style>{CSS}</style></head><body><div class="wrap">
 <header><a class="brand" href="index.html">{logo_html() or '<span>Hinkowicz</span>'}<small>Bestpreis-Listen</small></a><nav>{nav}</nav></header>
 <div class="ad"><b>Anzeige</b> · {e(config.AD_NOTICE)}</div>
 {body}
 <footer>Stand: {e(stamp)} · Preise inkl. MwSt. zzgl. Versand, Preisangaben über Geizhals.de, Änderungen möglich.
-Zusammenstellung &amp; Bewertung: eigener Hinko-Score. · <a href="{e(config.SITE_URL)}">hinkowicz.com</a></footer>
+Zusammenstellung &amp; Bewertung: eigener Hinko-Score. · <a href="{e(config.SITE_URL)}">hinkowicz.com</a>{legal_links()}</footer>
 </div></body></html>"""
 
 
