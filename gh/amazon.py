@@ -89,7 +89,9 @@ def collect(catalog, api, offline=False, active=True):
         return [], {}, "Amazon nicht unter den Geizhals-Händlern gefunden"
     cache = load_cache(offline)
     out, looked_up = [], 0
-    for d in deals.collect(catalog, api, config.AMAZON_SETTINGS, h_id=h_id):
+    raw = deals.collect(catalog, api, config.AMAZON_SETTINGS, h_id=h_id)
+    names = sorted({str(d.get("merchant")) for d in raw})[:8]
+    for d in raw:
         if not re.search(config.AMAZON_MERCHANT, str(d.get("merchant") or ""), re.I):
             continue  # Sicherheitsnetz: nur echte Amazon-Bestpreise
         key = str(d["id"])
@@ -102,7 +104,7 @@ def collect(catalog, api, offline=False, active=True):
             d["asin"] = cache[key]
             d["url"] = link(cache[key])
             out.append(d)
-    return out, cache, f"Händler-ID {h_id}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
+    return out, cache, f"Händler-ID {h_id}, {len(raw)} Roh-Deals {names}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
 
 
 def load_event(path="content/amazon.json", today=None):
