@@ -257,11 +257,12 @@ def amazon_page(items, tiers, stamp, event, active=True, manual=()):
     if manual:
         mine += '<h2>Meine Tipps</h2><div class="mine">' + "".join(links.card(m, i + 1) for i, m in enumerate(manual)) + "</div>"
     auto = ""
-    if active:
+    if active and items:  # automatische Liste nur zeigen, wenn Geizhals wirklich Amazon-Deals liefert
         auto = (f"""<h2>Alle 3 Stunden neu</h2>
 <p class="sub">Echte Preissenkungen bei Amazon – verglichen mit dem Geizhals-Bestpreis der letzten 31 Tage, nicht mit UVP-Streichpreisen.
-<b>Preise laut Geizhals, Stand {e(stamp)}.</b> Maßgeblich ist der Preis auf Amazon.</p>"""
-                + (f'<div class="grid">{cards}</div>' if items else '<p class="sub">Gerade keine weiteren Deals – schau in ein paar Stunden wieder vorbei.</p>'))
+<b>Preise laut Geizhals, Stand {e(stamp)}.</b> Maßgeblich ist der Preis auf Amazon.</p><div class="grid">{cards}</div>""")
+    elif active and not manual:
+        auto = '<p class="sub">Die ersten Deals kommen gleich – schau in Kürze wieder vorbei.</p>'
     elif not manual:
         auto = '<p class="sub">Gerade läuft keine Aktion. Zum nächsten Prime Day und Black Friday gibt es hier wieder die besten Amazon-Deals.</p>'
     body = f"""<h1>{e(head)}Die besten Amazon-Deals</h1>
@@ -307,4 +308,6 @@ def write(out_dir, items, cache, tiers, stamp, active=True, offline=False, api=N
     (out / "amazon" / "asins.json").write_text(json.dumps(cache, indent=0), encoding="utf-8")
     (out / "a" / "index.html").write_text(redirect_page(), encoding="utf-8")
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in items[:3]]
-    og.card(out / "og" / "amazon.png", "Alle 3 Stunden neu", "Amazon-Deals", top or ["Echte Rabatte statt UVP"])
+    picks = [m["title"][:52] for m in manual[:3]]
+    og.card(out / "og" / "amazon.png", ev["event"] if active and ev["event"] else "Meine Tipps",
+            "Amazon-Deals", top or picks or ["Echte Rabatte statt UVP"])

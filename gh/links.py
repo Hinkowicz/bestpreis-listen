@@ -95,13 +95,17 @@ def clean(it, extra=()):
         title = AUTO_TITLES.get(url) or (urlparse(url).hostname or "").removeprefix("www.")
         if not title:
             return None
-    until = str(it.get("until") or "").strip()
-    if until:
-        try:
-            if date.fromisoformat(until) < today():  # abgelaufen -> ausblenden
-                return None
-        except ValueError:
-            pass
+    until, start = str(it.get("until") or "").strip(), str(it.get("from") or "").strip()
+    try:
+        if until and date.fromisoformat(until) < today():  # abgelaufen -> ausblenden
+            return None
+    except ValueError:
+        pass
+    try:
+        if start and date.fromisoformat(start) > today():  # noch nicht dran (z. B. Aktion ab Dienstag)
+            return None
+    except ValueError:
+        pass
     img = str(it.get("image") or "").strip()
     code = re.sub(r"\s+", " ", str(it.get("code") or "").strip())[:40]
     fm = re.match(r"^(\d{1,3}) (\d{1,3})$", str(it.get("focus") or "").strip())

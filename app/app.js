@@ -147,7 +147,7 @@ async function gh(path, opts = {}) {
 
 function normalize(l, name) {
   const o = { title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
-    focus: l.focus || '', zoom: Math.min(300, Math.max(100, +l.zoom || 100)), code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
+    focus: l.focus || '', zoom: Math.min(300, Math.max(100, +l.zoom || 100)), code: l.code || '', from: l.from || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
   if (name === 'setup') o.category = l.category || 'Sonstiges'; else o.featured = l.featured === true;
   if (name === 'amazon') { o.asin = l.asin || ''; o.ad = true; }
   return o;
@@ -155,7 +155,7 @@ function normalize(l, name) {
 
 function serialize(name) {
   // leere optionale Felder weglassen, damit die Dateien übersichtlich bleiben
-  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !((['focus', 'code', 'until', 'asin'].includes(k) && !v) || (k === 'zoom' && v <= 100)))));
+  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !((['focus', 'code', 'from', 'until', 'asin'].includes(k) && !v) || (k === 'zoom' && v <= 100)))));
   return JSON.stringify({ [COLL[name].key]: items }, null, 2) + '\n';
 }
 
@@ -320,6 +320,7 @@ function itemView(l, i) {
     !l.image && S.auto[l.url] ? h('span', { class: 'badge' }, 'Auto-Bild') : null,
     l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
     l.code ? h('span', { class: 'badge code' }, 'Code ' + l.code) : null,
+    l.from && l.from > todayISO() ? h('span', { class: 'badge until' }, 'ab ' + deDate(l.from)) : null,
     l.until ? h('span', { class: `badge ${expired(l) ? 'exp' : 'until'}` }, expired(l) ? 'Abgelaufen' : 'bis ' + deDate(l.until)) : null,
     S.tab === 'amazon' && S.missing.has(l.url) ? h('span', { class: 'badge exp' }, 'Fehlt auf Website') : null,
     S.tab === 'amazon' && S.notitle.has(l.url) ? h('span', { class: 'badge exp' }, 'Titel fehlt') : null,
@@ -329,7 +330,7 @@ function itemView(l, i) {
     h('input', { type: 'checkbox', checked: l.visible, 'aria-label': 'Sichtbar',
       onchange: e => { l.visible = e.target.checked; S.dirty = true; render(); } }), h('span'));
   const handle = h('div', { class: 'handle', 'aria-label': 'Verschieben' }, svg(ICON.grip, 20, true));
-  const el = h('div', { class: `item glass${l.visible && !expired(l) ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
+  const el = h('div', { class: `item glass${l.visible && !expired(l) && !upcoming(l) ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
     thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || S.autoTitle[l.url] || (S.tab === 'amazon' ? 'Produktname wird über Geizhals gesucht …' : 'Titel wird automatisch geholt …')),
       h('div', { class: 's' }, l.description || l.url), badges), sw, handle);
   handle.addEventListener('click', e => e.stopPropagation());
@@ -369,6 +370,7 @@ function todayISO() {
   return new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date());  // YYYY-MM-DD
 }
 function expired(l) { return !!l.until && l.until < todayISO(); }
+function upcoming(l) { return !!l.from && l.from > todayISO(); }
 function deDate(iso) { const [y, m, d] = iso.split('-'); return `${d}.${m}.${y.slice(2)}`; }
 
 function toggleRow(label, hint, checked, onchange) {
@@ -483,7 +485,7 @@ function openSheet(i) {
   const isNew = i < 0;
   const setup = S.tab === 'setup';
   const amz = S.tab === 'amazon';
-  const blank = { title: '', description: '', url: '', image: null, focus: '', zoom: 100, code: '', until: '', ad: true, visible: true };
+  const blank = { title: '', description: '', url: '', image: null, focus: '', zoom: 100, code: '', from: '', until: '', ad: true, visible: true };
   if (setup) blank.category = S.links[0]?.category || ''; else blank.featured = false;
   const d = isNew ? blank : { ...S.links[i] };
   const cats = [...new Set(S.data.setup.map(x => x.category).filter(Boolean))];
@@ -518,6 +520,8 @@ function openSheet(i) {
   const code = h('input', { class: 'input', placeholder: 'optional, z. B. HINKO10', value: d.code, autocapitalize: 'characters', autocorrect: 'off' });
   const until = h('input', { class: 'input', type: 'date', value: d.until, min: todayISO() });
   const clearUntil = h('button', { class: 'btn', type: 'button', onclick: () => { until.value = ''; } }, 'Ohne');
+  const from = h('input', { class: 'input', type: 'date', value: d.from || '' });
+  const clearFrom = h('button', { class: 'btn', type: 'button', onclick: () => { from.value = ''; } }, 'Sofort');
   const catList = h('datalist', { id: 'cats' }, ...cats.map(c => h('option', { value: c })));
   const category = h('input', { class: 'input', list: 'cats', placeholder: 'z. B. Peripherie & Controller', value: d.category || '' });
   const crop = h('div', { class: 'crop' });
@@ -549,6 +553,7 @@ function openSheet(i) {
     err,
     setup ? h('label', { class: 'field' }, h('span', {}, 'Kategorie'), category, catList) : null,
     amz ? null : h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
+    h('div', { class: 'field' }, h('span', {}, 'Sichtbar ab (optional)'), h('div', { class: 'row2' }, from, clearFrom)),
     h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
       crop, h('div', { class: 'acts2' }, pickBtn, removeBtn), file),
@@ -567,7 +572,8 @@ function openSheet(i) {
   function save() {
     if (/\s/.test(url.value.trim())) takeShare(url.value);
     d.title = title.value.trim(); d.description = desc.value.trim(); d.url = normalizeUrl(url.value);
-    d.code = code.value.trim().replace(/\s+/g, ' ').slice(0, 40); d.until = until.value || '';
+    d.code = code.value.trim().replace(/\s+/g, ' ').slice(0, 40); d.until = until.value || ''; d.from = from.value || '';
+    if (d.from && d.until && d.from > d.until) { err.textContent = '„Sichtbar ab“ liegt nach „Sichtbar bis“.'; return; }
     if (setup) d.category = category.value.trim() || 'Sonstiges';
     if (!d.title && isAmazon(d.url) && !amz) { err.textContent = 'Amazon-Links bitte im Amazon-Tab eintragen – oder hier einen Titel angeben.'; title.focus(); return; }
     if (!d.title && !URL_OK(d.url)) { err.textContent = 'Bitte einen Titel oder Link eingeben.'; title.focus(); return; }
