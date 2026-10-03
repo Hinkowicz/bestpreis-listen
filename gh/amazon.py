@@ -110,7 +110,7 @@ def collect(catalog, api, offline=False, active=True):
 
 AMAZON_HOST = re.compile(r"^https://([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co|link\.amazon)/", re.I)
 SHORT_HOST = re.compile(r"^https://(amzn\.to|amzn\.eu|a\.co|link\.amazon)/", re.I)  # Kurzlinks, werden aufgelöst
-TITLES_URL = "https://hinkowicz.de/amazon/titles.json"  # ASIN -> Produktname vom letzten Lauf
+INFO_URL = "https://hinkowicz.de/amazon/info.json"  # ASIN -> Produktname/-bild (Geizhals) vom letzten Lauf
 ASIN_IN_URL = re.compile(r"/(?:dp|gp/product|gp/aw/d|exec/obidos/asin)/([A-Z0-9]{10})(?=[/?#]|$)", re.I)
 
 
@@ -135,57 +135,96 @@ def asin_from_url(url, offline=False):
     return None
 
 
-def geizhals_title(api, asin):
-    """Produktname über die Geizhals-API (Suche per ASIN) – Amazon-Seiten selbst lesen wir nicht aus."""
+def geizhals_info(api, asin):
+    """Produktname und -bild über die Geizhals-API (Suche per ASIN) – Amazon-Seiten selbst lesen wir nicht aus.
+    -> {"title": str|None, "image_url": str|None}"""
     try:
         resp = api.post("query_product", {"query": asin, "type": "asin"}).get("response") or []
-        name = re.sub(r"\s+", " ", str((resp[0] if isinstance(resp, list) and resp else {}).get("product") or "")).strip()
-        name = re.sub(r"\s*\([A-Z0-9-]{5,}\)$", "", name)  # Bestellnummer am Ende, z. B. „(20003057)“
-        first, _, rest = name.partition(" ")
-        if rest.lower().startswith(first.lower()):  # „FRITZ! FRITZ!Box …“ -> „FRITZ!Box …“
-            name = rest
-        return (name if len(name) <= 80 else name[:80].rsplit(" ", 1)[0] + " …") or None
+        prod = resp[0] if isinstance(resp, list) and resp and isinstance(resp[0], dict) else {}
     except Exception:
-        return None
+        prod = {}
+    name = re.sub(r"\s+", " ", str(prod.get("product") or "")).strip()
+    name = re.sub(r"\s*\([A-Z0-9-]{5,}\)$", "", name)  # Bestellnummer am Ende, z. B. „(20003057)“
+    first, _, rest = name.partition(" ")
+    if rest.lower().startswith(first.lower()):  # „FRITZ! FRITZ!Box …“ -> „FRITZ!Box …“
+        name = rest
+    image = next((u for u in prod.get("images") or [] if isinstance(u, str)
+                  and re.match(r"^https://([a-z0-9-]+\.)?gzhls\.at/", u)), None)  # nur Geizhals-Bilder
+    return {"title": (name if len(name) <= 80 else name[:80].rsplit(" ", 1)[0] + " …") or None, "image_url": image}
 
 
-def _previous_titles(offline):
+def geizhals_title(api, asin):
+    return geizhals_info(api, asin)["title"]
+
+
+def _previous_info(offline):
+    """Titel/Bilder vom letzten Lauf (spart Abfragen, Bilder liegen schon auf hinkowicz.de)."""
     if offline:
         return {}
     try:
         import requests
-        data = requests.get(TITLES_URL, timeout=10).json()
-        return {k: v for k, v in data.items() if ASIN_RE.match(k) and isinstance(v, str)}
+        data = requests.get(INFO_URL, timeout=10).json()
+        return {k: v for k, v in data.items() if ASIN_RE.match(k) and isinstance(v, dict)}
     except Exception:
         return {}
 
 
-def load_manual(path="content/amazon-deals.json", offline=False, api=None):
-    """Deine Amazon-Tipps aus der App -> (Karten mit Link über /a/, fehlende Links, fehlende Titel, Titel je ASIN).
+def _image_for(asin, info, previous, out_dir):
+    """Geizhals-Produktbild als /auto/<name>.webp ablegen (vom letzten Lauf übernehmen oder neu laden)."""
+    from . import autoimg
+    name = autoimg.name_for("geizhals-asin:" + asin)
+    target = Path(out_dir) / "auto" / name
+    target.parent.mkdir(parents=True, exist_ok=True)
+    import requests
+    sources = []
+    if (previous.get(asin) or {}).get("image") == f"/auto/{name}":
+        sources.append(f"https://hinkowicz.de/auto/{name}")
+    if info.get("image_url"):
+        sources.append(info["image_url"])
+    for src in sources:
+        try:
+            r = requests.get(src, timeout=15)
+            if r.status_code == 200 and len(r.content) < autoimg.MAX_IMG:
+                target.write_bytes(r.content if src.startswith("https://hinkowicz.de/") else autoimg.to_webp(r.content))
+                return f"/auto/{name}"
+        except Exception:
+            continue
+    return ""
 
-    Ohne eigenen Titel wird der Produktname über Geizhals gesucht; findet sich keiner, warnt die App."""
+
+def load_manual(path="content/amazon-deals.json", offline=False, api=None, out_dir=None):
+    """Deine Amazon-Tipps aus der App -> (Karten, fehlende Links, fehlende Titel, Infos je ASIN, Infos je Link).
+
+    Ohne eigenen Titel bzw. eigenes Bild werden Produktname und -bild über Geizhals geholt.
+    Ohne Titel und ohne Geizhals-Treffer warnt die App („Titel fehlt“)."""
     p = Path(path)
     raw = (json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}).get("items") or []
-    previous, titles, asins, notitle = _previous_titles(offline), {}, {}, []
+    previous, info, asins, notitle = _previous_info(offline), {}, {}, []
     for it in raw:
         url = str(it.get("url") or "").strip()
         if not AMAZON_HOST.match(url) or it.get("visible") is False:
             continue
         a = str(it.get("asin") or "").upper()
-        asins[url] = a if ASIN_RE.match(a) else asin_from_url(url, offline)
-        if asins[url] and not str(it.get("title") or "").strip():
-            t = previous.get(asins[url]) or (geizhals_title(api, asins[url]) if api else None)
-            if t:
-                titles[asins[url]] = t
-            else:
-                notitle.append(url)
-    by_url = {u: titles[a] for u, a in asins.items() if a in titles}
-    saved = links.AUTO_TITLES
-    links.AUTO_TITLES = {**saved, **by_url}
+        asin = asins[url] = a if ASIN_RE.match(a) else asin_from_url(url, offline)
+        need_title, need_image = not str(it.get("title") or "").strip(), not it.get("image")
+        if not asin or not (need_title or need_image):
+            continue
+        if asin not in info:
+            prev = previous.get(asin) or {}
+            got = {"title": prev.get("title"), "image_url": None} if prev.get("title") else (
+                geizhals_info(api, asin) if api and not offline else {"title": None, "image_url": None})
+            info[asin] = {"title": got["title"] or "",
+                          "image": _image_for(asin, got, previous, out_dir) if out_dir and not offline else ""}
+        if need_title and not info[asin]["title"]:
+            notitle.append(url)
+    by_url = {u: info[a] for u, a in asins.items() if a in info}
+    saved = links.AUTO_TITLES, links.AUTO
+    links.AUTO_TITLES = {**saved[0], **{u: v["title"] for u, v in by_url.items() if v["title"]}}
+    links.AUTO = {**saved[1], **{u: v["image"] for u, v in by_url.items() if v["image"]}}
     try:
         items = links.load(path, key="items", extra=("asin",))
     finally:
-        links.AUTO_TITLES = saved
+        links.AUTO_TITLES, links.AUTO = saved
     out, missing = [], []
     for it in items:
         asin = asins.get(it["url"])
@@ -195,7 +234,7 @@ def load_manual(path="content/amazon-deals.json", offline=False, api=None):
         if it["url"] in notitle:
             continue
         out.append({**it, "asin": asin, "ad": True, "code": "", "url": "https://hinkowicz.de" + link(asin)})
-    return out, missing, notitle, titles, by_url
+    return out, missing, notitle, info, by_url
 
 
 SHOP_CARD = {"title": "Mein Amazon-Shop", "description": "Mein Setup, Geschenkideen, Angebote und vieles mehr",
@@ -258,11 +297,13 @@ def write(out_dir, items, cache, tiers, stamp, active=True, offline=False, api=N
     (out / "amazon").mkdir(parents=True, exist_ok=True)
     (out / "a").mkdir(parents=True, exist_ok=True)
     ev = load_event()
-    manual, missing, notitle, titles, by_url = load_manual(offline=offline, api=api)
-    (out / "amazon" / "titles.json").write_text(json.dumps(titles, ensure_ascii=False, indent=0), encoding="utf-8")
+    manual, missing, notitle, info, by_url = load_manual(offline=offline, api=api, out_dir=out)
+    (out / "amazon" / "info.json").write_text(json.dumps(info, ensure_ascii=False, indent=0), encoding="utf-8")
     (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active, manual), encoding="utf-8")
     # Für die App: Einträge, die nicht auf der Seite erscheinen (z. B. Kurzlink ohne Produkt)
-    (out / "amazon" / "status.json").write_text(json.dumps({"missing": missing, "notitle": notitle, "titles": by_url}, ensure_ascii=False), encoding="utf-8")
+    (out / "amazon" / "status.json").write_text(json.dumps({"missing": missing, "notitle": notitle,
+                    "titles": {u: v["title"] for u, v in by_url.items() if v["title"]},
+                    "images": {u: v["image"] for u, v in by_url.items() if v["image"]}}, ensure_ascii=False), encoding="utf-8")
     (out / "amazon" / "asins.json").write_text(json.dumps(cache, indent=0), encoding="utf-8")
     (out / "a" / "index.html").write_text(redirect_page(), encoding="utf-8")
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in items[:3]]

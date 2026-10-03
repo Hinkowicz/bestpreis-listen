@@ -252,6 +252,7 @@ async function checkMissing(announce = false) {
     S.missing = new Set(st.missing || []);
     S.notitle = new Set(st.notitle || []);
     Object.assign(S.autoTitle, st.titles || {}); // Produktnamen von Geizhals für Amazon-Einträge ohne Titel
+    Object.assign(S.auto, st.images || {});      // Produktbilder von Geizhals für Amazon-Einträge ohne Bild
   } catch { return; }
   render();
   const n = S.data.amazon.filter(l => l.visible && (S.missing.has(l.url) || S.notitle.has(l.url))).length;

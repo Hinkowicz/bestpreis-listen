@@ -196,9 +196,18 @@ class AmazonTitleTest(unittest.TestCase):
 
         class Api:
             def post(self, endpoint, payload):
-                return {"response": [{"product": "AVM FRITZ!Box 7690"}] if payload["query"] == "B0D63DSFJ6" else []}
-        items, missing, notitle, titles, by_url = amazon.load_manual(f.name, offline=True, api=Api())
-        Path(f.name).unlink()
+                return {"response": [{"product": "AVM FRITZ!Box 7690", "images": ["https://evil.de/x.jpg", "https://gzhls.at/pix/a-n.webp"]}]
+                        if payload["query"] == "B0D63DSFJ6" else []}
+        info = amazon.geizhals_info(Api(), "B0D63DSFJ6")
+        self.assertEqual(info, {"title": "AVM FRITZ!Box 7690", "image_url": "https://gzhls.at/pix/a-n.webp"})  # nur Geizhals-Bilder
+        saved, amazon._previous_info = amazon._previous_info, (lambda offline: {})
+        orig = amazon.asin_from_url
+        try:
+            items, missing, notitle, info, by_url = amazon.load_manual(f.name, offline=False, api=Api())  # ohne out_dir: keine Bilder
+        finally:
+            amazon._previous_info = saved
+            Path(f.name).unlink()
         self.assertEqual([i["title"] for i in items], ["AVM FRITZ!Box 7690"])
         self.assertEqual(notitle, ["https://www.amazon.de/dp/B0AAAAAAAA"])  # unbekannt -> App warnt, nicht auf der Seite
-        self.assertEqual(titles, {"B0D63DSFJ6": "AVM FRITZ!Box 7690"})
+        self.assertEqual(info["B0D63DSFJ6"]["title"], "AVM FRITZ!Box 7690")
+        self.assertIs(amazon.asin_from_url, orig)
