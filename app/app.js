@@ -22,6 +22,7 @@ const S = {
   saved: {},     // je Liste: eigener gespeicherter Stand (erkennt, ob hier überhaupt etwas geändert wurde)
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
   previews: {},
+  auto: {},          // Link -> automatisches Vorschaubild der Website (/auto/…)
   missing: new Set(), // Amazon-Links, die die Website nicht anzeigen konnte  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
 };
@@ -224,6 +225,10 @@ async function liveRev() {
 
 /* Welche Amazon-Einträge die Website nicht anzeigen konnte (z. B. Kurzlink ohne Produkt) */
 async function checkMissing(announce = false) {
+  try { // automatische Vorschaubilder der Website (für Links ohne eigenes Bild)
+    const a = await fetch('/auto/index.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (a.ok) S.auto = await a.json();
+  } catch { /* egal */ }
   try {
     const r = await fetch('/amazon/status.json?ts=' + Date.now(), { cache: 'no-store' });
     S.missing = new Set(r.ok ? (await r.json()).missing || [] : []);
@@ -287,10 +292,11 @@ function render() {
 }
 
 function itemView(l, i) {
-  const thumb = h('div', { class: `thumb${l.image ? '' : ' mono'}` },
-    l.image ? focusImg(h('img', { src: imgSrc(l.image), alt: '' }), l) : h('img', { src: '/assets/monogram-white.png', alt: '' }));
+  const thumb = h('div', { class: `thumb${pic(l) ? '' : ' mono'}` },
+    pic(l) ? focusImg(h('img', { src: pic(l), alt: '' }), l) : h('img', { src: '/assets/monogram-white.png', alt: '' }));
   const badges = h('div', { class: 'badges' },
     l.featured ? h('span', { class: 'badge feat' }, 'Groß') : null,
+    !l.image && S.auto[l.url] ? h('span', { class: 'badge' }, 'Auto-Bild') : null,
     l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
     l.code ? h('span', { class: 'badge code' }, 'Code ' + l.code) : null,
     l.until ? h('span', { class: `badge ${expired(l) ? 'exp' : 'until'}` }, expired(l) ? 'Abgelaufen' : 'bis ' + deDate(l.until)) : null,
@@ -362,10 +368,13 @@ function focusImg(img, d) {
 }
 
 /* Vorschau wie auf der Website (groß Handy 16:8, groß PC 16:6, klein quadratisch); Bild mit dem Finger verschieben */
+/* Eigenes Bild oder – falls keins gesetzt – das automatische Vorschaubild der verlinkten Seite */
+function pic(l) { return l.image ? imgSrc(l.image) : (S.auto[l.url] || null); }
+
 function cropView(d, setup) {
   const frames = [];
   const frame = (cls, label) => {
-    const img = focusImg(h('img', { src: imgSrc(d.image), alt: '', draggable: 'false' }), d);
+    const img = focusImg(h('img', { src: pic(d), alt: '', draggable: 'false' }), d);
     const f = h('div', { class: `frame ${cls}` }, img);
     frames.push(img);
     f.addEventListener('pointerdown', e => drag(e, f, img));
@@ -429,9 +438,14 @@ function openSheet(i) {
   const category = h('input', { class: 'input', list: 'cats', placeholder: 'z. B. Peripherie & Controller', value: d.category || '' });
   const crop = h('div', { class: 'crop' });
   const pickBtn = h('button', { class: 'btn', type: 'button', onclick: () => file.click() });
+  const removeBtn = h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; d.zoom = 100; paintThumb(); } }, 'Entfernen');
   const paintThumb = () => {
     pickBtn.textContent = d.image ? 'Bild ändern' : 'Bild wählen';
-    crop.replaceChildren(...(d.image ? cropView(d, setup) : [h('div', { class: 'thumb' }, svg(ICON.image, 30))]));
+    removeBtn.classList.toggle('hide', !d.image); // Auto-Bilder kann man nur ersetzen
+    const auto = !d.image && pic(d);
+    crop.replaceChildren(...(pic(d) ? cropView(d, setup) : [h('div', { class: 'thumb' }, svg(ICON.image, 30)),
+      h('p', { class: 'note' }, 'Ohne eigenes Bild holt die Website nach dem Veröffentlichen automatisch das Vorschaubild der verlinkten Seite (außer bei Amazon).')]),
+      auto ? h('p', { class: 'note' }, 'Automatisch von der verlinkten Seite übernommen. „Bild wählen“ ersetzt es durch ein eigenes.') : null);
   };
   paintThumb();
   const file = h('input', { type: 'file', accept: 'image/*', class: 'hide', onchange: async e => {
@@ -453,8 +467,7 @@ function openSheet(i) {
     amz ? null : h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
     h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
-      crop, h('div', { class: 'acts2' }, pickBtn,
-        h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; d.zoom = 100; paintThumb(); } }, 'Entfernen')), file),
+      crop, h('div', { class: 'acts2' }, pickBtn, removeBtn), file),
     h('div', { class: 'toggles glass' },
       amz ? null : toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
       setup ? null : toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),

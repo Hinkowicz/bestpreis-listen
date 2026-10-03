@@ -14,6 +14,8 @@ from .render import e, head_icons, legal_links, logo_html
 from .theme import BASE
 
 URL_RE = re.compile(r"^https://[^\s<>\"']+$")
+AUTO = {}  # url -> /auto/<name>.webp (automatische Vorschaubilder, siehe gh/autoimg.py)
+AUTO_RE = re.compile(r"^/auto/[0-9a-f]{16}\.webp$")
 IMG_RE = re.compile(r"^/?assets/((links|setup|amazon)/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
 
 CSS = r"""
@@ -101,11 +103,17 @@ def clean(it, extra=()):
     zm = re.match(r"^\d{1,3}$", str(it.get("zoom") or "").strip())
     zoom = min(int(zm[0]), 300) if zm and int(zm[0]) > 100 else 0
     out = {"title": title, "description": str(it.get("description") or "").strip(), "url": url,
-           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else None, "focus": focus, "zoom": zoom, "code": code,
+           "image": "/" + img.lstrip("/") if IMG_RE.match(img) else _auto(url), "focus": focus, "zoom": zoom, "code": code,
            "ad": it.get("ad", True) is not False, "featured": it.get("featured") is True}
     for k in extra:
         out[k] = str(it.get(k) or "").strip()
     return out
+
+
+def _auto(url):
+    """Automatisches Vorschaubild, falls kein eigenes gesetzt ist (nur selbst gehostete /auto/-Dateien)."""
+    a = AUTO.get(url)
+    return a if a and AUTO_RE.match(a) else None
 
 
 def load(path="content/links.json", key="links", extra=()):

@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from gh import amazon, config, deals, legal, links, og, pages, render, survey
+from gh import amazon, autoimg, config, deals, legal, links, og, pages, render, survey
 from gh.builder import Builder
 from gh.catalog import Catalog
 
@@ -85,6 +85,8 @@ def main():
 
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
+    links.AUTO = autoimg.build(args.out, autoimg.load_groups(), offline=args.mock)  # Vorschaubilder für Links ohne Bild
+    gha("notice", f"Auto-Bilder: {len(links.AUTO)}")
     links.write(args.out, stamp)
     legal.write(args.out)
     pages.write(args.out)

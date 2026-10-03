@@ -176,3 +176,29 @@ class SurveyTest(unittest.TestCase):
                 self.assertNotIn(slug, f.read_text(encoding="utf-8"), f)
         self.assertEqual(Path("tools/merch-umfrage.gs").read_text(encoding="utf-8"), survey.apps_script(),
                          "tools/merch-umfrage.gs neu erzeugen: python -m gh.survey")
+
+
+class AutoImageTest(unittest.TestCase):
+    def test_vorschaubild_aus_html(self):
+        from gh.autoimg import find_image
+        page = '<head><meta property="og:image" content="/img/a.jpg"><meta name="twitter:image" content="https://x.de/t.jpg"></head>'
+        self.assertEqual(find_image(page, "https://shop.de/p/1"), "https://shop.de/img/a.jpg")
+        self.assertEqual(find_image('<link rel="apple-touch-icon" href="/icon.png">', "https://shop.de/"), "https://shop.de/icon.png")
+        self.assertIsNone(find_image('<meta property="og:image" content="javascript:alert(1)">', "https://shop.de/"))
+
+    def test_amazon_und_eigene_seite_ausgenommen(self):
+        from gh.autoimg import wanted
+        items = [{"url": "https://www.amazon.de/dp/B075S9ZRVZ"}, {"url": "https://amzn.to/x"}, {"url": "https://hinkowicz.de/setup/"},
+                 {"url": "https://shop.de/a", "image": "/assets/links/a.webp"}, {"url": "https://shop.de/b", "visible": False},
+                 {"url": "https://shop.de/c"}]
+        self.assertEqual(wanted(items), ["https://shop.de/c"])
+
+    def test_nur_eigene_auto_pfade(self):
+        links.AUTO = {"https://shop.de/c": "/auto/0123456789abcdef.webp", "https://shop.de/d": "https://evil.de/x.webp"}
+        try:
+            self.assertEqual(links.clean({"title": "C", "url": "https://shop.de/c"})["image"], "/auto/0123456789abcdef.webp")
+            self.assertIsNone(links.clean({"title": "D", "url": "https://shop.de/d"})["image"])
+            self.assertEqual(links.clean({"title": "C", "url": "https://shop.de/c", "image": "assets/links/a.webp"})["image"],
+                             "/assets/links/a.webp")  # eigenes Bild hat Vorrang
+        finally:
+            links.AUTO = {}
