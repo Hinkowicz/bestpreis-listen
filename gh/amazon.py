@@ -10,6 +10,7 @@ from pathlib import Path
 
 from . import config, deals, og
 from .render import e, eur, img, page
+from .events import load_event  # noqa: F401  (auch von run.py genutzt)
 from .theme import BASE
 
 ASIN_RE = re.compile(r"^[A-Z0-9]{10}$")
@@ -105,24 +106,6 @@ def collect(catalog, api, offline=False, active=True):
             d["url"] = link(cache[key])
             out.append(d)
     return out, cache, f"Händler-ID {h_id}, {len(raw)} Roh-Deals {names}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
-
-
-def load_event(path="content/amazon.json", today=None):
-    """Aktionszeitraum (z. B. Black Friday): nur dann wird die Amazon-Liste berechnet und alle 3 Stunden erneuert."""
-    from datetime import date, datetime
-    from zoneinfo import ZoneInfo
-    p = Path(path)
-    data = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
-    today = today or datetime.now(ZoneInfo("Europe/Berlin")).date()
-
-    def day(k):
-        try:
-            return date.fromisoformat(str(data.get(k) or ""))
-        except ValueError:
-            return None
-    start, end = day("from"), day("until")
-    active = bool(start and end and start <= today <= end)
-    return {"event": str(data.get("event") or "").strip()[:40], "active": active, "from": start, "until": end}
 
 
 def amazon_page(items, tiers, stamp, event, active=True):

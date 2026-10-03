@@ -28,17 +28,10 @@ jobs:
       run: ${{ steps.c.outputs.run }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: content
       - id: c
         run: |
           if [ "${{ github.event.schedule }}" != "37 */3 * * *" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
-          python3 - >> "$GITHUB_OUTPUT" <<'PY'
-          import json, datetime, zoneinfo
-          d = json.load(open("content/amazon.json"))
-          today = datetime.datetime.now(zoneinfo.ZoneInfo("Europe/Berlin")).date().isoformat()
-          print("run=" + ("true" if d.get("from") and d.get("until") and d["from"] <= today <= d["until"] else "false"))
-          PY
+          python3 -c 'from gh.events import load_event; print("run=" + str(load_event()["active"]).lower())' >> "$GITHUB_OUTPUT"
 
   build:
     needs: check

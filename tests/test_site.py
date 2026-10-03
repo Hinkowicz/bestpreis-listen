@@ -139,9 +139,14 @@ class AmazonTest(unittest.TestCase):
         self.assertIn("Gerade läuft keine Aktion", html)
         from datetime import date
         with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
-            f.write('{"event": "BF", "from": "2026-11-20", "until": "2026-11-30"}')
-        self.assertTrue(amazon.load_event(f.name, date(2026, 11, 30))["active"])
-        self.assertFalse(amazon.load_event(f.name, date(2026, 12, 1))["active"])
+            f.write('{"events": [{"event": "BF", "from": "2026-11-20", "until": "2026-11-30"},'
+                    ' {"event": "PD", "from": "2026-10-06", "until": "2026-10-08"}, {"event": "kaputt", "from": "x"}]}')
+        ev = lambda d: amazon.load_event(f.name, date.fromisoformat(d))
+        self.assertEqual((ev("2026-10-03")["active"], ev("2026-10-03")["event"]), (False, "PD"))  # nächste Aktion
+        self.assertEqual((ev("2026-10-06")["active"], ev("2026-10-06")["event"]), (True, "PD"))
+        self.assertFalse(ev("2026-10-09")["active"])
+        self.assertEqual((ev("2026-11-30")["active"], ev("2026-11-30")["event"]), (True, "BF"))
+        self.assertFalse(ev("2026-12-01")["active"])
         Path(f.name).unlink()
 
     def test_asin_aus_antwort(self):
