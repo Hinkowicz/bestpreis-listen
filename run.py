@@ -92,7 +92,9 @@ def main():
     legal.write(args.out)
     pages.write(args.out)
     survey.write(args.out)  # versteckte Umfrage, nirgends verlinkt
-    amazon.write(args.out, amazon_list, asins, config.TIERS, stamp, amazon_active, offline=args.mock)
+    amazon.write(args.out, amazon_list, asins, config.TIERS, stamp, amazon_active, offline=args.mock, api=api)
+    if not args.mock:  # einmalige Prüfung (wird wieder entfernt)
+        gha("notice", "PROBE Titel B0D63DSFJ6: " + str(amazon.geizhals_title(api, "B0D63DSFJ6")) + " | B0D5D3HT5S: " + str(amazon.geizhals_title(api, "B0D5D3HT5S")))
     og.write_all(args.out, builds, deal_list, config.TIERS)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor

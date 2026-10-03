@@ -108,7 +108,9 @@ def collect(catalog, api, offline=False, active=True):
     return out, cache, f"Händler-ID {h_id}, {len(raw)} Roh-Deals {names}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
 
 
-AMAZON_HOST = re.compile(r"^https://([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co)/", re.I)
+AMAZON_HOST = re.compile(r"^https://([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co|link\.amazon)/", re.I)
+SHORT_HOST = re.compile(r"^https://(amzn\.to|amzn\.eu|a\.co|link\.amazon)/", re.I)  # Kurzlinks, werden aufgelöst
+TITLES_URL = "https://hinkowicz.de/amazon/titles.json"  # ASIN -> Produktname vom letzten Lauf
 ASIN_IN_URL = re.compile(r"/(?:dp|gp/product|gp/aw/d|exec/obidos/asin)/([A-Z0-9]{10})(?=[/?#]|$)", re.I)
 
 
@@ -117,11 +119,12 @@ def asin_from_url(url, offline=False):
     m = ASIN_IN_URL.search(url)
     if m:
         return m[1].upper()
-    if offline or not re.match(r"^https://(amzn\.to|amzn\.eu|a\.co)/", url, re.I):
+    if offline or not SHORT_HOST.match(url):
         return None
     try:
         import requests
-        r = requests.get(url, timeout=10, allow_redirects=True, stream=True, headers={"User-Agent": "Mozilla/5.0"})
+        # einfache Kennung: Browser-Kennungen bekommen bei link.amazon eine JavaScript-Seite statt Weiterleitung
+        r = requests.get(url, timeout=12, allow_redirects=True, stream=True, headers={"User-Agent": "hinkowicz-links/1.0"})
         r.close()
         for u in [h.headers.get("location", "") for h in r.history] + [r.url]:
             m = ASIN_IN_URL.search(u or "")
@@ -132,18 +135,63 @@ def asin_from_url(url, offline=False):
     return None
 
 
-def load_manual(path="content/amazon-deals.json", offline=False):
-    """Deine Amazon-Tipps aus der App -> (Karten mit Link über /a/, Links die nicht angezeigt werden können)."""
+def geizhals_title(api, asin):
+    """Produktname über die Geizhals-API (Suche per ASIN) – Amazon-Seiten selbst lesen wir nicht aus."""
+    try:
+        resp = api.post("query_product", {"query": asin, "type": "asin"}).get("response") or []
+        name = re.sub(r"\s+", " ", str((resp[0] if isinstance(resp, list) and resp else {}).get("product") or "")).strip()
+        return (name if len(name) <= 80 else name[:80].rsplit(" ", 1)[0] + " …") or None
+    except Exception:
+        return None
+
+
+def _previous_titles(offline):
+    if offline:
+        return {}
+    try:
+        import requests
+        data = requests.get(TITLES_URL, timeout=10).json()
+        return {k: v for k, v in data.items() if ASIN_RE.match(k) and isinstance(v, str)}
+    except Exception:
+        return {}
+
+
+def load_manual(path="content/amazon-deals.json", offline=False, api=None):
+    """Deine Amazon-Tipps aus der App -> (Karten mit Link über /a/, fehlende Links, fehlende Titel, Titel je ASIN).
+
+    Ohne eigenen Titel wird der Produktname über Geizhals gesucht; findet sich keiner, warnt die App."""
+    p = Path(path)
+    raw = (json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}).get("items") or []
+    previous, titles, asins, notitle = _previous_titles(offline), {}, {}, []
+    for it in raw:
+        url = str(it.get("url") or "").strip()
+        if not AMAZON_HOST.match(url) or it.get("visible") is False:
+            continue
+        a = str(it.get("asin") or "").upper()
+        asins[url] = a if ASIN_RE.match(a) else asin_from_url(url, offline)
+        if asins[url] and not str(it.get("title") or "").strip():
+            t = previous.get(asins[url]) or (geizhals_title(api, asins[url]) if api else None)
+            if t:
+                titles[asins[url]] = t
+            else:
+                notitle.append(url)
+    by_url = {u: titles[a] for u, a in asins.items() if a in titles}
+    saved = links.AUTO_TITLES
+    links.AUTO_TITLES = {**saved, **by_url}
+    try:
+        items = links.load(path, key="items", extra=("asin",))
+    finally:
+        links.AUTO_TITLES = saved
     out, missing = [], []
-    for it in links.load(path, key="items", extra=("asin",)):
-        asin = None
-        if AMAZON_HOST.match(it["url"]):
-            asin = it["asin"].upper() if ASIN_RE.match(it["asin"].upper()) else asin_from_url(it["url"], offline)
+    for it in items:
+        asin = asins.get(it["url"])
         if not asin:  # ohne Produktnummer kein sicherer Link mit Partner-Tag -> App warnt
             missing.append(it["url"])
             continue
+        if it["url"] in notitle:
+            continue
         out.append({**it, "asin": asin, "ad": True, "code": "", "url": "https://hinkowicz.de" + link(asin)})
-    return out, missing
+    return out, missing, notitle, titles, by_url
 
 
 SHOP_CARD = {"title": "Mein Amazon-Shop", "description": "Mein Setup, Geschenkideen, Angebote und vieles mehr",
@@ -201,15 +249,16 @@ def redirect_page():
 </div></main><script src="/assets/amazon.js"></script></body></html>"""
 
 
-def write(out_dir, items, cache, tiers, stamp, active=True, offline=False):
+def write(out_dir, items, cache, tiers, stamp, active=True, offline=False, api=None):
     out = Path(out_dir)
     (out / "amazon").mkdir(parents=True, exist_ok=True)
     (out / "a").mkdir(parents=True, exist_ok=True)
     ev = load_event()
-    manual, missing = load_manual(offline=offline)
+    manual, missing, notitle, titles, by_url = load_manual(offline=offline, api=api)
+    (out / "amazon" / "titles.json").write_text(json.dumps(titles, ensure_ascii=False, indent=0), encoding="utf-8")
     (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active, manual), encoding="utf-8")
     # Für die App: Einträge, die nicht auf der Seite erscheinen (z. B. Kurzlink ohne Produkt)
-    (out / "amazon" / "status.json").write_text(json.dumps({"missing": missing}, ensure_ascii=False), encoding="utf-8")
+    (out / "amazon" / "status.json").write_text(json.dumps({"missing": missing, "notitle": notitle, "titles": by_url}, ensure_ascii=False), encoding="utf-8")
     (out / "amazon" / "asins.json").write_text(json.dumps(cache, indent=0), encoding="utf-8")
     (out / "a" / "index.html").write_text(redirect_page(), encoding="utf-8")
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in items[:3]]

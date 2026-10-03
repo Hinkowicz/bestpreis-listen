@@ -24,7 +24,8 @@ const S = {
   previews: {},
   auto: {},          // Link -> automatisches Vorschaubild der Website (/auto/…)
   autoTitle: {},     // Link -> Titel der verlinkten Seite (für Einträge ohne Titel)          // Link -> automatisches Vorschaubild der Website (/auto/…)
-  missing: new Set(), // Amazon-Links, die die Website nicht anzeigen konnte  // Pfad -> blob:-URL für die Vorschau
+  missing: new Set(),
+  notitle: new Set(), // Amazon-Einträge ohne Titel, zu denen Geizhals keinen Produktnamen kennt // Amazon-Links, die die Website nicht anzeigen konnte  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
 };
 
@@ -104,7 +105,7 @@ function normalizeUrl(u) {
   return u;
 }
 const URL_OK = u => /^https:\/\/[^\s<>"']+$/.test(u);
-const AMAZON_OK = u => /^https:\/\/([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co)\//i.test(u);
+const AMAZON_OK = u => /^https:\/\/([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co|link\.amazon)\//i.test(u);
 const isAmazon = u => AMAZON_OK(normalizeUrl(u));
 /* Geteilter Text (z. B. aus der Amazon-App: „Produktname … https://amzn.to/xyz“) -> Link + Titelvorschlag */
 function splitShare(text) {
@@ -247,10 +248,13 @@ async function checkMissing(announce = false) {
   } catch { /* egal */ }
   try {
     const r = await fetch('/amazon/status.json?ts=' + Date.now(), { cache: 'no-store' });
-    S.missing = new Set(r.ok ? (await r.json()).missing || [] : []);
+    const st = r.ok ? await r.json() : {};
+    S.missing = new Set(st.missing || []);
+    S.notitle = new Set(st.notitle || []);
+    Object.assign(S.autoTitle, st.titles || {}); // Produktnamen von Geizhals für Amazon-Einträge ohne Titel
   } catch { return; }
   render();
-  const n = S.data.amazon.filter(l => l.visible && S.missing.has(l.url)).length;
+  const n = S.data.amazon.filter(l => l.visible && (S.missing.has(l.url) || S.notitle.has(l.url))).length;
   if (announce && n) toast(`⚠️ ${n === 1 ? '1 Amazon-Eintrag fehlt' : n + ' Amazon-Einträge fehlen'} auf der Website – bitte Link prüfen`, 6000);
 }
 
@@ -317,6 +321,7 @@ function itemView(l, i) {
     l.code ? h('span', { class: 'badge code' }, 'Code ' + l.code) : null,
     l.until ? h('span', { class: `badge ${expired(l) ? 'exp' : 'until'}` }, expired(l) ? 'Abgelaufen' : 'bis ' + deDate(l.until)) : null,
     S.tab === 'amazon' && S.missing.has(l.url) ? h('span', { class: 'badge exp' }, 'Fehlt auf Website') : null,
+    S.tab === 'amazon' && S.notitle.has(l.url) ? h('span', { class: 'badge exp' }, 'Titel fehlt') : null,
     l.ad ? h('span', { class: 'badge ad' }, 'Anzeige') : null,
     l.image && S.pending[l.image.replace(/^\//, '')] ? h('span', { class: 'badge new' }, 'Neu') : null);
   const sw = h('label', { class: 'switch', onclick: e => e.stopPropagation() },
@@ -324,7 +329,7 @@ function itemView(l, i) {
       onchange: e => { l.visible = e.target.checked; S.dirty = true; render(); } }), h('span'));
   const handle = h('div', { class: 'handle', 'aria-label': 'Verschieben' }, svg(ICON.grip, 20, true));
   const el = h('div', { class: `item glass${l.visible && !expired(l) ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
-    thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || S.autoTitle[l.url] || 'Titel wird automatisch geholt …'),
+    thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || S.autoTitle[l.url] || (S.tab === 'amazon' ? 'Produktname wird über Geizhals gesucht …' : 'Titel wird automatisch geholt …')),
       h('div', { class: 's' }, l.description || l.url), badges), sw, handle);
   handle.addEventListener('click', e => e.stopPropagation());
   handle.addEventListener('pointerdown', e => startDrag(e, el));
@@ -483,6 +488,7 @@ function openSheet(i) {
   const cats = [...new Set(S.data.setup.map(x => x.category).filter(Boolean))];
   const back = h('div', { class: 'backdrop', onclick: () => close() });
   const err = h('div', { class: 'err' });
+  if (amz && S.notitle.has(d.url)) err.textContent = 'Geizhals kennt dieses Produkt nicht – bitte einen Titel eintragen, sonst erscheint der Eintrag nicht auf der Website.';
   if (amz && S.missing.has(d.url)) err.textContent = 'Dieser Link erscheint nicht auf der Website: Er führt zu keinem Amazon-Produkt (z. B. Suche, Shop-Seite oder kaputter Kurzlink). Bitte den Link direkt von der Produktseite kopieren.';
   const title = h('input', { class: 'input', placeholder: 'z. B. Razer Viper V4 Pro', value: d.title, enterkeyhint: 'next' });
   const desc = h('input', { class: 'input', placeholder: 'optional, z. B. Code „Hinko“ für 10 %', value: d.description });
@@ -505,7 +511,7 @@ function openSheet(i) {
   });
   // Titel darf leer bleiben – außer bei Amazon (dort holt die Website ihn nicht automatisch)
   function hintTitle() {
-    title.placeholder = amz || isAmazon(url.value) ? 'z. B. Oral-B iO 10 Zahnbürste' : 'leer lassen = Titel der Seite automatisch';
+    title.placeholder = amz || isAmazon(url.value) ? 'leer lassen = Produktname über Geizhals' : 'leer lassen = Titel der Seite automatisch';
   }
   hintTitle();
   const code = h('input', { class: 'input', placeholder: 'optional, z. B. HINKO10', value: d.code, autocapitalize: 'characters', autocorrect: 'off' });
@@ -562,7 +568,7 @@ function openSheet(i) {
     d.title = title.value.trim(); d.description = desc.value.trim(); d.url = normalizeUrl(url.value);
     d.code = code.value.trim().replace(/\s+/g, ' ').slice(0, 40); d.until = until.value || '';
     if (setup) d.category = category.value.trim() || 'Sonstiges';
-    if (!d.title && (amz || isAmazon(d.url))) { err.textContent = 'Bei Amazon-Links bitte einen Titel eintragen.'; title.focus(); return; }
+    if (!d.title && isAmazon(d.url) && !amz) { err.textContent = 'Amazon-Links bitte im Amazon-Tab eintragen – oder hier einen Titel angeben.'; title.focus(); return; }
     if (!d.title && !URL_OK(d.url)) { err.textContent = 'Bitte einen Titel oder Link eingeben.'; title.focus(); return; }
     if (!URL_OK(d.url)) { err.textContent = 'Bitte einen vollständigen Link mit https:// eingeben.'; url.focus(); return; }
     if (amz) {

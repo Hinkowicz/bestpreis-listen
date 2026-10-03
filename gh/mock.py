@@ -90,6 +90,8 @@ class MockAPI:
                 "merchants": [{"id": 1234, "name": "Beispielshop", "count": "9"}, {"id": 4711, "name": "Amazon.de", "count": "7"}]}
 
     def post(self, endpoint, payload):
+        if endpoint == "query_product" and payload.get("type") == "asin":  # Beispiel-Produktname zur ASIN
+            return {"response": [{"product": f"Beispielprodukt {payload['query']}"}]}
         if endpoint == "query_product":  # Beispiel-ASIN aus der Geizhals-ID
             return {"response": {"products": [{"asins": [f"B0MOCK{int(payload['query']) % 10000:04d}"]}]}}
         raise NotImplementedError(endpoint)

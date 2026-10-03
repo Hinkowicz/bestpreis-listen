@@ -173,7 +173,7 @@ class AmazonManualTest(unittest.TestCase):
                     '{"title": "B", "url": "https://evil.de/dp/B075S9ZRVZ"},'
                     '{"title": "C", "url": "https://amzn.to/x", "asin": "B0ABCDEF12"},'
                     '{"title": "D", "url": "https://amzn.to/y"}]}')
-        items, missing = amazon.load_manual(f.name, offline=True)
+        items, missing, notitle, _, _ = amazon.load_manual(f.name, offline=True)
         self.assertEqual(missing, ["https://evil.de/dp/B075S9ZRVZ", "https://amzn.to/y"])
         Path(f.name).unlink()
         self.assertEqual([(i["title"], i["url"]) for i in items],
@@ -185,3 +185,20 @@ class AmazonManualTest(unittest.TestCase):
         self.assertIn('href="https://hinkowicz.de/a/?shop=1"', html)
         js = Path("assets/amazon.js").read_text(encoding="utf-8")
         self.assertIn("www.amazon.de/shop/${SHOP}?tag=${TAG}", js)
+
+
+class AmazonTitleTest(unittest.TestCase):
+    def test_titel_ueber_geizhals(self):
+        from gh import amazon
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            f.write('{"items": [{"title": "", "url": "https://www.amazon.de/dp/B0D63DSFJ6"},'
+                    '{"title": "", "url": "https://www.amazon.de/dp/B0AAAAAAAA"}]}')
+
+        class Api:
+            def post(self, endpoint, payload):
+                return {"response": [{"product": "AVM FRITZ!Box 7690"}] if payload["query"] == "B0D63DSFJ6" else []}
+        items, missing, notitle, titles, by_url = amazon.load_manual(f.name, offline=True, api=Api())
+        Path(f.name).unlink()
+        self.assertEqual([i["title"] for i in items], ["AVM FRITZ!Box 7690"])
+        self.assertEqual(notitle, ["https://www.amazon.de/dp/B0AAAAAAAA"])  # unbekannt -> App warnt, nicht auf der Seite
+        self.assertEqual(titles, {"B0D63DSFJ6": "AVM FRITZ!Box 7690"})
