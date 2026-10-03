@@ -173,7 +173,8 @@ class AmazonManualTest(unittest.TestCase):
                     '{"title": "B", "url": "https://evil.de/dp/B075S9ZRVZ"},'
                     '{"title": "C", "url": "https://amzn.to/x", "asin": "B0ABCDEF12"},'
                     '{"title": "D", "url": "https://amzn.to/y"}]}')
-        items = amazon.load_manual(f.name, offline=True)
+        items, missing = amazon.load_manual(f.name, offline=True)
+        self.assertEqual(missing, ["https://evil.de/dp/B075S9ZRVZ", "https://amzn.to/y"])
         Path(f.name).unlink()
         self.assertEqual([(i["title"], i["url"]) for i in items],
                          [("A", "https://hinkowicz.de/a/?i=B075S9ZRVZ"), ("C", "https://hinkowicz.de/a/?i=B0ABCDEF12")])
@@ -181,3 +182,6 @@ class AmazonManualTest(unittest.TestCase):
         self.assertIn("Meine Tipps", html)
         self.assertIn('rel="sponsored noopener"', html)
         self.assertNotIn("fremd-21", html)
+        self.assertIn('href="https://hinkowicz.de/a/?shop=1"', html)
+        js = Path("assets/amazon.js").read_text(encoding="utf-8")
+        self.assertIn("www.amazon.de/shop/${SHOP}?tag=${TAG}", js)

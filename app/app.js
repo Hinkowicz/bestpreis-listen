@@ -21,7 +21,8 @@ const S = {
   base: {},      // je Liste: Stand auf GitHub beim Laden/Speichern (erkennt Änderungen von anderen Geräten)
   saved: {},     // je Liste: eigener gespeicherter Stand (erkennt, ob hier überhaupt etwas geändert wurde)
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
-  previews: {},  // Pfad -> blob:-URL für die Vorschau
+  previews: {},
+  missing: new Set(), // Amazon-Links, die die Website nicht anzeigen konnte  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
 };
 
@@ -221,6 +222,17 @@ async function liveRev() {
   catch { return null; }
 }
 
+/* Welche Amazon-Einträge die Website nicht anzeigen konnte (z. B. Kurzlink ohne Produkt) */
+async function checkMissing(announce = false) {
+  try {
+    const r = await fetch('/amazon/status.json?ts=' + Date.now(), { cache: 'no-store' });
+    S.missing = new Set(r.ok ? (await r.json()).missing || [] : []);
+  } catch { return; }
+  render();
+  const n = S.data.amazon.filter(l => l.visible && S.missing.has(l.url)).length;
+  if (announce && n) toast(`⚠️ ${n === 1 ? '1 Amazon-Eintrag fehlt' : n + ' Amazon-Einträge fehlen'} auf der Website – bitte Link prüfen`, 6000);
+}
+
 async function waitForLive(sha) {
   const before = await liveRev();
   const start = Date.now();
@@ -229,6 +241,7 @@ async function waitForLive(sha) {
     if (rev === sha || (rev && before && rev !== before && Date.now() - start > 20000)) {
       setStatus('live', 'Live');
       toast('✓ Deine Änderungen sind live');
+      setTimeout(() => checkMissing(true), 2800);
       return;
     }
     if (Date.now() - start > 6 * 60 * 1000) { setStatus('warn', 'Dauert länger …'); return; }
@@ -281,6 +294,7 @@ function itemView(l, i) {
     l.category && S.tab === 'setup' ? h('span', { class: 'badge' }, l.category) : null,
     l.code ? h('span', { class: 'badge code' }, 'Code ' + l.code) : null,
     l.until ? h('span', { class: `badge ${expired(l) ? 'exp' : 'until'}` }, expired(l) ? 'Abgelaufen' : 'bis ' + deDate(l.until)) : null,
+    S.tab === 'amazon' && S.missing.has(l.url) ? h('span', { class: 'badge exp' }, 'Fehlt auf Website') : null,
     l.ad ? h('span', { class: 'badge ad' }, 'Anzeige') : null,
     l.image && S.pending[l.image.replace(/^\//, '')] ? h('span', { class: 'badge new' }, 'Neu') : null);
   const sw = h('label', { class: 'switch', onclick: e => e.stopPropagation() },
@@ -400,6 +414,7 @@ function openSheet(i) {
   const cats = [...new Set(S.data.setup.map(x => x.category).filter(Boolean))];
   const back = h('div', { class: 'backdrop', onclick: () => close() });
   const err = h('div', { class: 'err' });
+  if (amz && S.missing.has(d.url)) err.textContent = 'Dieser Link erscheint nicht auf der Website: Er führt zu keinem Amazon-Produkt (z. B. Suche, Shop-Seite oder kaputter Kurzlink). Bitte den Link direkt von der Produktseite kopieren.';
   const title = h('input', { class: 'input', placeholder: 'z. B. Razer Viper V4 Pro', value: d.title, enterkeyhint: 'next' });
   const desc = h('input', { class: 'input', placeholder: 'optional, z. B. Code „Hinko“ für 10 %', value: d.description });
   const url = h('input', { class: 'input', type: 'url', inputmode: 'url', autocapitalize: 'off', autocorrect: 'off',
@@ -495,6 +510,7 @@ function renderLogin() {
     try {
       await gh(`/repos/${REPO}`);
       await loadLinks();
+      checkMissing();
       localStorage.setItem(TOKEN_KEY, t);
       setStatus('live', 'Live');
       render();
@@ -520,6 +536,7 @@ window.addEventListener('beforeunload', e => { if (S.dirty) { e.preventDefault()
   try {
     await loadLinks();
     setStatus('live', 'Live');
+    checkMissing(true);
   } catch (e) {
     if (e.status === 401) { localStorage.removeItem(TOKEN_KEY); S.token = null; }
     else setStatus('err', 'Offline?');

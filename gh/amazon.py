@@ -133,16 +133,22 @@ def asin_from_url(url, offline=False):
 
 
 def load_manual(path="content/amazon-deals.json", offline=False):
-    """Deine Amazon-Tipps aus der App -> Karten mit Link über /a/ (App öffnen + Partner-Tag)."""
-    out = []
+    """Deine Amazon-Tipps aus der App -> (Karten mit Link über /a/, Links die nicht angezeigt werden können)."""
+    out, missing = [], []
     for it in links.load(path, key="items", extra=("asin",)):
-        if not AMAZON_HOST.match(it["url"]):
+        asin = None
+        if AMAZON_HOST.match(it["url"]):
+            asin = it["asin"].upper() if ASIN_RE.match(it["asin"].upper()) else asin_from_url(it["url"], offline)
+        if not asin:  # ohne Produktnummer kein sicherer Link mit Partner-Tag -> App warnt
+            missing.append(it["url"])
             continue
-        asin = it["asin"].upper() if ASIN_RE.match(it["asin"].upper()) else asin_from_url(it["url"], offline)
-        if not asin:
-            continue  # ohne ASIN kein sicherer Link mit Partner-Tag
         out.append({**it, "asin": asin, "ad": True, "code": "", "url": "https://hinkowicz.de" + link(asin)})
-    return out
+    return out, missing
+
+
+SHOP_CARD = {"title": "Mein Amazon-Shop", "description": "Mein Setup, Geschenkideen, Angebote und vieles mehr",
+             "url": "https://hinkowicz.de/a/?shop=1", "image": "/assets/links/mein-amazon-shop.webp",
+             "focus": "", "zoom": 0, "code": "", "ad": True, "featured": False}
 
 
 def amazon_page(items, tiers, stamp, event, active=True, manual=()):
@@ -154,11 +160,11 @@ def amazon_page(items, tiers, stamp, event, active=True, manual=()):
     head = f"{event}: " if event and active else ""
     if not active:
         items = []
-    mine = ""
+    mine = f'<style>{links.CSS}.mine{{display:grid;gap:12px;margin:0 0 28px}}' \
+        '@media (min-width:760px){.mine{grid-template-columns:1fr 1fr}.mine .feat{grid-column:1/-1}}</style>' \
+        f'<div class="mine">{links.card(SHOP_CARD, 0)}</div>'
     if manual:
-        mine = (f'<style>{links.CSS}.mine{{display:grid;gap:12px;margin:0 0 28px}}'
-                '@media (min-width:760px){.mine{grid-template-columns:1fr 1fr}.mine .feat{grid-column:1/-1}}</style>'
-                '<h2>Meine Tipps</h2><div class="mine">' + "".join(links.card(m, i) for i, m in enumerate(manual)) + "</div>")
+        mine += '<h2>Meine Tipps</h2><div class="mine">' + "".join(links.card(m, i + 1) for i, m in enumerate(manual)) + "</div>"
     auto = ""
     if active:
         auto = (f"""<h2>Alle 3 Stunden neu</h2>
@@ -200,7 +206,10 @@ def write(out_dir, items, cache, tiers, stamp, active=True, offline=False):
     (out / "amazon").mkdir(parents=True, exist_ok=True)
     (out / "a").mkdir(parents=True, exist_ok=True)
     ev = load_event()
-    (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active, load_manual(offline=offline)), encoding="utf-8")
+    manual, missing = load_manual(offline=offline)
+    (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active, manual), encoding="utf-8")
+    # Für die App: Einträge, die nicht auf der Seite erscheinen (z. B. Kurzlink ohne Produkt)
+    (out / "amazon" / "status.json").write_text(json.dumps({"missing": missing}, ensure_ascii=False), encoding="utf-8")
     (out / "amazon" / "asins.json").write_text(json.dumps(cache, indent=0), encoding="utf-8")
     (out / "a" / "index.html").write_text(redirect_page(), encoding="utf-8")
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in items[:3]]

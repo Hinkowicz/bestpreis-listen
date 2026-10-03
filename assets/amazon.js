@@ -1,16 +1,19 @@
 /* Weiterleitung zu Amazon: öffnet möglichst die Amazon-App, sonst amazon.de – immer mit Partner-Tag. Kein Tracking. */
 (function () {
   const TAG = 'hinkowicz-21';
-  const asin = (new URLSearchParams(location.search).get('i') || '').trim().toUpperCase();
+  const SHOP = 'hinkowicz'; // amazon.de/shop/hinkowicz
+  const q = new URLSearchParams(location.search);
+  const shop = q.has('shop');
+  const asin = (q.get('i') || '').trim().toUpperCase();
   const $ = id => document.getElementById(id);
-  if (!/^[A-Z0-9]{10}$/.test(asin)) {
+  if (!shop && !/^[A-Z0-9]{10}$/.test(asin)) {
     $('t').textContent = 'Link ungültig';
     $('s').textContent = 'Dieser Amazon-Link ist leider kaputt.';
     $('app').remove(); $('h').hidden = true;
     $('web').textContent = 'Zu hinkowicz.de'; $('web').href = '/';
     return;
   }
-  const path = `www.amazon.de/dp/${asin}?tag=${TAG}`;
+  const path = shop ? `www.amazon.de/shop/${SHOP}?tag=${TAG}&language=de_DE` : `www.amazon.de/dp/${asin}?tag=${TAG}`;
   const web = 'https://' + path;
   const ua = navigator.userAgent || '';
   const android = /Android/i.test(ua);
