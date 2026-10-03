@@ -7,9 +7,9 @@ const REPO = 'Hinkowicz/bestpreis-listen';
 const BRANCH = 'main';
 // Zwei Listen: Startseiten-Links und „Mein Setup“
 const COLL = {
-  links: { file: 'content/links.json', key: 'links', label: 'Links', img: 'assets/links' },
-  setup: { file: 'content/setup.json', key: 'items', label: 'Setup', img: 'assets/setup' },
-  amazon: { file: 'content/amazon-deals.json', key: 'items', label: 'Amazon', img: 'assets/amazon' },
+  links: { file: 'content/links.json', key: 'links', label: 'Links', img: 'assets/links', page: '/' },
+  setup: { file: 'content/setup.json', key: 'items', label: 'Setup', img: 'assets/setup', page: '/setup/' },
+  amazon: { file: 'content/amazon-deals.json', key: 'items', label: 'Amazon', img: 'assets/amazon', page: '/amazon/' },
 };
 const API = 'https://api.github.com';
 const AUTHOR = { name: 'Hinkowicz', email: 'hinkowicz@users.noreply.github.com' };
@@ -596,7 +596,7 @@ function openSheet(i) {
 function openMenu(e) {
   e.stopPropagation();
   const m = h('div', { class: 'menu glass' },
-    h('a', { href: '/', target: '_blank', rel: 'noopener' }, 'Website ansehen'),
+    h('a', { href: COLL[S.tab].page, target: '_blank', rel: 'noopener' }, 'Website ansehen'),
     h('button', { onclick: () => location.reload() }, 'Neu laden'),
     h('button', { onclick: () => { if (confirm('Abmelden? Der Zugriffsschlüssel wird von diesem Gerät gelöscht.')) {
       localStorage.removeItem(TOKEN_KEY); S.token = null; render(); } } }, 'Abmelden'));
