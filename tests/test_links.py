@@ -202,3 +202,16 @@ class AutoImageTest(unittest.TestCase):
                              "/assets/links/a.webp")  # eigenes Bild hat Vorrang
         finally:
             links.AUTO = {}
+
+
+class DiscordLegalTest(unittest.TestCase):
+    def test_bot_seiten_ohne_vollen_namen(self):
+        from gh import legal
+        with tempfile.TemporaryDirectory() as d:
+            legal.write(d)
+            for path in ("discord/nutzungsbedingungen", "discord/datenschutz"):
+                html = (Path(d) / path / "index.html").read_text(encoding="utf-8")
+                self.assertIn("Hinko-Bot", html)
+                self.assertIn('href="mailto:robin.hinkowicz@web.de"', html)
+                self.assertNotIn("[entfernt]", html)
+                self.assertNotIn("KONTAKT-E-MAIL", html)

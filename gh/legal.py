@@ -91,10 +91,16 @@ def page(title, md):
 </main></body></html>"""
 
 
+PAGES = (("impressum", "impressum", "Impressum"), ("datenschutz", "datenschutz", "Datenschutz"),
+         # Discord-Bot (Links im Discord Developer Portal)
+         ("discord-nutzungsbedingungen", "discord/nutzungsbedingungen", "Nutzungsbedingungen Hinko-Bot"),
+         ("discord-datenschutz", "discord/datenschutz", "Datenschutz Hinko-Bot"))
+
+
 def write(out_dir):
-    for slug, title in (("impressum", "Impressum"), ("datenschutz", "Datenschutz")):
-        src = Path("content") / f"{slug}.md"
+    for src_name, path, title in PAGES:
+        src = Path("content") / f"{src_name}.md"
         if src.exists():
-            d = Path(out_dir) / slug
+            d = Path(out_dir) / path
             d.mkdir(parents=True, exist_ok=True)
             (d / "index.html").write_text(page(title, src.read_text(encoding="utf-8")), encoding="utf-8")
