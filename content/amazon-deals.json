@@ -1,20 +1,10 @@
 {
   "items": [
     {
-      "title": "TEST: Magneten für IKEA Skådis",
-      "description": "Testeintrag – kein Deal. Bitte in der App löschen oder durch echte Deals ersetzen.",
-      "url": "https://www.amazon.de/dp/B075S9ZRVZ/ref=cm_sw_r_as_gl_api_gl_i_6GXER7B5WJ05XMB8C33Y?linkCode=ml1&tag=hinkowicz-21",
-      "image": "/assets/setup/magneten-f-r-ikea-skad-s-beh-lter.webp",
-      "asin": "B075S9ZRVZ",
-      "ad": true,
-      "visible": true,
-      "featured": false
-    },
-    {
-      "title": "TEST: VESA Monitor Regal (Kurzlink)",
-      "description": "Testeintrag mit amzn.to-Kurzlink – kein Deal. Bitte in der App löschen.",
-      "url": "https://amzn.to/4bNtXv4",
-      "image": "/assets/setup/vesa-monitor-regal.webp",
+      "title": "Oral B IO 10",
+      "description": "",
+      "url": "https://amzn.eu/d/0eT1xdj1",
+      "image": null,
       "ad": true,
       "visible": true,
       "featured": false
