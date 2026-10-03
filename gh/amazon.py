@@ -140,6 +140,10 @@ def geizhals_title(api, asin):
     try:
         resp = api.post("query_product", {"query": asin, "type": "asin"}).get("response") or []
         name = re.sub(r"\s+", " ", str((resp[0] if isinstance(resp, list) and resp else {}).get("product") or "")).strip()
+        name = re.sub(r"\s*\([A-Z0-9-]{5,}\)$", "", name)  # Bestellnummer am Ende, z. B. „(20003057)“
+        first, _, rest = name.partition(" ")
+        if rest.lower().startswith(first.lower()):  # „FRITZ! FRITZ!Box …“ -> „FRITZ!Box …“
+            name = rest
         return (name if len(name) <= 80 else name[:80].rsplit(" ", 1)[0] + " …") or None
     except Exception:
         return None
