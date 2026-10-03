@@ -1,6 +1,17 @@
 {
   "links": [
     {
+      "title": "Prime Deal Days",
+      "description": "Meine Amazon-Tipps – nur für kurze Zeit",
+      "url": "https://hinkowicz.de/amazon/",
+      "image": "/assets/links/prime-deal-days.webp",
+      "from": "2026-10-06",
+      "until": "2026-10-08",
+      "ad": true,
+      "visible": true,
+      "featured": true
+    },
+    {
       "title": "MAD Gaming & Office",
       "description": "Hier gibt's die besten Fertig PCs +DIY-Kits",
       "url": "https://mad-gaming.shop/hinkowicz",

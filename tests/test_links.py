@@ -83,6 +83,11 @@ class NeueFunktionenTest(unittest.TestCase):
         self.assertIn('class="code"', html)
         self.assertNotIn("<script>alert", html)
 
+    def test_sichtbar_ab(self):
+        self.assertIsNone(links.clean({"title": "Bald", "url": "https://a.de", "from": "2999-01-01"}))
+        self.assertIsNotNone(links.clean({"title": "Heute", "url": "https://a.de", "from": links.today().isoformat()}))
+        self.assertIsNotNone(links.clean({"title": "Kaputt", "url": "https://a.de", "from": "irgendwann"}))
+
     def test_ablaufdatum(self):
         self.assertIsNone(links.clean({"title": "Alt", "url": "https://a.de", "until": "2020-01-01"}))
         self.assertIsNotNone(links.clean({"title": "Neu", "url": "https://a.de", "until": "2999-01-01"}))
