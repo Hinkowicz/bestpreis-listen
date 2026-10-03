@@ -8,7 +8,7 @@ import json
 import re
 from pathlib import Path
 
-from . import config, deals, og
+from . import config, deals, links, og
 from .render import e, eur, img, page
 from .events import load_event  # noqa: F401  (auch von run.py genutzt)
 from .theme import BASE
@@ -108,24 +108,71 @@ def collect(catalog, api, offline=False, active=True):
     return out, cache, f"Händler-ID {h_id}, {len(raw)} Roh-Deals {names}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
 
 
-def amazon_page(items, tiers, stamp, event, active=True):
+AMAZON_HOST = re.compile(r"^https://(www\.|smile\.|m\.)?(amazon\.de|amzn\.to|amzn\.eu)/", re.I)
+ASIN_IN_URL = re.compile(r"/(?:dp|gp/product|gp/aw/d|exec/obidos/asin)/([A-Z0-9]{10})(?=[/?#]|$)", re.I)
+
+
+def asin_from_url(url, offline=False):
+    """ASIN aus amazon.de-Link; Kurzlinks (amzn.to/amzn.eu) werden einmal aufgelöst."""
+    m = ASIN_IN_URL.search(url)
+    if m:
+        return m[1].upper()
+    if offline or not re.match(r"^https://(amzn\.to|amzn\.eu)/", url, re.I):
+        return None
+    try:
+        import requests
+        r = requests.get(url, timeout=10, allow_redirects=True, stream=True, headers={"User-Agent": "Mozilla/5.0"})
+        r.close()
+        for u in [h.headers.get("location", "") for h in r.history] + [r.url]:
+            m = ASIN_IN_URL.search(u or "")
+            if m:
+                return m[1].upper()
+    except Exception:
+        pass
+    return None
+
+
+def load_manual(path="content/amazon-deals.json", offline=False):
+    """Deine Amazon-Tipps aus der App -> Karten mit Link über /a/ (App öffnen + Partner-Tag)."""
+    out = []
+    for it in links.load(path, key="items", extra=("asin",)):
+        if not AMAZON_HOST.match(it["url"]):
+            continue
+        asin = it["asin"].upper() if ASIN_RE.match(it["asin"].upper()) else asin_from_url(it["url"], offline)
+        if not asin:
+            continue  # ohne ASIN kein sicherer Link mit Partner-Tag
+        out.append({**it, "asin": asin, "ad": True, "code": "", "url": "https://hinkowicz.de" + link(asin)})
+    return out
+
+
+def amazon_page(items, tiers, stamp, event, active=True, manual=()):
     cards = "".join(f"""<a class="card deal glass press" href="{e(d['url'])}" rel="sponsored noopener">{img(d['image'])}
 <div class="muted">{e(d['category'])}</div><div class="pname">{e(d['name'])}</div>
 <div><span class="price">{eur(d['price'])}</span>{f'<span class="old" title="Geizhals-Bestpreis vor der Preissenkung">vorher {eur(d["old_price"])}</span>' if d.get('old_price') else ''}</div>
 <div><span class="pct">{e(d['percent'])} %</span> {'<span class="badge">Allzeit-Bestpreis</span>' if d['alltime_best'] else ''}</div>
 <span class="btn">Bei Amazon ansehen*</span></a>""" for d in items)
-    head = f"{event}: " if event else ""
+    head = f"{event}: " if event and active else ""
     if not active:
         items = []
+    mine = ""
+    if manual:
+        mine = (f'<style>{links.CSS}.mine{{display:grid;gap:12px;margin:0 0 28px}}'
+                '@media (min-width:760px){.mine{grid-template-columns:1fr 1fr}.mine .feat{grid-column:1/-1}}</style>'
+                '<h2>Meine Tipps</h2><div class="mine">' + "".join(links.card(m, i) for i, m in enumerate(manual)) + "</div>")
+    auto = ""
+    if active:
+        auto = (f"""<h2>Alle 3 Stunden neu</h2>
+<p class="sub">Echte Preissenkungen bei Amazon – verglichen mit dem Geizhals-Bestpreis der letzten 31 Tage, nicht mit UVP-Streichpreisen.
+<b>Preise laut Geizhals, Stand {e(stamp)}.</b> Maßgeblich ist der Preis auf Amazon.</p>"""
+                + (f'<div class="grid">{cards}</div>' if items else '<p class="sub">Gerade keine weiteren Deals – schau in ein paar Stunden wieder vorbei.</p>'))
+    elif not manual:
+        auto = '<p class="sub">Gerade läuft keine Aktion. Zum nächsten Prime Day und Black Friday gibt es hier wieder die besten Amazon-Deals.</p>'
     body = f"""<h1>{e(head)}Die besten Amazon-Deals</h1>
-<p class="sub">Alle 3 Stunden neu: echte Preissenkungen bei Amazon – verglichen mit dem Geizhals-Bestpreis der letzten 31 Tage,
-nicht mit UVP-Streichpreisen. Nur Produkte, bei denen Amazon gerade der günstigste Händler ist. Tippen öffnet die Amazon-App.</p>
-<p class="sub"><b>Preise laut Geizhals, Stand {e(stamp)}.</b> Der aktuelle Preis bei Amazon kann abweichen – maßgeblich ist der Preis auf Amazon.
-Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.</p>
-{f'<div class="grid">{cards}</div>' if items else ('<p class="sub">Gerade keine passenden Deals – schau in ein paar Stunden wieder vorbei.</p>' if active else '<p class="sub">Gerade läuft keine Aktion. Zum nächsten Prime Day und Black Friday gibt es hier wieder die besten Amazon-Deals.</p>')}"""
+<p class="sub">Tippen öffnet direkt die Amazon-App. Als Amazon-Partner verdiene ich an qualifizierten Verkäufen – für dich ändert sich am Preis nichts.</p>
+{mine}{auto}"""
     title = f"{head}Amazon-Deals"
     html = page(title, "amazon", body, tiers, stamp, "amazon.png", "/amazon/",
-                "Echte Amazon-Preissenkungen, alle 3 Stunden neu – verglichen mit dem Geizhals-Bestpreis, nicht mit der UVP.")
+                "Echte Amazon-Deals – handverlesen und während Aktionen alle 3 Stunden neu, verglichen mit dem Geizhals-Bestpreis statt der UVP.")
     return html.replace('<meta name="robots" content="index,follow">', '<meta name="robots" content="noindex,follow">')
 
 
@@ -148,12 +195,12 @@ def redirect_page():
 </div></main><script src="/assets/amazon.js"></script></body></html>"""
 
 
-def write(out_dir, items, cache, tiers, stamp, active=True):
+def write(out_dir, items, cache, tiers, stamp, active=True, offline=False):
     out = Path(out_dir)
     (out / "amazon").mkdir(parents=True, exist_ok=True)
     (out / "a").mkdir(parents=True, exist_ok=True)
     ev = load_event()
-    (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active), encoding="utf-8")
+    (out / "amazon" / "index.html").write_text(amazon_page(items, tiers, stamp, ev["event"], active, load_manual(offline=offline)), encoding="utf-8")
     (out / "amazon" / "asins.json").write_text(json.dumps(cache, indent=0), encoding="utf-8")
     (out / "a" / "index.html").write_text(redirect_page(), encoding="utf-8")
     top = [f"{d['percent']} %  {d['name'][:46]}" for d in items[:3]]

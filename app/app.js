@@ -9,6 +9,7 @@ const BRANCH = 'main';
 const COLL = {
   links: { file: 'content/links.json', key: 'links', label: 'Links', img: 'assets/links' },
   setup: { file: 'content/setup.json', key: 'items', label: 'Setup', img: 'assets/setup' },
+  amazon: { file: 'content/amazon-deals.json', key: 'items', label: 'Amazon', img: 'assets/amazon' },
 };
 const API = 'https://api.github.com';
 const AUTHOR = { name: 'Hinkowicz', email: 'hinkowicz@users.noreply.github.com' };
@@ -16,7 +17,7 @@ const TOKEN_KEY = 'hinko.token';
 const MAX_IMG = 1600; // genug Reserve zum Zoomen
 
 const S = {
-  token: null, tab: 'links', data: { links: [], setup: [] }, dirty: false,
+  token: null, tab: 'links', data: { links: [], setup: [], amazon: [] }, dirty: false,
   base: {},      // je Liste: Stand auf GitHub beim Laden/Speichern (erkennt Änderungen von anderen Geräten)
   saved: {},     // je Liste: eigener gespeicherter Stand (erkennt, ob hier überhaupt etwas geändert wurde)
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
@@ -100,6 +101,12 @@ function normalizeUrl(u) {
   return u;
 }
 const URL_OK = u => /^https:\/\/[^\s<>"']+$/.test(u);
+const AMAZON_OK = u => /^https:\/\/(www\.|smile\.|m\.)?(amazon\.de|amzn\.to|amzn\.eu)\//i.test(u);
+/* ASIN aus einem Amazon-Link lesen; Kurzlinks (amzn.to) löst die Website beim Bauen auf */
+function asinOf(u) {
+  const m = /\/(?:dp|gp\/product|gp\/aw\/d|exec\/obidos\/asin)\/([A-Z0-9]{10})(?=[/?#]|$)/i.exec(u || '');
+  return m ? m[1].toUpperCase() : '';
+}
 
 function imgSrc(path) { return path ? (S.previews[path.replace(/^\//, '')] || path) : null; }
 
@@ -124,13 +131,14 @@ async function gh(path, opts = {}) {
 function normalize(l, name) {
   const o = { title: l.title || '', description: l.description || '', url: l.url || '', image: l.image || null,
     focus: l.focus || '', zoom: Math.min(300, Math.max(100, +l.zoom || 100)), code: l.code || '', until: l.until || '', ad: l.ad !== false, visible: l.visible !== false };
-  if (name === 'links') o.featured = l.featured === true; else o.category = l.category || 'Sonstiges';
+  if (name === 'setup') o.category = l.category || 'Sonstiges'; else o.featured = l.featured === true;
+  if (name === 'amazon') { o.asin = l.asin || ''; o.ad = true; }
   return o;
 }
 
 function serialize(name) {
   // leere optionale Felder weglassen, damit die Dateien übersichtlich bleiben
-  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !((['focus', 'code', 'until'].includes(k) && !v) || (k === 'zoom' && v <= 100)))));
+  const items = S.data[name].map(l => Object.fromEntries(Object.entries(l).filter(([k, v]) => !((['focus', 'code', 'until', 'asin'].includes(k) && !v) || (k === 'zoom' && v <= 100)))));
   return JSON.stringify({ [COLL[name].key]: items }, null, 2) + '\n';
 }
 
@@ -169,7 +177,7 @@ async function publish(retry = true) {
       return;
     }
     const baseTree = (await gh(`/repos/${REPO}/git/commits/${head}`)).tree.sha;
-    const used = new Set([...S.data.links, ...S.data.setup].map(l => (l.image || '').replace(/^\//, '')));
+    const used = new Set([...S.data.links, ...S.data.setup, ...S.data.amazon].map(l => (l.image || '').replace(/^\//, '')));
     const entries = [];
     for (const [path, blob] of Object.entries(S.pending)) {
       if (!used.has(path)) continue;
@@ -385,6 +393,7 @@ function cropView(d, setup) {
 function openSheet(i) {
   const isNew = i < 0;
   const setup = S.tab === 'setup';
+  const amz = S.tab === 'amazon';
   const blank = { title: '', description: '', url: '', image: null, focus: '', zoom: 100, code: '', until: '', ad: true, visible: true };
   if (setup) blank.category = S.links[0]?.category || ''; else blank.featured = false;
   const d = isNew ? blank : { ...S.links[i] };
@@ -394,7 +403,7 @@ function openSheet(i) {
   const title = h('input', { class: 'input', placeholder: 'z. B. Razer Viper V4 Pro', value: d.title, enterkeyhint: 'next' });
   const desc = h('input', { class: 'input', placeholder: 'optional, z. B. Code „Hinko“ für 10 %', value: d.description });
   const url = h('input', { class: 'input', type: 'url', inputmode: 'url', autocapitalize: 'off', autocorrect: 'off',
-    placeholder: 'https://…', value: d.url });
+    placeholder: amz ? 'Amazon-Link (amazon.de oder amzn.to)' : 'https://…', value: d.url });
   const paste = h('button', { class: 'btn', type: 'button', onclick: async () => {
     try { url.value = normalizeUrl(await navigator.clipboard.readText()); } catch { url.focus(); toast('Bitte lange tippen → Einsetzen'); }
   } }, 'Einfügen');
@@ -418,20 +427,21 @@ function openSheet(i) {
 
   const sheet = h('div', { class: 'sheet glass', role: 'dialog', 'aria-modal': 'true' },
     h('div', { class: 'grabber' }),
-    h('h2', {}, isNew ? (setup ? 'Neues Produkt' : 'Neuer Link') : 'Bearbeiten',
+    h('h2', {}, isNew ? (setup ? 'Neues Produkt' : amz ? 'Neuer Amazon-Deal' : 'Neuer Link') : 'Bearbeiten',
       h('button', { class: 'iconbtn glass', 'aria-label': 'Schließen', onclick: () => close() }, svg(ICON.close, 18))),
     h('label', { class: 'field' }, h('span', {}, 'Titel'), title),
     h('label', { class: 'field' }, h('span', {}, 'Kurze Beschreibung'), desc),
     h('div', { class: 'field' }, h('span', {}, 'Link'), h('div', { class: 'row2' }, url, paste)),
+    amz ? h('p', { class: 'note' }, 'Öffnet bei deinen Zuschauern die Amazon-App – dein Partner-Tag hinkowicz-21 wird automatisch angehängt.') : null,
     err,
     setup ? h('label', { class: 'field' }, h('span', {}, 'Kategorie'), category, catList) : null,
-    h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
+    amz ? null : h('label', { class: 'field' }, h('span', {}, 'Rabattcode'), code),
     h('div', { class: 'field' }, h('span', {}, 'Sichtbar bis (optional)'), h('div', { class: 'row2' }, until, clearUntil)),
     h('div', { class: 'field' }, h('span', {}, 'Bild'),
       crop, h('div', { class: 'acts2' }, pickBtn,
         h('button', { class: 'btn', type: 'button', onclick: () => { d.image = null; d.focus = ''; d.zoom = 100; paintThumb(); } }, 'Entfernen')), file),
     h('div', { class: 'toggles glass' },
-      toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
+      amz ? null : toggleRow('Als Werbung kennzeichnen', 'Bei Kooperationen & Affiliate-Links anlassen', d.ad, v => { d.ad = v; }),
       setup ? null : toggleRow('Groß hervorheben', 'Breite Karte mit großem Bild', d.featured, v => { d.featured = v; }),
       toggleRow('Sichtbar', null, d.visible, v => { d.visible = v; })),
     h('button', { class: 'btn primary wide', onclick: save }, isNew ? 'Hinzufügen' : 'Übernehmen'),
@@ -448,6 +458,10 @@ function openSheet(i) {
     if (setup) d.category = category.value.trim() || 'Sonstiges';
     if (!d.title) { err.textContent = 'Bitte einen Titel eingeben.'; title.focus(); return; }
     if (!URL_OK(d.url)) { err.textContent = 'Bitte einen vollständigen Link mit https:// eingeben.'; url.focus(); return; }
+    if (amz) {
+      if (!AMAZON_OK(d.url)) { err.textContent = 'Bitte einen Link von amazon.de oder amzn.to einfügen.'; url.focus(); return; }
+      d.asin = asinOf(d.url); d.ad = true; d.code = '';
+    }
     if (isNew) S.links.unshift(d); else S.links[i] = d;
     S.dirty = true;
     close();

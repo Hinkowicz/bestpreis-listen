@@ -14,7 +14,7 @@ from .render import e, head_icons, legal_links, logo_html
 from .theme import BASE
 
 URL_RE = re.compile(r"^https://[^\s<>\"']+$")
-IMG_RE = re.compile(r"^/?assets/((links|setup)/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
+IMG_RE = re.compile(r"^/?assets/((links|setup|amazon)/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
 
 CSS = r"""
 .home{max-width:1120px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px 0;

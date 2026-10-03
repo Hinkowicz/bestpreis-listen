@@ -154,3 +154,30 @@ class AmazonTest(unittest.TestCase):
         self.assertEqual(_find_asin({"response": [{"x": 1, "asin": "B0ABCDEF12"}]}), "B0ABCDEF12")
         self.assertEqual(_find_asin({"asins": [{"asin": "B0ABCDEF12"}]}), "B0ABCDEF12")
         self.assertIsNone(_find_asin({"asin": "<script>"}))
+
+
+class AmazonManualTest(unittest.TestCase):
+    def test_asin_aus_links(self):
+        from gh.amazon import asin_from_url
+        self.assertEqual(asin_from_url("https://www.amazon.de/dp/B075S9ZRVZ/ref=x?tag=y"), "B075S9ZRVZ")
+        self.assertEqual(asin_from_url("https://www.amazon.de/Produkt-Name/dp/b0abcdef12?th=1"), "B0ABCDEF12")
+        self.assertEqual(asin_from_url("https://www.amazon.de/gp/product/B0ABCDEF12"), "B0ABCDEF12")
+        self.assertIsNone(asin_from_url("https://amzn.to/abc", offline=True))
+        self.assertIsNone(asin_from_url("https://www.amazon.de/s?k=maus"))
+
+    def test_tipps_nur_amazon_mit_weiterleitung(self):
+        from gh import amazon
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            f.write('{"items": ['
+                    '{"title": "A", "url": "https://www.amazon.de/dp/B075S9ZRVZ?tag=fremd-21"},'
+                    '{"title": "B", "url": "https://evil.de/dp/B075S9ZRVZ"},'
+                    '{"title": "C", "url": "https://amzn.to/x", "asin": "B0ABCDEF12"},'
+                    '{"title": "D", "url": "https://amzn.to/y"}]}')
+        items = amazon.load_manual(f.name, offline=True)
+        Path(f.name).unlink()
+        self.assertEqual([(i["title"], i["url"]) for i in items],
+                         [("A", "https://hinkowicz.de/a/?i=B075S9ZRVZ"), ("C", "https://hinkowicz.de/a/?i=B0ABCDEF12")])
+        html = amazon.amazon_page([], config.TIERS, "Test", "", active=False, manual=items)
+        self.assertIn("Meine Tipps", html)
+        self.assertIn('rel="sponsored noopener"', html)
+        self.assertNotIn("fremd-21", html)

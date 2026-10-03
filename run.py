@@ -55,9 +55,6 @@ def main():
     print(f"   {len(deal_list)} Deals")
     gha("notice", f"{len(deal_list)} Deals, {api.calls} API-Aufrufe")
 
-    if not args.mock:
-        from gh.amazon_probe import probe
-        probe(catalog, api, gha)
     print("→ Amazon-Deals")
     amazon_active = args.mock or amazon.load_event()["active"]  # nur im Aktionszeitraum (content/amazon.json)
     amazon_list, asins, info = amazon.collect(catalog, api, offline=args.mock, active=amazon_active)
@@ -92,7 +89,7 @@ def main():
     legal.write(args.out)
     pages.write(args.out)
     survey.write(args.out)  # versteckte Umfrage, nirgends verlinkt
-    amazon.write(args.out, amazon_list, asins, config.TIERS, stamp, amazon_active)
+    amazon.write(args.out, amazon_list, asins, config.TIERS, stamp, amazon_active, offline=args.mock)
     og.write_all(args.out, builds, deal_list, config.TIERS)
     import shutil
     for d in ("admin", "app"):  # Bearbeitungs-App + Ersatz-Editor
