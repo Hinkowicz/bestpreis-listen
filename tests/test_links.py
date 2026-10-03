@@ -7,6 +7,17 @@ from pathlib import Path
 
 from gh import links
 
+# Der bürgerliche Name darf nirgends auftauchen. Hier steht absichtlich nur sein SHA-256-Fingerabdruck,
+# damit der Name selbst nicht im (öffentlichen) Code steht.
+PRIVATE_NAME_SHA256 = "39a45b2218c8099d48807b1282b8634df8423d0d8505709d80ac7081fec525cb"
+
+
+def contains_private_name(text):
+    import hashlib
+    words = set(re.findall(r"[a-zäöüß]+", text.lower()))
+    return any(hashlib.sha256(w.encode()).hexdigest() == PRIVATE_NAME_SHA256 for w in words)
+
+
 DATA = {"links": [
     {"title": "Erster", "url": "https://example.com/a", "image": "/assets/links/bild.webp", "featured": True},
     {"title": "<script>alert(1)</script>", "description": '"><img src=x onerror=alert(1)>',
@@ -142,7 +153,7 @@ class LegalTest(unittest.TestCase):
         for html in (imp, ds):
             self.assertNotIn("<script", html.lower())
             self.assertNotIn("pc.hinkowicz.de", html)
-            self.assertNotIn("[entfernt]", html)
+            self.assertFalse(contains_private_name(html))
             self.assertEqual(re.findall(r'(?:src|srcset)="(?:https?:)?//[^"]*"', html), [])
 
     def test_markdown_entschaerft(self):
@@ -218,7 +229,7 @@ class DiscordLegalTest(unittest.TestCase):
                 html = (Path(d) / path / "index.html").read_text(encoding="utf-8")
                 self.assertIn("Hinko-Bot", html)
                 self.assertIn('href="mailto:robin.hinkowicz@web.de"', html)
-                self.assertNotIn("[entfernt]", html)
+                self.assertFalse(contains_private_name(html))
                 self.assertNotIn("KONTAKT-E-MAIL", html)
 
 
