@@ -413,6 +413,41 @@ function cropView(d, setup) {
     h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein')), ...controls];
 }
 
+/* iPhone-Gesten: vom linken Rand nach rechts wischen = zurück, am Kopf nach unten ziehen = schließen */
+function swipeToClose(sheet, back, close) {
+  let start = null;
+  sheet.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1 || e.target.closest('.frame, input, textarea')) return;
+    const t = e.touches[0];
+    const edge = t.clientX < 32;
+    const head = e.target.closest('.sheethead') && sheet.scrollTop <= 0;
+    start = edge || head ? { x: t.clientX, y: t.clientY, t: Date.now(), mode: null, edge, head } : null;
+  }, { passive: true });
+  sheet.addEventListener('touchmove', e => {
+    if (!start) return;
+    const t = e.touches[0], dx = t.clientX - start.x, dy = t.clientY - start.y;
+    if (!start.mode) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      start.mode = start.edge && dx > Math.abs(dy) ? 'x' : start.head && dy > Math.abs(dx) ? 'y' : 'none';
+      if (start.mode !== 'none') sheet.style.transition = 'none';
+    }
+    if (start.mode === 'none') return;
+    e.preventDefault();
+    const d = Math.max(0, start.mode === 'x' ? dx : dy);
+    start.d = d;
+    sheet.style.transform = start.mode === 'x' ? `translateX(${d}px)` : `translateY(${d}px)`;
+    back.style.opacity = String(Math.max(0, 1 - d / 400));
+  }, { passive: false });
+  sheet.addEventListener('touchend', () => {
+    if (!start || !start.mode || start.mode === 'none') { start = null; return; }
+    const d = start.d || 0, fast = d / Math.max(1, Date.now() - start.t) > 0.5;
+    sheet.style.transition = ''; back.style.opacity = '';
+    if (d > 110 || (fast && d > 40)) close(start.mode === 'x' ? 'right' : 'down');
+    else sheet.style.transform = '';
+    start = null;
+  });
+}
+
 function openSheet(i) {
   const isNew = i < 0;
   const setup = S.tab === 'setup';
@@ -445,7 +480,7 @@ function openSheet(i) {
     const auto = !d.image && pic(d);
     crop.replaceChildren(...(pic(d) ? cropView(d, setup) : [h('div', { class: 'thumb' }, svg(ICON.image, 30)),
       h('p', { class: 'note' }, 'Ohne eigenes Bild holt die Website nach dem Veröffentlichen automatisch das Vorschaubild der verlinkten Seite (außer bei Amazon).')]),
-      auto ? h('p', { class: 'note' }, 'Automatisch von der verlinkten Seite übernommen. „Bild wählen“ ersetzt es durch ein eigenes.') : null);
+      ...(auto ? [h('p', { class: 'note' }, 'Automatisch von der verlinkten Seite übernommen. „Bild wählen“ ersetzt es durch ein eigenes.')] : []));
   };
   paintThumb();
   const file = h('input', { type: 'file', accept: 'image/*', class: 'hide', onchange: async e => {
@@ -455,9 +490,9 @@ function openSheet(i) {
   } });
 
   const sheet = h('div', { class: 'sheet glass', role: 'dialog', 'aria-modal': 'true' },
-    h('div', { class: 'grabber' }),
-    h('h2', {}, isNew ? (setup ? 'Neues Produkt' : amz ? 'Neuer Amazon-Deal' : 'Neuer Link') : 'Bearbeiten',
-      h('button', { class: 'iconbtn glass', 'aria-label': 'Schließen', onclick: () => close() }, svg(ICON.close, 18))),
+    h('div', { class: 'sheethead' }, h('div', { class: 'grabber' }),
+      h('h2', {}, isNew ? (setup ? 'Neues Produkt' : amz ? 'Neuer Amazon-Deal' : 'Neuer Link') : 'Bearbeiten',
+        h('button', { class: 'closebtn', 'aria-label': 'Schließen', onclick: () => close() }, svg(ICON.close, 18)))),
     h('label', { class: 'field' }, h('span', {}, 'Titel'), title),
     h('label', { class: 'field' }, h('span', {}, 'Kurze Beschreibung'), desc),
     h('div', { class: 'field' }, h('span', {}, 'Link'), h('div', { class: 'row2' }, url, paste)),
@@ -494,10 +529,15 @@ function openSheet(i) {
     S.dirty = true;
     close();
   }
-  function close() {
-    back.classList.remove('show'); sheet.classList.remove('show');
+  function close(dir) {
+    if (sheet.dataset.closing) return;
+    sheet.dataset.closing = '1';
+    back.classList.remove('show');
+    if (dir === 'right') { sheet.style.transition = 'transform .3s ease-out'; sheet.style.transform = 'translateX(110%)'; }
+    else { sheet.style.transform = ''; sheet.classList.remove('show'); }
     setTimeout(() => { back.remove(); sheet.remove(); render(); }, 380);
   }
+  swipeToClose(sheet, back, close);
   document.body.append(back, sheet);
   requestAnimationFrame(() => { back.classList.add('show'); sheet.classList.add('show'); });
 }
