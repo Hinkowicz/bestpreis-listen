@@ -23,6 +23,7 @@ const S = {
   pending: {},   // Pfad -> Blob (neue Bilder, noch nicht hochgeladen)
   previews: {},
   auto: {},          // Link -> automatisches Vorschaubild der Website (/auto/…)
+  autoTitle: {},     // Link -> Titel der verlinkten Seite (für Einträge ohne Titel)          // Link -> automatisches Vorschaubild der Website (/auto/…)
   missing: new Set(), // Amazon-Links, die die Website nicht anzeigen konnte  // Pfad -> blob:-URL für die Vorschau
   status: { kind: 'idle', text: 'Lädt …' },
 };
@@ -103,7 +104,20 @@ function normalizeUrl(u) {
   return u;
 }
 const URL_OK = u => /^https:\/\/[^\s<>"']+$/.test(u);
-const AMAZON_OK = u => /^https:\/\/(www\.|smile\.|m\.)?(amazon\.de|amzn\.to|amzn\.eu)\//i.test(u);
+const AMAZON_OK = u => /^https:\/\/([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co)\//i.test(u);
+const isAmazon = u => AMAZON_OK(normalizeUrl(u));
+/* Geteilter Text (z. B. aus der Amazon-App: „Produktname … https://amzn.to/xyz“) -> Link + Titelvorschlag */
+function splitShare(text) {
+  text = (text || '').trim();
+  const m = /https?:\/\/[^\s<>"']+/i.exec(text);
+  if (!m) return { url: normalizeUrl(text), title: '' };
+  const url = m[0].replace(/[).,;!?»“"]+$/, '').replace(/^http:/i, 'https:');
+  let title = (text.slice(0, m.index) + ' ' + text.slice(m.index + m[0].length)).replace(/\s+/g, ' ').trim()
+    .replace(/^(schau (dir )?(mal )?(das|dies(es|en)?( produkt)?)( (bei|auf) amazon)? an|check (this|out this)( product)?( on amazon)?|guck mal)\s*[:!-]?\s*/i, '')
+    .replace(/\s*[:|–-]\s*amazon\.(de|com)\b.*$/i, '').replace(/[\s:|–-]+$/, '');
+  if (title.length > 80) title = title.slice(0, 80).replace(/\s+\S*$/, '') + ' …';
+  return { url, title };
+}
 /* ASIN aus einem Amazon-Link lesen; Kurzlinks (amzn.to) löst die Website beim Bauen auf */
 function asinOf(u) {
   const m = /\/(?:dp|gp\/product|gp\/aw\/d|exec\/obidos\/asin)\/([A-Z0-9]{10})(?=[/?#]|$)/i.exec(u || '');
@@ -228,6 +242,8 @@ async function checkMissing(announce = false) {
   try { // automatische Vorschaubilder der Website (für Links ohne eigenes Bild)
     const a = await fetch('/auto/index.json?ts=' + Date.now(), { cache: 'no-store' });
     if (a.ok) S.auto = await a.json();
+    const t = await fetch('/auto/titles.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (t.ok) S.autoTitle = await t.json();
   } catch { /* egal */ }
   try {
     const r = await fetch('/amazon/status.json?ts=' + Date.now(), { cache: 'no-store' });
@@ -308,7 +324,7 @@ function itemView(l, i) {
       onchange: e => { l.visible = e.target.checked; S.dirty = true; render(); } }), h('span'));
   const handle = h('div', { class: 'handle', 'aria-label': 'Verschieben' }, svg(ICON.grip, 20, true));
   const el = h('div', { class: `item glass${l.visible && !expired(l) ? '' : ' hidden'}`, 'data-i': i, onclick: () => openSheet(i) },
-    thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || '(ohne Titel)'),
+    thumb, h('div', { class: 'meta' }, h('div', { class: 't' }, l.title || S.autoTitle[l.url] || 'Titel wird automatisch geholt …'),
       h('div', { class: 's' }, l.description || l.url), badges), sw, handle);
   handle.addEventListener('click', e => e.stopPropagation());
   handle.addEventListener('pointerdown', e => startDrag(e, el));
@@ -373,12 +389,12 @@ function pic(l) { return l.image ? imgSrc(l.image) : (S.auto[l.url] || null); }
 
 function cropView(d, setup) {
   const frames = [];
-  const frame = (cls, label) => {
+  const frame = (cls, label, still) => {
     const img = focusImg(h('img', { src: pic(d), alt: '', draggable: 'false' }), d);
-    const f = h('div', { class: `frame ${cls}` }, img);
+    const f = h('div', { class: `frame ${cls}${still ? ' still' : ''}` }, img);
     frames.push(img);
-    f.addEventListener('pointerdown', e => drag(e, f, img));
-    return h('div', { class: `framebox ${cls}` }, f, h('small', {}, label));
+    if (!still) f.addEventListener('pointerdown', e => drag(e, f, img));
+    return h('div', { class: `framebox ${cls}` }, f, label ? h('small', {}, label) : null);
   };
   const apply = () => frames.forEach(img => focusImg(img, d));
   function drag(e, f, img) {
@@ -408,9 +424,18 @@ function cropView(d, setup) {
     d.focus = ''; d.zoom = 100; zoom.value = 100; paintZoom(); apply(); } }, 'Zurücksetzen');
   const controls = [h('div', { class: 'zoomrow' }, svg(ICON.image, 16), zoom, zoomLbl),
     h('div', { class: 'crophint' }, setup ? 'Bild verschieben und zoomen.' : 'Bild mit dem Finger verschieben, mit dem Regler zoomen – so erscheint es auf der Website.', reset)];
-  if (setup) return [h('div', { class: 'frames' }, frame('sq', 'Kachel')), ...controls];
-  return [frame('wide', 'Groß · Handy'),
-    h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein')), ...controls];
+  // Bearbeiten erst nach Antippen von „Ausschnitt anpassen“ – sonst verschiebt man beim Scrollen versehentlich das Bild
+  const preview = setup ? h('div', { class: 'frames' }, frame('sq', null, true)) : frame(d.featured ? 'wide' : 'sq', null, true);
+  const editor = h('div', { class: 'cropedit hide' },
+    ...(setup ? [h('div', { class: 'frames' }, frame('sq', 'Kachel'))]
+      : [frame('wide', 'Groß · Handy'), h('div', { class: 'frames' }, frame('wider', 'Groß · PC'), frame('sq', 'Klein'))]),
+    ...controls);
+  const toggle = h('button', { class: 'btn small croptoggle', type: 'button', onclick: () => {
+    const open = editor.classList.toggle('hide') === false;
+    preview.classList.toggle('hide', open);
+    toggle.textContent = open ? 'Fertig ▴' : 'Ausschnitt anpassen ▾';
+  } }, 'Ausschnitt anpassen ▾');
+  return [preview, editor, toggle];
 }
 
 /* iPhone-Gesten: vom linken Rand nach rechts wischen = zurück, am Kopf nach unten ziehen = schließen */
@@ -464,8 +489,25 @@ function openSheet(i) {
   const url = h('input', { class: 'input', type: 'url', inputmode: 'url', autocapitalize: 'off', autocorrect: 'off',
     placeholder: amz ? 'Amazon-Link (amazon.de oder amzn.to)' : 'https://…', value: d.url });
   const paste = h('button', { class: 'btn', type: 'button', onclick: async () => {
-    try { url.value = normalizeUrl(await navigator.clipboard.readText()); } catch { url.focus(); toast('Bitte lange tippen → Einsetzen'); }
+    try { takeShare(await navigator.clipboard.readText()); } catch { url.focus(); toast('Bitte lange tippen → Einsetzen'); }
   } }, 'Einfügen');
+  // Link-Feld nimmt auch ganzen Teilen-Text an und übernimmt den Produktnamen als Titel
+  function takeShare(text) {
+    const s = splitShare(text);
+    url.value = s.url;
+    if (!title.value.trim() && s.title) { title.value = s.title; toast('Titel aus dem geteilten Text übernommen'); }
+    hintTitle();
+  }
+  url.addEventListener('change', () => { if (/\s/.test(url.value.trim())) takeShare(url.value); else hintTitle(); });
+  url.addEventListener('paste', e => {
+    const t = e.clipboardData && e.clipboardData.getData('text');
+    if (t && /\s/.test(t.trim())) { e.preventDefault(); takeShare(t); }
+  });
+  // Titel darf leer bleiben – außer bei Amazon (dort holt die Website ihn nicht automatisch)
+  function hintTitle() {
+    title.placeholder = amz || isAmazon(url.value) ? 'z. B. Oral-B iO 10 Zahnbürste' : 'leer lassen = Titel der Seite automatisch';
+  }
+  hintTitle();
   const code = h('input', { class: 'input', placeholder: 'optional, z. B. HINKO10', value: d.code, autocapitalize: 'characters', autocorrect: 'off' });
   const until = h('input', { class: 'input', type: 'date', value: d.until, min: todayISO() });
   const clearUntil = h('button', { class: 'btn', type: 'button', onclick: () => { until.value = ''; } }, 'Ohne');
@@ -516,10 +558,12 @@ function openSheet(i) {
       } }, 'Löschen')));
 
   function save() {
+    if (/\s/.test(url.value.trim())) takeShare(url.value);
     d.title = title.value.trim(); d.description = desc.value.trim(); d.url = normalizeUrl(url.value);
     d.code = code.value.trim().replace(/\s+/g, ' ').slice(0, 40); d.until = until.value || '';
     if (setup) d.category = category.value.trim() || 'Sonstiges';
-    if (!d.title) { err.textContent = 'Bitte einen Titel eingeben.'; title.focus(); return; }
+    if (!d.title && (amz || isAmazon(d.url))) { err.textContent = 'Bei Amazon-Links bitte einen Titel eintragen.'; title.focus(); return; }
+    if (!d.title && !URL_OK(d.url)) { err.textContent = 'Bitte einen Titel oder Link eingeben.'; title.focus(); return; }
     if (!URL_OK(d.url)) { err.textContent = 'Bitte einen vollständigen Link mit https:// eingeben.'; url.focus(); return; }
     if (amz) {
       if (!AMAZON_OK(d.url)) { err.textContent = 'Bitte einen Link von amazon.de oder amzn.to einfügen.'; url.focus(); return; }

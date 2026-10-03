@@ -16,7 +16,7 @@ from urllib.parse import urljoin, urlparse
 
 SITE = "https://hinkowicz.de"
 AUTO_RE = re.compile(r"^/auto/[0-9a-f]{16}\.webp$")
-SKIP_HOST = re.compile(r"(^|\.)(amazon\.[a-z.]+|amzn\.(to|eu)|amzlink\.to|hinkowicz\.(de|com))$", re.I)
+SKIP_HOST = re.compile(r"(^|\.)(amazon\.[a-z.]+|amzn\.(to|eu)|a\.co|amzlink\.to|hinkowicz\.(de|com))$", re.I)
 UA = "Mozilla/5.0 (compatible; HinkowiczVorschau/1.0; +https://hinkowicz.de)"
 META_RE = re.compile(r"<meta\b[^>]*>", re.I)
 LINK_RE = re.compile(r"<link\b[^>]*>", re.I)
@@ -67,6 +67,14 @@ def _get(session, url, limit, ok_codes=(200,), **kw):
     return r, data
 
 
+def _text(r, data):
+    """HTML als Text – UTF-8 zuerst (viele Seiten nennen den Zeichensatz nur im HTML), sonst laut Server."""
+    try:
+        return data.decode("utf-8")
+    except UnicodeDecodeError:
+        return data.decode(r.encoding or "latin-1", "replace")
+
+
 def to_webp(data):
     """Bild prüfen und als WebP (max. 800 px) speichern; zu kleine Bilder (Icons) verwerfen."""
     from PIL import Image
@@ -109,7 +117,7 @@ def fetch_one(session, url, previous):
         final = r.url
         if SKIP_HOST.search(urlparse(final).hostname or ""):  # Kurzlink führte zu Amazon o. Ä.
             return None
-        img_url = find_image(data.decode(r.encoding or "utf-8", "replace"), final)
+        img_url = find_image(_text(r, data), final)
         if not img_url:
             return None
         return to_webp(_get(session, img_url, MAX_IMG, Accept="image/*", Referer=final)[1])
@@ -139,6 +147,66 @@ def build(out_dir, groups, offline=False):
                     manifest[url] = f"/auto/{name_for(url)}"
     (out / "index.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=0), encoding="utf-8")
     return manifest
+
+
+TITLE_RE = re.compile(r"<title[^>]*>(.*?)</title>", re.I | re.S)
+
+
+def find_title(page_html):
+    """og:title, sonst twitter:title, sonst <title> – bereinigt und gekürzt."""
+    head = page_html[:400_000]
+    found = {}
+    for tag in META_RE.findall(head):
+        key = (_attr(tag, "property") or _attr(tag, "name") or "").lower()
+        if key in ("og:title", "twitter:title"):
+            found.setdefault(key, _attr(tag, "content"))
+    m = TITLE_RE.search(head)
+    for t in (found.get("og:title"), found.get("twitter:title"), html.unescape(m.group(1)) if m else None):
+        t = re.sub(r"\s+", " ", t or "").strip()
+        if t:
+            return t if len(t) <= 80 else t[:80].rsplit(" ", 1)[0] + " …"
+    return None
+
+
+def wanted_titles(items):
+    urls = []
+    for it in items:
+        url = str(it.get("url") or "").strip()
+        if it.get("visible", True) is False or str(it.get("title") or "").strip() or not url.startswith("https://"):
+            continue
+        if not SKIP_HOST.search(urlparse(url).hostname or "") and url not in urls:
+            urls.append(url)
+    return urls
+
+
+def build_titles(out_dir, groups, offline=False):
+    """Titel für Einträge ohne eigenen Titel -> {url: titel}; schreibt /auto/titles.json (vom letzten Lauf übernommen)."""
+    urls = []
+    for items in groups:
+        urls += [u for u in wanted_titles(items) if u not in urls]
+    titles = {}
+    if not offline and urls:
+        import requests
+        session = requests.Session()
+        try:
+            previous = session.get(f"{SITE}/auto/titles.json", timeout=10).json()
+        except Exception:
+            previous = {}
+
+        def one(url):
+            if isinstance(previous.get(url), str) and previous[url].strip():
+                return previous[url].strip()[:90]
+            try:
+                r, data = _get(session, url, MAX_HTML, Accept="text/html,application/xhtml+xml")  # nur echte Seiten, keine 404-Titel
+                return find_title(_text(r, data))
+            except Exception:
+                return None
+        with ThreadPoolExecutor(6) as pool:
+            titles = {u: t for u, t in zip(urls, pool.map(one, urls)) if t}
+    out = Path(out_dir) / "auto"
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "titles.json").write_text(json.dumps(titles, ensure_ascii=False, indent=0), encoding="utf-8")
+    return titles
 
 
 def load_groups(paths=(("content/links.json", "links"), ("content/setup.json", "items"), ("content/amazon-deals.json", "items"))):

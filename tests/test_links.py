@@ -215,3 +215,21 @@ class DiscordLegalTest(unittest.TestCase):
                 self.assertIn('href="mailto:robin.hinkowicz@web.de"', html)
                 self.assertNotIn("[entfernt]", html)
                 self.assertNotIn("KONTAKT-E-MAIL", html)
+
+
+class AutoTitleTest(unittest.TestCase):
+    def test_titel_aus_html(self):
+        from gh.autoimg import find_title
+        self.assertEqual(find_title('<meta property="og:title" content="Rawpad &amp; V2"><title>x</title>'), "Rawpad & V2")
+        self.assertEqual(find_title("<title>\n  Shop  Name </title>"), "Shop Name")
+        self.assertIsNone(find_title("<p>nix</p>"))
+
+    def test_leerer_titel_wird_ersetzt_und_entschaerft(self):
+        links.AUTO_TITLES = {"https://shop.de/a": '<b>Böser</b> "Titel"'}
+        try:
+            l = links.clean({"title": "", "url": "https://shop.de/a"})
+            self.assertEqual(l["title"], '<b>Böser</b> "Titel"')
+            self.assertIn("&lt;b&gt;Böser&lt;/b&gt;", links.card(l, 0))
+            self.assertEqual(links.clean({"title": "", "url": "https://www.beispiel.de/x"})["title"], "beispiel.de")
+        finally:
+            links.AUTO_TITLES = {}

@@ -5,6 +5,7 @@ Die Inhalte werden über die Hinko-App (/app/) gepflegt.
 import json
 import os
 import re
+from urllib.parse import urlparse
 from datetime import date, datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -14,6 +15,7 @@ from .render import e, head_icons, legal_links, logo_html
 from .theme import BASE
 
 URL_RE = re.compile(r"^https://[^\s<>\"']+$")
+AUTO_TITLES = {}  # url -> Titel der verlinkten Seite (für Einträge ohne eigenen Titel)
 AUTO = {}  # url -> /auto/<name>.webp (automatische Vorschaubilder, siehe gh/autoimg.py)
 AUTO_RE = re.compile(r"^/auto/[0-9a-f]{16}\.webp$")
 IMG_RE = re.compile(r"^/?assets/((links|setup|amazon)/)?[A-Za-z0-9._-]+\.(png|jpe?g|webp|gif)$")
@@ -87,8 +89,12 @@ def clean(it, extra=()):
     if not isinstance(it, dict) or it.get("visible") is False:
         return None
     url, title = str(it.get("url") or "").strip(), str(it.get("title") or "").strip()
-    if not title or not URL_RE.match(url):  # nur vollständige https-Links
+    if not URL_RE.match(url):  # nur vollständige https-Links
         return None
+    if not title:  # leer gelassen -> Titel der verlinkten Seite, sonst der Domainname
+        title = AUTO_TITLES.get(url) or (urlparse(url).hostname or "").removeprefix("www.")
+        if not title:
+            return None
     until = str(it.get("until") or "").strip()
     if until:
         try:

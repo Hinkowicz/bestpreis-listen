@@ -108,7 +108,7 @@ def collect(catalog, api, offline=False, active=True):
     return out, cache, f"Händler-ID {h_id}, {len(raw)} Roh-Deals {names}, {len(out)} Deals, {looked_up} ASIN-Abfragen"
 
 
-AMAZON_HOST = re.compile(r"^https://(www\.|smile\.|m\.)?(amazon\.de|amzn\.to|amzn\.eu)/", re.I)
+AMAZON_HOST = re.compile(r"^https://([a-z0-9-]+\.)?(amazon\.de|amzn\.to|amzn\.eu|a\.co)/", re.I)
 ASIN_IN_URL = re.compile(r"/(?:dp|gp/product|gp/aw/d|exec/obidos/asin)/([A-Z0-9]{10})(?=[/?#]|$)", re.I)
 
 
@@ -117,7 +117,7 @@ def asin_from_url(url, offline=False):
     m = ASIN_IN_URL.search(url)
     if m:
         return m[1].upper()
-    if offline or not re.match(r"^https://(amzn\.to|amzn\.eu)/", url, re.I):
+    if offline or not re.match(r"^https://(amzn\.to|amzn\.eu|a\.co)/", url, re.I):
         return None
     try:
         import requests

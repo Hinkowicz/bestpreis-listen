@@ -145,3 +145,6 @@ input[type=date].input{min-height:50px;-webkit-appearance:none;appearance:none;c
 .zoom::-moz-range-track{height:6px;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
 .zoom::-moz-range-thumb{width:28px;height:28px;border:0;border-radius:50%;background:#fff}
 .note{color:var(--muted);font-size:12.5px;margin:-4px 4px 12px}
+.frame.still{touch-action:auto;cursor:default}.frame.still img{pointer-events:none}
+.crop>.framebox.sq,.crop>.frames{justify-items:start}
+.cropedit{display:grid;gap:10px}.cropedit.hide,.crop .hide{display:none}.croptoggle{justify-self:start}

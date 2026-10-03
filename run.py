@@ -86,6 +86,7 @@ def main():
     history = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() and not args.mock else None
     render.write_site(args.out, builds, deal_list, history, stamp + (" (BEISPIELDATEN)" if args.mock else ""))
     links.AUTO = autoimg.build(args.out, autoimg.load_groups(), offline=args.mock)  # Vorschaubilder für Links ohne Bild
+    links.AUTO_TITLES = autoimg.build_titles(args.out, autoimg.load_groups(), offline=args.mock)  # Titel für Links ohne Titel
     gha("notice", f"Auto-Bilder: {len(links.AUTO)}")
     links.write(args.out, stamp)
     legal.write(args.out)
